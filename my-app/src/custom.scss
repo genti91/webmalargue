@@ -1,0 +1,8 @@
+/* make the customizations */
+$theme-colors: (
+        "primary": rgb(27,0,136),
+        "secondary": rgb(237,22,80)
+);
+
+/* import bootstrap to set changes */
+@import "../node_modules/bootstrap/scss/bootstrap";
