@@ -1,2 +1,97 @@
 @import "custom";
-@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.text-icon {
+  text-align: left;
+  font: normal normal normal 17px/21px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 0.8;
+  padding-left: 20px;
+}
+.container-main {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+.section-door {
+  display: flex;
+  justify-content: space-around;
+  padding: 140px;
+  max-height: 873px;
+}
+.section-door-container-text {
+  max-width: 466px;
+}
+.section-door-container-flex-text {
+  display: flex;
+  align-items: center;
+  margin-top: 26px;
+}
+.section-door-text-title {
+  text-align: left;
+  font: normal normal 600 44px/54px Poppins;
+  letter-spacing: 0px;
+  color: #222222;
+  opacity: 1;
+}
+.section-door-number {
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  border: 2px solid #2f3394;
+  border-radius: 25px;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: normal normal 600 21px/24px Poppins;
+  letter-spacing: 0px;
+  color: #2f3394;
+  margin-right: 14px;
+}
+.section-door-text-paragraph {
+  text-align: left;
+  font: normal normal 500 18px/21px Poppins;
+  letter-spacing: 0px;
+  color: #222222;
+  opacity: 1;
+  max-width: 466px;
+}
+.btn-pill {
+  margin-top: 26px;
+  padding: 26px 40px;
+  border-radius: 50px;
+  text-align: left;
+  font: normal normal 500 17px/34px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.main-trafic-img {
+  width: 50%;
+}
+.section-trafic-text-title {
+  text-align: left;
+  font: normal normal 500 45px/61px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.main-bg-gradient {
+  width: 50%;
+  height: auto;
+  background: transparent linear-gradient(131deg, #2f3394 0%, #eb1c23 100%) 0%
+    0% no-repeat padding-box;
+}
+.section-truck-text {
+  text-align: left;
+  font: normal normal 500 25px/41px Poppins;
+  letter-spacing: 0px;
+  color: #222222;
+}
+.section-truck-text-bold {
+  text-align: left;
+  font: normal normal 700 25px/41px Poppins;
+  letter-spacing: 0px;
+  color: #2f3394;
+}
