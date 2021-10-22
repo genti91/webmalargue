@@ -11,7 +11,7 @@ const Landing_2 = () => {
       <MainDoor />
       <MainTraffic />
       <MainTruck />
-      <FooterShipments />
+      <FooterShipments image='segui-tu-envio-blue.jpg' button='secondary'/>
       <FooterPaymentMethods />
     </>
   );

@@ -1,9 +1,9 @@
-const FooterShipments = () => {
+const FooterShipments = ({image, button}) => {
   return (
     <div
       className="d-flex flex-column justify-content-center align-items-center"
       style={{
-        "background-image": "url('/assets/segui-tu-envio-blue.jpg')",
+        "background-image": `url('/assets/${image}')`,
         "background-repeat": "no-repeat",
         "background-size": "cover",
         width: "100%",
@@ -44,7 +44,7 @@ const FooterShipments = () => {
           </button>
         </div>
       </div>
-      <span role="button" class="btn-pill bg-secondary">
+      <span role="button" class={`btn-pill bg-${button}`}>
           Consultá por tu envío
         </span>
     </div>
