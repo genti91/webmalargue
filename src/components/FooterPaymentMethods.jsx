@@ -2,7 +2,7 @@ const FooterPaymentMethods = () => {
   return (
     <div className="container-fluid footer-border-bottom-blue">
       <div className="section-door">
-        <div className="section-door-container-text">
+        <div className="section-footer-container-text">
           <span className="footer-title-payments">
             Hace tus envíos y págalos a través de Mercado Pago
           </span>
