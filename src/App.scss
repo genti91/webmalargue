@@ -95,3 +95,53 @@
   letter-spacing: 0px;
   color: #2f3394;
 }
+.bg-footer {
+  width: 100%;
+  min-height: 433px;
+}
+.footer-title {
+  text-align: center;
+  font: normal normal 600 34px/54px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.footer-subtitle {
+  text-align: center;
+  font: normal normal 400 18px/32px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+}
+.footer-title-payments {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font: normal normal 600 34px/54px Poppins;
+  letter-spacing: 0px;
+  color: black;
+  opacity: 1;
+}
+.step-button {
+  background-color: transparent;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+.fa-circle{
+    font-size:larger;
+    text-align: center;
+    vertical-align: middle;
+
+}
+.bs-stepper-line {
+  flex: 1 0 32px;
+  min-width: 3px;
+  min-height: 3px;
+  margin: auto;
+  background-color: #ffffff59;
+}
+.footer-border-bottom-blue{
+  border-bottom: 13px solid #2F3394;
+}
