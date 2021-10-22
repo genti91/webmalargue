@@ -8,9 +8,9 @@ const Landing_1 = () => {
   return (
     <>
       <SectionIcons />
-      <MainDoor />
-      <MainTraffic />
-      <MainTruck />
+      <MainDoor button='primary'/>
+      <MainTraffic button='primary' background='main-bg-gradient-1'/>
+      <MainTruck button='primary'/>
       <FooterShipments image='segui-tu-envio-red.jpg' button='primary'/>
       <FooterPaymentMethods />
     </>

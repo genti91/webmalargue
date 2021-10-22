@@ -1,4 +1,4 @@
-const MainDoor = () => {
+const MainDoor = ({button}) => {
     return (
       <div className="container-fluid">
         <div className="section-door">
@@ -24,7 +24,7 @@ const MainDoor = () => {
                 <span className="section-door-number">5</span>
                 <span className="section-door-text-paragraph">y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.</span>
             </span>
-            <span role="button" class="btn-pill bg-secondary">Consultá por tu envío</span>
+            <span role="button" class={`btn-pill bg-${button}`}>Consultá por tu envío</span>
           </div>
           <div className="section-door-img">
             <img src={`assets/repartidor-chica.jpg`} alt="repartidor-chica" className="img-fluid" />
