@@ -1,4 +1,4 @@
-import HeroLanding1 from "../components/HeroLanding1";
+import HeroLanding2 from "../components/HeroLanding2";
 import SectionIcons from "../components/SectionIcons";
 import MainDoor from "../components/MainDoor";
 import MainTraffic from "../components/MainTraffic";
@@ -8,7 +8,7 @@ import FooterPaymentMethods from "../components/FooterPaymentMethods";
 const Landing_2 = () => {
   return (
     <>
-      <HeroLanding1 />
+      <HeroLanding2 />
       <SectionIcons />
       <MainDoor button="secondary" />
       <MainTraffic button="secondary" background="main-bg-gradient" />
