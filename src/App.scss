@@ -158,10 +158,15 @@
   color: #ffffff;
   opacity: 1;
 }
+.section-traffic{
+  padding: 0;
+  display: flex;
+}
 .main-trafic-img {
   width: 50%;
 }
 .section-trafic-text-title {
+  width: 50%;
   text-align: left;
   font: normal normal 500 45px/61px Poppins;
   letter-spacing: 0px;
@@ -248,6 +253,9 @@
 }
 // Breakpoints
 @media (max-width: 1025px) {
+  .section-trafic-text-title {
+    font: normal normal 500 35px/51px Poppins;
+  }
   .container-form {
     left: 10%;
   }
@@ -304,6 +312,15 @@
   .btn-pill {
     margin-bottom: 26px;
     padding: 20px 40px;
+  }
+  .section-traffic{
+    flex-direction: column;
+  }
+  .main-trafic-img,.main-bg-gradient,.main-bg-gradient-1,.section-trafic-text-title  {
+    width: 100%;
+  }
+  .section-trafic-text-title {
+    padding: 70px;
   }
 }
 @media (max-width: 426px) {
