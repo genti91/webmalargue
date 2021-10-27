@@ -3,11 +3,11 @@ const FooterShipments = ({image, button}) => {
     <div
       className="d-flex flex-column justify-content-center align-items-center"
       style={{
-        "background-image": `url('/assets/${image}')`,
-        "background-repeat": "no-repeat",
-        "background-size": "cover",
+        "backgroundImage": `url('/assets/${image}')`,
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
         width: "100%",
-        "min-height": "433px",
+        "minHeight": "433px",
       }}
     >
       <div className="footer-title">Seguí tu envio</div>
@@ -18,33 +18,33 @@ const FooterShipments = ({image, button}) => {
         </div>
       </div>
       <div className="col-6">
-        <div class="d-flex align-items-center justify-content-center">
-          <button type="button" class="step-button">
+        <div className="d-flex align-items-center justify-content-center">
+          <button type="button" className="step-button">
             <span>
-              <i class="fa fa-circle text-secondary"></i>
+              <i className="fa fa-circle text-secondary"></i>
             </span>
           </button>
-          <div class="bs-stepper-line"></div>
-          <button type="button" class="step-button">
+          <div className="bs-stepper-line"></div>
+          <button type="button" className="step-button">
             <span>
-              <i class="fa fa-circle text-secondary"></i>
+              <i className="fa fa-circle text-secondary"></i>
             </span>
           </button>
-          <div class="bs-stepper-line"></div>
-          <button type="button" class="step-button">
+          <div className="bs-stepper-line"></div>
+          <button type="button" className="step-button">
             <span>
-              <i class="fa fa-circle text-secondary"></i>
+              <i className="fa fa-circle text-secondary"></i>
             </span>
           </button>
-          <div class="bs-stepper-line"></div>
-          <button type="button" class="step-button">
+          <div className="bs-stepper-line"></div>
+          <button type="button" className="step-button">
             <span>
-              <i class="fa fa-circle text-primary"></i>
+              <i className="fa fa-circle text-primary"></i>
             </span>
           </button>
         </div>
       </div>
-      <span role="button" class={`btn-pill bg-${button}`}>
+      <span role="button" className={`btn-pill bg-${button}`}>
           Consultá por tu envío
         </span>
     </div>

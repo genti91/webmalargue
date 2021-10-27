@@ -7,7 +7,7 @@ const MainTruck = ({button}) => {
             Contamos con más de <span className="section-truck-text-bold mb-5">75 años de trayectoria</span>, destacándonos por la
             seguridad y calidad del servicio.
           </span>
-          <span role="button" class={`btn-pill bg-${button} d-inline-block`}>
+          <span role="button" className={`btn-pill bg-${button} d-inline-block`}>
             Consultá por tu envío
           </span>
         </div>

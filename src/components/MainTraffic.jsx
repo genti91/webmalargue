@@ -6,7 +6,7 @@ const MainTraffic = ({button, background}) => {
         <span className="section-trafic-text-title text-white w-50">
           Recorremos las rutas del paÍs llevando todos tus envÍos.
         </span>
-        <span role="button" class={`btn-pill bg-${button}`}>
+        <span role="button" className={`btn-pill bg-${button}`}>
           Consultá por tu envío
         </span>
       </div>

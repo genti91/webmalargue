@@ -1,3 +1,4 @@
+import HeroLanding1 from "../components/HeroLanding1";
 import SectionIcons from "../components/SectionIcons";
 import MainDoor from "../components/MainDoor";
 import MainTraffic from "../components/MainTraffic";
@@ -7,11 +8,12 @@ import FooterPaymentMethods from "../components/FooterPaymentMethods";
 const Landing_1 = () => {
   return (
     <>
+      <HeroLanding1 />
       <SectionIcons />
-      <MainDoor button='primary'/>
-      <MainTraffic button='primary' background='main-bg-gradient-1'/>
-      <MainTruck button='primary'/>
-      <FooterShipments image='segui-tu-envio-red.jpg' button='primary'/>
+      <MainDoor button="primary" />
+      <MainTraffic button="primary" background="main-bg-gradient-1" />
+      <MainTruck button="primary" />
+      <FooterShipments image="segui-tu-envio-red.jpg" button="primary" />
       <FooterPaymentMethods />
     </>
   );
