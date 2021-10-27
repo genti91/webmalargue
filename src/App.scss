@@ -107,7 +107,7 @@
   padding: 140px;
   height: auto;
 }
-.section-door-container-text {
+.section-door-container-text, .section-truck-container-text {
   width: 45%;
 }
 .section-door-container-img {
@@ -266,10 +266,10 @@
   .section-door {
     padding: 70px;
   }
-  .section-door-container-text {
+  .section-door-container-text, .section-truck-container-text {
     padding: 25px;
   }
-  .section-door-container-text, .section-door-container-img {
+  .section-door-container-text,.section-truck-container-text, .section-door-container-img {
     width: 50%;
   }
 }
@@ -304,10 +304,15 @@
     padding: 70px;
     text-align: center;
   }
-  .section-door-container-text, .section-door-container-img {
+  .section-door-container-text,.section-truck-container-text, .section-door-container-img {
     width: 100%;
     padding: 0;
     padding-bottom: 25px;
+  }
+  .section-truck-container-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .btn-pill {
     margin-bottom: 26px;
