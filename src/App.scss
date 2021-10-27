@@ -32,11 +32,10 @@
   color: #ffffff;
   opacity: 0.9;
 }
-
 .container-form {
   position: absolute;
   left: 30%;
-  bottom: 10%;
+  bottom: 5%;
   width: 40%;
   background: #fafafa 0% 0% no-repeat padding-box;
   box-shadow: 0px 5px 6px #00000029;
@@ -89,70 +88,6 @@
   width: 20px;
   margin-left: 15px;
 }
-
-.textfield {
-  font: normal normal 300 36px/67px Poppins;
-  background: #271670 0% 0% no-repeat padding-box;
-  border-radius: 8px;
-  opacity: 0.05;
-  &__textarea {
-    box-shadow: 0 0 7px 0 gray;
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 7px 0 red;
-      + .textfield__adornment {
-        display: none;
-      }
-    }
-  }
-  &__input {
-    background: #271670 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    opacity: 0.05;
-    &--focused {
-      background: #efeef3 0% 0% no-repeat padding-box;
-      border: 2px solid #2f3394;
-      border-radius: 8px;
-      opacity: 1;
-    }
-    &-field {
-      border: 0px;
-      padding-left: 10px;
-      &:focus {
-        outline: none;
-      }
-      &::-webkit-input-placeholder {
-        font: normal normal 300 36px/67px Poppins;
-      }
-    }
-    &-adornment {
-      width: 14px;
-      height: 20px;
-    }
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 7px 0 red;
-      + .textfield__adornment {
-        &-placeholder {
-          display: none;
-        }
-      }
-    }
-  }
-  &__adornment {
-    position: absolute;
-    top: 8px;
-    left: 12px;
-    &-text {
-      color: #5d5d5d;
-    }
-    &-placeholder {
-      margin-left: 5px;
-      color: #bdbdbd;
-    }
-  }
-}
-
 .text-icon {
   text-align: left;
   font: normal normal normal 17px/21px Poppins;
@@ -170,10 +105,13 @@
   display: flex;
   justify-content: space-around;
   padding: 140px;
-  max-height: 873px;
+  height: auto;
 }
 .section-door-container-text {
-  max-width: 466px;
+  width: 45%;
+}
+.section-door-container-img {
+  width: 45%;
 }
 .section-door-container-flex-text {
   display: flex;
@@ -309,13 +247,22 @@
   border-bottom: 13px solid #2f3394;
 }
 // Breakpoints
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
   .container-form {
     left: 10%;
   }
   .container-form {
     width: 80%;
     height: auto;
+  }
+  .section-door {
+    padding: 70px;
+  }
+  .section-door-container-text {
+    padding: 25px;
+  }
+  .section-door-container-text, .section-door-container-img {
+    width: 50%;
   }
 }
 
@@ -343,8 +290,27 @@
   .form-title {
     font: normal normal 600 15 px / 64 px Poppins;
   }
+  .section-door {
+    flex-direction: column;
+    max-height: none;
+    padding: 70px;
+    text-align: center;
+  }
+  .section-door-container-text, .section-door-container-img {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 25px;
+  }
+  .btn-pill {
+    margin-bottom: 26px;
+    padding: 20px 40px;
+  }
 }
 @media (max-width: 426px) {
   .hero-landing-1 {
     background-position: bottom;
-  }}
+  }
+  .section-door {
+    padding: 35px;
+  }
+}

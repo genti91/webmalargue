@@ -26,9 +26,7 @@ const MainDoor = ({button}) => {
             </span>
             <span role="button" className={`btn-pill bg-${button}`}>Consultá por tu envío</span>
           </div>
-          <div className="section-door-img">
-            <img src={`assets/repartidor-chica.jpg`} alt="repartidor-chica" className="img-fluid" />
-          </div>
+            <img src={`assets/repartidor-chica.jpg`} alt="repartidor-chica" className="section-door-container-img img-fluid" />
         </div>
       </div>
     );
