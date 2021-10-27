@@ -1,31 +1,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import TextInput from "./TextInput";
+import TextInput2 from "./TextInput2";
 import { form_shipment } from "../constant/forms";
-const Form2 = () => {
+import TextInputArea from "./TextInputArea";
+const Form = () => {
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const onSubmit = (data, e) => console.log(data, e);
 
   return (
-    <div className="container-form text-center">
-      <span className='form-title'>Cotizá tu envío completando todos tus datos.</span>
+    <div className="container-form-2 text-center">
+      <span className="form-title-2">
+        Cotizá tu envío completando todos tus datos.
+      </span>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="d-flex align-items-center">
-          <TextInput {...form_shipment[0]} />
-          <TextInput {...form_shipment[1]} />
+        <div className="wrapper_inputs">
+          <div className='input_container_2_wrapper'>
+            <TextInput2 {...form_shipment[0]} />
+          </div>
+          <div className='input_container_2_wrapper'>
+            <TextInput2 {...form_shipment[1]} />
+          </div>
         </div>
-        <div className="d-flex flex-column my-4">
-          <TextInput {...form_shipment[2]} />
-          <TextInput {...form_shipment[3]} />
-        </div>
-        <TextInput {...form_shipment[4]} />
+
+        <TextInput2 {...form_shipment[2]} />
+        <TextInput2 {...form_shipment[3]} />
+        <TextInputArea {...form_shipment[4]} />
+        <span className="helper_text">
+          *Recordá completar todos los campos del formulario.
+        </span>
         <input
           type="submit"
-          class="btn-pill bg-primary d-inline-block "
+          className="btn-pill-quote bg-primary"
           value="Cotizá tu envío"
           style={{
             outline: "none",
@@ -36,4 +44,4 @@ const Form2 = () => {
     </div>
   );
 };
-export default Form2;
+export default Form;

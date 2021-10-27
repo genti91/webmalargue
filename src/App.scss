@@ -42,9 +42,24 @@
   opacity: 1;
   padding: 37px 36px 41px 36px;
 }
+.container-form-2 {
+  width: 100%;
+  max-width: 517px;
+  margin: 0 auto;
+  background: #fafafa 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 6px #00000029;
+  padding: 35px 24px;
+}
 .form-title {
   display: flex;
   font: normal normal 600 21px/64px Poppins;
+  letter-spacing: 0px;
+  color: #222222;
+  opacity: 1;
+}
+.form-title-2 {
+  text-align: left;
+  font: normal normal 600 17px/64px Poppins;
   letter-spacing: 0px;
   color: #222222;
   opacity: 1;
@@ -60,6 +75,39 @@
   justify-content: start;
   width: 100%;
   max-width: 317px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 25px;
+  &__icon {
+    height: 100%;
+    color: #2f3394;
+    background-color: #26167013;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__field {
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    outline: none;
+    border: none;
+    text-align: left;
+    font: normal normal 500 12px/35px Poppins;
+    letter-spacing: 0px;
+    color: #222222;
+    background-color: #26167013;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+.input_container_2 {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
   height: 40px;
   border-radius: 8px;
   margin-top: 25px;
@@ -320,6 +368,9 @@ textarea {
 .footer-border-bottom-blue {
   border-bottom: 13px solid #2f3394;
 }
+.input_container_2_wrapper{
+  max-width: 226px;
+}
 // Breakpoints
 @media (max-width: 1025px) {
   .section-trafic-text-title {
@@ -361,6 +412,12 @@ textarea {
     width: 100%;
     height: auto;
   }
+  .container-form-2{
+    margin-top: 30px;
+  }
+  .input_container_2_wrapper{
+    max-width: none !important;
+  }
   .wrapper_inputs {
     flex-direction: column;
   }
@@ -369,7 +426,7 @@ textarea {
     margin: auto;
     margin-top: 25px;
   }
-  .helper_text{
+  .helper_text {
     text-align: center;
   }
   .hero-title-big {
