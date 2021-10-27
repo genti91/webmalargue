@@ -107,7 +107,8 @@
   padding: 140px;
   height: auto;
 }
-.section-door-container-text, .section-truck-container-text {
+.section-door-container-text,
+.section-truck-container-text {
   width: 45%;
 }
 .section-door-container-img {
@@ -158,7 +159,7 @@
   color: #ffffff;
   opacity: 1;
 }
-.section-traffic{
+.section-traffic {
   padding: 0;
   display: flex;
 }
@@ -266,10 +267,13 @@
   .section-door {
     padding: 70px;
   }
-  .section-door-container-text, .section-truck-container-text {
+  .section-door-container-text,
+  .section-truck-container-text {
     padding: 25px;
   }
-  .section-door-container-text,.section-truck-container-text, .section-door-container-img {
+  .section-door-container-text,
+  .section-truck-container-text,
+  .section-door-container-img {
     width: 50%;
   }
 }
@@ -304,7 +308,9 @@
     padding: 70px;
     text-align: center;
   }
-  .section-door-container-text,.section-truck-container-text, .section-door-container-img {
+  .section-door-container-text,
+  .section-truck-container-text,
+  .section-door-container-img {
     width: 100%;
     padding: 0;
     padding-bottom: 25px;
@@ -318,14 +324,21 @@
     margin-bottom: 26px;
     padding: 20px 40px;
   }
-  .section-traffic{
+  .section-traffic {
     flex-direction: column;
   }
-  .main-trafic-img,.main-bg-gradient,.main-bg-gradient-1,.section-trafic-text-title  {
+  .main-trafic-img,
+  .main-bg-gradient,
+  .main-bg-gradient-1,
+  .section-trafic-text-title {
     width: 100%;
   }
   .section-trafic-text-title {
     padding: 70px;
+  }
+  .section-footer-container-text {
+    max-width: none;
+    justify-content: center;
   }
 }
 @media (max-width: 426px) {
