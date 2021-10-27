@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 .wrapper-hero {
   position: relative;
-  height: 140vh;
+  height: 150vh;
 }
 .hero-landing-1 {
   background-repeat: no-repeat;
@@ -34,9 +34,9 @@
 }
 .container-form {
   position: absolute;
-  left: 30%;
-  bottom: 5%;
-  width: 40%;
+  left: 25%;
+  bottom: 0%;
+  width: 50%;
   background: #fafafa 0% 0% no-repeat padding-box;
   box-shadow: 0px 5px 6px #00000029;
   opacity: 1;
@@ -49,14 +49,20 @@
   color: #222222;
   opacity: 1;
 }
+.wrapper_inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .input_container {
   display: flex;
   align-items: center;
   justify-content: start;
-  margin-right: 22px;
-  width: 307px;
+  width: 100%;
+  max-width: 317px;
   height: 40px;
   border-radius: 8px;
+  margin-top: 25px;
   &__icon {
     height: 100%;
     color: #2f3394;
@@ -74,7 +80,7 @@
     outline: none;
     border: none;
     text-align: left;
-    font: normal normal medium 12px/35px Poppins;
+    font: normal normal 500 12px/35px Poppins;
     letter-spacing: 0px;
     color: #222222;
     background-color: #26167013;
@@ -82,11 +88,61 @@
     border-bottom-right-radius: 8px;
   }
 }
+textarea {
+  resize: none;
+}
+.input_area_container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 100px;
+  border-radius: 8px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  &__icon {
+    height: 100%;
+    color: #2f3394;
+    background-color: #26167013;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  &__field {
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px;
+    outline: none;
+    border: none;
+    text-align: left;
+    font: normal normal 500 12px/35px Poppins;
+    letter-spacing: 0px;
+    color: #222222;
+    background-color: #26167013;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+.border_active {
+  color: #2f3394;
+  border: 2px solid #2f3394;
+  border-radius: 8px;
+}
 .input_icon {
   color: #2f3394;
   height: 20px;
   width: 20px;
   margin-left: 15px;
+}
+.helper_text {
+  display: block;
+  text-align: left;
+  font: normal normal 500 14px/35px Poppins;
+  letter-spacing: 0px;
+  color: #222222;
+  opacity: 0.7;
 }
 .text-icon {
   text-align: left;
@@ -158,6 +214,18 @@
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
+}
+.btn-pill-quote {
+  margin-top: 26px;
+  padding: 0px 50px;
+  border-radius: 50px;
+  text-align: left;
+  font: normal normal 500 17px/34px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  height: 72px;
+  width: 230px;
 }
 .section-traffic {
   padding: 0;
@@ -292,6 +360,17 @@
     position: unset;
     width: 100%;
     height: auto;
+  }
+  .wrapper_inputs {
+    flex-direction: column;
+  }
+  .input_area_container {
+    max-width: 317px;
+    margin: auto;
+    margin-top: 25px;
+  }
+  .helper_text{
+    text-align: center;
   }
   .hero-title-big {
     font: normal normal 600 36px/49px Poppins;

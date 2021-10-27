@@ -10,9 +10,10 @@ const TextInputArea = (props) => {
   return (
     <div className="input_area_container">
       <IconContext.Provider value={{ className: "input_icon" }}>
-        <div className="input_container__icon">{props.icon}</div>
+        <div className="input_area_container__icon">{props.icon}</div>
       </IconContext.Provider>
-      <input
+      <textarea
+        multiline
         name={props.name}
         type={props.type}
         placeholder={props.placeholder}
@@ -21,6 +22,9 @@ const TextInputArea = (props) => {
         onFocus={() => setBlur(!blur)}
         onBlur={() => setBlur(false)}
       />
+      {errors[props.name] && errors[props.name].types && (
+        <p>{errors[props.name].types.required}</p>
+      )}
     </div>
   );
 };

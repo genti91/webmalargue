@@ -1,5 +1,5 @@
 import Form2 from "./Form2";
-const HeroLanding1 = (props) => {
+const HeroLanding2 = (props) => {
   return (
     <div
       className="hero-landing-1"
@@ -9,14 +9,14 @@ const HeroLanding1 = (props) => {
     >
       <div className="container">
         <div className="row">
-          <div className="col col-sm-12 col-md-6 d-flex flex-column">
+          <div className="col-sm-12 col-md-6 d-flex flex-column">
             <img src={`assets/logo.svg`} alt="logo" className="hero-logo" />
             <span className="hero-title-small">Envía lo que necesites,</span>
             <span className="hero-title-big">
               Nosotros te lo llevamos. Puerta a puerta, así de simple!
             </span>
           </div>
-          <div className="col col-sm-12 col-md-6">
+          <div className="col-sm-12 col-md-6">
             Test
           </div>
         </div>
@@ -24,4 +24,4 @@ const HeroLanding1 = (props) => {
     </div>
   );
 };
-export default HeroLanding1;
+export default HeroLanding2;
