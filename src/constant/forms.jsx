@@ -34,7 +34,7 @@ const form_shipment = [
   },
   {
     name: "email",
-    type: "text",
+    type: "email",
     placeholder: "*Email",
     required: true,
     errorMessage: 'Por favor completa este campo para cotizar',

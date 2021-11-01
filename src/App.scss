@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   padding: 4.5rem 8.7rem;
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@
 .input_container {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   max-width: 317px;
   height: 40px;
@@ -106,7 +106,7 @@
 .input_container_2 {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   height: 40px;
   border-radius: 8px;
@@ -142,7 +142,7 @@ textarea {
 .input_area_container {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   height: 100px;
   border-radius: 8px;
@@ -372,6 +372,14 @@ textarea {
   max-width: 226px;
 }
 // Breakpoints
+@media (max-width: 1367px) {
+  .container-form {
+    left: 5%;
+  }
+  .container-form {
+    width: 90%;
+  }
+}
 @media (max-width: 1025px) {
   .section-trafic-text-title {
     font: normal normal 500 35px/51px Poppins;
