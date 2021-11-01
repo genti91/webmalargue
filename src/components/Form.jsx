@@ -12,7 +12,7 @@ const Form = () => {
     email: "",
     message: "",
   });
-  const submitForm = (e) => {
+  const submitForm = () => {
     console.log(form);
   };
   return (

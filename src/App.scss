@@ -194,7 +194,7 @@ textarea {
 }
 .text-icon {
   text-align: left;
-  font: normal normal normal 17px/21px Poppins;
+  font: normal normal normal 19px/23px Poppins;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 0.8;
@@ -214,6 +214,11 @@ textarea {
 .section-door-container-text,
 .section-truck-container-text {
   width: 45%;
+}
+.section-truck-container-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .section-door-container-img {
   width: 45%;
@@ -282,10 +287,18 @@ textarea {
 .main-trafic-img {
   width: 50%;
 }
-.section-trafic-text-title {
-  width: 50%;
+.section-trafic-text-container {
+  width: 73%;
+  height: 100%;
+  padding-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
-  font: normal normal 500 45px/61px Poppins;
+}
+.section-trafic-text-title {
+  max-width: 70%;
+  font: normal normal 500 47px/63px Poppins;
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
@@ -293,24 +306,27 @@ textarea {
 .main-bg-gradient {
   width: 50%;
   height: auto;
+  padding-left: 5%;
   background: transparent linear-gradient(131deg, #2f3394 0%, #eb1c23 100%) 0%
     0% no-repeat padding-box;
 }
 .main-bg-gradient-1 {
   width: 50%;
   height: auto;
+  padding-left: 5%;
   background: transparent linear-gradient(131deg, #eb1c23 0%, #eb1c23 100%) 0%
     0% no-repeat padding-box;
 }
 .section-truck-text {
+  max-width: 70%;
   text-align: left;
-  font: normal normal 500 25px/41px Poppins;
+  font: normal normal 500 27px/41px Poppins;
   letter-spacing: 0px;
   color: #222222;
 }
 .section-truck-text-bold {
   text-align: left;
-  font: normal normal 700 25px/41px Poppins;
+  font: normal normal 700 27px/41px Poppins;
   letter-spacing: 0px;
   color: #2f3394;
 }
@@ -342,7 +358,7 @@ textarea {
 }
 .step-button {
   background-color: transparent;
-  border: 3px solid #ffffff;
+  border: 5px solid #ffffff;
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -372,9 +388,19 @@ textarea {
   max-width: 226px;
 }
 // Breakpoints
-@media (max-width: 1367px) {
+@media (max-width: 1500px) {
+  .container-form {
+    left: 15%;
+    bottom: 10%;
+  }
+  .container-form {
+    width: 70%;
+  }
+}
+@media (max-width: 1365px) {
   .container-form {
     left: 5%;
+    bottom: 5%;
   }
   .container-form {
     width: 90%;
@@ -459,11 +485,7 @@ textarea {
     padding: 0;
     padding-bottom: 25px;
   }
-  .section-truck-container-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+
   .btn-pill {
     margin-bottom: 26px;
     padding: 20px 40px;
