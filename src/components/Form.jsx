@@ -1,10 +1,10 @@
 import React from "react";
+import axios from "axios";
 import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 const Form = () => {
-  /*eslint no-unused-vars: "error"*/
   const { form, setInForm }= useForm({
     origin: "",
     destiny: "",
@@ -12,15 +12,36 @@ const Form = () => {
     email: "",
     message: "",
   });
-  const submitForm = () => {
-    console.log(form);
+  const resetForm = () => {
+    setInForm({
+      origin: "",
+      destiny: "",
+      name: "",
+      email: "",
+      message: "",
+    });
+  }
+  const submitForm = (e) => {
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url:"http://localhost:3002/send",
+      data:  form
+    }).then((response)=>{
+      if (response.data.status === 'success') {
+        alert("Mensaje enviado");
+        resetForm()
+      } else if (response.data.status === 'fail') {
+        alert("El envío del mensaje falló")
+      }
+    })
   };
   return (
     <div className="container-form text-center">
       <span className="form-title">
         Cotizá tu envío completando todos tus datos.
       </span>
-      <div>
+      <form id="contact-form" onSubmit={submitForm} method="POST">
         <div className="wrapper_inputs">
           <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
           <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
@@ -41,13 +62,12 @@ const Form = () => {
           type="submit"
           className="btn-pill-quote bg-secondary"
           value="Cotizá tu envío"
-          onClick={submitForm}
           style={{
             outline: "none",
             border: "none",
           }}
         />
-      </div>
+      </form>
     </div>
   );
 };
