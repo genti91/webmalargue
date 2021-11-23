@@ -1,17 +1,19 @@
 import React from "react";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
-const Form = () => {
-  const { form, setInForm }= useForm({
+import emailjs from "emailjs-com";
+const Form = (props) => {
+  const { form, setInForm } = useForm({
     origin: "",
     destiny: "",
     name: "",
     email: "",
     message: "",
   });
+  const history = useHistory();
   const resetForm = () => {
     setInForm({
       origin: "",
@@ -20,21 +22,50 @@ const Form = () => {
       email: "",
       message: "",
     });
-  }
+  };
+  const validate = (form) => {
+    const { origin, destiny, name, email, message } = form;
+    if (origin.length === 0) {
+      alert("Debe ingresar una ciudad de origen");
+      return false;
+    } else if (destiny.length === 0) {
+      alert("Debe ingresar una ciudad de destino");
+      return false;
+    } else if (name.length === 0) {
+      alert("Debe ingresar un nombre");
+      return false;
+    } else if (email.length === 0) {
+      alert("Debe ingresar un correo");
+      return false;
+    } else if (message.length === 0) {
+      alert("Debe ingresar un mensaje");
+      return false;
+    }
+    return true;
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
-    axios({
-      method: "POST",
-      url:"http://localhost:3002/send",
-      data:  form
-    }).then((response)=>{
-      if (response.data.status === 'success') {
-        alert("Mensaje enviado");
-        resetForm()
-      } else if (response.data.status === 'fail') {
-        alert("El envío del mensaje falló")
-      }
-    })
+    if (validate(form)) {
+      let page = history.location.pathname.split('_');
+      const found = page.find(element => element === 'empresa');
+      form.page = found? 'Empresas':'Individuos';
+      emailjs
+        .send("service_g3igiy4","template_r5h4qbk", form, "user_PLKNnUdKZUZ6BoWvvvwfQ")
+        .then(
+          (response) => {
+            console.log("SUCCESS!", response.status, response.text);
+            history.push("/gracias");
+            resetForm();
+          },
+          (err) => {
+            console.log("FAILED...", err);
+            alert("Algo Fallo");
+          }
+        );
+    } else {
+      alert("Por favor llene todos los campos");
+    }
   };
   return (
     <div className="container-form text-center">

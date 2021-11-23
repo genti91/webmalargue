@@ -5,9 +5,7 @@ import MainTraffic from "../components/MainTraffic";
 import MainTruck from "../components/MainTruck";
 import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
-import { FloatingWhatsApp } from 'react-floating-whatsapp-button'
-import 'react-floating-whatsapp-button/dist/index.css'
-const Landing_1 = () => {
+const Landing_empresa_1 = () => {
   return (
     <>
       <HeroLanding1 />
@@ -17,8 +15,16 @@ const Landing_1 = () => {
       <MainTruck button="primary" />
       <FooterShipments image="segui-tu-envio-red.jpg" button="primary" />
       <FooterPaymentMethods />
-      <FloatingWhatsApp phone={+5491132556383} autoOpenTimeout={5000} popupMessage='Hola, ¿cómo podemos ayudarte?'/>
+      <a
+        href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
+        class="whatsapp"
+        target="_blank"
+        rel="noreferrer"
+      >
+        {" "}
+        <i class="fa fa-whatsapp whatsapp-icon"></i>
+      </a>
     </>
   );
 };
-export default Landing_1;
+export default Landing_empresa_1;

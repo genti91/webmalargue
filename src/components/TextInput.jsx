@@ -18,6 +18,7 @@ const TextInput = (props) => {
         onFocus={() => setBlur(!blur)}
         onBlur={() => setBlur(false)}
         onChange={(e)=>handleChange(e)}
+        required
       />
     </div>
   );

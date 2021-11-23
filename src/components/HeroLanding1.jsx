@@ -1,5 +1,5 @@
 import Form from "./Form";
-const HeroLanding1 = (props) => {
+const HeroLanding1 = () => {
   return (
     <div className="wrapper-hero bg-primary">
       <div
