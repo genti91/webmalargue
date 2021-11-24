@@ -3,7 +3,7 @@ const SectionIcons = ({ icons }) => {
     <div className="container-fluid bg-primary py-5">
       <div className="container">
         <div className="row">
-          {icons.map((icon, text, index) => {
+          {icons.map(({icon, text}, index) => {
             return (
               <div className="col-sm-12 col-md-6 col-lg-3 my-3" key={index}>
                 <div className="d-flex align-items-center justify-content-start">
