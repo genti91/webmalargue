@@ -36,7 +36,7 @@ const FooterShipments = ({image, button}) => {
           </button>
         </div>
       </div>
-      <span role="button" className={`btn-pill bg-${button.background}`}>
+      <span role="button" className={`btn-pill bg-${button.background}`} onClick={()=> window.scrollTo(0, 0)}>
       {button.title}
         </span>
     </div>
