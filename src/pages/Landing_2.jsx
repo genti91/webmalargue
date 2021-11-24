@@ -23,7 +23,14 @@ const Landing_2 = () => {
         ]}
       />
       <SectionIcons icons={icons} />
-      <MainDoor button="secondary" />
+      <MainDoor
+        button={{ background: "secondary", title: "Cotizá tu Envío" }}
+        title={[
+          "Envíos Puerta a Puerta.",
+          "y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.",
+        ]}
+        image="repartidor-chica"
+      />
       <MainTraffic button="secondary" background="main-bg-gradient" />
       <MainTruck button="secondary" />
       <FooterShipments image="segui-tu-envio-blue.jpg" button="secondary" />

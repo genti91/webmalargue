@@ -23,7 +23,17 @@ const Landing_empresa_2 = () => {
         ]}
       />
       <SectionIcons icons={icons} />
-      <MainDoor button="secondary" />
+      <MainDoor
+        button={{
+          background: "secondary",
+          title: "Consultá por acuerdos comerciales",
+        }}
+        title={[
+          "Envíos punto a punto.",
+          "y luego la carga llega directo al punto que nos hayas indicado.",
+        ]}
+        image="Envios"
+      />
       <MainTraffic button="secondary" background="main-bg-gradient" />
       <MainTruck button="secondary" />
       <FooterShipments image="segui-tu-envio-blue.jpg" button="secondary" />

@@ -1,9 +1,9 @@
-const MainDoor = ({button}) => {
+const MainDoor = ({button, title, image}) => {
     return (
       <div className="container-fluid">
         <div className="section-door">
           <div className="section-door-container-text">
-            <span className="section-door-text-title">Envíos Puerta a Puerta.</span>
+            <span className="section-door-text-title">{title[0]}</span>
             <span className="section-door-container-flex-text">
                 <span className="section-door-number">1</span>
                 <span className="section-door-text-paragraph">Te contactás con nosotros,</span>
@@ -22,13 +22,16 @@ const MainDoor = ({button}) => {
             </span>
             <span className="section-door-container-flex-text mb-5">
                 <span className="section-door-number">5</span>
-                <span className="section-door-text-paragraph">y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.</span>
+                <span className="section-door-text-paragraph">{title[1]}</span>
             </span>
-            <span role="button" className={`btn-pill bg-${button}`}>Consultá por tu envío</span>
+            <span role="button" className={`btn-pill bg-${button.background}`}>{button.text}</span>
           </div>
-            <img src={`assets/repartidor-chica.jpg`} alt="repartidor-chica" className="section-door-container-img img-fluid" />
+            <img src={`assets/${image}.jpg`} alt={image} className="section-door-container-img img-fluid" />
         </div>
       </div>
     );
   };
   export default MainDoor
+  //Envíos Puerta a Puerta.
+  //y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.
+  //repartidor-chica.
