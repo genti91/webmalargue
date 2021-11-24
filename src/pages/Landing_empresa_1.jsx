@@ -8,7 +8,13 @@ import FooterPaymentMethods from "../components/FooterPaymentMethods";
 const Landing_empresa_1 = () => {
   return (
     <>
-      <HeroLanding1 />
+      <HeroLanding1
+        image="assets/header.jpg"
+        title={[
+          "Pensaste en vender en otras ciudades?",
+          "Llevamos tu producto a tus clientes, así de simple!",
+        ]}
+      />
       <SectionIcons />
       <MainDoor button="primary" />
       <MainTraffic button="primary" background="main-bg-gradient-1" />

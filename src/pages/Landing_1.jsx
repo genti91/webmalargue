@@ -8,7 +8,13 @@ import FooterPaymentMethods from "../components/FooterPaymentMethods";
 const Landing_1 = () => {
   return (
     <>
-      <HeroLanding1 />
+      <HeroLanding1
+        image="assets/repartidor-header.jpg"
+        title={[
+          "Envía lo que necesites,",
+          "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
+        ]}
+      />
       <SectionIcons />
       <MainDoor button="primary" />
       <MainTraffic button="primary" background="main-bg-gradient-1" />
