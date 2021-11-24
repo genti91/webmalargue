@@ -20,27 +20,19 @@ const FooterShipments = ({image, button}) => {
       <div className="col-10 col-md-5">
         <div className="d-flex align-items-center justify-content-center">
           <button type="button" className="step-button">
-            <span>
               <i className="fa fa-circle text-secondary"></i>
-            </span>
           </button>
           <div className="bs-stepper-line"></div>
           <button type="button" className="step-button">
-            <span>
               <i className="fa fa-circle text-secondary"></i>
-            </span>
           </button>
           <div className="bs-stepper-line"></div>
           <button type="button" className="step-button">
-            <span>
               <i className="fa fa-circle text-secondary"></i>
-            </span>
-          </button>
+         </button>
           <div className="bs-stepper-line"></div>
           <button type="button" className="step-button">
-            <span>
               <i className="fa fa-circle text-primary"></i>
-            </span>
           </button>
         </div>
       </div>
