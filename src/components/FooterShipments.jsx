@@ -44,8 +44,8 @@ const FooterShipments = ({image, button}) => {
           </button>
         </div>
       </div>
-      <span role="button" className={`btn-pill bg-${button}`}>
-          Consultá por tu envío
+      <span role="button" className={`btn-pill bg-${button.background}`}>
+      {button.title}
         </span>
     </div>
   );

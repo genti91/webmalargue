@@ -7,11 +7,13 @@ const MainTraffic = ({ button, background }) => {
           <span className="section-trafic-text-title mb-3">
             Recorremos las rutas del paÍs llevando todos tus envÍos.
           </span>
-          <span role="button" className={`btn-pill bg-${button} align-self-start`}>
-          Consultá por tu envío
-        </span>
+          <span
+            role="button"
+            className={`btn-pill bg-${button.background} align-self-start`}
+          >
+            {button.title}
+          </span>
         </div>
-
       </div>
     </div>
   );

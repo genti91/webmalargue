@@ -23,16 +23,22 @@ const Landing_1 = () => {
       />
       <SectionIcons icons={icons} />
       <MainDoor
-        button={{ background: "primary", title: "Cotizá tu Envío" }}
+        button={{ background: "primary", title: "Consultá por tu envío" }}
         title={[
           "Envíos Puerta a Puerta.",
           "y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.",
         ]}
         image="repartidor-chica"
       />
-      <MainTraffic button="primary" background="main-bg-gradient-1" />
-      <MainTruck button="primary" />
-      <FooterShipments image="segui-tu-envio-red.jpg" button="primary" />
+      <MainTraffic
+        button={{ background: "primary", title: "Consultá por tu envío" }}
+        background="main-bg-gradient-1"
+      />
+      <MainTruck button={{ background: "primary", title: "Consultá por tu envío" }} />
+      <FooterShipments
+        image="segui-tu-envio-red.jpg"
+        button={{ background: "primary", title: "Consultá por tu envío" }}
+      />
       <FooterPaymentMethods />
       <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"

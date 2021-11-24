@@ -34,9 +34,26 @@ const Landing_empresa_2 = () => {
         ]}
         image="Envios"
       />
-      <MainTraffic button="secondary" background="main-bg-gradient" />
-      <MainTruck button="secondary" />
-      <FooterShipments image="segui-tu-envio-blue.jpg" button="secondary" />
+      <MainTraffic
+        button={{
+          background: "secondary",
+          title: "Consultá por acuerdos comerciales",
+        }}
+        background="main-bg-gradient"
+      />
+      <MainTruck
+        button={{
+          background: "secondary",
+          title: "Consultá por acuerdos comerciales",
+        }}
+      />
+      <FooterShipments
+        image="segui-tu-envio-blue.jpg"
+        button={{
+          background: "secondary",
+          title: "Consultá por acuerdos comerciales",
+        }}
+      />
       <FooterPaymentMethods />
       <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
