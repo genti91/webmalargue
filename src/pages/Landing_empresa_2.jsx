@@ -29,7 +29,7 @@ const Landing_empresa_2 = () => {
       <FooterShipments image="segui-tu-envio-blue.jpg" button="secondary" />
       <FooterPaymentMethods />
       <a
-        href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
+        href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
         class="whatsapp"
         target="_blank"
         rel="noreferrer"
