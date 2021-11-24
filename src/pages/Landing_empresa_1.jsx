@@ -6,6 +6,12 @@ import MainTruck from "../components/MainTruck";
 import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
 const Landing_empresa_1 = () => {
+  let icons = [
+    { icon: "envios", text: "Hacemos envíos a todo el país." },
+    { icon: "atencion", text: "Atención personalizada." },
+    { icon: "camion", text: "Envíos punto a punto." },
+    { icon: "seguimiento", text: "Hacé el seguimiento de tus envíos." },
+  ];
   return (
     <>
       <HeroLanding1
@@ -15,7 +21,7 @@ const Landing_empresa_1 = () => {
           "Llevamos tu producto a tus clientes, así de simple!",
         ]}
       />
-      <SectionIcons />
+      <SectionIcons icons={icons} />
       <MainDoor button="primary" />
       <MainTraffic button="primary" background="main-bg-gradient-1" />
       <MainTruck button="primary" />

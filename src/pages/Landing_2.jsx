@@ -7,6 +7,12 @@ import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
 
 const Landing_2 = () => {
+  let icons = [
+    { icon: "envios", text: "Hacemos envíos a todo el país." },
+    { icon: "atencion", text: "Atención personalizada." },
+    { icon: "puerta-puerta", text: "Envíos puerta a puerta." },
+    { icon: "seguimiento", text: "Hacé el seguimiento de tus envíos." },
+  ];
   return (
     <>
       <HeroLanding2
@@ -16,7 +22,7 @@ const Landing_2 = () => {
           "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
         ]}
       />
-      <SectionIcons />
+      <SectionIcons icons={icons} />
       <MainDoor button="secondary" />
       <MainTraffic button="secondary" background="main-bg-gradient" />
       <MainTruck button="secondary" />
