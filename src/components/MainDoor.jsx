@@ -24,7 +24,7 @@ const MainDoor = ({button, title, image}) => {
                 <span className="section-door-number">5</span>
                 <span className="section-door-text-paragraph">{title[1]}</span>
             </span>
-            <span role="button" className={`btn-pill bg-${button.background}`}>{button.text}</span>
+            <span role="button" className={`btn-pill bg-${button.background}`}>{button.title}</span>
           </div>
             <img src={`assets/${image}.jpg`} alt={image} className="section-door-container-img img-fluid" />
         </div>
