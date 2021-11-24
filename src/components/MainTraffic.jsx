@@ -10,6 +10,7 @@ const MainTraffic = ({ button, background }) => {
           <span
             role="button"
             className={`btn-pill bg-${button.background} align-self-start`}
+            onClick={()=> window.scrollTo(0, 0)}
           >
             {button.title}
           </span>
