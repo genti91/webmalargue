@@ -60,10 +60,9 @@ const Landing_empresa_2 = () => {
         class="whatsapp"
         target="_blank"
         rel="noreferrer"
-      >
-        {" "}
+      >       
         <i class="fa fa-whatsapp whatsapp-icon"></i>
-      </a>{" "}
+      </a>
     </>
   );
 };

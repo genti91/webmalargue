@@ -5,11 +5,11 @@ const MainTraffic = ({ button, background }) => {
       <div className={`${background}`}>
         <div className="section-trafic-text-container">
           <span className="section-trafic-text-title mb-3">
-            Recorremos las rutas del paÍs llevando todos tus envÍos.
+            Recorremos las rutas del país llevando todos tus envíos.
           </span>
           <span
             role="button"
-            className={`btn-pill bg-${button.background} align-self-start`}
+            className={`btn-pill bg-${button.background}`}
             onClick={()=> window.scrollTo(0, 0)}
           >
             {button.title}

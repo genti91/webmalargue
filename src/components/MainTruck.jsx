@@ -18,9 +18,14 @@ const MainTruck = ({ button }) => {
             {button.title}
           </span>
         </div>
-        <div className="section-door-img">
-          <img src={`assets/camion.jpg`} alt="camion" className="img-fluid" />
-        </div>
+        <div
+          class="section-door-container-img img-fluid"
+          style={{
+            backgroundImage: `url(assets/camion.jpg)`,
+            backgroundPosition: "center",
+            backgroundRepeat: 'no-repeat',
+          }}
+        ></div>
       </div>
     </div>
   );

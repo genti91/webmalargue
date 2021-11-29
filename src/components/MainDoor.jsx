@@ -40,14 +40,17 @@ const MainDoor = ({ button, title, image }) => {
             {button.title}
           </span>
         </div>
-        <img
-          src={`assets/${image}.jpg`}
-          alt={image}
-          className="section-door-container-img img-fluid"
-        />
+        <div
+          class="section-door-container-img img-fluid"
+          style={{
+            backgroundImage: `url(assets/${image}.jpg)`,
+            backgroundPosition: "center",
+            backgroundRepeat: 'no-repeat',
+            minheight: '500px'
+          }}
+        ></div>
       </div>
     </div>
   );
 };
 export default MainDoor;
-

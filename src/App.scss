@@ -222,6 +222,7 @@ textarea {
 }
 .section-door-container-img {
   width: 45%;
+  min-height: 500px;
 }
 .section-door-container-flex-text {
   display: flex;
@@ -288,12 +289,11 @@ textarea {
   width: 50%;
 }
 .section-trafic-text-container {
-  width: 73%;
   height: 100%;
-  padding-left: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   text-align: left;
 }
 .section-trafic-text-title {
@@ -306,14 +306,14 @@ textarea {
 .main-bg-gradient {
   width: 50%;
   height: auto;
-  padding-left: 5%;
+  padding: 70px;
   background: transparent linear-gradient(131deg, #2f3394 0%, #eb1c23 100%) 0%
     0% no-repeat padding-box;
 }
 .main-bg-gradient-1 {
   width: 50%;
   height: auto;
-  padding-left: 5%;
+  padding: 70px;
   background: transparent linear-gradient(131deg, #eb1c23 0%, #eb1c23 100%) 0%
     0% no-repeat padding-box;
 }
@@ -400,7 +400,7 @@ textarea {
     width: 70%;
   }
 }
-@media (max-width: 1365px) {
+@media (max-width: 1367px) {
   .container-form {
     left: 5%;
     bottom: 5%;
@@ -408,10 +408,18 @@ textarea {
   .container-form {
     width: 90%;
   }
+  .btn-pill{
+    font-size: medium;
+  }
+
 }
-@media (max-width: 1025px) {
+@media (max-width: 1026px) {
   .section-trafic-text-title {
     font: normal normal 500 35px/51px Poppins;
+  }
+  .section-trafic-text-container{
+    width: auto;
+    align-items: center;
   }
   .container-form {
     left: 10%;
@@ -426,6 +434,7 @@ textarea {
   .section-door-container-text,
   .section-truck-container-text {
     padding: 25px;
+    align-items: center;
   }
   .section-door-container-text,
   .section-truck-container-text,
@@ -489,10 +498,6 @@ textarea {
     padding-bottom: 25px;
   }
 
-  .btn-pill {
-    margin-bottom: 26px;
-    padding: 20px 40px;
-  }
   .section-traffic {
     flex-direction: column;
   }
