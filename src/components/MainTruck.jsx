@@ -12,7 +12,7 @@ const MainTruck = ({ button }) => {
           </span>
           <span
             role="button"
-            className={`btn-pill bg-${button.background} d-inline-block align-self-start`}
+            className={`btn-pill bg-${button.background}`}
             onClick={()=> window.scrollTo(0, 0)}
           >
             {button.title}

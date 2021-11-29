@@ -444,6 +444,12 @@ textarea {
 }
 
 @media (max-width: 992px) {
+  .main-bg-gradient {
+    padding: 50px;
+     }
+  .main-bg-gradient-1 {
+    padding: 50px;
+  }
   .wrapper-hero {
     position: unset;
     display: flex;
@@ -496,7 +502,7 @@ textarea {
   .section-door-container-img {
     width: 100%;
     padding: 0;
-    padding-bottom: 25px;
+    padding-bottom: 40px;
   }
 
   .section-traffic {
@@ -508,8 +514,8 @@ textarea {
   .section-trafic-text-title {
     width: 100%;
   }
-  .section-trafic-text-title {
-    padding: 70px;
+  .btn-pill{
+    font-size: small;
   }
   .section-footer-container-text {
     max-width: none;
@@ -520,9 +526,10 @@ textarea {
   .hero-landing-1 {
     background-position: bottom;
   }
-  .section-door {
-    padding: 35px;
+  .section-door, .main-bg-gradient, .main-bg-gradient-1 {
+    padding: 25px 15px;
   }
+
 }
 .whatsapp {
   position:fixed;
