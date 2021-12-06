@@ -5,7 +5,7 @@ const SectionIcons = ({ icons }) => {
         <div className="row">
           {icons.map(({icon, text}, index) => {
             return (
-              <div className="col-sm-12 col-md-6 col-lg-3 my-3" key={index}>
+              <div className="col-sm-12 col-md-6 col-lg-6 col-xl-3 my-3" key={index}>
                 <div className="d-flex align-items-center justify-content-start">
                   <img src={`assets/icon-${icon}.png`} alt="icon" />
                   <span className="text-icon">{text}</span>
