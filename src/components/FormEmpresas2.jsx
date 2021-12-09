@@ -111,7 +111,7 @@ const FormEmpresas2 = () => {
       form.page = "Empresas";
       emailjs
         .send(
-          "service_sntn4lq",
+          "service_vv6p4ni",
           "template_a5on8fl",
           form,
           "user_EpLgdCxfdM9GfQOvqBiSt"
