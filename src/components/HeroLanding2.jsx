@@ -1,5 +1,6 @@
 import Form2 from "./Form2";
-const HeroLanding2 = ({ image, title }) => {
+import FormEmpresas2 from "./FormEmpresas2";
+const HeroLanding2 = ({ image, title, page }) => {
   return (
     <div
       className="hero-landing-1"
@@ -15,7 +16,7 @@ const HeroLanding2 = ({ image, title }) => {
             <span className="hero-title-big">{title[1]}</span>
           </div>
           <div className="col-sm-12 col-md-12 col-lg-6">
-            <Form2 />
+          {page ? <Form2 /> : <FormEmpresas2 />}
           </div>
         </div>
       </div>

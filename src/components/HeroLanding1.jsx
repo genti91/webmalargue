@@ -1,7 +1,8 @@
 import Form from "./Form";
-const HeroLanding1 = ({image,title}) => {
+import FormEmpresas from "./FormEmpresas";
+const HeroLanding1 = ({ image, title, page }) => {
   return (
-    <div className="wrapper-hero bg-primary">
+    <div className={`${page?'wrapper-hero':'wrapper-hero-2' } bg-primary`}>
       <div
         className="hero-landing-1"
         style={{
@@ -10,9 +11,9 @@ const HeroLanding1 = ({image,title}) => {
       >
         <img src={`assets/logo.svg`} alt="logo" className="hero-logo" />
         <span className="hero-title-small">{title[0]}</span>
-            <span className="hero-title-big">{title[1]}</span>
+        <span className="hero-title-big">{title[1]}</span>
       </div>
-      <Form/>
+      {page ? <Form /> : <FormEmpresas />}
     </div>
   );
 };
