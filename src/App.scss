@@ -4,6 +4,10 @@
   position: relative;
   height: 150vh;
 }
+.wrapper-hero-2 {
+  position: relative;
+  height: 165vh;
+}
 .hero-landing-1 {
   background-repeat: no-repeat;
   background-size: cover;
@@ -450,7 +454,7 @@ textarea {
   .main-bg-gradient-1 {
     padding: 50px;
   }
-  .wrapper-hero {
+  .wrapper-hero, .wrapper-hero-2 {
     position: unset;
     display: flex;
     flex-direction: column;
