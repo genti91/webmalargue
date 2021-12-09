@@ -5,7 +5,7 @@ import { useForm } from "../hooks";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 import emailjs from "emailjs-com";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const FormEmpresas2 = () => {
   const { form, setInForm } = useForm({
@@ -13,8 +13,10 @@ const FormEmpresas2 = () => {
     destiny: "",
     name: "",
     email: "",
+    locality: "",
+    company: "",
     qtyShipment: "",
-    wheight: "",
+    weight: "",
     message: "",
   });
   const history = useHistory();
@@ -24,78 +26,81 @@ const FormEmpresas2 = () => {
       destiny: "",
       name: "",
       email: "",
+      locality: "",
+      company: "",
       qtyShipment: "",
-      wheight: "",
+      weight: "",
       message: "",
     });
   };
 
   const validate = (form) => {
-    const { origin, destiny, name, email, message, qtyShipment, wheight } = form;
+    const { origin, destiny, name, email, message, qtyShipment, weight } =
+      form;
     if (origin.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar una ciudad de origen",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
     } else if (destiny.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar una ciudad de destino",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
     } else if (name.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar un nombre",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
     } else if (email.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar un email",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
     } else if (message.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar un mensaje",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
     } else if (qtyShipment.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar una cantidad de envios",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
-    } else if (wheight.length === 0) {
+    } else if (weight.length === 0) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'error',
+        position: "top-end",
+        icon: "error",
         title: "Debe ingresar un peso",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
       return false;
-    } 
+    }
 
     return true;
   };
@@ -106,10 +111,10 @@ const FormEmpresas2 = () => {
       form.page = "Empresas";
       emailjs
         .send(
-          "service_g3igiy4",
-          "template_r5h4qbk",
+          "service_sntn4lq",
+          "template_a5on8fl",
           form,
-          "user_PLKNnUdKZUZ6BoWvvvwfQ"
+          "user_EpLgdCxfdM9GfQOvqBiSt"
         )
         .then(
           (response) => {
@@ -134,7 +139,7 @@ const FormEmpresas2 = () => {
             console.log("FAILED...", err);
           }
         );
-    } 
+    }
   };
   return (
     <div className="container-form-2 text-center">

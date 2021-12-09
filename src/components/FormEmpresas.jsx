@@ -15,7 +15,7 @@ const FormEmpresas = (props) => {
     locality: "",
     company: "",
     qtyShipment: "",
-    wheight: "",
+    weight: "",
     message: "",
   });
   const history = useHistory();
@@ -28,12 +28,12 @@ const FormEmpresas = (props) => {
       locality: "",
       company: "",
       qtyShipment: "",
-      wheight: "",
+      weight: "",
       message: "",
     });
   };
   const validate = (form) => {
-    const { origin, destiny, name, email, message, qtyShipment, wheight } =
+    const { origin, destiny, name, email, message, qtyShipment, weight } =
       form;
     if (origin.length === 0) {
       Swal.fire({
@@ -89,7 +89,7 @@ const FormEmpresas = (props) => {
         timer: 1500,
       });
       return false;
-    } else if (wheight.length === 0) {
+    } else if (weight.length === 0) {
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -109,10 +109,10 @@ const FormEmpresas = (props) => {
       form.page = "Empresas";
       emailjs
         .send(
-          "service_g3igiy4",
-          "template_r5h4qbk",
+          "service_sntn4lq",
+          "template_a5on8fl",
           form,
-          "user_PLKNnUdKZUZ6BoWvvvwfQ"
+          "user_EpLgdCxfdM9GfQOvqBiSt"
         )
         .then(
           (response) => {

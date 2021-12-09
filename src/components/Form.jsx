@@ -81,10 +81,10 @@ const Form = (props) => {
       form.page = "Individuos";
       emailjs
         .send(
-          "service_g3igiy4",
-          "template_r5h4qbk",
+          "service_sntn4lq",
+          "template_sa97o4k",
           form,
-          "user_PLKNnUdKZUZ6BoWvvvwfQ"
+          "user_EpLgdCxfdM9GfQOvqBiSt"
         )
         .then(
           (response) => {
