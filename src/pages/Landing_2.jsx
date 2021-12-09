@@ -21,6 +21,7 @@ const Landing_2 = () => {
           "Envía lo que necesites,",
           "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
         ]}
+        page={true}
       />
       <SectionIcons icons={icons} />
       <MainDoor

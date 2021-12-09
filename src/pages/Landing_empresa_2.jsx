@@ -21,6 +21,7 @@ const Landing_empresa_2 = () => {
           "Pensaste en vender en otras ciudades?",
           "Llevamos tu producto a tus clientes, así de simple!",
         ]}
+        page={false}
       />
       <SectionIcons icons={icons} />
       <MainDoor
