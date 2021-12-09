@@ -31,8 +31,8 @@ const TextInput = (props) => {
             onChange={(e) => handleChange(e)}
           >
             <option value="" selected disabled hidden >{props.placeholder}</option>
-            {props.options.map((option) => (
-              <option key={option} value={option.value}>
+            {props.options.map((option, index) => (
+              <option key={index} value={option.value}>
                 {option.name}
               </option>
             ))}

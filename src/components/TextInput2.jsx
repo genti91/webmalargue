@@ -33,7 +33,7 @@ const TextInput2 = (props) => {
           >
             <option value="" selected disabled hidden >{props.placeholder}</option>
             {props.options.map((option) => (
-              <option key={option} value={option.value}>
+              <option key={option.value} value={option.value}>
                 {option.name}
               </option>
             ))}

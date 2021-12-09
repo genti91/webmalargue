@@ -5,6 +5,7 @@ import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 const FormEmpresas = (props) => {
   const { form, setInForm } = useForm({
     origin: "",
@@ -13,6 +14,8 @@ const FormEmpresas = (props) => {
     email: "",
     locality: "",
     company: "",
+    qtyShipment: "",
+    wheight: "",
     message: "",
   });
   const history = useHistory();
@@ -24,27 +27,79 @@ const FormEmpresas = (props) => {
       email: "",
       locality: "",
       company: "",
+      qtyShipment: "",
+      wheight: "",
       message: "",
     });
   };
   const validate = (form) => {
-    const { origin, destiny, name, email, message } = form;
+    const { origin, destiny, name, email, message, qtyShipment, wheight } =
+      form;
     if (origin.length === 0) {
-      alert("Debe ingresar una ciudad de origen");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar una ciudad de origen",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return false;
     } else if (destiny.length === 0) {
-      alert("Debe ingresar una ciudad de destino");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar una ciudad de destino",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return false;
     } else if (name.length === 0) {
-      alert("Debe ingresar un nombre");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar un nombre",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return false;
     } else if (email.length === 0) {
-      alert("Debe ingresar un correo");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar un email",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return false;
     } else if (message.length === 0) {
-      alert("Debe ingresar un mensaje");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar un mensaje",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return false;
+    } else if (qtyShipment.length === 0) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar una cantidad de envios",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return false;
+    } else if (wheight.length === 0) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar un peso",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return false;
     }
+
     return true;
   };
 
@@ -61,17 +116,27 @@ const FormEmpresas = (props) => {
         )
         .then(
           (response) => {
-            console.log("SUCCESS!", response.status, response.text);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Formulario enviado correctamente",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             history.push("/gracias");
             resetForm();
           },
           (err) => {
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: "Error al enviar el formulario",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             console.log("FAILED...", err);
-            alert("Algo Fallo");
           }
         );
-    } else {
-      alert("Por favor llene todos los campos");
     }
   };
   return (
