@@ -68,20 +68,20 @@ const form_shipment = [
     type: "select",
     options: [
       {
-        value: "1",
-        name: "1",
+        value: "De 1 a 30 envíos",
+        name: "De 1 a 30 envíos",
       },
       {
-        value: "2",
-        name: "2",
+        value: "De 31 a 50 envíos",
+        name: "De 31 a 50 envíos",
       },
       {
-        value: "3",
-        name: "3",
+        value: "De 51 a 100 envíos",
+        name: "De 51 a 100 envíos",
       },
       {
-        value: "4",
-        name: "4",
+        value: "Más de 100 envíos",
+        name: "Más de 100 envíos",
       },
     ],
     placeholder: "*Cantidad Envíos Semanales:",
@@ -95,27 +95,23 @@ const form_shipment = [
     type: "select",
     options: [
       {
-        value: "1",
-        name: "1",
+        value: "Hasta 1kg",
+        name: "Hasta 1kg",
       },
       {
-        value: "2",
-        name: "2",
+        value: "Desde 1kg hasta 5kg",
+        name: "Desde 1kg hasta 5kg",
       },
       {
-        value: "3",
-        name: "3",
+        value: "Desde 5kg hasta 10kg",
+        name: "Desde 5kg hasta 10kg",
       },
       {
-        value: "4",
-        name: "4",
-      },
-      {
-        value: "5",
-        name: "5",
+        value: "Más de 10kg",
+        name: "Más de 10kg",
       },
     ],
-    placeholder: "*Peso promedio",
+    placeholder: "*Peso promedio por ",
     required: true,
     errorMessage: "Por favor completa este campo para cotizar",
     validation: /^\S+@\S+$/i,
