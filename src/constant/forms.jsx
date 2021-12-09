@@ -91,7 +91,7 @@ const form_shipment = [
     icon: <FaShippingFast />,
   },
   {
-    name: "wheight",
+    name: "weight",
     type: "select",
     options: [
       {
