@@ -41,7 +41,7 @@ const MainDoor = ({ button, title, image }) => {
           </span>
         </div>
         <div
-          class="section-door-container-img img-fluid"
+          className="section-door-container-img img-fluid"
           style={{
             backgroundImage: `url(assets/${image}.jpg)`,
             backgroundPosition: "center",
