@@ -47,11 +47,14 @@ const Form = (props) => {
   const submitForm = (e) => {
     e.preventDefault();
     if (validate(form)) {
-      let page = history.location.pathname.split('_');
-      const found = page.find(element => element === 'empresa');
-      form.page = found? 'Empresas':'Individuos';
+      form.page = "Individuos";
       emailjs
-        .send("service_g3igiy4","template_r5h4qbk", form, "user_PLKNnUdKZUZ6BoWvvvwfQ")
+        .send(
+          "service_g3igiy4",
+          "template_r5h4qbk",
+          form,
+          "user_PLKNnUdKZUZ6BoWvvvwfQ"
+        )
         .then(
           (response) => {
             console.log("SUCCESS!", response.status, response.text);
@@ -82,7 +85,7 @@ const Form = (props) => {
           <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
         </div>
         <TextInputArea
-          {...form_shipment[4]}
+          {...form_shipment[form_shipment.length - 1]}
           setInForm={setInForm}
           form={form}
         />

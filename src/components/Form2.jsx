@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import TextInput2 from "./TextInput2";
 import { useForm } from "../hooks";
 import { form_shipment } from "../constant/forms";
@@ -25,35 +25,38 @@ const Form = () => {
     });
   };
 
-  const validate=(form)=>{
-    const {origin,destiny,name,email,message}=form;
-    if(origin.length===0){
+  const validate = (form) => {
+    const { origin, destiny, name, email, message } = form;
+    if (origin.length === 0) {
       alert("Debe ingresar una ciudad de origen");
       return false;
-    } else if(destiny.length===0){
+    } else if (destiny.length === 0) {
       alert("Debe ingresar una ciudad de destino");
       return false;
-    } else if(name.length===0){
+    } else if (name.length === 0) {
       alert("Debe ingresar un nombre");
       return false;
-    } else if(email.length===0){
+    } else if (email.length === 0) {
       alert("Debe ingresar un correo");
       return false;
-    } else if(message.length===0){
+    } else if (message.length === 0) {
       alert("Debe ingresar un mensaje");
       return false;
     }
     return true;
-  }
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
     if (validate(form)) {
-      let page = history.location.pathname.split('_');
-      const found = page.find(element => element === 'empresa');
-      form.page = found? 'Empresas':'Individuos';
+      form.page = "Individuos";
       emailjs
-        .send("service_g3igiy4","template_r5h4qbk", form, "user_PLKNnUdKZUZ6BoWvvvwfQ")
+        .send(
+          "service_g3igiy4",
+          "template_r5h4qbk",
+          form,
+          "user_PLKNnUdKZUZ6BoWvvvwfQ"
+        )
         .then(
           (response) => {
             console.log("SUCCESS!", response.status, response.text);
@@ -76,17 +79,29 @@ const Form = () => {
       </span>
       <div>
         <div className="wrapper_inputs">
-          <div className='input_container_2_wrapper'>
-            <TextInput2 {...form_shipment[0]} setInForm={setInForm} form={form}  />
+          <div className="input_container_2_wrapper">
+            <TextInput2
+              {...form_shipment[0]}
+              setInForm={setInForm}
+              form={form}
+            />
           </div>
-          <div className='input_container_2_wrapper'>
-            <TextInput2 {...form_shipment[1]} setInForm={setInForm} form={form}  />
+          <div className="input_container_2_wrapper">
+            <TextInput2
+              {...form_shipment[1]}
+              setInForm={setInForm}
+              form={form}
+            />
           </div>
         </div>
 
-        <TextInput2 {...form_shipment[2]} setInForm={setInForm} form={form}  />
-        <TextInput2 {...form_shipment[3]} setInForm={setInForm} form={form}  />
-        <TextInputArea {...form_shipment[4]} setInForm={setInForm} form={form}  />
+        <TextInput2 {...form_shipment[2]} setInForm={setInForm} form={form} />
+        <TextInput2 {...form_shipment[3]} setInForm={setInForm} form={form} />
+        <TextInputArea
+          {...form_shipment[form_shipment.length - 1]}
+          setInForm={setInForm}
+          form={form}
+        />
         <span className="helper_text">
           *Recordá completar todos los campos del formulario.
         </span>
