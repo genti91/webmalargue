@@ -1,0 +1,61 @@
+#Novedades{
+    min-height: 787px;
+    background-color: #FAFAFA;
+
+    h2{
+        padding: 87px 0 0 0;
+        color: var(--bs-primary);
+        margin-left: 0.5em;
+        font-size: 42px;
+        font-weight: 600;
+    }
+
+    img{
+        margin-top: 66px
+    };
+
+    .btn{
+        border: 0px;
+        padding: 0 0 0 0;
+        margin-left: 1em;
+     
+    }
+    .btn-outline-primary{
+        font-size: 17px !important;
+        font-weight: 600;
+    }
+
+    .btn-outline-primary:hover{
+        background-color: transparent !important;
+        color: var(--negro)
+        
+    }
+
+    .card{
+        background-color: transparent;
+        border: 0px;
+        .card-title{
+            margin-top: 2em;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--bs-primary);
+            
+        }
+        .text-muted{
+            margin-bottom: 4em !important;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--negro) !important;
+            opacity: 0.7;
+        }
+        p{
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 400;
+            color: var(--negro) !important;
+            opacity: 0.7;
+        }
+    }
+
+
+}

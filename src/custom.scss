@@ -13,9 +13,13 @@ $btn-padding-x: 1.3em;
         color: white !important
 }
 
+:root {
+        --bs-primary: #2F3394 !important;
+        --negro: #222222 ; 
+        body {
+                font-family: poppins
+        }
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-:root {
-        --bs-primary: #2F3394 !important;
-}
