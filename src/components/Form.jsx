@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
@@ -14,7 +14,7 @@ const Form = (props) => {
     email: "",
     message: "",
   });
-  const history = useHistory();
+  const history = useNavigate();
   const resetForm = () => {
     setInForm({
       origin: "",

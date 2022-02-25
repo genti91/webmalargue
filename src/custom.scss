@@ -5,4 +5,17 @@ $theme-colors: (
 );
 
 /* import bootstrap to set changes */
+
+$btn-padding-y: 1.3em;
+$btn-padding-x: 1.3em;
+
+.btn-secondary{
+        color: white !important
+}
+
+
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+:root {
+        --bs-primary: #2F3394 !important;
+}

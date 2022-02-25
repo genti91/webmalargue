@@ -6,7 +6,7 @@ import MainTruck from "../components/MainTruck";
 import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
 
-const Landing_empresa_2 = () => {
+const LandingEmpresa2 = () => {
   let icons = [
     { icon: "envios", text: "Hacemos envíos a todo el país." },
     { icon: "atencion", text: "Atención personalizada." },
@@ -58,13 +58,13 @@ const Landing_empresa_2 = () => {
       <FooterPaymentMethods />
       <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
-        class="whatsapp"
+        className="whatsapp"
         target="_blank"
         rel="noreferrer"
       >       
-        <i class="fa fa-whatsapp whatsapp-icon"></i>
+        <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
     </>
   );
 };
-export default Landing_empresa_2;
+export default LandingEmpresa2;

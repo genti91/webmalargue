@@ -1,12 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextInput2 from "./TextInput2";
 import { useForm } from "../hooks";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
-
 const FormEmpresas2 = () => {
   const { form, setInForm } = useForm({
     origin: "",
@@ -19,7 +18,7 @@ const FormEmpresas2 = () => {
     weight: "",
     message: "",
   });
-  const history = useHistory();
+  const history = useNavigate();
   const resetForm = () => {
     setInForm({
       origin: "",

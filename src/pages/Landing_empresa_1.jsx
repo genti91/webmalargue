@@ -57,12 +57,12 @@ const Landing_empresa_1 = () => {
       <FooterPaymentMethods />
       <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
-        class="whatsapp"
+        className="whatsapp"
         target="_blank"
         rel="noreferrer"
       >
         {" "}
-        <i class="fa fa-whatsapp whatsapp-icon"></i>
+        <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
     </>
   );

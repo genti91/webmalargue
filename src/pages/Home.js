@@ -1,3 +1,7 @@
+import React from "react";
+
+
+import Header from "../components/Header/Header";
 import HeroLanding1 from "../components/HeroLanding1";
 import SectionIcons from "../components/SectionIcons";
 import MainDoor from "../components/MainDoor";
@@ -5,7 +9,13 @@ import MainTraffic from "../components/MainTraffic";
 import MainTruck from "../components/MainTruck";
 import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
-const Landing_1 = () => {
+import { CardDeck } from "../components/CardDeck/CardDeck";
+import { bgHome } from "../assets";
+
+
+
+// import { IoHome } from "react-icons/io5";
+const Home = () => {
   let icons = [
     { icon: "envios", text: "Hacemos envíos a todo el país." },
     { icon: "atencion", text: "Atención personalizada." },
@@ -14,23 +24,15 @@ const Landing_1 = () => {
   ];
   return (
     <>
-      <HeroLanding1
-        image="assets/repartidor-header.jpg"
+      <Header
+        image={bgHome}
         title={[
           "Envía lo que necesites,",
           "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
         ]}
         page={true}
       />
-      <SectionIcons icons={icons} />
-      <MainDoor
-        button={{ background: "primary", title: "Consultá por tu envío" }}
-        title={[
-          "Envíos Puerta a Puerta.",
-          "y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.",
-        ]}
-        image="repartidor-chica"
-      />
+      <CardDeck/>
       <MainTraffic
         button={{ background: "primary", title: "Consultá por tu envío" }}
         background="main-bg-gradient-1"
@@ -53,4 +55,4 @@ const Landing_1 = () => {
     </>
   );
 };
-export default Landing_1;
+export default Home;

@@ -9,8 +9,8 @@ const HeroLanding1 = ({ image, title, page }) => {
           backgroundImage: `url(${image})`,
         }}
       >
-        <img src={`assets/logo.svg`} alt="logo" className="hero-logo" />
-        <span className="hero-title-small">{title[0]}</span>
+        
+        
         <span className="hero-title-big">{title[1]}</span>
       </div>
       {page ? <Form /> : <FormEmpresas />}

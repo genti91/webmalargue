@@ -6,12 +6,12 @@ const Landing_2 = () => {
       <ThankYouPage />
       <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
-        class="whatsapp"
+        className="whatsapp"
         target="_blank"
         rel="noreferrer"
       >
         {" "}
-        <i class="fa fa-whatsapp whatsapp-icon"></i>
+        <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
     </>
   );
