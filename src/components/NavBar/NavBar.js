@@ -1,10 +1,39 @@
 import React from "react"
+import { NavLink } from "react-router-dom"
 import { Logo } from "../../assets/Logo"
 import './NavBar.scss'
 
 
 
 export const NavBar = () => {
+
+    const links = [
+      {
+          to: '/',
+          name: 'Home'
+      },
+      {
+          to: '/servicios',
+          name: 'Servicios'
+      },
+      {
+          to: '/nosotros',
+          name: 'Nosotros'
+      },
+      {
+          to: '/seguimiento',
+          name: 'Seguimiento'
+      },
+      {
+          to: '/cotiza',
+          name: 'Cotiza'
+      },
+      {
+          to: '/contacto',
+          name: 'Contacto'
+      },
+    ]
+
   return (
       <nav
         id="NavBarHome"
@@ -26,18 +55,19 @@ export const NavBar = () => {
                 id="navbarNav"
           >
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+            {links.map(({to, name })=> (
+              <li
+                key={name}
+              >
+                <NavLink
+                  to={to}
+                >
+                  {name}
+
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
-              </li>
+
+            ))} 
             </ul>
           </div>
         </div>

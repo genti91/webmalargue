@@ -6,6 +6,7 @@ import { CardDeck } from "../components/CardDeck/CardDeck";
 import { bgHome } from "../assets";
 import { BannerHome } from "../components/BannerHome/BannerHome";
 import { Novedades } from "../components/Novedades/Novedades";
+import { LogoCarousel } from "../components/LogoCarousel/LogoCarousel";
 
 
 
@@ -25,6 +26,7 @@ const Home = () => {
       <CardDeck/>
       <BannerHome/>
       <Novedades />
+      <LogoCarousel />
 
 
 

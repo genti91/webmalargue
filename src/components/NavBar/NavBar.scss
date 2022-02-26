@@ -3,6 +3,11 @@ nav{
 
 }
 
-#navbarNav a {
-    color: white;
+#navbarNav {
+    a {
+        color: white;
+        text-decoration: none;
+        margin-left: 2em;
+    }
+    
 }

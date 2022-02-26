@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 import {    
             novImg01,
@@ -49,7 +48,6 @@ export const Novedades = () => {
                                 Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual
                             </p>
                             <div className='h-100 d-flex align-items-end'>
-
                             </div>
                         </div>
                         <div className='row'>
@@ -70,7 +68,6 @@ export const Novedades = () => {
                                 Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual
                             </p>
                             <div className='h-100 d-flex align-items-end'>
-
                             </div>
                         </div>
                         <div className='row'>
@@ -79,8 +76,6 @@ export const Novedades = () => {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
         </div>
     </section>

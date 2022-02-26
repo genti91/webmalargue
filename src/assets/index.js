@@ -11,3 +11,10 @@ export { default as novImg03 } from "./img/pexels-artem-podrez-5025638.png";
 
 // Icons
 export { default as mas } from "./img/SVG/mas.svg";
+
+// logos partners
+export { default as partnerLogo01 } from "./img/partners/argento.png";
+export { default as partnerLogo02 } from "./img/partners/binser_logo2.png";
+export { default as partnerLogo03 } from "./img/partners/carestino_logo2.png";
+export { default as partnerLogo04 } from "./img/partners/drogueria_logo.png";
+export { default as partnerLogo05 } from "./img/partners/durlock_logo.png";
