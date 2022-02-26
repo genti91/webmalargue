@@ -3,7 +3,11 @@ import React from 'react';
 import './Pag.scss'
 
 const Pag5 = () => {
-  return <h1>Contacto</h1>;
-};
+  return (
+    <section id='Contacto'>
+      <h1>Contacto</h1>
+    </section>
+
+    )};
 
 export default Pag5;

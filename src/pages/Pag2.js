@@ -1,9 +1,12 @@
 import React from 'react';
 
-import './Pag.scss'
 
 const Pag2 = () => {
-  return <h1>Nosotros</h1>;
-};
+  return (
+    <section id='Nosotros'>
+      <h1>Nosotros</h1>
+    </section>
+
+    )};
 
 export default Pag2;

@@ -2,10 +2,13 @@ $over-lap: -120px;
 
 #CadrDeck{
     margin-top: $over-lap;
-    background-color: white;
+    background-color: white !important;
 }
 
 #CadrDeck{
+
+        
+
         .btn {
             display:block;
             height: 44px;
