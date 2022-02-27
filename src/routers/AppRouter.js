@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Footer } from '../components/Footer/Footer';
 import { NavBar } from '../components/NavBar/NavBar';
 
 
@@ -27,7 +28,6 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
     <NavBar/>
-     
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/servicios" element={<Servicios />} />
@@ -41,6 +41,8 @@ export const AppRouter = () => {
             <Route path="/landing_empresa_2"  element={<LandingEmpresa2 />} />
             <Route path="/gracias"  element={<ThankYouPage />} />
         </Routes>
+        <Footer/>
     </BrowserRouter>
+    
   )
 }
