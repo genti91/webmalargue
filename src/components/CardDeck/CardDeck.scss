@@ -53,4 +53,17 @@ $over-lap: -120px;
             margin-bottom: 0px !important;
             
         }
+
+        .whatsapp {
+            position:relative;
+            width:60px;
+            height:60px;
+            bottom:40px;
+            color:#FFF;
+            z-index:100;
+          }
+          
+          .whatsapp-icon {
+            margin-top:13px;
+          }
 }

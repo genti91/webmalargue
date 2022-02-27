@@ -74,3 +74,35 @@ export const NavBar = () => {
       </nav>
   )
 }
+
+
+//TODO: color de fondo en la navBar
+// Fuente: https://stackoverflow.com/questions/52637835/dynamically-change-background-color-on-scroll
+
+/*
+
+CSS
+body {
+  background: green;
+  transition: 0.3s all;
+}
+
+$(function() {
+$(window).scroll(function () {
+   if ($(this).scrollTop() > 50) {
+      $(‘body’).addClass(‘colorChange’)
+      $(‘header’).addClass(‘displayNone’)
+      $(‘nav’).removeClass(‘navBackgroundStart’)
+      $(‘nav ul’).addClass(‘addBlackBackground’)
+   } 
+   if ($(this).scrollTop() < 50) {
+      $(‘body’).removeClass(‘colorChange’)
+      $(‘header’).removeClass(‘displayNone’)
+      $(‘nav’).addClass(‘navBackgroundStart’)
+      $(‘nav ul’).removeClass(‘addBlackBackground’)
+   } 
+});
+});
+
+
+*/

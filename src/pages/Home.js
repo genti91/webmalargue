@@ -31,7 +31,7 @@ const Home = () => {
 
 
 
-      <a
+      {/* <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
         className="whatsapp"
         target="_blank"
@@ -39,7 +39,7 @@ const Home = () => {
       >
         {" "}
         <i className="fa fa-whatsapp whatsapp-icon"></i>
-      </a>
+      </a> */}
     </>
   );
 };

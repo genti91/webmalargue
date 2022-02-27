@@ -16,6 +16,7 @@ export { default as mas } from "./img/SVG/mas.svg";
 export { default as faIcon } from "./img/SVG/faceboockIcon.svg";
 export { default as igIcon } from "./img/SVG/instagramIcon.svg";
 export { default as emailIcon } from "./img/SVG/emailIcon.svg";
+export { default as whatsAppCTA } from "./img/SVG/boton-whatsapp.svg";
 
 // logos partners
 export { default as partnerLogo01 } from "./img/partners/argento.png";

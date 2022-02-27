@@ -3,6 +3,7 @@ import {    ecommerce,
             empresa,
             individuo,
             mas,
+            whatsAppCTA
     } from '../../assets';
 
 import './CardDeck.scss'
@@ -12,6 +13,20 @@ import './CardDeck.scss'
 export const CardDeck = () => {
   return (
     <section id='CadrDeck' className='container'>
+        <div className='row justify-content-end'>
+            <a
+            href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
+                className="whatsapp"
+                target="_blank"
+                rel="noreferrer"
+            >
+                {" "}
+                <img
+                    src={whatsAppCTA}
+                />
+            </a>
+
+        </div>
         <div className="row row-cols-1 row-cols-md-3 g-4 d-flex align-items-stretch mb-5">
             <div className="card d-flex align-items-stretch">
                 <div className="card-body d-flex flex-column">
@@ -74,6 +89,8 @@ export const CardDeck = () => {
             </div>
 
         </div>
+
+
 
 
 
