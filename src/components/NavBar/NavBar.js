@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { Logo } from "../../assets/Logo"
 import './NavBar.scss'
 
-
-
 export const NavBar = () => {
+
+    const [navBar, setNavBar] = useState(false);
 
     const links = [
       {
@@ -32,13 +32,32 @@ export const NavBar = () => {
           to: '/contacto',
           name: 'Contacto'
       },
-    ]
+    ];
+
+
+    const changeBacground =()=>{
+      //https://www.youtube.com/watch?v=JMsNslI8KoY
+      if(window.scrollY >= 110){
+        setNavBar(true)
+      }else{
+        setNavBar(false)
+      }
+      
+
+
+    }
+
+    window.addEventListener('scroll', changeBacground)
+
 
   return (
       <nav
         id="NavBarHome"
-        className="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-      >
+        className={navBar ? "navbar navbar-expand-lg navbar-light bg-light fixed-top activeNav" 
+                          : "navbar navbar-expand-lg navbar-light bg-light fixed-top"
+                    
+      }
+      > 
         <div className="container">
           <a className="navbar-brand" href="#">
             {<Logo  />}
@@ -74,35 +93,3 @@ export const NavBar = () => {
       </nav>
   )
 }
-
-
-//TODO: color de fondo en la navBar
-// Fuente: https://stackoverflow.com/questions/52637835/dynamically-change-background-color-on-scroll
-
-/*
-
-CSS
-body {
-  background: green;
-  transition: 0.3s all;
-}
-
-$(function() {
-$(window).scroll(function () {
-   if ($(this).scrollTop() > 50) {
-      $(‘body’).addClass(‘colorChange’)
-      $(‘header’).addClass(‘displayNone’)
-      $(‘nav’).removeClass(‘navBackgroundStart’)
-      $(‘nav ul’).addClass(‘addBlackBackground’)
-   } 
-   if ($(this).scrollTop() < 50) {
-      $(‘body’).removeClass(‘colorChange’)
-      $(‘header’).removeClass(‘displayNone’)
-      $(‘nav’).addClass(‘navBackgroundStart’)
-      $(‘nav ul’).removeClass(‘addBlackBackground’)
-   } 
-});
-});
-
-
-*/
