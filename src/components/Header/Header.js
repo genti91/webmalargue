@@ -6,7 +6,6 @@ const Header = ({ image, title, page }) => {
   return (
     <section
       id="Header"
-      className='bg-primary'
     >
       <div
         className="hero-landing-1 "

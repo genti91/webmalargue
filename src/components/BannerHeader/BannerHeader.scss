@@ -1,0 +1,45 @@
+
+
+#BannerHeader{
+
+    height: 434px !important;
+    // background-image: url(../../assets/img/foto-header.jpg);
+    background-position: center;
+    background-size: cover;
+
+    #title{
+        z-index: 10;
+        position: relative;
+
+    }
+
+    #overlay{
+        position: absolute;
+        top: 0%;
+        background-color: black;
+        opacity: 0.2;
+        z-index: 1;
+        height: 434px !important;
+    }
+
+    h1{
+        color: white;
+        font: normal normal bold 37px/38px Poppins;
+        padding-bottom: 0.6em;
+        span{
+            font-weight: 200;
+        }
+    }
+
+
+
+    
+    .linea {
+        border-top: 4px solid #EB1C23;
+        height: 4px;
+        margin-right: 40%;
+        padding-bottom: 55px;
+        // margin: 0 auto 0 auto;
+    }
+    
+}
