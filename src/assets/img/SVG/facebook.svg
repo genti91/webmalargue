@@ -1,18 +1,19 @@
-import React from 'react'
-
-export const FaIcon = ({iconFill, iconWidth, iconHeight}) => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg"  
-        width={iconWidth}
-        height={iconHeight}
-        viewBox="0 0 52 52">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52">
   <defs>
+    <style>
+      .cls-1 {
+        fill: #2f3394;
+      }
 
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
     <clipPath id="clip-path">
       <rect id="Rectángulo_11" data-name="Rectángulo 11" class="cls-1" width="12.926" height="24.134"/>
     </clipPath>
   </defs>
-  <g id="facebook" transform="translate(-1073 -4302)" fill={iconFill}>
+  <g id="facebook" transform="translate(-1073 -4302)">
     <g id="Grupo_596" data-name="Grupo 596" transform="translate(10 10)">
       <path id="Elipse_1" data-name="Elipse 1" class="cls-1" d="M26,2a24.007,24.007,0,0,0-9.341,46.115A24.007,24.007,0,0,0,35.341,3.885,23.848,23.848,0,0,0,26,2m0-2A26,26,0,1,1,0,26,26,26,0,0,1,26,0Z" transform="translate(1063 4292)"/>
     </g>
@@ -23,6 +24,3 @@ export const FaIcon = ({iconFill, iconWidth, iconHeight}) => {
     </g>
   </g>
 </svg>
-
-  )
-}

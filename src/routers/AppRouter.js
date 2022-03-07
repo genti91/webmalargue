@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter} from "react-router-dom";
 import { Footer } from '../components/Footer/Footer';
 import { NavBar } from '../components/NavBar/NavBar';
 
@@ -25,6 +25,9 @@ import {
 
 
 export const AppRouter = () => {
+
+
+
   return (
     <BrowserRouter>
     <NavBar/>

@@ -5,8 +5,10 @@ const siteData = {
     },
     adress:'AV. Garmendia 4805 CABA (1427)',
     social:{
-        facebook:   'https://facebook.com',
-        instagram:  'https://instagram.com',
+        facebook:   'https://www.facebook.com/Expresomalargue',
+        faceDisplay: '/Expresomalargue',
+        instagram:  'https://www.instagram.com/expresomalargue/',
+        istagramDisplay: '/expresomalargue',
     },
     email: 'info@expresomalargue.com.ar',
     

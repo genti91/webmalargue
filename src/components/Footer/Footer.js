@@ -12,6 +12,7 @@ import { EmailIcon } from '../../assets/EmailIcon'
 import {FaIcon} from '../../assets/FaIcon'
 import { IgIcon } from '../../assets/IgIcon'
 
+
 import './Footer.scss'
 
 
@@ -50,7 +51,7 @@ export const Footer = () => {
                                 href={social.facebook}
                                 target={'_blank'}> 
                                     <button className="btn btn-outline-primary" type="button">
-                                        {<FaIcon />}
+                                        {<FaIcon  iconFill='#2F3394' iconWidth='52' iconHeight='52' />}
                                     </button>
                             </a>
                         </div>
@@ -59,7 +60,7 @@ export const Footer = () => {
                                 href={social.instagram}
                                 target={'_blank'}>   
                                     <button className="btn btn-outline-primary" type="button">
-                                        {<IgIcon />}
+                                        {<IgIcon iconFill='#2F3394' iconWidth='52' iconHeight='52' />}
                                     </button>  
                             </a>
                         </div>
@@ -71,7 +72,7 @@ export const Footer = () => {
                                         className="btn btn-outline-primary" 
                                         type="button"
                                     >
-                                            {<EmailIcon/>}
+                                            {<EmailIcon iconFill='#2F3394' iconWidth='52' iconHeight='52'/>}
                                     </button>  
                             </a>
                         </div>
