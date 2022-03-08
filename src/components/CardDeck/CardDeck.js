@@ -27,10 +27,23 @@ export const CardDeck = () => {
             </a>
 
         </div>
+        <div id='subTitle' className='container'>
+            <div className='row '>
+                <div className='col-md-4'>
+                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                </div>
+                <div className='col-md-4 '>
+                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                </div>
+                <div className='col-md-4 '>
+                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                </div>
+            </div>
+         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4 d-flex align-items-stretch mb-5">
             <div className="card d-flex align-items-stretch">
                 <div className="card-body d-flex flex-column">
-                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                    {/* <p className="card-text"><span className="text-muted">Servicios para</span></p> */}
                     <h5 className="card-title">Individuos</h5>
                     <ul className="card-text">
                         <li>Paquetería</li>
@@ -43,13 +56,11 @@ export const CardDeck = () => {
                             />
                     </div>
                 </div>
-                <div className="container d-flex justify-content-center">
-                    <button className="btn btn-primary" type="button"><img src={mas}/></button>  
-                </div>
+
             </div>
             <div id='central' className="card d-flex align-items-stretch">
                 <div className="card-body d-flex flex-column">
-                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                    {/* <p className="card-text"><span className="text-muted">Servicios para</span></p> */}
                     <h5 className="card-title">Empresas</h5>
                     <ul className="card-text">
                         <li>Cargas completas</li>
@@ -64,13 +75,11 @@ export const CardDeck = () => {
                             />
                     </div>
                 </div>
-                <div className="container d-flex justify-content-center">
-                    <button className="btn btn-primary" type="button"><img src={mas}/></button>  
-                </div>
+
             </div>
             <div className="card d-flex align-items-stretch">
                 <div className="card-body d-flex flex-column">
-                    <p className="card-text"><span className="text-muted">Servicios para</span></p>
+                    {/* <p className="card-text"><span className="text-muted">Servicios para</span></p> */}
                     <h5 className="card-title">E-Commerce</h5>
                     <ul className="card-text">
                         <li>Logística para E-Commerce</li>
@@ -83,17 +92,22 @@ export const CardDeck = () => {
                             />
                     </div>
                 </div>
-                <div className="container d-flex justify-content-center">
-                    <button className="btn btn-primary" type="button"><img src={mas}/></button>  
-                </div>
+
             </div>
 
         </div>
-
-
-
-
-
+            
+        <div className='row pb-5'>
+            <div className=" d-flex justify-content-center col-md-4">
+                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+            </div>
+            <div className=" d-flex justify-content-center col-md-4">
+                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+            </div>
+            <div className=" d-flex justify-content-center col-md-4">
+                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+            </div>
+        </div>
 
     </section>
 

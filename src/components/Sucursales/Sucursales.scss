@@ -2,4 +2,29 @@
 
     background-color: var(--bg-primay);
 
+    h1{
+        color: var(--bs-primary);
+        text-align: center;
+        font: normal normal 600 40px/50px Poppins;
+        letter-spacing: 0px;
+        // color: #2F3394;
+        opacity: 1;
+        padding: 134px 0 2em 0;
+
+    }
+
+    #listaDeSucusrales{
+
+        padding: 0 0 3em 0;
+
+        h3{
+            text-align: left;
+            font: normal normal medium 24px/82px Poppins;
+            letter-spacing: 0px;
+            color: var(--bs-primary);
+            opacity: 0.9;
+            
+        }
+    }
+    
 }

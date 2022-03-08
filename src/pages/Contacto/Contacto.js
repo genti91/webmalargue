@@ -28,13 +28,10 @@ const Contacto = () => {
 
     return (
 
-        
-
         <section id='contactanos'>
             <BannerHeader   lineaPrincipal =  'CONTACTANOS'
                             lineaSecundaria = '' // Si no hay linea enviar ''
-                            image = {contactoIMG}
-                            
+                            image = {contactoIMG}                        
             />
             <div className='container'>
                 <div className='row'>
@@ -60,7 +57,6 @@ const Contacto = () => {
                             <div className='col-md-10 '>
                                 <h3>Teléfono</h3>
                                 <p>{phone.display}</p>
-
                             </div>
                         </div>
                         <div className='row'>
@@ -79,7 +75,6 @@ const Contacto = () => {
                             <div className='col-md-10 '>
                                 <h3>Correo</h3>
                                 <p>{email}</p>
-
                             </div>
                         </div>
                         <div className='row'>
@@ -98,7 +93,6 @@ const Contacto = () => {
                             <div className='col-md-10 '>
                                 <h3>Seguinos</h3>
                                 <p>{social.istagramDisplay}</p>
-
                             </div>
                         </div>
                         <div className='row'>
@@ -116,16 +110,10 @@ const Contacto = () => {
                             </div>
                             <div className='col-md-10 '>
                                 <p>{social.faceDisplay}</p>
-
                             </div>
-
                         </div>
-
-
                     </div>
-
                 </div>
-
             </div>
             <Sucursales titulo='Nos podes encontrar en' />
         </section>
