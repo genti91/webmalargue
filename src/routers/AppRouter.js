@@ -11,10 +11,10 @@ import {
   Cotiza,
   Contacto,
   Tracking,
-  Landing_1,
-  Landing_2,
-  Landing_empresa_1,
-  LandingEmpresa2,
+  Individuos,
+  // Landing_2,
+  Empresas,
+  // LandingEmpresa2,
   ThankYouPage,
 } from "../pages";
 
@@ -44,10 +44,11 @@ export const AppRouter = () => {
           path="/contacto"
           element={[<NavBar />, <Contacto />, <Footer />]}
         />
-        <Route path="/landing_1" element={<Landing_1 />} />
-        <Route path="/landing_2" element={<Landing_2 />} />
-        <Route path="/landing_empresa" element={<Landing_empresa_1 />} />
-        <Route path="/landing_empresa_2" element={<LandingEmpresa2 />} />
+        {/* Anuncios */}
+        <Route path="/individuos" element={<Individuos />} />
+        {/* <Route path="/landing_2" element={<Landing_2 />} /> */}
+        <Route path="/empresas" element={<Empresas />} />
+        {/* <Route path="/landing_empresa_2" element={<LandingEmpresa2 />} /> */}
         <Route path="/gracias" element={<ThankYouPage />} />
       </Routes>
     </BrowserRouter>

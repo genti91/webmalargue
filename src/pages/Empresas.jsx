@@ -5,44 +5,58 @@ import MainTraffic from "../components/MainTraffic";
 import MainTruck from "../components/MainTruck";
 import FooterShipments from "../components/FooterShipments";
 import FooterPaymentMethods from "../components/FooterPaymentMethods";
-const Landing_1 = () => {
+const Empresas = () => {
   let icons = [
     { icon: "envios", text: "Hacemos envíos a todo el país." },
     { icon: "atencion", text: "Atención personalizada." },
-    { icon: "puerta-puerta", text: "Envíos puerta a puerta." },
+    { icon: "camion", text: "Envíos punto a punto." },
     { icon: "seguimiento", text: "Hacé el seguimiento de tus envíos." },
   ];
   return (
     <>
       <HeroLanding1
-        image="assets/repartidor-header.jpg"
+        image="assets/header.jpg"
         title={[
-          "Envía lo que necesites,",
-          "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
+          "Pensaste en vender en otras ciudades?",
+          "Llevamos tu producto a tus clientes, así de simple!",
         ]}
-        page={true}
+        page={false}
       />
       <SectionIcons icons={icons} />
       <MainDoor
-        button={{ background: "primary", title: "Consultá por tu envío" }}
+        button={{
+          background: "primary",
+          title: "Consultá por acuerdos comerciales",
+        }}
         title={[
-          "Envíos Puerta a Puerta.",
-          "y luego tu paquete o encomienda llega a la puerta de la dirección que nos hayas indicado.",
+          "Envíos punto a punto.",
+          "y luego la carga llega directo al punto que nos hayas indicado.",
         ]}
-        image="repartidor-chica"
+        image="Envios"
       />
       <MainTraffic
-        button={{ background: "primary", title: "Consultá por tu envío" }}
+        button={{
+          background: "primary",
+          title: "Consultá por acuerdos comerciales",
+        }}
         background="main-bg-gradient-1"
       />
-      <MainTruck button={{ background: "primary", title: "Consultá por tu envío" }} />
+      <MainTruck
+        button={{
+          background: "primary",
+          title: "Consultá por acuerdos comerciales",
+        }}
+      />
       <FooterShipments
         image="segui-tu-envio-red.jpg"
-        button={{ background: "primary", title: "Consultá por tu envío" }}
+        button={{
+          background: "primary",
+          title: "Consultá por acuerdos comerciales",
+        }}
       />
       <FooterPaymentMethods />
       <a
-        href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
+        href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
         className="whatsapp"
         target="_blank"
         rel="noreferrer"
@@ -53,4 +67,4 @@ const Landing_1 = () => {
     </>
   );
 };
-export default Landing_1;
+export default Empresas;
