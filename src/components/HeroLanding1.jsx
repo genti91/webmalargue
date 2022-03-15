@@ -7,6 +7,7 @@ const HeroLanding1 = ({ image, title, page }) => {
         className="hero-landing-1"
         style={{
           backgroundImage: `url(${image})`,
+          height: "70%",
         }}
       >
         <span className="hero-title-big">{title[1]}</span>
