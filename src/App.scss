@@ -6,14 +6,13 @@
 }
 .wrapper-hero-2 {
   position: relative;
-  height: 165vh;
+  height: 125vh;
 }
 .hero-landing-1 {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: auto;
-  padding: 4.5rem 8.7rem;
+  padding: 4.5rem 8.7rem 15rem;
   display: flex;
   flex-direction: column;
 }
@@ -391,7 +390,7 @@ textarea {
 .footer-border-bottom-blue {
   border-bottom: 13px solid #2f3394;
 }
-.input_container_2_wrapper{
+.input_container_2_wrapper {
   max-width: 226px;
 }
 // Breakpoints
@@ -412,16 +411,15 @@ textarea {
   .container-form {
     width: 90%;
   }
-  .btn-pill{
+  .btn-pill {
     font-size: medium;
   }
-
 }
 @media (max-width: 1026px) {
   .section-trafic-text-title {
     font: normal normal 500 35px/51px Poppins;
   }
-  .section-trafic-text-container{
+  .section-trafic-text-container {
     width: auto;
     align-items: center;
   }
@@ -450,11 +448,12 @@ textarea {
 @media (max-width: 992px) {
   .main-bg-gradient {
     padding: 50px;
-     }
+  }
   .main-bg-gradient-1 {
     padding: 50px;
   }
-  .wrapper-hero, .wrapper-hero-2 {
+  .wrapper-hero,
+  .wrapper-hero-2 {
     position: unset;
     display: flex;
     flex-direction: column;
@@ -469,10 +468,10 @@ textarea {
     width: 100%;
     height: auto;
   }
-  .container-form-2{
+  .container-form-2 {
     margin-top: 30px;
   }
-  .input_container_2_wrapper{
+  .input_container_2_wrapper {
     max-width: none !important;
   }
   .wrapper_inputs {
@@ -519,7 +518,7 @@ textarea {
   .section-trafic-text-title {
     width: 100%;
   }
-  .btn-pill{
+  .btn-pill {
     font-size: small;
   }
   .section-footer-container-text {
@@ -531,10 +530,11 @@ textarea {
   .hero-landing-1 {
     background-position: bottom;
   }
-  .section-door, .main-bg-gradient, .main-bg-gradient-1 {
+  .section-door,
+  .main-bg-gradient,
+  .main-bg-gradient-1 {
     padding: 25px 15px;
   }
-
 }
 // .whatsapp {
 //   position:fixed;
