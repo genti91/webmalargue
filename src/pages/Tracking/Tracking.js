@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { contactoIMG } from "../../assets";
-import { EmailIcon } from "../../assets/EmailIcon";
-import { WhatsAppIcon } from "../../assets/WhatsAppIcon";
 import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
-import siteData from "../../assets/data";
 
 import "./Tracking.scss";
-import { IgIcon } from "../../assets/IgIcon";
-import { FaIcon } from "../../assets/FaIcon";
-import { Sucursales } from "../../components/Sucursales/Sucursales";
 import axios from "axios";
 
 const Tracking = () => {
-  const { phone, adress, social, email } = siteData;
   const [loginToken, setLoginToken] = useState({});
   const [trackingData, setTrackingData] = useState({});
   const [trackingID, setTrackingID] = useState("");
-
-  const iconSize = "42";
-  const iconColor = "#EB1C23";
 
   const data = "id=0002-001500061757-S";
 
@@ -90,12 +80,12 @@ const Tracking = () => {
               </div>
             </form>
             <div>
-              {trackingData &&
-                trackingData.map((dat) => (
+              {/* {trackingData &&
+                trackingData.map((dat) => {
                   <p>
                     {dat.des} {dat.fecha}
-                  </p>
-                ))}
+                  </p>;
+                })} */}
             </div>
           </div>
         </div>
