@@ -1,91 +1,144 @@
 import React, { useEffect, useState } from "react";
-import { contactoIMG } from "../../assets";
+import { nosotrosIMG } from "../../assets";
 import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
 
 import "./Tracking.scss";
 import axios from "axios";
+import { Bullet } from "./Bullet";
+import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
+
 
 const Tracking = () => {
   const [loginToken, setLoginToken] = useState({});
-  const [trackingData, setTrackingData] = useState({});
+  const [trackingData, setTrackingData] = useState([]);
   const [trackingID, setTrackingID] = useState("");
 
   const data = "id=0002-001500061757-S";
-
+  
   useEffect(() => {
-    var data2 = JSON.stringify({
-      u: "malfredo",
-      p: "123456",
-    });
 
-    var loginConfig = {
-      method: "post",
-      url: "https://www.softwarecristal.com/web/api/",
-      headers: {
-        Authorization: "d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
-      },
-      data: data2,
-    };
-
-    axios(loginConfig)
-      .then(function (response) {
-        const config = {
-          method: "post",
-          url: `https://www.softwarecristal.com/web/api/?o=tracking&token=${response.data.data[0].token}`,
-          headers: {
-            Authorization: "Bearer d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
-            "Content-Type": "application/x-www-form-urlencoded",
-            Accept: "application/json",
-            Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
-          },
-          data: `${data}`,
-        };
-
-        axios(config)
-          .then(function (response) {
-            setTrackingData(response.data.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      })
-      .catch(function (error) {
-        console.log(error);
+      var data2 = JSON.stringify({
+        u: "malfredo",
+        p: "123456",
       });
-  }, []);
+
+      var loginConfig = {
+        method: "post",
+        url: "https://www.softwarecristal.com/web/api/",
+        headers: {
+          Authorization: "d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
+        },
+        data: data2,
+      };
+
+      axios(loginConfig)
+        .then(function (response) {
+          const config = {
+            method: "post",
+            url: `https://www.softwarecristal.com/web/api/?o=tracking&token=${response.data.data[0].token}`,
+            headers: {
+              Authorization:  "Bearer d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
+                              "Content-Type": "application/x-www-form-urlencoded",
+              Accept: "application/json",
+              Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
+            },
+            data: `${data}`,
+          };
+
+          axios(config)
+            .then(function (response) {
+              setTrackingData(response.data.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+   
+    }, []);
 
   console.log(trackingData);
+
+  const handleClickForm =()=>{
+    // console.log(trackingID)
+  }
 
   return (
     <section id="Tracking">
       <BannerHeader
-        lineaPrincipal="Tracking"
+        lineaPrincipal="Seguimiento"
         lineaSecundaria="" // Si no hay linea enviar ''
-        image={contactoIMG}
+        image={nosotrosIMG}
       />
       <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h2>Envianos tu consulta</h2>
-            <form action={setTrackingID}>
-              <div>
-                <label for="uname">Elige un nombre de usuario: </label>
-                <input type="text" id="uname" name="name" />
+        <div className="row justify-content-center">
+          <div className="col-md-5">
+
+            <div><h3>Ingresá el número de seguimiento </h3></div>
+            <form
+              className="d-flex"
+              onSubmit={e => e.preventDefault()}
+              action={setTrackingID}
+              
+            >
+              <div className="row">
               </div>
+                <input 
+                  type="text" 
+                  id="uname" 
+                  name="name" 
+                  className="form-control me-2"
+                  
+                />
               <div>
-                <button>Enviar</button>
+                <button
+                  onClick={handleClickForm}
+                  className={'btn btn-primary'}
+                
+                >Enviar</button>
               </div>
             </form>
             <div>
-              {/* {trackingData &&
-                trackingData.map((dat) => {
-                  <p>
-                    {dat.des} {dat.fecha}
-                  </p>;
-                })} */}
+
+              {
+                  trackingData.length !== 0 ? (
+                    trackingData.map(({des, fecha, cod, guia, nRetiro })=> 
+                      <div
+                        key={cod}
+                        className={'row align-items-center step'}
+                        style={{
+                        }}
+                      >
+                        <Bullet fecha/>
+
+                        <div 
+                          className={'status col-10 d-flex flex-column'}
+                        >
+                              <div
+                                className="title"
+                              >
+                                {des}
+                              </div>                 
+                              <div
+                                className="data"
+                              >
+                                {fecha}
+                              </div>                 
+                        </div>
+
+                      </div>)
+                  ) :(
+                    <GuiaNoEncontrada />
+                  )
+              }
+              
+
             </div>
           </div>
         </div>
