@@ -32,14 +32,14 @@ export const AppRouter = () => {
           element={[<NavBar />, <Nosotros />, <Footer />]}
         />
         <Route
-          path="/seguimiento"
-          element={[<NavBar />, <Seguimiento />, <Footer />]}
-        />
-        <Route path="/cotiza" element={[<NavBar />, <Cotiza />, <Footer />]} />
-        <Route
           path="/tracking"
           element={[<NavBar />, <Tracking />, <Footer />]}
         />
+        {/* <Route
+          path="/tracking"
+          element={[<NavBar />, <Seguimiento />, <Footer />]}
+        /> */}
+        <Route path="/cotiza" element={[<NavBar />, <Cotiza />, <Footer />]} />
         <Route
           path="/contacto"
           element={[<NavBar />, <Contacto />, <Footer />]}
