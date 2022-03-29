@@ -78,29 +78,7 @@ const Tracking = () => {
           <div className="col-md-5">
 
             <div><h3>Ingresá el número de seguimiento </h3></div>
-            {/* <form
-              className="d-flex"
-              onSubmit={e => e.preventDefault()}
-              action={setTrackingID}
-              
-            >
-              <div className="row">
-              </div>
-                <input 
-                  type="text" 
-                  id="uname" 
-                  name="name" 
-                  className="form-control me-2"
-                  
-                />
-              <div>
-                <button
-                  onClick={handleClickForm}
-                  className={'btn btn-primary'}
-                
-                >Enviar</button>
-              </div>
-            </form> */}
+
 
             <SearchBox setTrackingId={ setTrackingID } />
 
