@@ -6,6 +6,7 @@ import "./Tracking.scss";
 import axios from "axios";
 import { Bullet } from "./Bullet";
 import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
+import { SearchBox } from "./SearchBox";
 
 
 const Tracking = () => {
@@ -13,7 +14,9 @@ const Tracking = () => {
   const [trackingData, setTrackingData] = useState([]);
   const [trackingID, setTrackingID] = useState("");
 
-  const data = "id=0002-001500061757-S";
+  const data = `id=${trackingID}` ;
+  // const data = "id=0002-001500061757-S";
+ 
   
   useEffect(() => {
 
@@ -61,13 +64,7 @@ const Tracking = () => {
         });
         
    
-    }, []);
-
-  console.log(trackingData);
-
-  const handleClickForm =()=>{
-    // console.log(trackingID)
-  }
+    }, [trackingID]);
 
   return (
     <section id="Tracking">
@@ -81,7 +78,7 @@ const Tracking = () => {
           <div className="col-md-5">
 
             <div><h3>Ingresá el número de seguimiento </h3></div>
-            <form
+            {/* <form
               className="d-flex"
               onSubmit={e => e.preventDefault()}
               action={setTrackingID}
@@ -103,8 +100,13 @@ const Tracking = () => {
                 
                 >Enviar</button>
               </div>
-            </form>
+            </form> */}
+
+            <SearchBox setTrackingId={ setTrackingID } />
+
+
             <div>
+
 
               {
                   trackingData.length !== 0 ? (
