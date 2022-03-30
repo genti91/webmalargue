@@ -108,14 +108,14 @@ const Tracking = () => {
 
               {
                   trackingData.length !== 0 ? (
-                    trackingData.map(({des, fecha, cod, guia, nRetiro })=> 
+                    trackingData.map(({des, fecha, cod, guia, nRetiro, index })=> 
                       <div
                         key={cod}
                         className={'row align-items-center step'}
                         style={{
                         }}
                       >
-                        <Bullet fecha/>
+                        <Bullet fecha={fecha} order={index}/>
 
                         <div 
                           className={'status col-10 d-flex flex-column'}
