@@ -5,12 +5,12 @@ import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
 import "./Tracking.scss";
 import axios from "axios";
 import { Bullet } from "./Bullet";
-import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
+// import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
 import { SearchBox } from "./SearchBox";
 
 
 const Tracking = () => {
-  const [loginToken, setLoginToken] = useState({});
+  // const [loginToken, setLoginToken] = useState({});
   const [trackingData, setTrackingData] = useState([]);
   const [trackingID, setTrackingID] = useState("");
 
