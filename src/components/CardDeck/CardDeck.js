@@ -22,6 +22,7 @@ export const CardDeck = () => {
             >
                 {" "}
                 <img
+                    alt='WhatsApp'
                     src={whatsAppCTA}
                 />
             </a>
@@ -51,6 +52,7 @@ export const CardDeck = () => {
                     </ul>
                     <div className='h-100 d-flex align-items-end'>
                             <img
+                                alt='individuos'
                                 className='card-img-bottom'
                                 src={individuo}
                             />
@@ -70,6 +72,7 @@ export const CardDeck = () => {
                     </ul>
                     <div className='h-100 d-flex align-items-end'>
                             <img
+                                alt='empresa'
                                 className='card-img-bottom'
                                 src={empresa}
                             />
@@ -87,6 +90,7 @@ export const CardDeck = () => {
                     </ul>
                     <div className='h-100 d-flex align-items-end'>
                             <img
+                                alt='eComenerce'
                                 className='card-img-bottom'
                                 src={ecommerce}
                             />

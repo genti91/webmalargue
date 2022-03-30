@@ -1,15 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export const Bullet = (fecha, index) => {
-
-  console.log(index)
-
+  console.log(fecha.indexOf);
   return (
-    
     <div
-      id={index}
-        className={ fecha ? ('bullet col-2 completed ') : ('bullet col-2 ') }
-    >
-    </div>
-  )
-}
+      className={fecha ? "bullet col-2  " : "bullet col-2 "}
+      // className='bullet col-2'
+    ></div>
+  );
+};

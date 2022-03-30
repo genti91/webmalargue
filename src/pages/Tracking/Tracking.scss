@@ -17,6 +17,15 @@
             }
         }
     }
+    
+    .loader {
+        border: 10px solid #f3f3f3;
+        border-top: 10px solid #3498db;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        animation: spin 1s linear infinite;
+      }
 
     h2{
         margin-top: 118px ;
@@ -117,29 +126,39 @@
         position: relative;
         padding: 0px;
         display: flex;
+        z-index: 5;
 
         &::before{
             content: "";
-            height: 350%;
+            height: 278%;
             width: 2px;
             background-color: lightgray;
             display: flex;
             margin-left: 15px;
             align-self: center !important;
             position: absolute;
-            margin-bottom: 97px;
-            
-
+            margin-bottom: 119px;
+            z-index: 4;
         }
 
-
+        
+        
     }
     
+    // .step:last-child{
+    //     background-color: #31B121 !important;
+    // }
+    .step:last-child .bullet{
+        background-color: #31B121 !important;
+    }
 
     .completed {
         background-color: #31B121 !important;
         &::before{
             background-color: #31B121 !important;
+        }
+        &:last-child{
+            background-color: red !important;
         }
     }
     .completed:last-of-type{
