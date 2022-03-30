@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export const SearchBox = ({setTrackingId}) => {
+export const SearchBox = ({setTrackingId, trackingSteps, trackingInput}) => {
 
 
     const [searchValue, setSearchValue] = useState('');
@@ -13,6 +13,8 @@ export const SearchBox = ({setTrackingId}) => {
 
     const handleSubmit = ( e ) => {
         e.preventDefault()
+        trackingSteps=[]
+
         setTrackingId(searchValue)
 
         // console.log(setTrackingId.searchValue)

@@ -66,6 +66,8 @@ const Tracking = () => {
    
     }, [trackingID]);
 
+    console.log(trackingData)
+
   return (
     <section id="Tracking">
       <BannerHeader
@@ -80,14 +82,14 @@ const Tracking = () => {
             <div><h3>Ingresá el número de seguimiento </h3></div>
 
 
-            <SearchBox setTrackingId={ setTrackingID } />
+            <SearchBox setTrackingId={ setTrackingID } trackingSteps={trackingData} trackingInput={trackingID} />
 
 
             <div>
 
 
               {
-                  trackingData.length !== 0 ? (
+                  trackingData.length !== 0 || trackingID == '' ? (
                     trackingData.map(({des, fecha, cod, guia, nRetiro })=> 
                       <div
                         key={cod}
@@ -114,7 +116,8 @@ const Tracking = () => {
 
                       </div>)
                   ) :(
-                    <GuiaNoEncontrada />
+                    'Guia no encontrada'
+                    // <GuiaNoEncontrada trackingSteps={trackingData} trackingInput={trackingID} />
                   )
               }
               
