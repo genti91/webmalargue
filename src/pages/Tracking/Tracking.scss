@@ -128,8 +128,6 @@
             align-self: center !important;
             position: absolute;
             margin-bottom: 97px;
-            
-
         }
 
 
@@ -140,6 +138,9 @@
         background-color: #31B121 !important;
         &::before{
             background-color: #31B121 !important;
+        }
+        &:last-child{
+            background-color: red !important;
         }
     }
 }
