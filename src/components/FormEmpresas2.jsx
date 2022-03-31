@@ -143,7 +143,7 @@ const FormEmpresas2 = () => {
   return (
     <div className="container-form-2 text-center">
       <span className="form-title-2">
-        Cotizá tu envío completando todos tus datos.
+        Cotizá tu envío completando todos tus datos. Empresas 2
       </span>
       <div>
         <div className="wrapper_inputs">

@@ -114,7 +114,7 @@ const Form = (props) => {
   return (
     <div className="container-form text-center">
       <span className="form-title">
-        Cotizá tu envío completando todos tus datos.
+        Cotizá tu envío completando todos tus datos. From
       </span>
       <form id="contact-form" onSubmit={submitForm} method="POST">
         <div className="wrapper_inputs">

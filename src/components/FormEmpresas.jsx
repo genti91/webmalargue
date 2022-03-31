@@ -143,7 +143,7 @@ const FormEmpresas = (props) => {
     <div className="mt-5">
       <div className="container-form text-center">
         <span className="form-title">
-          Cotizá tu envío completando todos tus datos.
+          Cotizá tu envío completando todos tus datos. EMPRESAS
         </span>
         <form id="contact-form" onSubmit={submitForm} method="POST">
           <div className="wrapper_inputs">

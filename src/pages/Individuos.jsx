@@ -20,7 +20,7 @@ const Individuos = () => {
           "Envía lo que necesites,",
           "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
         ]}
-        // page={true}
+        page={true}
       />
       <SectionIcons icons={icons} />
       <MainDoor
