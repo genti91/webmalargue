@@ -151,6 +151,11 @@
     .step:last-child .bullet{
         background-color: #31B121 !important;
     }
+    .step:first-child .bullet{
+        &::before{
+            height: 0px;
+        }
+    }
 
     .completed {
         background-color: #31B121 !important;

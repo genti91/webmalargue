@@ -21,7 +21,7 @@ export const Novedades = () => {
                                 className='card-img-top'
                                 src={novImg01}
                             />
-                            <h5 className="card-title">Titulo de la nota del Blog.</h5>
+                            <h5 className="card-title">Cómo embalar tu paquete</h5>
                             <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>
                             <p className="card-text">
                                 Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual
@@ -42,7 +42,7 @@ export const Novedades = () => {
                                 className='card-img-top'
                                 src={novImg02}
                             />
-                            <h5 className="card-title">Titulo de la nota del Blog.</h5>
+                            <h5 className="card-title">Cómo seguir tu envío</h5>
                             <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>
                             <p className="card-text">
                                 Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual
@@ -62,7 +62,7 @@ export const Novedades = () => {
                                 className='card-img-top'
                                 src={novImg03}
                             />
-                            <h5 className="card-title">Titulo de la nota del Blog.</h5>
+                            <h5 className="card-title">Cómo generar tu presupuesto</h5>
                             <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>
                             <p className="card-text">
                                 Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual

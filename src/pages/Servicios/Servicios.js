@@ -11,7 +11,7 @@ const Servicios = () => {
     return (
         <section id='encomiendas'>
             <BannerHeader   lineaPrincipal =  'Individuos'
-                            lineaSecundaria = '' // Si no hay linea enviar ''
+                            lineaSecundaria = 'Servicios para' // Si no hay linea enviar ''
                             image = {serviciosIMG}
                             
             />
