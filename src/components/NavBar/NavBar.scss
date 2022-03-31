@@ -13,11 +13,30 @@ nav {
         text-decoration: none;
         margin-left: 2em;
     }
-
-    
+    .dropdown-menu-dark{
+        a{
+            color: black !important;
+        }
+    }
     
 }
 
+.dropdown-menu-dark{
+    // background-color: transparent !important;
+    border: 0px !important;
+    padding-left: 15px;
+    a{
+
+    }
+}
+.dropdown-menu{
+    a{
+        margin-left: 0px !important;
+        color: var(--negro) !important;
+        
+    }
+    background-color: white !important;
+}
 
 .activeNav{
     background-color: var(--bs-primary) !important ;

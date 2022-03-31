@@ -23,13 +23,17 @@ const Header = ({ image, title, page }) => {
             </div>
             <div className="row mt-5">
               <div className="col-md-4 d-grid">
-                <button className="btn btn-secondary" type="button">Cotizá tu envío</button>
+                <button className="btn btn-secondary" type="button">Cotizá</button>
               </div>
               <div className="col-md-4 d-grid">
-                <button className="btn btn-primary" type="button">Generá tu envío</button>
+                <button className="btn btn-primary" type="button">Generá</button>
               </div>
               <div className="col-md-4 d-grid">
-                <button className="btn btn-primary" type="button">Seguí tu envío</button>
+                <button className="btn btn-primary" type="button">
+                  <a href="/tracking">
+                    Seguí
+                  </a>
+                </button>
               </div>
 
             </div>

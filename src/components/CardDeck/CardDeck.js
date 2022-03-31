@@ -5,12 +5,17 @@ import {    ecommerce,
             mas,
             whatsAppCTA
     } from '../../assets';
+import { links } from '../NavBar/links';
+
 
 import './CardDeck.scss'
 
+const servicios = links.servicios
 
 
 export const CardDeck = () => {
+
+    
   return (
     <section id='CadrDeck' className='container'>
         <div className='row justify-content-end'>
@@ -103,13 +108,28 @@ export const CardDeck = () => {
             
         <div className='row pb-5'>
             <div className=" d-flex justify-content-center col-md-4">
-                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+                <button className="btn btn-primary" type="button">
+                    <a href={servicios.individuos.to}>
+                        <img src={mas}/>
+
+                    </a>
+                </button>  
             </div>
             <div className=" d-flex justify-content-center col-md-4">
-                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+                <button className="btn btn-primary" type="button">
+                    <a href={servicios.empresas.to}>
+                        <img src={mas}/>
+
+                    </a>
+                </button>  
             </div>
             <div className=" d-flex justify-content-center col-md-4">
-                <button className="btn btn-primary" type="button"><img src={mas}/></button>  
+                <button className="btn btn-primary" type="button">
+                    <a href={servicios.eCommerce.to}>
+                        <img src={mas}/>
+
+                    </a>
+                </button>  
             </div>
         </div>
 

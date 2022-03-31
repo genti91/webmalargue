@@ -1,5 +1,7 @@
 export { default as Home } from "./Home";
-export { default as Servicios } from "./Servicios/Servicios.js";
+export { default as IndividuosSrv } from "./Servicios/Servicios.js";
+export { default as EmpresasSrv } from "./empresas/Empresas.js";
+
 export { default as Nosotros } from "./Nosotros/Nosotros";
 export { default as Seguimiento } from "./Tracking/Tracking.js";
 export { default as Cotiza } from "./Cotiza/Cotiza.js";

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Navbar, NavbarBrand, NavDropdown, Nav, NavItem } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets/Logo";
+import { links } from "./links";
 import "./NavBar.scss";
 
 
@@ -9,44 +10,45 @@ import "./NavBar.scss";
 export const NavBar = () => {
   const [navBar, setNavBar] = useState(false);
 
-  const links ={
-    home:{
-      to: "/",
-      name: "Home",
-    },
-    servicios:{
-      name:"Servicios",
-      individuos:{
-        to: "/individuosserv",
-        name: "Individuos",
-      },
-      empresas:{
-        to: "/empresasserev",
-        name: "Empresas",
-      },
-      eCommerce:{
-        to: "/ecommerceserv",
-        name: "E-Commerce",
-      },
-    },
-    nosotros:{
-      to: "/nosotros",
-      name: "Nosotros",
-    },
-    tracking:{
-      to: "/tracking",
-      name: "Seguimiento",
-    },
-    cotiza:{
-      to: "/cotiza",
-      name: "Cotiza",
-    },
-    contacto:{
-      to: "/contacto",
-      name: "Contacto",
-    },
+
+  // const links ={
+  //   home:{
+  //     to: "/",
+  //     name: "Home",
+  //   },
+  //   servicios:{
+  //     name:"Servicios",
+  //     individuos:{
+  //       to: "/individuosserv",
+  //       name: "Individuos",
+  //     },
+  //     empresas:{
+  //       to: "/empresasserev",
+  //       name: "Empresas",
+  //     },
+  //     eCommerce:{
+  //       to: "/ecommerceserv",
+  //       name: "E-Commerce",
+  //     },
+  //   },
+  //   nosotros:{
+  //     to: "/nosotros",
+  //     name: "Nosotros",
+  //   },
+  //   tracking:{
+  //     to: "/tracking",
+  //     name: "Seguimiento",
+  //   },
+  //   cotiza:{
+  //     to: "/cotiza",
+  //     name: "Cotiza",
+  //   },
+  //   contacto:{
+  //     to: "/contacto",
+  //     name: "Contacto",
+  //   },
     
-  }
+  // }
 
 
   const changeBacground = () => {

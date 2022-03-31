@@ -1,0 +1,26 @@
+.contenidoEncomienda{
+    padding: 96px 0 96px 0;
+    h2{
+       
+        padding-bottom: 31px;
+        color: var(--bs-primary);
+        text-align: left;
+        font: normal normal 600 40px/42px Poppins;
+        letter-spacing: 1.44px;
+        opacity: 1;
+    }
+    p{
+        padding-right: 96px;
+        text-align: left;
+        letter-spacing: 0px;
+        opacity: 0.8;
+        font: normal normal normal 14px/24px Poppins;
+    }
+    a{
+        text-align: left;
+        font: normal normal 600 14px/24px Poppins;
+        letter-spacing: 0px;
+        color: #EB1C23;
+        text-decoration: none;
+    }
+}

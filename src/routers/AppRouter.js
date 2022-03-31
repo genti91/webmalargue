@@ -1,13 +1,16 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Footer } from "../components/Footer/Footer";
+import { links } from "../components/NavBar/links";
 import { NavBar } from "../components/NavBar/NavBar";
+
+
 
 import {
   Home,
-  Servicios,
+  IndividuosSrv,
+  EmpresasSrv,
   Nosotros,
-  Seguimiento,
   Cotiza,
   Contacto,
   Tracking,
@@ -24,24 +27,30 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={[<NavBar />, <Home />, <Footer />]} />
         <Route
-          path="/servicios"
-          element={[<NavBar />, <Servicios />, <Footer />]}
+          path={links.servicios.individuos.to}
+          element={[<NavBar />, <IndividuosSrv />, <Footer />]}
         />
         <Route
-          path="/nosotros"
+          path={links.servicios.empresas.to}
+          element={[<NavBar />, <EmpresasSrv />, <Footer />]}
+        />
+        <Route
+          path={links.nosotros.to}
           element={[<NavBar />, <Nosotros />, <Footer />]}
         />
-        <Route
-          path="/tracking"
-          element={[<NavBar />, <Tracking />, <Footer />]}
-        />
         {/* <Route
-          path="/tracking"
+          path="/seguimiento"
           element={[<NavBar />, <Seguimiento />, <Footer />]}
         /> */}
-        <Route path="/cotiza" element={[<NavBar />, <Cotiza />, <Footer />]} />
+        <Route 
+          path={links.cotiza.to}
+          element={[<NavBar />, <Cotiza />, <Footer />]} />
         <Route
-          path="/contacto"
+          path={links.tracking.to}
+          element={[<NavBar />, <Tracking />, <Footer />]}
+        />
+        <Route
+          path={links.contacto.to}
           element={[<NavBar />, <Contacto />, <Footer />]}
         />
         {/* Anuncios */}

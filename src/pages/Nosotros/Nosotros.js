@@ -13,8 +13,8 @@ const Pag2 = () => {
 
     return (
         <section id='Nosostros'>
-            <BannerHeader   lineaPrincipal =  'TRAYECTORIA'
-                            lineaSecundaria = 'NUESTRA' // Si no hay linea enviar ''
+            <BannerHeader   lineaPrincipal =  'Trayectoria'
+                            lineaSecundaria = 'Nuestra' // Si no hay linea enviar ''
                             image = {nosotrosIMG}
                             
             />
