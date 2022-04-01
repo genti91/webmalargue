@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { nosotrosIMG } from "../../assets";
+import { nosotrosIMG, remitoIMG } from "../../assets";
 import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
 import Spinner from "react-bootstrap/Spinner";
 import "./Tracking.scss";
@@ -77,7 +77,15 @@ const Tracking = () => {
       />
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-5">
+          <div className="col-md-6">
+            <h1 className="heroTitle">
+              En tu remito encontrarás el número de seguimiento
+            </h1>
+            <img
+              className="img-fluid mt-4"
+
+              src={remitoIMG}
+            />
             <div>
               <h3>Ingresá el número de seguimiento </h3>
             </div>

@@ -20,9 +20,12 @@ $btn-padding-x: 1.3em;
         --bg-primay: #FAFAFA; 
         --bs-secondary: #EB1C23 !important;
 
+        overflow-x: hidden;
+
         body {
                 font-family: poppins;
-                background-color: white
+                background-color: white;
+                overflow-x: hidden
         }
 }
 
