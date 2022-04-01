@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { nosotrosIMG } from "../../assets";
 import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
-
+import Spinner from "react-bootstrap/Spinner";
 import "./Tracking.scss";
 import axios from "axios";
 import { Bullet } from "./Bullet";
@@ -14,7 +14,7 @@ const Tracking = () => {
   const [trackingID, setTrackingID] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const Spinner = () => <div className="loader"></div>;
+  // const Spinner = () => <div className="loader"></div>;
 
   const data = `id=${trackingID}`;
   // const data = "id=0002-001500061757-S";
@@ -88,7 +88,9 @@ const Tracking = () => {
               trackingInput={trackingID}
             />
             {loading ? (
-              <Spinner />
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
             ) : (
               <div>
                 {
