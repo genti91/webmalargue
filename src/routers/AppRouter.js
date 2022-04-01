@@ -10,6 +10,7 @@ import {
   Home,
   IndividuosSrv,
   EmpresasSrv,
+  EComerceSrv,
   Nosotros,
   Cotiza,
   Contacto,
@@ -33,6 +34,10 @@ export const AppRouter = () => {
         <Route
           path={links.servicios.empresas.to}
           element={[<NavBar />, <EmpresasSrv />, <Footer />]}
+        />
+        <Route
+          path={links.servicios.eCommerce.to}
+          element={[<NavBar />, <EComerceSrv/>, <Footer />]}
         />
         <Route
           path={links.nosotros.to}
