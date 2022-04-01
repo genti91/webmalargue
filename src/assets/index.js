@@ -7,7 +7,7 @@ export { default as miniFlete } from "./img/trafic.png";
 export { default as novImg01 } from "./img/pexels-karolina-grabowska2.png";
 export { default as novImg02 } from "./img/pibe.png";
 export { default as novImg03 } from "./img/pexels-artem-podrez-5025638.png";
-export { default as serviciosIMG } from "./img/foto-headerServicios.jpg";
+export { default as serviciosIMG } from "./img/header-individuos.png";
 export { default as nosotrosIMG } from "./img/foto-headerNosotros.jpg";
 export { default as seguimientoIMG } from "./img/foto-headerSeguimiento.jpg";
 export { default as cotizaIMG } from "./img/foto-headerCotiza.jpg";
