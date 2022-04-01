@@ -16,7 +16,20 @@ nav {
     .dropdown-menu-dark{
         a{
             color: black !important;
+            &:active{
+                background-color: var(--bs-primary);
+                color: white !important;
+                // padding: 0px !important;
+                // margin: 0px !important;
+                // background-size: cover;
+                margin-left: -8px !important;
+                padding-left: 8px;
+            }
         }
+    }
+
+    .dropdown-item{
+        
     }
     
 }
