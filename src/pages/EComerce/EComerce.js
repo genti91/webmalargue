@@ -1,5 +1,5 @@
 import React from 'react';
-import { encomiendasImg, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
+import { eComerceIMG, encomiendasImg, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 import { links } from '../../components/NavBar/links';
 
@@ -14,7 +14,7 @@ const EComerce = () => {
         <section id='encomiendas'>
             <BannerHeader   lineaPrincipal =  'E-Commerce'
                             lineaSecundaria = 'Servicios para' // Si no hay linea enviar ''
-                            image = {serviciosIMG}
+                            image = {eComerceIMG}
                             
             />
             <div className='container-fluid'>
