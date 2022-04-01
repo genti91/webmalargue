@@ -10,7 +10,7 @@ export { default as novImg03 } from "./img/pexels-artem-podrez-5025638.png";
 export { default as serviciosIMG } from "./img/header-individuos.png";
 export { default as eComerceIMG } from "./img/ecommerce-header.png";
 export { default as nosotrosIMG } from "./img/foto-headerNosotros.jpg";
-export { default as seguimientoIMG } from "./img/foto-headerSeguimiento.jpg";
+export { default as seguimientoIMG } from "./img/header-seguimiento.png";
 export { default as remitoIMG } from "./img/remito.png";
 export { default as cotizaIMG } from "./img/foto-headerCotiza.jpg";
 export { default as contactoIMG } from "./img/foto-headerContactos.jpg";

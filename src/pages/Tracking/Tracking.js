@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { nosotrosIMG, remitoIMG } from "../../assets";
+import { nosotrosIMG, remitoIMG, seguimientoIMG } from "../../assets";
 import { BannerHeader } from "../../components/BannerHeader/BannerHeader";
 import Spinner from "react-bootstrap/Spinner";
 import "./Tracking.scss";
@@ -73,7 +73,7 @@ const Tracking = () => {
       <BannerHeader
         lineaPrincipal="Seguimiento"
         lineaSecundaria="" // Si no hay linea enviar ''
-        image={nosotrosIMG}
+        image={seguimientoIMG}
       />
       <div className="container">
         <div className="row justify-content-center">
