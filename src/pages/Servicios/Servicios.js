@@ -1,5 +1,5 @@
 import React from 'react';
-import { encomiendasImg, mudanzasImg, serviciosIMG } from '../../assets';
+import { encomiendasImg, mudanza, mudanzasImg, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 import { links } from '../../components/NavBar/links';
 
@@ -54,7 +54,7 @@ const Servicios = () => {
                         <div className='col-md-6'
                         >
                             <img
-                                src={mudanzasImg}
+                                src={mudanza}
                             />
                         </div>
                         <div className='col-md-5'

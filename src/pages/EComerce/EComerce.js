@@ -1,5 +1,5 @@
 import React from 'react';
-import { eComerceIMG, encomiendasImg, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
+import { eComerceIMG, encomiendasImg, logosticaEcom, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 import { links } from '../../components/NavBar/links';
 
@@ -43,7 +43,7 @@ const EComerce = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
-                                src={encomiendasImg}
+                                src={logosticaEcom}
                             />
                         </div>
                     </div>    
