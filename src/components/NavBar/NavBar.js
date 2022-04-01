@@ -109,7 +109,6 @@ export const NavBar = () => {
                         {links.servicios.individuos.name}
                       </NavLink>
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
                     <NavDropdown.Item>
                       <NavLink
                         to={links.servicios.empresas.to}
@@ -117,7 +116,6 @@ export const NavBar = () => {
                         {links.servicios.empresas.name}
                       </NavLink>
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
                     <NavDropdown.Item>
                       <NavLink
                         to={links.servicios.eCommerce.to}
@@ -125,7 +123,6 @@ export const NavBar = () => {
                         {links.servicios.eCommerce.name}
                       </NavLink>
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
                   </NavDropdown>
               <NavItem>
                 <NavLink
