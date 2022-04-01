@@ -21,9 +21,9 @@ const Header = ({ image, title, page }) => {
                   Cotizá ahora
                 </button>
               </div>
-              {/* <div className="col-md-4 d-grid">
+              <div className="col-md-4 d-grid">
                 <button className="btn btn-primary" type="button">Generá tu retiro</button>
-              </div> */}
+              </div>
               <div className="col-md-4 d-grid">
                 <button className="btn btn-primary" type="button">
                   <a href="/tracking"> Seguí tu envío</a>
