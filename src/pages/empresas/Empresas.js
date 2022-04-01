@@ -1,5 +1,5 @@
 import React from 'react';
-import { encomiendasImg, mudanzasImg, serviciosIMG } from '../../assets';
+import { acuerdos, empresasIMG, encomiendasImg, mudanzasImg, palet, paqueteria, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 
 import './Empresas.scss'
@@ -12,7 +12,7 @@ const Empresas = () => {
         <section id='encomiendas'>
             <BannerHeader   lineaPrincipal =  'Empresas'
                             lineaSecundaria = 'Servicios para' // Si no hay linea enviar ''
-                            image = {serviciosIMG}
+                            image = {empresasIMG}
                             
             />
             <div className='container-fluid'>
@@ -38,7 +38,7 @@ const Empresas = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
-                                src={encomiendasImg}
+                                src={palet}
                             />
                         </div>
                     </div>    
@@ -103,7 +103,7 @@ const Empresas = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
-                                src={encomiendasImg}
+                                src={paqueteria}
                             />
                         </div>
                     </div>    
@@ -115,7 +115,7 @@ const Empresas = () => {
                         <div className='col-md-6'
                         >
                             <img
-                                src={mudanzasImg}
+                                src={acuerdos}
                             />
                         </div>
                         <div className='col-md-5'

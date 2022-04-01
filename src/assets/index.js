@@ -2,6 +2,9 @@
 export { default as bgHome } from "./img/imagenPrincipal.png";
 export { default as ecommerce } from "./img/ecomerceHome.jpg";
 export { default as empresa } from "./img/empresa.png";
+export { default as palet } from "./img/palet.png";
+export { default as paqueteria } from "./img/paqueteria.jpg";
+export { default as acuerdos } from "./img/acuerdos.jpg";
 export { default as individuo } from "./img/individuo.png";
 export { default as miniFlete } from "./img/trafic.png";
 export { default as novImg01 } from "./img/pexels-karolina-grabowska2.png";
@@ -10,6 +13,7 @@ export { default as novImg03 } from "./img/pexels-artem-podrez-5025638.png";
 export { default as serviciosIMG } from "./img/header-individuos.png";
 export { default as eComerceIMG } from "./img/ecommerce-header.png";
 export { default as nosotrosIMG } from "./img/foto-headerNosotros.jpg";
+export { default as empresasIMG } from "./img/empresas-header.png";
 export { default as seguimientoIMG } from "./img/header-seguimiento.png";
 export { default as remitoIMG } from "./img/remito.png";
 export { default as cotizaIMG } from "./img/foto-headerCotiza.jpg";
