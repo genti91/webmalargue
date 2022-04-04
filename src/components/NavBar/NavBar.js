@@ -11,45 +11,6 @@ export const NavBar = () => {
   const [navBar, setNavBar] = useState(false);
 
 
-  // const links ={
-  //   home:{
-  //     to: "/",
-  //     name: "Home",
-  //   },
-  //   servicios:{
-  //     name:"Servicios",
-  //     individuos:{
-  //       to: "/individuosserv",
-  //       name: "Individuos",
-  //     },
-  //     empresas:{
-  //       to: "/empresasserev",
-  //       name: "Empresas",
-  //     },
-  //     eCommerce:{
-  //       to: "/ecommerceserv",
-  //       name: "E-Commerce",
-  //     },
-  //   },
-  //   nosotros:{
-  //     to: "/nosotros",
-  //     name: "Nosotros",
-  //   },
-  //   tracking:{
-  //     to: "/tracking",
-  //     name: "Seguimiento",
-  //   },
-  //   cotiza:{
-  //     to: "/cotiza",
-  //     name: "Cotiza",
-  //   },
-  //   contacto:{
-  //     to: "/contacto",
-  //     name: "Contacto",
-  //   },
-    
-  // }
-
 
   const changeBacground = () => {
     //https://www.youtube.com/watch?v=JMsNslI8KoY
@@ -96,26 +57,21 @@ export const NavBar = () => {
                     title={links.servicios.name}
                     menuVariant="dark"
                   >
-                    <NavDropdown.Item>
-                      <NavLink
-                        to={links.servicios.individuos.to}
-                      >
+                    <NavDropdown.Item
+                        href={links.servicios.individuos.to}
+                    >
                         {links.servicios.individuos.name}
-                      </NavLink>
+                      
                     </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <NavLink
-                        to={links.servicios.empresas.to}
+                    <NavDropdown.Item
+                        href={links.servicios.empresas.to}
                       >
                         {links.servicios.empresas.name}
-                      </NavLink>
                     </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <NavLink
-                        to={links.servicios.eCommerce.to}
+                    <NavDropdown.Item
+                        href={links.servicios.eCommerce.to}
                       >
                         {links.servicios.eCommerce.name}
-                      </NavLink>
                     </NavDropdown.Item>
                   </NavDropdown>
               <NavItem>

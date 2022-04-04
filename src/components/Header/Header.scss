@@ -14,5 +14,20 @@
         text-decoration: none;
         color: white;
     }
+
+
+    
 } 
 
+@media (max-width: 500px){
+    #Header{
+        .hero-title-big{
+            padding-right: 0px !important;
+        }
+
+        .btn-primary, .btn-secondary {
+            margin-bottom: 1em;
+        }
+
+    }
+}
