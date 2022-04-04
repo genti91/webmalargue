@@ -65,6 +65,7 @@ export const NavBar = () => {
   return (
     
     <Navbar
+      expand="lg"
       variant="dark"
       id="NavBarHome"
       className={
@@ -74,21 +75,13 @@ export const NavBar = () => {
       }
     >
       <Container>
-        <div
-        className=" ">
-          <a className="navbar-brand" href="/">
-            {<Logo />}
-          </a>
-        </div>
-        <Navbar.Toggle 
-         
-          aria-controls="navbar-dark-example" 
-        />
-          <Navbar.Collapse id="navbar-dark-example"
-            className="d-flex justify-content-end "
+        <Navbar.Brand href="/"> {<Logo />} </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+          <Navbar.Collapse id="basic-navbar-nav"
+            className="justify-content-end "
           >
             <Nav
-              className="d-flex align-items-center "
+              className="align-items-center "
             >
               <NavItem>
                 <NavLink

@@ -42,6 +42,7 @@ const Servicios = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
+                                className='img-fluid'
                                 src={encomiendasImg}
                             />
                         </div>
@@ -54,6 +55,7 @@ const Servicios = () => {
                         <div className='col-md-6'
                         >
                             <img
+                                className='img-fluid'
                                 src={mudanza}
                             />
                         </div>

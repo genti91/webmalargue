@@ -43,6 +43,7 @@ const EComerce = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
+                                className='img-fluid'
                                 src={logosticaEcom}
                             />
                         </div>
@@ -55,6 +56,7 @@ const EComerce = () => {
                         <div className='col-md-6'
                         >
                             <img
+                                className='img-fluid'
                                 src={logoTiendaNubeGrande}
                             />
                         </div>

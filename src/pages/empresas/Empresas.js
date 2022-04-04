@@ -38,6 +38,7 @@ const Empresas = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
+                                className='img-fluid'
                                 src={palet}
                             />
                         </div>
@@ -50,6 +51,7 @@ const Empresas = () => {
                         <div className='col-md-6'
                         >
                             <img
+                                className='img-fluid'
                                 src={mudanzasImg}
                             />
                         </div>
@@ -103,6 +105,7 @@ const Empresas = () => {
                         <div className='col-md-6  text-end'
                         >
                             <img
+                                className='img-fluid'
                                 src={paqueteria}
                             />
                         </div>
@@ -115,6 +118,7 @@ const Empresas = () => {
                         <div className='col-md-6'
                         >
                             <img
+                                className='img-fluid'
                                 src={acuerdos}
                             />
                         </div>
