@@ -78,10 +78,11 @@ export const NavBar = () => {
         <Navbar.Brand href="/"> {<Logo />} </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav"
-            className="justify-content-end "
+            className="justify-content-end"
           >
             <Nav
-              className="align-items-center "
+              id="menuNavBar"
+              className="align-items-center menuBar01"
             >
               <NavItem>
                 <NavLink
