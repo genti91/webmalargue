@@ -29,6 +29,7 @@ export { default as quienesSomos } from "./img/foto-sobreNosotros.jpg";
 // Logo sitio Color
 export { default as loogMalargueColor } from "./img/SVG/logoMalargueColor.svg";
 export { default as logoTiendaNubeGrande } from "./img/SVG/Logo-Tiendanube.svg";
+export { default as logoTiendaNubeCenter } from "./img/SVG/Logo-TiendanubeCenter.svg";
 
 
 // Icons

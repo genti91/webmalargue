@@ -6,14 +6,6 @@ import { LogosMobile } from './LogosMobile';
 
 export const DeviceDetect = () => {
 
-    // const conmtent = ()=>{
-    //     if (isMobile){
-    //         return <h1>Mobile</h1>
-    //     } else{
-    //         return <LogoCarousel />
-    //     }
-    // }
-    console.log(isMobile)
     return (
 
         <>

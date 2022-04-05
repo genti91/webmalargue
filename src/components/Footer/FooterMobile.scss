@@ -1,0 +1,98 @@
+#FooterMobile{
+    background-color: var(--bg-primay) !important;
+    padding: 40px 20px 0 20px;
+
+    h2{
+        a{
+            color: var(--bs-primary);
+            text-decoration: none;
+            text-align: left;
+            font: normal normal 600 14px/16px Poppins;
+            letter-spacing: 0px;
+            opacity: 1;
+        }
+
+    }
+    p{  
+        font-size: 10px;
+        text-align: left;
+        letter-spacing: 0px;
+        color: #222222;
+        opacity: 0.8;
+
+    }
+
+    #contactMail{
+        font-size: 10px;
+        text-align: left;
+        letter-spacing: 0px;
+        color: #222222;
+        opacity: 0.8;
+        a{
+            text-decoration: none;
+            color: #222222;
+        }
+    }
+
+    #socialContact{
+        display: flex;
+        justify-content: space-between!important;
+        // background-color: aqua;
+        a{
+            // margin-left: 10px !important;
+        }
+    }
+
+    #mediosDePago{
+        height: 111px;
+        align-content: center;
+    }
+    #tiendaNube{
+        height: 91px;
+
+        
+        p{
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+    }
+    #address{
+  
+        height: 111px;
+    }
+    .footerStrong{
+        text-align: left !important;
+        margin-top: -50px;
+        padding-left: 15px;
+    }
+    .btn-outline-primary{
+        height: 52px;
+        width: 52px;
+        border-radius: 50%;
+        padding: 0px;
+        border: 0px;
+        &:active{
+            background-color: transparent !important;
+            
+        }
+        &:visited{
+            background-color: transparent !important;
+
+        }  
+        svg{
+            fill: var(--bs-primary);
+            
+
+            :hover {
+                fill: white !important;
+                border-radius: 50%;
+            }
+
+        }
+    }
+
+    #socialIcons{
+        display: flex;
+        justify-content: space-between;
+    }
+}

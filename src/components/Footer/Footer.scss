@@ -67,3 +67,45 @@
         padding-top: 5px;
     }
 }
+
+@media (max-width: 400px){
+
+    #footerMalargue{
+        height: unset;
+
+        #contactMail{
+            font-size: 10px;
+            text-align: right !important;
+            padding-left: 10px;
+            // margin-right: 30px;
+        }
+
+        #socialContact{
+            display: flex;
+            justify-content: space-between!important;
+            // background-color: aqua;
+            a{
+                // margin-left: 10px !important;
+            }
+        }
+
+        .mediosDePago{
+            margin-bottom: 90px;
+            align-content: center;
+        }
+        #address{
+      
+            align-content: center;
+            img{
+           
+                margin-top: 20px;
+          
+            }
+        }
+        .footerStrong{
+            text-align: left !important;
+            margin-top: -50px;
+            padding-left: 15px;
+        }
+    }
+}
