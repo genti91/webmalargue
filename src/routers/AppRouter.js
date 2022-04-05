@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Footer } from "../components/Footer/Footer";
 import { links } from "../components/NavBar/links";
 import { NavBar } from "../components/NavBar/NavBar";
+import { WhatsAppChat } from "../components/WhatsAppChat/WhatsAppChat";
 
 
 
@@ -26,37 +27,33 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={[<NavBar />, <Home />, <Footer />]} />
+        <Route path="/" element={[<NavBar />, <Home />, <Footer />, <WhatsAppChat />]} />
         <Route
           path={links.servicios.individuos.to}
-          element={[<NavBar />, <IndividuosSrv />, <Footer />]}
+          element={[<NavBar />, <IndividuosSrv />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.servicios.empresas.to}
-          element={[<NavBar />, <EmpresasSrv />, <Footer />]}
+          element={[<NavBar />, <EmpresasSrv />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.servicios.eCommerce.to}
-          element={[<NavBar />, <EComerceSrv/>, <Footer />]}
+          element={[<NavBar />, <EComerceSrv/>, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.nosotros.to}
-          element={[<NavBar />, <Nosotros />, <Footer />]}
+          element={[<NavBar />, <Nosotros />, <Footer />, <WhatsAppChat />]}
         />
-        {/* <Route
-          path="/seguimiento"
-          element={[<NavBar />, <Seguimiento />, <Footer />]}
-        /> */}
         <Route 
           path={links.cotiza.to}
-          element={[<NavBar />, <Cotiza />, <Footer />]} />
+          element={[<NavBar />, <Cotiza />, <Footer />, <WhatsAppChat />]} />
         <Route
           path={links.tracking.to}
-          element={[<NavBar />, <Tracking />, <Footer />]}
+          element={[<NavBar />, <Tracking />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.contacto.to}
-          element={[<NavBar />, <Contacto />, <Footer />]}
+          element={[<NavBar />, <Contacto />, <Footer />, <WhatsAppChat />]}
         />
         {/* Anuncios */}
         <Route path="/individuos" element={<Individuos />} />

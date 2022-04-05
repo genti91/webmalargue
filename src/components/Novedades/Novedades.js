@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container, Row } from 'react-bootstrap';
 
 import {    
             novImg01,
@@ -11,8 +12,8 @@ import './Novedades.scss'
 
 export const Novedades = () => {
   return (
-    <section id='Novedades'>
-        <div className='container'>
+    <Container fluid id='Novedades'>
+        <Container>
                 <h2>Novedades</h2>
                 <div className="row row-cols-1 row-cols-md-3 g-1 d-flex align-items-stretch mb-5">
                     <div className="card d-flex align-items-stretch">
@@ -77,7 +78,7 @@ export const Novedades = () => {
                         </div>
                     </div>
                 </div>
-        </div>
-    </section>
+        </Container>
+    </Container>
   )
 }

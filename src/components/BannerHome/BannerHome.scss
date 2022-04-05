@@ -10,7 +10,26 @@
         font-weight: 600;
         font-family: poppins;
         padding-left: 0.5em;
-    
+        
     }
+    
+    
+}
 
+@media (max-width: 767px){
+
+    #BannerHome{
+        height: 690px;
+        background-size: contain;
+        background-position: bottom;
+        h1{
+            font-size: 26px;
+            padding: 150px 0px;
+            margin: 0px;
+            text-align: center;
+    
+    
+        }
+
+    }
 }

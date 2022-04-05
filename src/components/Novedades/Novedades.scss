@@ -60,4 +60,20 @@
     }
 
 
+
+}
+
+@media (max-width: 767px){
+
+    #Novedades{
+
+        margin-left: 0px;
+        margin-right: 0px;
+        
+        padding: 20px;
+        .card-body{
+            padding: 0px;
+        }
+    }
+
 }

@@ -4,7 +4,6 @@ import {    ecommerce,
             empresa,
             individuo,
             mas,
-            whatsAppCTA
     } from '../../assets';
 import { links } from '../NavBar/links';
 
@@ -19,22 +18,6 @@ export const CardDeck = () => {
     
   return (
     <section id='CadrDeck' className='container'>
-        <div className='row justify-content-end'>
-            <a
-            href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
-                className="whatsapp"
-                target="_blank"
-                rel="noreferrer"
-            >
-                {" "}
-                <img
-                    alt='WhatsApp'
-                    src={whatsAppCTA}
-                />
-            </a>
-
-        </div>
-
         <div
             id='deck' 
             className="row row-cols-1 row-cols-md-3 g-4 d-flex align-items-stretch mb-5">
