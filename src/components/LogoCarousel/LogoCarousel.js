@@ -11,6 +11,8 @@ import {
     } from '../../assets'
 
 export const LogoCarousel = () => {
+
+
   return (
     <section id='LogoCarousel'>
         <div className='row h-100 align-items-center'>

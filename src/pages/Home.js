@@ -7,6 +7,7 @@ import { BannerHome } from "../components/BannerHome/BannerHome";
 import { Novedades } from "../components/Novedades/Novedades";
 import { LogoCarousel } from "../components/LogoCarousel/LogoCarousel";
 import { Container, Row } from "react-bootstrap";
+import { DeviceDetect } from "../components/LogoCarousel/DeviceDetect";
 
 // import { IoHome } from "react-icons/io5";
 const Home = () => {
@@ -28,7 +29,8 @@ const Home = () => {
         <Container>
           <Novedades />
         </Container>
-        <LogoCarousel />
+        {/* <LogoCarousel /> */}
+        <DeviceDetect />
     </Row>
   );
 };
