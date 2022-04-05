@@ -1,6 +1,8 @@
 import React from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
 
+import './LogosMobile.scss'
+
 import { 
     partnerLogo01,
     partnerLogo02,
@@ -13,7 +15,7 @@ import {
 export const LogosMobile = () => {
   return (
     <section
-        id='LogoCarousel'
+        id='LogoCarouselMobile'
     >
         <Container>
             <Row><h2 className="text-center pt-5">Nuestros principales clientes</h2></Row>
