@@ -19,7 +19,7 @@
     
 } 
 
-@media (max-width: 500px){
+@media (max-width: 767px){
     #Header{
         .hero-title-big{
             padding-right: 0px !important;
@@ -29,5 +29,11 @@
             margin-bottom: 1em;
         }
 
+        .hero-landing-1{
+            height: 130vh;
+            background-size: cover;
+            background-position: right -280px bottom -30px;
+        }
     }
+
 }

@@ -33,7 +33,7 @@ $over-lap: -120px;
                 margin-bottom: 0px !important;
             }
 
-            h5, ul{
+            h5, ul, p{
                 padding-left: 50px;
             }
 
@@ -73,8 +73,30 @@ $over-lap: -120px;
             } 
         }
         #central {
+            z-index: 3;
+            position: relative;
+            &::before{
+                content: "";
+                background-color: #222222;
+                display: block;
+                height: 100%;
+                width: 1px;
+                position: absolute;
+                opacity: 0.3;
+                left: -15px;
+            }
+            &::after{
+                content: "";
+                background-color: #222222;
+                display: block;
+                height: 100%;
+                width: 1px;
+                position: absolute;
+                opacity: 0.3;
+                right: -15px;
+                top: 0px;
+            }
             
-            border-width: 0 2px 0 2px !important;
  
             
             
@@ -129,4 +151,31 @@ $over-lap: -120px;
         .whatsapp-icon {
           margin-top:13px;
         }
+
+    @media (max-width: 760px) {
+        #central {
+            
+            &::before{
+                display: block;
+                width: 100%;
+                height: 1px;
+                bottom: -150px;
+                left: 0px;
+            }
+            &::after{
+                display: block;
+                width: 100%;
+                height: 1px;
+                top: -90px;
+                left: 0px;
+            }
+        }
+        .card {
+            margin-bottom: 50px;
+        }
+        #deck{
+            margin-top: -90px;
+            background-color: white !important;
+        }
+    }
 }
