@@ -157,31 +157,33 @@ export const FooterMobile = () => {
             <Row
                 id='address'
                 className=' align-items-center'
-            >
-                
+            >              
                     <Col
                         
-                        xs={8}
+                        xs={6}
                     >
                         <Col
                             
                         >
-                            <p>
-                                Integrá tu tienda nube y sumá una opción mas de envío a tu tienda
-                            </p>
+                        <img
+                            className='img-fluid'
+                            src={loogMalargueColor}
+                        />
                         </Col>
                     </Col>
                     <Col
-                        xs={4}
-                    >
-                        <img
-                            className='img-fluid'
-                            src={logoTiendaNubeCenter}
-                        />
+                        xs={6}
+                        >
+                        <p>
+                        Av. Garmendia 4805, C.A.B.A. (C1427ASB)
+                        </p>
                     </Col>
-
             </Row>
-
+            <Row
+                id='terms'
+            >
+                <Col><p>Políticas de privacidad | Términos y condiciones</p></Col>
+            </Row>
         </Container>
     </Row>
   )
