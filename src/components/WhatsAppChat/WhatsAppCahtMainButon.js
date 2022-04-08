@@ -5,11 +5,12 @@ import "./WhatsAppCahtMainButon.scss";
 
 export const WhatsAppChatMainButton = () => {
   return (
-    <div className="row justify-content-center">
+    <div className="row justify-content-center" id="whatsAppMain">
       <div className="col-md-8" id="whatsAppMain">
         <a
           href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
           className="whatsappMain"
+          class="whatsappMain"
           id="whatsAppMain"
           target="_blank"
           rel="noreferrer"
