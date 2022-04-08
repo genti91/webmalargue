@@ -1,7 +1,7 @@
 const SectionIcons = ({ icons }) => {
   return (
     <div className="container-fluid bg-primary py-5">
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           {icons.map(({icon, text}, index) => {
             return (

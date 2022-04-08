@@ -1,5 +1,6 @@
 import Form from "./Form";
 import FormEmpresas from "./FormEmpresas";
+import { WhatsAppChatMainButton } from "./WhatsAppChat/WhatsAppCahtMainButon";
 const HeroLanding1 = ({ image, title, page }) => {
   return (
     <div className={`${page ? "wrapper-hero" : "wrapper-hero-2"} bg-primary`}>
@@ -7,12 +8,13 @@ const HeroLanding1 = ({ image, title, page }) => {
         className="hero-landing-1"
         style={{
           backgroundImage: `url(${image})`,
-          height: "70%",
+          height: "55vh",
         }}
       >
         <span className="hero-title-big">{title[1]}</span>
       </div>
-      {page ? <Form /> : <FormEmpresas />}
+      {/* {page ? <Form /> : <FormEmpresas />} */}
+      <WhatsAppChatMainButton />
     </div>
   );
 };

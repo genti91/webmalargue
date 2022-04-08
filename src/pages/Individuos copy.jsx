@@ -43,7 +43,7 @@ const Individuos = () => {
         button={{ background: "primary", title: "Consultá por tu envío" }}
       />
       <FooterPaymentMethods />
-      {/* <a
+      <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
         className="whatsapp"
         target="_blank"
@@ -51,7 +51,7 @@ const Individuos = () => {
       >
         {" "}
         <i className="fa fa-whatsapp whatsapp-icon"></i>
-      </a> */}
+      </a>
     </>
   );
 };

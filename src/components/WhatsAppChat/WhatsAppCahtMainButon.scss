@@ -1,0 +1,34 @@
+
+#whatsAppMain{
+
+  background-color: #FFF;
+  height: 150px;
+  margin-top: -75px;
+  display: flex;
+  align-content: center;
+  margin-bottom: 40px !important;
+  
+  .whatsappMain {
+      width: 100%;
+      display: flex;
+      color:#FFF;
+      text-align:left;
+      font-size:30px;
+      z-index:100;
+      padding: 1em;
+    }
+    
+    .whatsapp-icon {
+
+      text-align: right;
+      margin-top: 0px;
+      
+
+    }
+    
+    a{
+      color: black !important;
+      text-decoration: none;
+    }
+
+}
