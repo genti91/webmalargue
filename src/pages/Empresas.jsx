@@ -55,7 +55,7 @@ const Empresas = () => {
         }}
       />
       <FooterPaymentMethods />
-      <a
+      {/* <a
         href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre servicios de encomiendas para empresas!"
         className="whatsapp"
         target="_blank"
@@ -63,7 +63,7 @@ const Empresas = () => {
       >
         {" "}
         <i className="fa fa-whatsapp whatsapp-icon"></i>
-      </a>
+      </a> */}
     </>
   );
 };
