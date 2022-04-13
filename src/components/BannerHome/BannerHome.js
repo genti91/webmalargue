@@ -24,7 +24,7 @@ export const BannerHome = () => {
 
                 {/* Mobile */}
                 <div
-                  className='d-flex d-sm-none align-items-center imgBanner h-100'
+                  className='d-flex d-sm-none align-items-start imgBanner h-100'
                 >
                   <Row className='d-flex'>
                       <h1>Enviá lo que necesites, Malargüe te lo lleva</h1>
