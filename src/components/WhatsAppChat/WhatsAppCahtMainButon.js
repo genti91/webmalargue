@@ -4,8 +4,18 @@ import { whatsAppCTA } from "../../assets";
 import "./WhatsAppCahtMainButon.scss";
 
 export const WhatsAppChatMainButton = () => {
+  const tagManagerArgs = () => {
+    window.dataLayer.push({
+      event: "whatsapp",
+    });
+  };
+
   return (
-    <div className="row justify-content-center" id="whatsAppMain">
+    <div
+      className="row justify-content-center"
+      id="whatsAppMain"
+      onClick={() => tagManagerArgs()}
+    >
       <div className="col-md-8" id="whatsAppMain">
         <a
           href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Estoy buscando información sobre encomiendas!"
