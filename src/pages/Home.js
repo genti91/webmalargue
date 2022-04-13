@@ -30,7 +30,7 @@ const Home = () => {
           <Novedades />
         </Container>
         {/* <LogoCarousel /> */}
-        <DeviceDetect />
+        {/* <DeviceDetect /> */}
     </Row>
   );
 };

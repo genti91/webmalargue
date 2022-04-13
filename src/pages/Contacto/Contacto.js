@@ -9,6 +9,7 @@ import './Contacto.scss'
 import { IgIcon } from '../../assets/IgIcon';
 import { FaIcon } from '../../assets/FaIcon';
 import { Sucursales } from '../../components/Sucursales/Sucursales';
+import Form from '../../components/FormContact';
 
 
 
@@ -37,7 +38,7 @@ const Contacto = () => {
                 <div className='row'>
                     <div className='col-md-12'><h2>Envianos tu consulta</h2></div>
                     <div className='col-md-6'>
-                        form
+                        <Form />
                     </div>
                     <div className='col-md-6 mt-3 pb-5'
                     >
