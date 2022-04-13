@@ -6,6 +6,8 @@ import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+
+
 const Form = (props) => {
   const { form, setInForm } = useForm({
     origin: "",
@@ -17,34 +19,17 @@ const Form = (props) => {
   const history = useNavigate();
   const resetForm = () => {
     setInForm({
-      origin: "",
-      destiny: "",
       name: "",
       email: "",
+      tel:"",
+      origin: "",
+      destiny: "",
       message: "",
     });
   };
   const validate = (form) => {
-    const { origin, destiny, name, email, message } = form;
-    if (origin.length === 0) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Debe ingresar una ciudad de origen",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return false;
-    } else if (destiny.length === 0) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Debe ingresar una ciudad de destino",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return false;
-    } else if (name.length === 0) {
+    const { origin, destiny, name, email, tel, message } = form;
+    if (name.length === 0) {
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -58,6 +43,15 @@ const Form = (props) => {
         position: "top-end",
         icon: "error",
         title: "Debe ingresar un email",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return false;
+    } else if (tel.length === 0) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Debe ingresar un teléfono",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -112,10 +106,9 @@ const Form = (props) => {
     } 
   };
   return (
-    <div className="container-form text-center">
-      <span className="form-title">
-        Cotizá tu envío completando todos tus datos. From
-      </span>
+    // <div className="container-form text-center"> 
+     
+
       <form id="contact-form" onSubmit={submitForm} method="POST">
         <div className="wrapper_inputs">
           <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
@@ -135,7 +128,7 @@ const Form = (props) => {
         </span>
         <input
           type="submit"
-          className="btn-pill-quote bg-secondary"
+          className="btn btn-primary bg-primary"
           value="Cotizá tu envío"
           style={{
             outline: "none",
@@ -143,7 +136,7 @@ const Form = (props) => {
           }}
         />
       </form>
-    </div>
+
   );
 };
 export default Form;
