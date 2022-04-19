@@ -4,9 +4,6 @@ import { Footer } from "../components/Footer/Footer";
 import { links } from "../components/NavBar/links";
 import { NavBar } from "../components/NavBar/NavBar";
 import { WhatsAppChat } from "../components/WhatsAppChat/WhatsAppChat";
-
-
-
 import {
   Home,
   IndividuosSrv,
@@ -22,15 +19,30 @@ import {
   // LandingEmpresa2,
   ThankYouPage,
 } from "../pages";
+import TagManager from "react-gtm-module";
+
+const tagManagerArgs = {
+  gtmId: "GTM-KBPBZN4",
+};
+
+TagManager.initialize(tagManagerArgs);
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={[<NavBar />, <Home />, <Footer />, <WhatsAppChat />]} />
+        <Route
+          path="/"
+          element={[<NavBar />, <Home />, <Footer />, <WhatsAppChat />]}
+        />
         <Route
           path={links.servicios.individuos.to}
-          element={[<NavBar />, <IndividuosSrv />, <Footer />, <WhatsAppChat />]}
+          element={[
+            <NavBar />,
+            <IndividuosSrv />,
+            <Footer />,
+            <WhatsAppChat />,
+          ]}
         />
         <Route
           path={links.servicios.empresas.to}
@@ -38,15 +50,16 @@ export const AppRouter = () => {
         />
         <Route
           path={links.servicios.eCommerce.to}
-          element={[<NavBar />, <EComerceSrv/>, <Footer />, <WhatsAppChat />]}
+          element={[<NavBar />, <EComerceSrv />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.nosotros.to}
           element={[<NavBar />, <Nosotros />, <Footer />, <WhatsAppChat />]}
         />
-        <Route 
+        <Route
           path={links.cotiza.to}
-          element={[<NavBar />, <Cotiza />, <Footer />, <WhatsAppChat />]} />
+          element={[<NavBar />, <Cotiza />, <Footer />, <WhatsAppChat />]}
+        />
         <Route
           path={links.tracking.to}
           element={[<NavBar />, <Tracking />, <Footer />, <WhatsAppChat />]}
