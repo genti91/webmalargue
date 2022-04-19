@@ -63,6 +63,10 @@ nav {
         }
 
     }
+
+    .navbar-toggler{
+        margin-right: 20px;
+    }
     
 }
 
@@ -87,4 +91,9 @@ nav {
 .activeNav{
     background-color: var(--bs-primary) !important ;
 
+}
+
+.navbar-toggler-icon{
+    background-image: url(../../assets/img/SVG/dropdownIcon.svg) !important;
+    // margin-right: 43px !important;
 }

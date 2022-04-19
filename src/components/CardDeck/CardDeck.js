@@ -32,7 +32,7 @@ export const CardDeck = () => {
                         <li>Paquetería</li>
                         <li>Encomiendas</li>
                     </ul>
-                    <div className='h-100 d-flex align-items-end'>
+                    <div className='h-100 d-flex align-items-end Individuos'>
                             <img
                                 alt='individuos'
                                 className='card-img-bottom'
@@ -71,7 +71,7 @@ export const CardDeck = () => {
                             <li>Paquetería/Encomienda</li>
                             <li>Acuerdos comerciales</li>
                         </ul>
-                        <div className=' d-flex align-items-center'>
+                        <div className=' d-flex align-items-center Empresas'>
                                 <img
                                     alt='empresa'
                                     className='card-img-bottom'
@@ -105,7 +105,7 @@ export const CardDeck = () => {
                         <li>Logística para E-Commerce</li>
                         <li>Integrá tu Tienda Nube</li>
                     </ul>
-                    <div className='h-100 d-flex align-items-end'>
+                    <div className='h-100 d-flex align-items-end ECommerce'>
                             <img
                                 alt='eComenerce'
                                 className='card-img-bottom'

@@ -5,6 +5,7 @@ import {
             novImg01,
             novImg02,
             novImg03,
+            seguiTuPedido,
 
 } from '../../assets';
 
@@ -41,7 +42,7 @@ export const Novedades = () => {
                         <div className="card-body d-flex flex-column">
                             <img
                                 className='card-img-top'
-                                src={novImg02}
+                                src={seguiTuPedido}
                             />
                             <h5 className="card-title">Cómo seguir tu envío</h5>
                             <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>

@@ -40,3 +40,25 @@
         }
     }
 }
+
+@media (max-width: 420px){
+    
+    #BannerHome{
+        
+        h1{
+
+            font-weight: 700;
+            font-size: 27px;
+            line-height: 40px;
+            padding: 110px 0px;
+
+        }
+        
+        .imgBanner{
+            background-size: 100%;
+            background-position: bottom 150px center;
+        }
+
+    }
+
+}
