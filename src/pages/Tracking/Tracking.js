@@ -30,6 +30,10 @@ const Tracking = () => {
       url: "https://www.softwarecristal.com/web/api/",
       headers: {
         Authorization: "d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
+        "Access-Control-Allow-Origin": "*",
+        accept: "application/json",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": " es-ES,es;q=0.9,en;q=0.8",
         "Content-Type": "application/json",
         Accept: "application/json",
         Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
@@ -81,20 +85,22 @@ const Tracking = () => {
             <h1 className="heroTitle">
               En tu remito encontrarás el número de seguimiento
             </h1>
-            <img
-              className="img-fluid mt-4"
-
-              src={remitoIMG}
-            />
+            <img className="img-fluid mt-4" src={remitoIMG} alt="remito" />
             <div>
               <h3>Ingresá el número de seguimiento </h3>
             </div>
 
-            <SearchBox
+            {/* <SearchBox
               setTrackingId={setTrackingID}
               trackingSteps={trackingData}
               trackingInput={trackingID}
-            />
+            /> */}
+            <iframe
+              src="https://www.softwarecristal.com.ar/web/tracking.php?empresa=malargue"
+              title="Consulta ON LINE de carga"
+              width="100%"
+              height="500px"
+            ></iframe>
             {loading ? (
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
