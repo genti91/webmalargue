@@ -18,7 +18,7 @@ const Pag2 = () => {
                             image = {nosotrosIMG}
                             
             />
-            <div className='container'>
+            <div id='main' className='container'>
                 <div className='row'>
                     <div className='col-md-6'>
                         <img className='img-fluid'
