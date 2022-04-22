@@ -24,6 +24,7 @@ export { default as encomiendasImg } from "./img/encomiendas-img.jpg";
 export { default as mudanzasImg } from "./img/nudanzas-img.jpg";
 export { default as quienesSomos } from "./img/foto-sobreNosotros.jpg";
 export { default as seguiTuPedido } from "./img/blog-2.png";
+export { default as cargasCompletas } from "./img/cargasCompletas.jpg";
 
 
 

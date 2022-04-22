@@ -1,5 +1,5 @@
 import React from 'react';
-import { acuerdos, empresasIMG, encomiendasImg, mudanzasImg, palet, paqueteria, serviciosIMG } from '../../assets';
+import { acuerdos, cargasCompletas, empresasIMG, encomiendasImg, mudanzasImg, palet, paqueteria, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 
 import './Empresas.scss'
@@ -48,11 +48,11 @@ const Empresas = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='Cargas' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6'
+                        <div className='col-md-6 d-none d-md-block'
                         >
                             <img
                                 className='img-fluid'
-                                src={mudanzasImg}
+                                src={cargasCompletas}
                             />
                         </div>
                         <div className='col-md-5'
@@ -78,6 +78,14 @@ const Empresas = () => {
 
                             </div>
                         </div>
+                        <div className='col-md-6 d-block d-sm-block d-md-none'
+                        >
+                            <img
+                                className='img-fluid'
+                                src={cargasCompletas}
+                            />
+                        </div>
+                        
                     </div>    
                 </div>
             </div>
@@ -115,7 +123,7 @@ const Empresas = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='Comerciales' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6'
+                        <div className='col-md-6 d-none d-md-block'
                         >
                             <img
                                 className='img-fluid'
@@ -136,6 +144,13 @@ const Empresas = () => {
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                        <div className='col-md-6 d-block d-sm-block d-md-none'
+                        >
+                            <img
+                                className='img-fluid'
+                                src={acuerdos}
+                            />
                         </div>
                     </div>    
                 </div>

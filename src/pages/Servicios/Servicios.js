@@ -52,14 +52,14 @@ const Servicios = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6'
+                        <div className='col-md-6 d-none d-md-block'
                         >
                             <img
                                 className='img-fluid'
                                 src={mudanza}
                             />
                         </div>
-                        <div className='col-md-5'
+                        <div className='col-md-5 '
                         >
                             <div className='row h-100 align-items-center'
 
@@ -80,6 +80,13 @@ const Servicios = () => {
                                 </div>
 
                             </div>
+                        </div>
+                        <div className='col-md-6 d-block d-sm-block d-md-none'
+                        >
+                            <img
+                                className='img-fluid'
+                                src={mudanza}
+                            />
                         </div>
                     </div>    
                 </div>
