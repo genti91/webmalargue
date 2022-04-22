@@ -1,5 +1,5 @@
 import React from 'react';
-import { eComerceIMG, encomiendasImg, logosticaEcom, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
+import { eComerceIMG, encomiendasImg, logosticaEcom, logoTiendaNubeCenter, logoTiendaNubeGrande, mudanzasImg, serviciosIMG } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 import { links } from '../../components/NavBar/links';
 
@@ -53,7 +53,7 @@ const EComerce = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='Cargas' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6'
+                        <div className='col-md-6 d-none d-md-block'
                         >
                             <img
                                 className='img-fluid'
@@ -72,16 +72,26 @@ const EComerce = () => {
                                         Tienda Nube
                                     </h2>
                                     <p>
-                                        ¿Te mudás de ciudad?, nosotros te lo llevamos.<br/>
-                                        <br/>
-                                        Sabemos que una mudanza es un momento de mucho stress, nosotros nos ocupamos de que tus muebles lleguen a tu nueva casa.<br />
-                                        <br/>
-                                        Mandanos un mensaje de whastapp y un especialista se comunicará con vos.  
+                                    Al integrar tu tienda con Malargüe, podrás enviar paquetes de todo tamaño, hacer entregas dentro de CABA, GBA, Mendoza, Cordoba, Santa Fe, La Pampa, San Luís y muchos puntos más. 
+                                    <br/>
+                                    <br/>
+                                    Configurá tus rutas de envío para despachar más paquetes en un mismo envío, hacer seguimiento de tus envíos en tiempo real ¡y mucho más!
+                                    <br/>
+                                    <br/>
+                                    Mandanos un mensaje de whastapp y un especialista se comunicará con vos. (sumar link aca a whataapp con el texto quiero integrar mi tienda nube)
                                     </p>
 
                                 </div>
 
                             </div>
+                        </div>
+                        <div className='col-md-6 d-flex d-sm-block d-md-none justify-content-center pt-3'
+                        >
+                            <img
+                                width={'80%'}
+                                className='img-fluid '
+                                src={logoTiendaNubeCenter}
+                            />
                         </div>
                     </div>    
                 </div>
