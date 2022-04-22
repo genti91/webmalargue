@@ -10,6 +10,8 @@ import { IgIcon } from '../../assets/IgIcon';
 import { FaIcon } from '../../assets/FaIcon';
 import { Sucursales } from '../../components/Sucursales/Sucursales';
 import Form from '../../components/FormContact';
+import { isMobile } from 'react-device-detect';
+import { SucursalesMobile } from '../../components/Sucursales/SucursalesMobile';
 
 
 
@@ -34,16 +36,16 @@ const Contacto = () => {
                             lineaSecundaria = '' // Si no hay linea enviar ''
                             image = {contactoIMG}                        
             />
-            <div className='container'>
+            <div id='main' className='container'>
                 <div className='row'>
                     <div className='col-md-12'><h2>Envianos tu consulta</h2></div>
-                    <div className='col-md-6'>
+                    <div className='col-md-6 pb-5'>
                         <Form />
                     </div>
-                    <div className='col-md-6 mt-3 pb-5'
+                    <div id='socialIcons' className='col-md-6 mt-3 pb-5'
                     >
                         <div className='row'>
-                            <div className="col-md-1">
+                            <div className="col-1">
                                 <a 
                                     href={'https://wa.me/'+ phone.num}
                                     target={'_blank'}>
@@ -55,13 +57,13 @@ const Contacto = () => {
                                         </button>  
                                 </a>
                             </div>
-                            <div className='col-md-10 '>
+                            <div className='col-11 '>
                                 <h3>Teléfono</h3>
                                 <p>{phone.display}</p>
                             </div>
                         </div>
                         <div className='row'>
-                            <div className="col-md-1">
+                            <div className="col-1">
                                 <a 
                                     href={email}
                                     target={'_blank'}>
@@ -73,13 +75,13 @@ const Contacto = () => {
                                         </button>  
                                 </a>
                             </div>
-                            <div className='col-md-10 '>
+                            <div className='col-11 '>
                                 <h3>Correo</h3>
                                 <p>{email}</p>
                             </div>
                         </div>
                         <div className='row'>
-                            <div className="col-md-1">
+                            <div className="col-1">
                                 <a 
                                     href={social.instagram}
                                     target={'_blank'}>
@@ -91,13 +93,13 @@ const Contacto = () => {
                                         </button>  
                                 </a>
                             </div>
-                            <div className='col-md-10 '>
+                            <div className='col-11 '>
                                 <h3>Seguinos</h3>
                                 <p>{social.istagramDisplay}</p>
                             </div>
                         </div>
                         <div className='row'>
-                            <div className="col-md-1">
+                            <div className="col-1">
                                 <a 
                                     href={social.facebook}
                                     target={'_blank'}>
@@ -109,14 +111,17 @@ const Contacto = () => {
                                         </button>  
                                 </a>
                             </div>
-                            <div className='col-md-10 '>
+                            <div className='col-11'>
                                 <p>{social.faceDisplay}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <Sucursales titulo='Nos podes encontrar en' />
+            {
+                isMobile    ? <SucursalesMobile titulo='Nos podes encontrar en' />
+                            : <Sucursales titulo='Nos podes encontrar en' />
+            }
         </section>
 
     

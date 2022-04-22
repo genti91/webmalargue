@@ -88,6 +88,57 @@
        }
     }
 
+    
+    @media (max-width: 420px){
 
+        #main{
+            padding-left: 1.5em !important;
+            padding-right: 1.5em !important;
+
+            .col-1{
+                display: flex;
+                align-content: center !important;
+                height: 100%;
+                a{
+                    position: relative;
+                    display: flex;
+                }
+                
+
+            }
+
+            .col-11{
+                padding-left: 2em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+            }
+            #socialIcons{
+                p{
+                    margin-bottom: 0px !important;
+                }
+                .row{
+                    height: 70px !important;
+                    display: flex;
+                    align-content: center;
+                }
+
+            }
+        }
+        #sucursales{
+            padding-left: 1.3em !important;
+            padding-right: 1.3em !important;
+
+            h1{
+                font-weight: 600;
+                font-size: 30px;
+                line-height: 45px;
+                text-align: left;
+            }
+
+        }
+
+    }
 
 }

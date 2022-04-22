@@ -4,7 +4,7 @@ import { sucList } from './sucData'
 
 import './Sucursales.scss'
 
-export const Sucursales = ({titulo}) => {
+export const SucursalesMobile = ({titulo}) => {
   return (
     <div id='sucursales' className='constainer-fluid'>
         <div  className='container'>
@@ -14,13 +14,13 @@ export const Sucursales = ({titulo}) => {
                 {sucList.map(({city, address})=>(
                   <div
                     key={city}
-                    className='col-md-4'
+                    className='col-6'
                   >
                     <div className='row'>
-                      <div className='col-md-1' >
+                      <div className='col-1' >
                         <GpsMarker iconFill='#EB1C23' iconHeight='32'/> 
                       </div>
-                      <div className='col-md-11'>
+                      <div className='col-10'>
                         <h3>{city}</h3>
                         <p>{address}</p>
                       </div>
