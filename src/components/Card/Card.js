@@ -6,8 +6,10 @@ import './Card.scss'
 
 export const BlogCard = ({img, text,}) => {
     return (
-        <Card 
+        <div
             className='blogCard'
+        >
+        <Card 
         >
             <Card.Img variant="top" src={img} />
             <Card.Body>
@@ -16,5 +18,6 @@ export const BlogCard = ({img, text,}) => {
                 </Card.Text>
             </Card.Body>
         </Card>
+        </div>
     )
 }

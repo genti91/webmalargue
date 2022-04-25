@@ -3,4 +3,23 @@
     span{
         color: #EB1C23;
     }
+    p{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .card{
+    
+        border: none !important;
+        margin: 2em 0 2em 0;
+
+        img{
+            // height: 223px;
+            // object-fit: cover;
+
+        }
+    }
+    .card-body{
+        padding: 1em 0 1em 0;
+    }
 }
