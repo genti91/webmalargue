@@ -9,7 +9,7 @@ import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 const Cotiza = () => {
 
     return (
-        <BannerHeader   lineaPrincipal =  'Cotizá'
+        <BannerHeader   lineaPrincipal =  'Cotizaciones'
                         lineaSecundaria = '' // Si no hay linea enviar ''
                         image = {cotizaIMG}
                         

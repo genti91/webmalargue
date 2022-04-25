@@ -18,8 +18,10 @@ import {
   Empresas,
   // LandingEmpresa2,
   ThankYouPage,
+  BlogTips,
 } from "../pages";
 import TagManager from "react-gtm-module";
+import ScrollToTop from "./ScrollToTop";
 
 const tagManagerArgs = {
   gtmId: "GTM-KBPBZN4",
@@ -30,6 +32,7 @@ TagManager.initialize(tagManagerArgs);
 export const AppRouter = () => {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route
           path="/"
@@ -63,6 +66,14 @@ export const AppRouter = () => {
         <Route
           path={links.tracking.to}
           element={[<NavBar />, <Tracking />, <Footer />, <WhatsAppChat />]}
+        />
+        <Route
+          path={links.blog.to}
+          element={[<NavBar />, <BlogTips />, <Footer />, <WhatsAppChat />]}
+        />
+        <Route
+          path={links.envio.to}
+          element={[<NavBar />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.contacto.to}

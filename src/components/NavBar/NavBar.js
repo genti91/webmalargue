@@ -95,6 +95,20 @@ export const NavBar = () => {
                     {links.cotiza.name}
                 </NavLink>
               </NavItem>
+              {/* <NavItem>
+                <NavLink
+                    to={links.blog.to}
+                >
+                    {links.blog.name}
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                    to={links.envio.to}
+                >
+                    {links.envio.name}
+                </NavLink>
+              </NavItem> */}
               <NavItem>
                 <NavLink
                     to={links.contacto.to}

@@ -8,6 +8,7 @@ export { default as Seguimiento } from "./Tracking/Tracking.js";
 export { default as Cotiza } from "./Cotiza/Cotiza.js";
 export { default as Contacto } from "./Contacto/Contacto.js";
 export { default as Tracking } from "./Tracking/Tracking.js";
+export { default as BlogTips } from "./Blog/Bolg.js";
 // pagina anteriores
 export { default as Individuos } from "./Individuos";
 export { default as Landing_2 } from "./Landing_2";

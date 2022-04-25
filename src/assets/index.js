@@ -18,7 +18,8 @@ export { default as nosotrosIMG } from "./img/foto-headerNosotros.jpg";
 export { default as empresasIMG } from "./img/empresas-header.png";
 export { default as seguimientoIMG } from "./img/header-seguimiento.png";
 export { default as remitoIMG } from "./img/remito.png";
-export { default as cotizaIMG } from "./img/foto-headerCotiza.jpg";
+export { default as cotizaIMG } from "./img/cotizaHeader.png";
+export { default as blogIMG } from "./img/blogHeader.png";
 export { default as contactoIMG } from "./img/foto-headerContactos.jpg";
 export { default as encomiendasImg } from "./img/encomiendas-img.jpg";
 export { default as mudanzasImg } from "./img/nudanzas-img.jpg";
@@ -51,3 +52,8 @@ export { default as logoMercadoPago } from "./img/logo-mp.png";
 export { default as tarjetas } from "./img/tarjetas-mp.png";
 export { default as logoTiendaNube } from "./img/SVG/Logo_de_Tiendanube.svg";
 
+//Blog img
+export { default as blog01 } from "./img/blog01.png";
+export { default as blog02 } from "./img/blog02.png";
+export { default as blog03 } from "./img/blog03.png";
+export { default as blog04 } from "./img/blog04.png";

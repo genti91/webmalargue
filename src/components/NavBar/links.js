@@ -34,5 +34,14 @@ export const links ={
       to: "/contacto",
       name: "Contacto",
     },
+    blog:{
+      to: "/blogtip",
+      name: "Blogtips"
+    },
+    envio:{
+      to: "/envio",
+      name: "Envío"
+    },
+
     
   }
