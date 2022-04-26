@@ -68,6 +68,15 @@
     }
 }
 
+    #termsAndCond{
+        padding-bottom: 3em;
+        background-color: var(--bg-primay) !important;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 15px;
+        text-align: center !important;
+    }
+
 @media (max-width: 400px){
 
     #footerMalargue{
