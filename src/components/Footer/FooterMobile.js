@@ -179,11 +179,11 @@ export const FooterMobile = () => {
                         </p>
                     </Col>
             </Row>
-            <Row
+            {/* <Row
                 id='terms'
             >
                 <Col><p>Políticas de privacidad | Términos y condiciones</p></Col>
-            </Row>
+            </Row> */}
         </Container>
     </Row>
   )
