@@ -36,4 +36,10 @@
         opacity: 0.2;
         margin-bottom: 2em;
     }
+
+    @media (max-width: 420){
+        h3{
+            margin-top: 2em;
+        }
+    }
 }

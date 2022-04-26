@@ -1,5 +1,6 @@
 import React from 'react';
 import {Col, Container, Image, Row } from 'react-bootstrap';
+import { isMobile } from 'react-device-detect';
 
 
 import { seguirEnvioIMG, seguirTuto01, seguirTuto02, seguirTuto03, seguirTuto04 } from '../../assets';
@@ -41,8 +42,8 @@ const Envio = () => {
                             Paso 1
                         </h3>
                         <p>
-                        Ingresando en la web, hacé click en el botón <span>‘‘Seguí tu envío’’</span>
-                        o haciendo <a href={links.tracking.to}>Click aquí</a>.
+                            Ingresando en la web, hacé click en el botón <span>‘‘Seguí tu envío’’</span>
+                            o haciendo <a href={links.tracking.to}>Click aquí</a>.
                         </p>
                     </Col>
                     <Col
@@ -54,9 +55,11 @@ const Envio = () => {
                             src={seguirTuto01}
                         />
                     </Col>
-                    <hr/>  
                 </Row>
-                <Row>
+                <hr/>  
+                <Row
+                    className={ isMobile ? ('d-flex flex-column-reverse') : ('')}
+                >
                     <Col
                         md={7} xs={12}
                     >
@@ -67,7 +70,7 @@ const Envio = () => {
                         />
                     </Col>
                     <Col
-                        md={5} xs={12}
+                        md={5} xs={12}         
                     >
                         <h3>
                             Paso 2
@@ -76,8 +79,8 @@ const Envio = () => {
                             En tu remito, identificá tu número de seguimiento /tracking
                         </p>
                     </Col>
-                    <hr/>  
                 </Row>
+                <hr/>  
                 <Row>
                     <Col
                         md={7} xs={12}
@@ -98,10 +101,10 @@ const Envio = () => {
                             src={seguirTuto03}
                         />
                     </Col>
-                    <hr/>  
                 </Row>
+                <hr/>  
                 <Row
-                    className='mb-5'
+                    className={ isMobile ? ('d-flex flex-column-reverse mb-5') : ('mb-5')}
                 >
                     <Col
                         md={7} xs={12}
@@ -130,3 +133,9 @@ const Envio = () => {
         )};
 
 export default Envio;
+
+/*
+    <Col xs={{ order: 12 }}>Second, but last</Col>
+    <Col xs={{ order: 1 }}>Third, but second</Col>
+
+*/

@@ -12,9 +12,7 @@ export const BannerHeader = ({lineaPrincipal, lineaSecundaria, image}) => {
         }}
     
     >
-        <div id='overlay' className='container-fluid' 
-        
-        >
+        <div id='overlay' className='container-fluid'>
         </div>
         <div id='title' className='container h-100'
             >

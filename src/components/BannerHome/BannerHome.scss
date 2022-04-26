@@ -1,6 +1,7 @@
 #BannerHome{
     height: 768px;
     background: var(--bs-primary);
+    z-index: 3;
     h1{
         color: white;
         font-size: 42px;
