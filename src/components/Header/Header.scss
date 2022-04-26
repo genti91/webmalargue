@@ -1,14 +1,32 @@
 #Header{
+    position: relative;
+    z-index: -5;
+    &::before{
+        content: "";
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+        z-index: 1;
+    }
     
     
     .hero-landing-1{
         height: 771px;
+        // z-index: -5;
+        position: relative;
+        
+
      
         
     }
     .hero-title-big{
         margin-top: 150px;
         padding-right: 55px;
+        z-index: 2 !important;
+        position: relative;
+        
         
     
     }
@@ -45,6 +63,7 @@
             background-size: cover;
             background-position: right -440px top -10px;
             // background-position: right;
+
         }
         
         
