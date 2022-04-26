@@ -1,47 +1,29 @@
 #Header{
-    position: relative;
-    z-index: -5;
-    &::before{
-        content: "";
-        background-color: black;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        z-index: 1;
-    }
     
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        opacity: 0.2;
+    }
     
     .hero-landing-1{
         height: 771px;
-        // z-index: -5;
-        position: relative;
-        
-
-     
-        
     }
     .hero-title-big{
+        position: relative;
         margin-top: 150px;
         padding-right: 55px;
-        z-index: 2 !important;
-        position: relative;
-        
+        z-index: 2;
         
     
     }
     a{
         text-decoration: none;
         color: white;
-    }
-
-    #overlay{
-        position: absolute;
-        top: 0%;
-        background-color: black;
-        opacity: 0.2;
-        z-index: -1;
-        height: 434px !important;
     }
 
 
@@ -63,7 +45,6 @@
             background-size: cover;
             background-position: right -440px top -10px;
             // background-position: right;
-
         }
         
         

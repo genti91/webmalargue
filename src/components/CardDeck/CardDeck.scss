@@ -1,6 +1,8 @@
 $over-lap: -120px;
 
 #CadrDeck{
+    z-index: 2;
+    position: relative;
 
     padding: 55px 25px 15px 25px;    
     margin-top: $over-lap;
