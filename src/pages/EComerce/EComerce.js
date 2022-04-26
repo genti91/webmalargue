@@ -78,8 +78,18 @@ const EComerce = () => {
                                     Configurá tus rutas de envío para despachar más paquetes en un mismo envío, hacer seguimiento de tus envíos en tiempo real ¡y mucho más!
                                     <br/>
                                     <br/>
-                                    Mandanos un mensaje de whastapp y un especialista se comunicará con vos. (sumar link aca a whataapp con el texto quiero integrar mi tienda nube)
+                                    Mandanos un mensaje de whastapp y un especialista se comunicará con vos.
+                                    <br/>
+                                    <br/>
+                                        <a
+                                            href="https://wa.me/5491163622778?text=Hola Expreso Malargue, Quiero integrar mi tienda nube!"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            Quiero integrar mi tienda nube!
+                                        </a>
                                     </p>
+                                    
 
                                 </div>
 
