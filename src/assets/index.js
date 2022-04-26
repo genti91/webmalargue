@@ -21,6 +21,7 @@ export { default as remitoIMG } from "./img/remito.png";
 export { default as cotizaIMG } from "./img/cotizaHeader.png";
 export { default as blogIMG } from "./img/blogHeader.png";
 export { default as contactoIMG } from "./img/foto-headerContactos.jpg";
+export { default as seguirEnvioIMG } from "./img/seguirEnvioHeader.png";
 export { default as encomiendasImg } from "./img/encomiendas-img.jpg";
 export { default as mudanzasImg } from "./img/nudanzas-img.jpg";
 export { default as quienesSomos } from "./img/foto-sobreNosotros.jpg";
@@ -69,3 +70,10 @@ export { default as blog13 } from "./img/blog13.png";
 export { default as blog14 } from "./img/blog14.png";
 export { default as blog15 } from "./img/blog15.png";
 export { default as blog16 } from "./img/blog16.png";
+
+//Seguir envio Tutorial
+export { default as seguirTuto01 } from "./img/seguirEnvíoTutorial01.png";
+export { default as seguirTuto02 } from "./img/seguirEnvíoTutorial02.png";
+export { default as seguirTuto03 } from "./img/seguirEnvíoTutorial03.png";
+export { default as seguirTuto04 } from "./img/seguirEnvíoTutorial04.png";
+

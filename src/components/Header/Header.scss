@@ -3,6 +3,8 @@
     
     .hero-landing-1{
         height: 771px;
+     
+        
     }
     .hero-title-big{
         margin-top: 150px;
@@ -13,6 +15,15 @@
     a{
         text-decoration: none;
         color: white;
+    }
+
+    #overlay{
+        position: absolute;
+        top: 0%;
+        background-color: black;
+        opacity: 0.2;
+        z-index: -1;
+        height: 434px !important;
     }
 
 

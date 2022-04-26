@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import {    
             novImg01,
@@ -8,6 +9,8 @@ import {
             seguiTuPedido,
 
 } from '../../assets';
+
+import {links} from '../NavBar/links'
 
 import './Novedades.scss'
 
@@ -34,7 +37,11 @@ export const Novedades = () => {
                         </div>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button type="button" className="btn btn-outline-primary">Leer toda la Nota</button>
+                                <Link type="button" className="btn btn-outline-primary"
+                                      to={links.blog.to}  
+                                >
+                                    Leer toda la Nota
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -54,7 +61,11 @@ export const Novedades = () => {
                         </div>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button type="button" className="btn btn-outline-primary">Leer toda la Nota</button>
+                                <Link   type="button" className="btn btn-outline-primary"
+                                        to={links.envio.to}
+                            >
+                                Leer toda la Nota
+                            </Link>
                             </div>
                         </div>
                     </div>
@@ -74,7 +85,10 @@ export const Novedades = () => {
                         </div>
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button type="button" className="btn btn-outline-primary">Leer toda la Nota</button>
+                                <Link   type="button" className="btn btn-outline-primary"
+                                        to={'/'}
+                                >Leer toda la Nota
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -22,6 +22,7 @@ import {
 } from "../pages";
 import TagManager from "react-gtm-module";
 import ScrollToTop from "./ScrollToTop";
+import Envio from "../pages/Envio/Envio";
 
 const tagManagerArgs = {
   gtmId: "GTM-KBPBZN4",
@@ -73,7 +74,7 @@ export const AppRouter = () => {
         />
         <Route
           path={links.envio.to}
-          element={[<NavBar />, <Footer />, <WhatsAppChat />]}
+          element={[<NavBar />, <Envio />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.contacto.to}

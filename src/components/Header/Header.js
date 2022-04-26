@@ -4,10 +4,12 @@ import "./Header.scss";
 const Header = ({ image, title, page }) => {
   return (
     <section id="Header">
+      <div id='overlay' className='container-fluid'></div>
       <div
         className="hero-landing-1 "
         style={{
           backgroundImage: `url(${image})`,
+          zIndex: '-2'
         }}
       >
         <div className="container">

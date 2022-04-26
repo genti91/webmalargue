@@ -1,0 +1,39 @@
+#seguirEnvio{
+    h2{
+        color: var(--bs-primary);
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 45px;
+        margin-top: 2em;
+    }
+    h3{
+        
+        color: var(--bs-secondary);
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: left;
+        
+    }
+    a{
+        text-decoration: none;
+        color: var(--bs-secondary);
+    }
+    p{
+        color: var(--bs-primary);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        span{
+            color: var(--bs-secondary);
+        }
+    }
+    hr{
+        margin-top: 2em;
+        opacity: 0.2;
+        margin-bottom: 2em;
+    }
+}

@@ -85,7 +85,7 @@ export const CardDeck = () => {
                         <div className=" d-flex justify-content-center col-md-4">
                             <button className="btn btn-primary" type="button">
                                 <a href={servicios.empresas.to}>
-                                    <img src={mas}/>
+                                    <img src={mas} alt={'servicios'}/>
 
                                 </a>
                             </button>  
@@ -118,7 +118,7 @@ export const CardDeck = () => {
                         <div className=" d-flex justify-content-center col-md-4">
                             <button className="btn btn-primary" type="button">
                                 <a href={servicios.eCommerce.to}>
-                                    <img src={mas}/>
+                                    <img src={mas} alt={''}/>
 
                                 </a>
                             </button>  
