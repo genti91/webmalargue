@@ -1,11 +1,11 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import {    
             novImg01,
-            novImg02,
-            novImg03,
+            // novImg02,
+            // novImg03,
             seguiTuPedido,
 
 } from '../../assets';
