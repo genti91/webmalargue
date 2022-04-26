@@ -19,7 +19,7 @@ export const Novedades = () => {
     <Container fluid id='Novedades'>
         <Container>
                 <h2>Novedades</h2>
-                <div className="row row-cols-1 row-cols-md-3 g-1 d-flex align-items-stretch mb-5">
+                <div className="row row-cols-1 row-cols-md-2 g-1 d-flex align-items-stretch ">
                     <div className="card d-flex align-items-stretch">
                         <div className="card-body d-flex flex-column">
                             <img
@@ -69,7 +69,7 @@ export const Novedades = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card d-flex align-items-stretch">
+                    {/* <div className="card d-flex align-items-stretch">
                         <div className="card-body d-flex flex-column">
                             <img
                                 className='card-img-top'
@@ -91,7 +91,7 @@ export const Novedades = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
         </Container>
     </Container>
