@@ -127,6 +127,71 @@ const form_shipment = [
     // icon: <FaWeight />,
   },
   {
+    name: "service",
+    type: "select",
+    options: [
+      {
+        value: "mudanza",
+        name: "Mudanza",
+      },
+      {
+        value: "encomiendas",
+        name: "Encomiendas",
+      },
+      {
+        value: "Recepcion",
+        name: "recepcion",
+      },
+      {
+        value: "otros",
+        name: "Otros",
+      },
+    ],
+    placeholder: "Tipo de servicios",
+    required: true,
+    errorMessage: "Por favor completa este campo para cotizar",
+    validation: /^\S+@\S+$/i,
+    // icon: <FaWeight />,
+  },
+  {
+    name: "pago",
+    type: "select",
+    options: [
+      {
+        value: "efectivo",
+        name: "Efectivo",
+      },
+      {
+        value: "transferencia",
+        name: "Transferencia",
+      },
+    ],
+    placeholder: "Tipo de pago",
+    required: true,
+    errorMessage: "Por favor completa este campo para cotizar",
+    validation: /^\S+@\S+$/i,
+    // icon: <FaWeight />,
+  },
+  {
+    name: "seguro",
+    type: "select",
+    options: [
+      {
+        value: "si",
+        name: "Si",
+      },
+      {
+        value: "no",
+        name: "No",
+      },
+    ],
+    placeholder: "Seguro propio",
+    required: true,
+    errorMessage: "Por favor completa este campo para cotizar",
+    validation: /^\S+@\S+$/i,
+    // icon: <FaWeight />,
+  },
+  {
     name: "message",
     type: "text",
     placeholder: "*Mensaje",
