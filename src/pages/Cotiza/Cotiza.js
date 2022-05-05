@@ -5,7 +5,7 @@ import FormCotizador from "../../components/FormCotizador";
 
 const Cotiza = () => {
   return (
-    <>
+    <section id="cotiza">
       <BannerHeader
         lineaPrincipal="Cotizaciones"
         lineaSecundaria="" // Si no hay linea enviar ''
@@ -23,7 +23,7 @@ const Cotiza = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

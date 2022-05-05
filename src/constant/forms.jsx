@@ -39,7 +39,7 @@ const form_shipment = [
   {
     name: "origin",
     type: "text",
-    // placeholder: "*Origen del envío",
+    placeholder: "*Origen del envío",
     required: true,
     errorMessage: "Por favor completa este campo",
     validation: false,

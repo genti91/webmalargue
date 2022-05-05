@@ -14,23 +14,23 @@ const Home = () => {
   return (
     <Row
     >
-        <Header
-          image={bgHome}
-          title={[
-            "Envía lo que necesites,",
-            "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
-          ]}
-          page={true}
-        />
-        <Container>
-          <CardDeck />
-        </Container>
-        <BannerHome />
-        <Container>
-          <Novedades />
-        </Container>
-        {/* <LogoCarousel /> */}
-        {/* <DeviceDetect /> */}
+      <Header
+        image={bgHome}
+        title={[
+          "Envía lo que necesites,",
+          "Nosotros te lo llevamos. Puerta a puerta, así de simple!",
+        ]}
+        page={true}
+      />
+      <Container>
+        <CardDeck />
+      </Container>
+      <BannerHome />
+      <Container>
+        <Novedades />
+      </Container>
+      {/* <LogoCarousel /> */}
+      {/* <DeviceDetect /> */}
     </Row>
   );
 };
