@@ -13,10 +13,12 @@ const Cotiza = () => {
       />
       <div id="main" className="container">
         <div className="row">
-          <div className="col-md-12">
+          {/* <div className="col-md-12">
             <h2>Envianos tu consulta</h2>
-          </div>
-          <div className="col-md-6 pb-5">
+          </div> */}
+          <div
+            id="FormCotizador"
+            className="pb-5">
             <FormCotizador />
           </div>
         </div>

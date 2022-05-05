@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
-import emailjs from "emailjs-com";
-import Swal from "sweetalert2";
+
+import '../pages/Cotiza/Cotiza.scss'
 
 const FormCotizacion = (props) => {
   const { form, setInForm } = useForm({
@@ -121,43 +124,100 @@ const FormCotizacion = (props) => {
     }
   };
   return (
-    // <div className="container-form text-center">
-
-    <form id="contact-form" onSubmit={submitForm} method="POST">
-      <div className="wrapper_inputs">
-        <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
-        <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
-      </div>
-      <div className="wrapper_inputs">
-        <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
-        <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
-        <TextInput {...form_shipment[4]} setInForm={setInForm} form={form} />
-      </div>
-      <div className="wrapper_inputs">
-        <TextInput {...form_shipment[9]} setInForm={setInForm} form={form} />
-        <TextInput {...form_shipment[10]} setInForm={setInForm} form={form} />
-      </div>
-      <div className="wrapper_inputs">
-        <TextInput {...form_shipment[11]} setInForm={setInForm} form={form} />
-      </div>
-      <TextInputArea
-        {...form_shipment[form_shipment.length - 1]}
-        setInForm={setInForm}
-        form={form}
-      />
-      <span className="helper_text">
-        *Recordá completar todos los campos del formulario.
-      </span>
-      <input
-        type="submit"
-        className="btn btn-primary bg-primary"
-        value="Cotizá tu envío"
-        style={{
-          outline: "none",
-          border: "none",
-        }}
-      />
-    </form>
+    <section>
+      <Row>
+        <Container>
+          <form id="contact-form" onSubmit={submitForm} method="POST">
+            <Row
+              className="justify-content-md-center"
+            >
+              <Col
+                md={10}
+              >
+                <Row>
+                    <Col
+                      xs={12}
+                      md={9}
+                    >
+                      <h2>Completá el formulario y nos pondremos en contacto con vos</h2>
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Nombre</label>
+                      <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Email</label>
+                      <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Teléfono</label>
+                      <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Origen</label>
+                      <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Destino</label>
+                      <TextInput {...form_shipment[4]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      md={6}
+                      >
+                      <label>Tipo de pago</label>
+                      <TextInput {...form_shipment[10]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      xs={12}
+                      >
+                      <label>Tipo de servicio</label>
+                      <TextInput {...form_shipment[9]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                      xs={12}
+                      >
+                      <label>Seguro propio</label>
+                      <TextInput {...form_shipment[11]} setInForm={setInForm} form={form} />
+                    </Col>
+                    <Col
+                    XS={12}
+                    >
+                      <label>Tu mensaje</label>
+                      <TextInputArea
+                        {...form_shipment[form_shipment.length - 1]}
+                        setInForm={setInForm}
+                        form={form}
+                        />
+                      {/* <span className="helper_text">
+                        *Recordá completar todos los campos del formulario.
+                      </span> */}
+                      <input
+                        type="submit"
+                        className="btn btn-primary bg-primary"
+                        value="Cotizá tu envío"
+                        style={{
+                          outline: "none",
+                          border: "none",
+                        }}
+                        />
+                    </Col>
+                </Row>
+              </Col>
+            </Row>
+          </form>
+        </Container>
+      </Row>
+    </section>
   );
 };
 export default FormCotizacion;
