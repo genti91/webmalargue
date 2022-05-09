@@ -16,61 +16,36 @@ const Tracking = () => {
 
   // const Spinner = () => <div className="loader"></div>;
 
-  const data = `id=${trackingID}`;
+  // const data = `id=${trackingID}`;
   // const data = "id=0002-001500061757-S";
+  var data = {
+    documento: 19412,
+    origen: "t",
+  };
+  var config = {
+    method: "get",
+    url: "https://www.softwarecristal.com/web/api/public/?o=getTracking&token=052bf68381ca31a797f2c0dbe8fdd67b6bd7a3e81215bb0adbb3e9ddcb28c94f",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
+    },
+    data: data,
+  };
 
   useEffect(() => {
-    var userInfo = JSON.stringify({
-      u: "malfredo",
-      p: "123456",
-    });
-
-    var loginConfig = {
-      method: "post",
-      url: "https://www.softwarecristal.com/web/api/",
-      headers: {
-        Authorization: "d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
-        "Access-Control-Allow-Origin": "*",
-        accept: "application/json",
-        "accept-encoding": "gzip, deflate, br",
-        "accept-language": " es-ES,es;q=0.9,en;q=0.8",
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
-      },
-      data: userInfo,
-    };
-
-    axios(loginConfig)
-      .then(function (response) {
-        const config = {
-          method: "post",
-          url: `https://www.softwarecristal.com/web/api/?o=tracking&token=${response.data.data[0].token}`,
-          headers: {
-            Authorization: "Bearer d4fda7da-acfb-40b0-89ec-9e2b2898c2f2",
-            "Content-Type": "application/x-www-form-urlencoded",
-            Accept: "application/json",
-            Cookie: "cristalWebDigitalExpress=mcjf346unv9f7pfmrp93k54hr7",
-          },
-          data: `${data}`,
-        };
-
-        setLoading(true);
-        axios(config)
-          .then((response) => {
-            setTrackingData(response.data.data);
-            setLoading(false);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    setLoading(true);
+    axios(config)
+      .then((response) => {
+        setTrackingData(response.data.data);
+        console.log(response.data);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, [trackingID]);
 
-  console.log(trackingData);
+  // console.log(trackingData);
 
   return (
     <section id="Tracking">
@@ -90,17 +65,17 @@ const Tracking = () => {
               <h3>Ingresá el número de seguimiento </h3>
             </div>
 
-            {/* <SearchBox
+            <SearchBox
               setTrackingId={setTrackingID}
               trackingSteps={trackingData}
               trackingInput={trackingID}
-            /> */}
-            <iframe
+            />
+            {/* <iframe
               src="https://www.softwarecristal.com.ar/web/tracking.php?empresa=malargue"
               title="Consulta ON LINE de carga"
               width="100%"
               height="500px"
-            ></iframe>
+            ></iframe> */}
             {loading ? (
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
