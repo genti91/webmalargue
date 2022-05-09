@@ -1,0 +1,49 @@
+#genera {
+  #main {
+    #FormCotizador {
+      h2 {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 45px;
+        color: var(--bs-primary) !important;
+        margin-top: 85px;
+        margin-bottom: 40px;
+      }
+      label {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 5px;
+
+        color: var(--bs-primary);
+      }
+      .input_container {
+        margin-top: 0px;
+        margin-bottom: 2em;
+      }
+      .input_container__field {
+        border: solid 1px !important;
+        border-color: var(--bs-primary) !important;
+        background-color: white !important;
+        border-radius: 5px !important;
+
+        &:focus {
+          border: solid 0px !important;
+        }
+      }
+
+      .input_area_container {
+        margin-top: 0px;
+        margin-bottom: 2em;
+      }
+    }
+  }
+
+  @media (max-width: 420px) {
+    #main {
+      padding-left: 1.5em !important;
+      padding-right: 1.5em !important;
+    }
+  }
+}
