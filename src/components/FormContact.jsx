@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
-import emailjs from "emailjs-com";
-import Swal from "sweetalert2";
+import { Col, Row } from "react-bootstrap";
+
+
 
 
 const Form = (props) => {
@@ -110,22 +113,43 @@ const Form = (props) => {
      
 
       <form id="contact-form" onSubmit={submitForm} method="POST">
-        <div className="wrapper_inputs">
-          <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
-          <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
-        </div>
-        <div className="wrapper_inputs">
-          <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
-          <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
-        </div>
+        <Row
+          className="justify-content-md-center"
+        >
+          <Col 
+            md={12}
+          >
+            <label>Nombre<span>*</span></label>
+            <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
+          </Col>
+          <Col
+            ms={6}
+            >
+            <label>Email<span>*</span></label>
+            <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
+          </Col>
+          <Col
+            md={6}
+            >
+            <label>Teléfono / celular<span>*</span></label>
+            <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
+          </Col>
+          {/* <Col
+            md={6}
+            >
+            <label>Asunto<span>*</span></label>
+            <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
+          </Col> */}
+        </Row>
+        <label>Tu mensaje<span>*</span></label>
         <TextInputArea
           {...form_shipment[form_shipment.length - 1]}
           setInForm={setInForm}
           form={form}
-        />
-        <span className="helper_text">
+          />
+        {/* <span className="helper_text">
           *Recordá completar todos los campos del formulario.
-        </span>
+        </span> */}
         <input
           type="submit"
           className="btn btn-primary bg-primary"
@@ -134,7 +158,7 @@ const Form = (props) => {
             outline: "none",
             border: "none",
           }}
-        />
+          />
       </form>
 
   );

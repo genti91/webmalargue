@@ -21,7 +21,7 @@ const Header = ({ image, title, page }) => {
             <div className="row mt-5">
               <div className="col-md-4 d-grid">
                 <button className="btn btn-secondary" type="button">
-                  Cotizá ahora
+                  <a href="/cotiza"> Cotizá ahora</a>
                 </button>
               </div>
               <div className="col-md-4 d-grid">
