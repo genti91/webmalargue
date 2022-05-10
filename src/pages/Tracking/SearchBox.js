@@ -17,23 +17,32 @@ export const SearchBox = ({ setTrackingData }) => {
       setError(false)
       setEmptyTraking(false)
       setTrackingData([])
-      const formatedSearchValue = searchValue.split('-')
-      if (formatedSearchValue.length !== 3) {
-        setError(true)
-        setLoading(false)
-        return
+      let documento, origen
+      if (!searchValue.includes('-')) {
+        if (searchValue.length !== 17) {
+          setError(true)
+          setLoading(false)
+          return
+        }
+        documento = Number(searchValue.slice(4, 12))
+        origen = searchValue.slice(searchValue.length - 1, searchValue.length)
+      } else {
+        const formatedSearchValue = searchValue.split('-')
+        if (formatedSearchValue.length !== 3) {
+          setError(true)
+          setLoading(false)
+          return
+        }
+        documento = Number(formatedSearchValue[1])
+        origen = formatedSearchValue[2]
       }
-      const data = await getTickets({
-        documento: Number(formatedSearchValue[1]),
-        origen: formatedSearchValue[2],
-      })
+      const data = await getTickets({ documento, origen })
       if (!data.length) setEmptyTraking(true)
       setTrackingData(data)
-
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log('file: SearchBox.js ~ line 16 ~ handleSubmit ~ error', error)
+      console.log('file: SearchBox.js ~ line 46 ~ handleSubmit ~ error', error)
     }
   }
 
