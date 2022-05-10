@@ -9,7 +9,7 @@ import "./NavBar.scss";
 
 export const NavBar = () => {
   const [navBar, setNavBar] = useState(false);
-
+  const [expanded, setExpanded] = useState(true);
 
 
   const changeBacground = () => {
@@ -28,6 +28,7 @@ export const NavBar = () => {
   return (
 
     <Navbar
+
       expand="lg"
       variant="dark"
       id="NavBarHome"
@@ -39,11 +40,14 @@ export const NavBar = () => {
     >
       <Container>
         <Navbar.Brand href="/"> {<Logo />} </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          onClick={() => setExpanded(expanded ? false : "expanded")}
+          aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav"
           className="justify-content-end"
         >
           <Nav
+
             id="menuNavBar"
             className="align-items-center menuBar01"
           >
@@ -51,6 +55,7 @@ export const NavBar = () => {
               <NavLink
                 to={links.home.to}
 
+              // onClick={() => setExpand(true)}
               >
                 {links.home.name}
               </NavLink>
