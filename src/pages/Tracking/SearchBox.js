@@ -24,7 +24,7 @@ export const SearchBox = ({ setTrackingData }) => {
           setLoading(false)
           return
         }
-        documento = Number(searchValue.slice(4, 12))
+        documento = Number(searchValue.slice(4, 16))
         origen = searchValue.slice(searchValue.length - 1, searchValue.length)
       } else {
         const formatedSearchValue = searchValue.split('-')
