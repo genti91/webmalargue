@@ -167,7 +167,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6}>
+                  <Col md={6} className={'offset-md-6'}>
                     <label>Destino</label>
                     <TextInput
                       {...form_shipment[4]}
@@ -247,7 +247,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6}>
+                  <Col md={6} className={'offset-md-6'}>
                     <label>Cuit</label>
                     <TextInput
                       {...form_shipment[20]}
@@ -255,7 +255,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col XS={12}>
+                  <Col md={12}>
                     <label>Tu mensaje</label>
                     <TextInputArea
                       {...form_shipment[form_shipment.length - 1]}

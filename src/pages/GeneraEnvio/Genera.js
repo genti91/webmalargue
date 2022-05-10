@@ -3,6 +3,8 @@ import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import FormGenera from '../../components/FormGenera'
 
+import './Genera.scss'
+
 const Genera = () => {
   return (
     <section id='genera'>
