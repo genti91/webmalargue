@@ -126,6 +126,8 @@ const form_shipment = [
     validation: /^\S+@\S+$/i,
     // icon: <FaWeight />,
   },
+
+  // TODO: hacer objetos
   {
     name: 'service',
     type: 'select',

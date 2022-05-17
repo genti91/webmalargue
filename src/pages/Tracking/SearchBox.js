@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { getTickets } from './services/getTickets'
 import Spinner from 'react-bootstrap/Spinner'
+import { Col, Container, Row } from 'react-bootstrap'
+
+import './searchBox.scss'
 
 export const SearchBox = ({ setTrackingData }) => {
   const [searchValue, setSearchValue] = useState('')
@@ -39,18 +42,22 @@ export const SearchBox = ({ setTrackingData }) => {
 
   return (
     <>
-      <form className='d-flex' onSubmit={handleSubmit}>
-        <input
-          type='text'
-          id='uname'
-          name='name'
-          className='form-control me-2'
-          value={searchValue}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleSubmit} className={'btn btn-primary'}>
-          Enviar
-        </button>
+      <form id='searchBox' className='d-flex' onSubmit={handleSubmit}>
+        <Container>
+          <Row>
+            <input
+              type='text'
+              id='uname'
+              name='name'
+              className='form-control me-2'
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <button onClick={handleSubmit} className={'btn btn-primary'}>
+              Enviar
+            </button>
+          </Row>
+        </Container>
       </form>
       <div className='row justify-content-center mb-5'>
         {loading && (

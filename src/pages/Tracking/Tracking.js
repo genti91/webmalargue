@@ -5,6 +5,7 @@ import './Tracking.scss'
 import { Bullet } from './Bullet'
 // import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
 import { SearchBox } from './SearchBox'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const Tracking = () => {
   // const [loginToken, setLoginToken] = useState({});
@@ -27,8 +28,11 @@ const Tracking = () => {
             <div>
               <h3>Ingresá el número de seguimiento </h3>
             </div>
-
-            <SearchBox setTrackingData={setTrackingData} />
+            <Container
+            // xs={12}
+            >
+              <SearchBox setTrackingData={setTrackingData} />
+            </Container>
             {/* <iframe
               src="https://www.softwarecristal.com.ar/web/tracking.php?empresa=malargue"
               title="Consulta ON LINE de carga"
@@ -37,16 +41,16 @@ const Tracking = () => {
             ></iframe> */}
             {trackingData.length
               ? trackingData.map(
-                  ({ des, fecha, cod, guia, nRetiro, index }) => (
-                    <div key={cod} className='row align-items-center step'>
-                      <Bullet fecha={fecha} order={index} />
-                      <div className={'status col-10 d-flex flex-column'}>
-                        <div className='title'>{des}</div>
-                        <div className='data'>{fecha}</div>
-                      </div>
+                ({ des, fecha, cod, guia, nRetiro, index }) => (
+                  <div key={cod} className='row align-items-center step'>
+                    <Bullet fecha={fecha} order={index} />
+                    <div className={'status col-10 d-flex flex-column'}>
+                      <div className='title'>{des}</div>
+                      <div className='data'>{fecha}</div>
                     </div>
-                  )
+                  </div>
                 )
+              )
               : null}
           </div>
         </div>

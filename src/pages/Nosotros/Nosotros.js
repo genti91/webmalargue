@@ -13,10 +13,10 @@ const Pag2 = () => {
 
     return (
         <section id='Nosostros'>
-            <BannerHeader   lineaPrincipal =  'Trayectoria'
-                            lineaSecundaria = 'Nuestra' // Si no hay linea enviar ''
-                            image = {nosotrosIMG}
-                            
+            <BannerHeader lineaPrincipal='Trayectoria'
+                lineaSecundaria='Nuestra' // Si no hay linea enviar ''
+                image={nosotrosIMG}
+
             />
             <div id='main' className='container'>
                 <div className='row'>
@@ -29,19 +29,19 @@ const Pag2 = () => {
                         <p className='subTitle'>Sobre Nosotros</p>
                         <h2>Quienes somos</h2>
                         <p>
-                            Expreso Malargüe se fundó en 1946 con el fin de transportar productos entre Mendoza y Buenos Aires. En 2011 fue adquirido por el Grupo Codylsa transformándolo en una empresa de Soluciones Logísticas.<br/>
-                            <br/>
-                            Expreso Malargüe brinda un servicio integral a sus clientes. Desarrolló procesos de calidad para brindar una mejor prestación tanto a empresas como a particulares que desean enviar sus paquetes, comprar insumos o transportar producto terminado a distintos puntos del país.<br/> 
-                            <br/>
-                            Cuenta con una amplia red de sucursales propias ubicadas en las ciudades de Buenos Aires, Mendoza, Rosario, San Luis, San Rafael, Realicó, Tunuyán, Gral. Alvear y Malargüe. Sin embargo, llega a todo el país a través de su red de socios estratégicos.<br/> 
-                            <br/>
+                            Expreso Malargüe se fundó en 1946 con el fin de transportar productos entre Mendoza y Buenos Aires. En 2011 fue adquirido por el Grupo Codylsa transformándolo en una empresa de Soluciones Logísticas.<br />
+                            <br />
+                            Expreso Malargüe brinda un servicio integral a sus clientes. Desarrolló procesos de calidad para brindar una mejor prestación tanto a empresas como a particulares que desean enviar sus paquetes, comprar insumos o transportar producto terminado a distintos puntos del país.<br />
+                            <br />
+                            Cuenta con una amplia red de sucursales propias ubicadas en las ciudades de Buenos Aires, Mendoza, Rosario, San Luis, San Rafael, Realicó, Tunuyán, Gral. Alvear y Malargüe. Sin embargo, llega a todo el país a través de su red de socios estratégicos.<br />
+                            <br />
                             Expreso Malargüe trabaja en un proceso de mejora continua, comprendiendo el desafío y la responsabilidad que es transportar los bienes de nuestros clientes.
                         </p>
                         <div className='row'>
-                            <div className='col-md-6 mt-5'>
-                                <div className='row'>
+                            <div className='col-md-6 mt-5 '>
+                                <div className='row align-items-center mb-4'>
                                     <div className='col-md-2'>
-                                        {<MisionIcon iconWidth='28' iconFill='#EB1C23' iconHeight='25.71' />}   
+                                        {<MisionIcon iconWidth='28' iconFill='#EB1C23' iconHeight='25.71' />}
                                     </div>
                                     <div className='col-md-10'>
                                         <h3>Misión</h3>
@@ -52,9 +52,9 @@ const Pag2 = () => {
                                 </p>
                             </div>
                             <div className='col-md-6 mt-5'>
-                                <div className='row'>
+                                <div className='row align-items-center mb-4'>
                                     <div className='col-md-2'>
-                                        {<VisionIcon iconWidth='28' iconFill='#EB1C23' iconHeight='25.71' />}   
+                                        {<VisionIcon iconWidth='28' iconFill='#EB1C23' iconHeight='25.71' />}
                                     </div>
                                     <div className='col-md-10'>
                                         <h3>Visión</h3>
@@ -73,9 +73,10 @@ const Pag2 = () => {
 
                 </div>
             </div>
-            
+
         </section>
 
-        )};
+    )
+};
 
 export default Pag2;

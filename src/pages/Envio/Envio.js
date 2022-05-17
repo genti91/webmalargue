@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Image, Row } from 'react-bootstrap';
+import { Col, Container, Image, Row } from 'react-bootstrap';
 import { isMobile } from 'react-device-detect';
 
 
@@ -19,15 +19,15 @@ const Envio = () => {
         <section
             id='seguirEnvio'
         >
-            <BannerHeader   lineaPrincipal =  'Envío'
-                            lineaSecundaria = 'Cómo seguir tu' // Si no hay linea enviar ''
-                            image = {seguirEnvioIMG}
-        />
+            <BannerHeader lineaPrincipal='Envío'
+                lineaSecundaria='Cómo seguir tu' // Si no hay linea enviar ''
+                image={seguirEnvioIMG}
+            />
             <Container>
                 <Row>
                     <Col
                         md={8} xs={12}
-                        className='col-md-8'
+                        className='col-md-8 mb-3'
                     >
                         <h2>
                             Te explicamos paso a paso como seguir tu envío
@@ -50,27 +50,16 @@ const Envio = () => {
                         md={5} xs={12}
                     >
                         <Image
-                            fluid 
+                            fluid
                             alt={'Seguir envio paso01'}
                             src={seguirTuto01}
                         />
                     </Col>
                 </Row>
-                <hr/>  
-                <Row
-                    className={ isMobile ? ('d-flex flex-column-reverse') : ('')}
-                >
+                <hr />
+                <Row >
                     <Col
                         md={7} xs={12}
-                    >
-                        <Image
-                            fluid 
-                            alt={'Seguir envio paso02'}
-                            src={seguirTuto02}
-                        />
-                    </Col>
-                    <Col
-                        md={5} xs={12}         
                     >
                         <h3>
                             Paso 2
@@ -79,8 +68,17 @@ const Envio = () => {
                             En tu remito, identificá tu número de seguimiento /tracking
                         </p>
                     </Col>
+                    <Col
+                        md={5} xs={12}
+                    >
+                        <Image
+                            fluid
+                            alt={'Seguir envio paso02'}
+                            src={seguirTuto02}
+                        />
+                    </Col>
                 </Row>
-                <hr/>  
+                <hr />
                 <Row>
                     <Col
                         md={7} xs={12}
@@ -89,34 +87,23 @@ const Envio = () => {
                             Paso 3
                         </h3>
                         <p>
-                        Ingresá en el campo respetando los números y letras sin espacio y sin guión.
+                            Ingresá en el campo respetando los números y letras sin espacio y sin guión.
                         </p>
                     </Col>
                     <Col
                         md={5} xs={12}
                     >
                         <Image
-                            fluid 
+                            fluid
                             alt={'Seguir envio paso01'}
                             src={seguirTuto03}
                         />
                     </Col>
                 </Row>
-                <hr/>  
-                <Row
-                    className={ isMobile ? ('d-flex flex-column-reverse mb-5') : ('mb-5')}
-                >
+                <hr />
+                <Row className='mb-5'>
                     <Col
                         md={7} xs={12}
-                    >
-                        <Image
-                            fluid 
-                            alt={'Seguir envio paso02'}
-                            src={seguirTuto04}
-                        />
-                    </Col>
-                    <Col
-                        md={5} xs={12}
                     >
                         <h3>
                             Paso 4
@@ -125,12 +112,22 @@ const Envio = () => {
                             ¡Listo, revisá donde está tu pedido!
                         </p>
                     </Col>
+                    <Col
+                        md={5} xs={12}
+                    >
+                        <Image
+                            fluid
+                            alt={'Seguir envio paso02'}
+                            src={seguirTuto04}
+                        />
+                    </Col>
                 </Row>
             </Container>
 
         </section>
-    
-        )};
+
+    )
+};
 
 export default Envio;
 

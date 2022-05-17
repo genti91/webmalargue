@@ -201,15 +201,26 @@ const FormCotizacion = (props) => {
                       {/* <span className="helper_text">
                         *Recordá completar todos los campos del formulario.
                       </span> */}
-                      <input
-                        type="submit"
-                        className="btn btn-primary bg-primary"
-                        value="Cotizá tu envío"
-                        style={{
-                          outline: "none",
-                          border: "none",
-                        }}
-                        />
+                      <Row
+                        className='justify-content-end'
+                      >
+                        <Col
+                          md={2}
+                          xs={12}
+                        >
+
+                          <input
+                            type="submit"
+                            className="btn btn-primary bg-primary"
+                            value="Cotizá tu envío"
+                            style={{
+                              outline: "none",
+                              border: "none",
+                              width:'100%'
+                            }}
+                            />
+                        </Col>
+                      </Row>
                     </Col>
                 </Row>
               </Col>

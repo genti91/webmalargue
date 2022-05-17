@@ -8,21 +8,25 @@ import { FooterMobile } from './FooterMobile';
 
 export const Footer = () => {
   return (
-    
+
     <>
-        {
-            isMobile    ? <FooterMobile />
-                        : <FooterDesk />
-        }
+      {
+        isMobile ? <FooterMobile />
+          : <FooterDesk />
+      }
+      <Container
+        id='termsAndCond'
+        fluid
+      >
         <Container>
-            <Row
-              id='termsAndCond'
-            > 
-              <Col>
-                Políticas de privacidad | Términos y condiciones
-              </Col>
-            </Row>
+          <Row
+          >
+            <Col>
+              Políticas de privacidad | Términos y condiciones
+            </Col>
+          </Row>
         </Container>
+      </Container>
     </>
   )
 }

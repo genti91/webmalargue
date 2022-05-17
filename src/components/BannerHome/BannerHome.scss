@@ -45,6 +45,8 @@
 @media (max-width: 420px){
     
     #BannerHome{
+
+        height: 500px;
         
         h1{
 
@@ -57,7 +59,7 @@
         
         .imgBanner{
             background-size: 90%;
-            background-position: bottom 150px center;
+            background-position: bottom 50px center;
         }
 
     }

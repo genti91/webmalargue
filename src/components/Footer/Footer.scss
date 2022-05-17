@@ -1,5 +1,5 @@
 #footerMalargue{
-    background-color: var(--bg-primay) !important;
+    background-color: #ededed;
     height: 372px;
     padding-top: 67px;
     h2{
@@ -26,9 +26,12 @@
         width: 52px;
         border-radius: 50%;
         padding: 0px;
-        border: 0px;       
+        border: 0px;
+        :hover{
+            background-color: transparent !important;
+        }   
         svg{
-            fill: var(--bs-primary);
+            // fill: var(--bs-primary);
             :hover {
                 fill: white !important;
                 border-radius: 50%;
@@ -70,7 +73,7 @@
 
     #termsAndCond{
         padding-bottom: 3em;
-        background-color: var(--bg-primay) !important;
+        background-color: #ededed !important;
         font-weight: 400;
         font-size: 10px;
         line-height: 15px;

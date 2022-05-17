@@ -167,7 +167,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6} className={'offset-md-6'}>
+                  <Col md={6} >
                     <label>Destino</label>
                     <TextInput
                       {...form_shipment[4]}
@@ -247,7 +247,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6} className={'offset-md-6'}>
+                  <Col md={6} >
                     <label>Cuit</label>
                     <TextInput
                       {...form_shipment[20]}
@@ -265,15 +265,23 @@ const FormGenera = (props) => {
                     {/* <span className="helper_text">
                         *Recordá completar todos los campos del formulario.
                       </span> */}
-                    <input
-                      type='submit'
-                      className='btn btn-primary bg-primary'
-                      value='Cotizá tu envío'
-                      style={{
-                        outline: 'none',
-                        border: 'none',
-                      }}
-                    />
+                    <Row
+                      className='justify-content-end'
+                    >
+                      <Col
+                        md={2}
+                      >
+                        <input
+                          type='submit'
+                          className='btn btn-primary bg-primary'
+                          value='Generá tu retiro'
+                          style={{
+                            outline: 'none',
+                            border: 'none',
+                          }}
+                        />
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </Col>

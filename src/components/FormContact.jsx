@@ -6,7 +6,7 @@ import { useForm } from "../hooks";
 import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 
 
@@ -34,7 +34,7 @@ const Form = (props) => {
     const { origin, destiny, name, email, tel, message } = form;
     if (name.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center", // es esto poner en todos
         icon: "error",
         title: "Debe ingresar un nombre",
         showConfirmButton: false,
@@ -150,15 +150,27 @@ const Form = (props) => {
         {/* <span className="helper_text">
           *Recordá completar todos los campos del formulario.
         </span> */}
-        <input
-          type="submit"
-          className="btn btn-primary bg-primary"
-          value="Cotizá tu envío"
-          style={{
-            outline: "none",
-            border: "none",
-          }}
-          />
+
+          <Row
+            className="justify-content-end"
+            >
+            <Col
+              md={4}
+              xs={12}
+            >
+              <input
+                type="submit"
+                className="btn btn-primary bg-primary"
+                value="Cotizá tu envío"
+                style={{
+                  outline: "none",
+                  border: "none",
+                  width: '100%'
+                }}
+                />
+            </Col>
+          </Row>
+
       </form>
 
   );

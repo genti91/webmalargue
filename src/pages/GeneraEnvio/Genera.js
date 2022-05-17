@@ -9,7 +9,7 @@ const Genera = () => {
   return (
     <section id='genera'>
       <BannerHeader
-        lineaPrincipal='Generá tu envío'
+        lineaPrincipal='Generá tu Retiro'
         lineaSecundaria='' // Si no hay linea enviar ''
         image={cotizaIMG}
       />
