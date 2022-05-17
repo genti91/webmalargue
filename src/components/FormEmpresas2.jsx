@@ -38,7 +38,7 @@ const FormEmpresas2 = () => {
       form;
     if (origin.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar una ciudad de origen",
         showConfirmButton: false,
@@ -47,7 +47,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (destiny.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar una ciudad de destino",
         showConfirmButton: false,
@@ -56,7 +56,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (name.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un nombre",
         showConfirmButton: false,
@@ -65,7 +65,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (email.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un email",
         showConfirmButton: false,
@@ -74,7 +74,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (message.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un mensaje",
         showConfirmButton: false,
@@ -83,7 +83,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (qtyShipment.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar una cantidad de envios",
         showConfirmButton: false,
@@ -92,7 +92,7 @@ const FormEmpresas2 = () => {
       return false;
     } else if (weight.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un peso",
         showConfirmButton: false,
@@ -118,7 +118,7 @@ const FormEmpresas2 = () => {
         .then(
           (response) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
               title: "Formulario enviado correctamente",
               showConfirmButton: false,
@@ -129,7 +129,7 @@ const FormEmpresas2 = () => {
           },
           (err) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "error",
               title: "Error al enviar el formulario",
               showConfirmButton: false,

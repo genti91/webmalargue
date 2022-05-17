@@ -127,23 +127,35 @@ const form_shipment = [
     // icon: <FaWeight />,
   },
 
-  // TODO: hacer objetos
+
   {
     name: 'service',
     type: 'select',
     options: [
       {
+        value: 'encomiendas',
+        name: 'Paquetería/Encomienda',
+      },
+      {
+        value: 'paletizada',
+        name: 'Venta paletizada',
+      },
+      {
+        value: 'cargas',
+        name: 'Cargas completas',
+      },
+      {
+        value: 'e-comerce',
+        name: 'Logística para E-Commerce',
+      },
+      {
         value: 'mudanza',
         name: 'Mudanza',
       },
-      {
-        value: 'encomiendas',
-        name: 'Encomiendas',
-      },
-      {
-        value: 'Recepcion',
-        name: 'recepcion',
-      },
+      // {
+      //   value: 'Recepcion',
+      //   name: 'recepcion',
+      // },
       {
         value: 'otros',
         name: 'Otros',

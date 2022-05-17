@@ -48,7 +48,7 @@ const FormGenera = (props) => {
     } = form
     if (name.length === 0) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
         title: 'Debe ingresar un nombre',
         showConfirmButton: false,
@@ -57,7 +57,7 @@ const FormGenera = (props) => {
       return false
     } else if (email.length === 0) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
         title: 'Debe ingresar un email',
         showConfirmButton: false,
@@ -66,7 +66,7 @@ const FormGenera = (props) => {
       return false
     } else if (tel.length === 0) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
         title: 'Debe ingresar un teléfono',
         showConfirmButton: false,
@@ -75,7 +75,7 @@ const FormGenera = (props) => {
       return false
     } else if (message.length === 0) {
       Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'error',
         title: 'Debe ingresar un mensaje',
         showConfirmButton: false,
@@ -100,7 +100,7 @@ const FormGenera = (props) => {
         .then(
           (response) => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
               title: 'Formulario enviado correctamente',
               showConfirmButton: false,
@@ -111,7 +111,7 @@ const FormGenera = (props) => {
           },
           (err) => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'error',
               title: 'Error al enviar el formulario',
               showConfirmButton: false,

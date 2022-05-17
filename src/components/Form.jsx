@@ -28,7 +28,7 @@ const Form = (props) => {
     const { origin, destiny, name, email, message } = form;
     if (origin.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar una ciudad de origen",
         showConfirmButton: false,
@@ -37,7 +37,7 @@ const Form = (props) => {
       return false;
     } else if (destiny.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar una ciudad de destino",
         showConfirmButton: false,
@@ -46,7 +46,7 @@ const Form = (props) => {
       return false;
     } else if (name.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un nombre",
         showConfirmButton: false,
@@ -55,7 +55,7 @@ const Form = (props) => {
       return false;
     } else if (email.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un email",
         showConfirmButton: false,
@@ -64,7 +64,7 @@ const Form = (props) => {
       return false;
     } else if (message.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un mensaje",
         showConfirmButton: false,
@@ -89,7 +89,7 @@ const Form = (props) => {
         .then(
           (response) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
               title: "Formulario enviado correctamente",
               showConfirmButton: false,
@@ -100,7 +100,7 @@ const Form = (props) => {
           },
           (err) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "error",
               title: "Error al enviar el formulario",
               showConfirmButton: false,

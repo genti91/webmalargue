@@ -49,7 +49,7 @@ const FormCotizacion = (props) => {
     } = form;
     if (name.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un nombre",
         showConfirmButton: false,
@@ -58,7 +58,7 @@ const FormCotizacion = (props) => {
       return false;
     } else if (email.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un email",
         showConfirmButton: false,
@@ -67,7 +67,7 @@ const FormCotizacion = (props) => {
       return false;
     } else if (tel.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un teléfono",
         showConfirmButton: false,
@@ -76,7 +76,7 @@ const FormCotizacion = (props) => {
       return false;
     } else if (message.length === 0) {
       Swal.fire({
-        position: "top-end",
+        position: "center",
         icon: "error",
         title: "Debe ingresar un mensaje",
         showConfirmButton: false,
@@ -101,7 +101,7 @@ const FormCotizacion = (props) => {
         .then(
           (response) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
               title: "Formulario enviado correctamente",
               showConfirmButton: false,
@@ -112,7 +112,7 @@ const FormCotizacion = (props) => {
           },
           (err) => {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "error",
               title: "Error al enviar el formulario",
               showConfirmButton: false,
