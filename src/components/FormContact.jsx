@@ -19,7 +19,7 @@ const Form = (props) => {
     email: "",
     message: "",
   });
-  const history = useNavigate();
+  let history = useNavigate();
   const resetForm = () => {
     setInForm({
       name: "",
@@ -92,7 +92,7 @@ const Form = (props) => {
               showConfirmButton: false,
               timer: 1500,
             });
-            history.push("/gracias");
+            history("/");
             resetForm();
           },
           (err) => {

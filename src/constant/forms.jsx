@@ -34,6 +34,7 @@ const form_shipment = [
     required: true,
     errorMessage: 'Por favor completa este campo',
     validation: /^[0-9]+$/i,
+    // validation: /^[0-9]+$/i,
     // icon: <FaEnvelope />,
   },
   {

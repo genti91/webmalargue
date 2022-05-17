@@ -20,7 +20,7 @@ const FormGenera = (props) => {
     pago: '',
     seguro: '',
   })
-  const history = useNavigate()
+  let history = useNavigate()
   const resetForm = () => {
     setInForm({
       name: '',
@@ -106,7 +106,7 @@ const FormGenera = (props) => {
               showConfirmButton: false,
               timer: 1500,
             })
-            history.push('/gracias')
+            history('/')
             resetForm()
           },
           (err) => {

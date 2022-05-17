@@ -8,6 +8,7 @@ import TextInput from "./TextInput";
 import { form_shipment } from "../constant/forms";
 import TextInputArea from "./TextInputArea";
 
+
 import '../pages/Cotiza/Cotiza.scss'
 
 const FormCotizacion = (props) => {
@@ -21,7 +22,7 @@ const FormCotizacion = (props) => {
     pago: "",
     seguro: "",
   });
-  const history = useNavigate();
+  let history = useNavigate();
   const resetForm = () => {
     setInForm({
       name: "",
@@ -107,7 +108,7 @@ const FormCotizacion = (props) => {
               showConfirmButton: false,
               timer: 1500,
             });
-            history.push("/gracias");
+            history("/");
             resetForm();
           },
           (err) => {
