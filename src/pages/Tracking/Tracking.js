@@ -3,12 +3,10 @@ import { remitoIMG, seguimientoIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import './Tracking.scss'
 import { Bullet } from './Bullet'
-// import { GuiaNoEncontrada } from "./GuiaNoEncontrada";
 import { SearchBox } from './SearchBox'
 import { Col, Container, Row } from 'react-bootstrap'
 
 const Tracking = () => {
-  // const [loginToken, setLoginToken] = useState({});
   const [trackingData, setTrackingData] = useState([])
 
   return (
@@ -19,7 +17,10 @@ const Tracking = () => {
         image={seguimientoIMG}
       />
       <div className='container'>
-        <div className='row justify-content-center'>
+        <div
+          className='row justify-content-center'
+          style={{ marginBottom: '40px' }}
+        >
           <div className='col-md-6'>
             <h1 className='heroTitle'>
               En tu remito encontrarás el número de seguimiento
@@ -28,29 +29,23 @@ const Tracking = () => {
             <div>
               <h3>Ingresá el número de seguimiento </h3>
             </div>
-            <Container
-            // xs={12}
-            >
-              <SearchBox setTrackingData={setTrackingData} />
-            </Container>
-            {/* <iframe
-              src="https://www.softwarecristal.com.ar/web/tracking.php?empresa=malargue"
-              title="Consulta ON LINE de carga"
-              width="100%"
-              height="500px"
-            ></iframe> */}
+
+            <SearchBox setTrackingData={setTrackingData} />
             {trackingData.length
-              ? trackingData.map(
-                ({ des, fecha, cod, guia, nRetiro, index }) => (
-                  <div key={cod} className='row align-items-center step'>
-                    <Bullet fecha={fecha} order={index} />
-                    <div className={'status col-10 d-flex flex-column'}>
-                      <div className='title'>{des}</div>
-                      <div className='data'>{fecha}</div>
+              ? trackingData.map(({ des, fecha, cod, index, destino }) => (
+                <div key={cod} className='row align-items-center step'>
+                  <Bullet fecha={fecha} order={index} />
+                  <div className={'status col-10 d-flex flex-column'}>
+                    <div className='title'>
+                      {des}{' '}
+                      {(des === 'En sucursal ' ||
+                        des === 'En viaje a sucursal') &&
+                        destino}
                     </div>
+                    <div className='data'>{fecha}</div>
                   </div>
-                )
-              )
+                </div>
+              ))
               : null}
           </div>
         </div>
