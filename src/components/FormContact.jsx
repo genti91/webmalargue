@@ -50,7 +50,7 @@ const Form = (props) => {
         timer: 1500,
       });
       return false;
-    } else if (tel.length === 0) {
+    } else if (tel?.length === 0) {
       Swal.fire({
         position: "center",
         icon: "error",
