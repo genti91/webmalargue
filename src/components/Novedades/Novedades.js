@@ -16,7 +16,7 @@ import './Novedades.scss'
 
 export const Novedades = () => {
     return (
-        <Container fluid id='Novedades'>
+        <Container fluid id='Novedades' className='pb-5'>
             <Container>
                 <h2>Novedades</h2>
                 <div className="row row-cols-1 row-cols-md-2 g-1 d-flex align-items-stretch ">

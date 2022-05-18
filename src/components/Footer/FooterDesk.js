@@ -55,7 +55,7 @@ export const FooterDesk = () => {
                                         href={social.facebook}
                                         target={'_blank'}>
                                         <button className="btn btn-outline-primary" type="button">
-                                            {<FaIcon iconFill='#2F3394' iconHeight={isMobile ? '30' : '52'} />}
+                                            {<FaIcon iconFill='white' iconHeight={isMobile ? '30' : '52'} />}
                                         </button>
                                     </a>
                                 </div>
@@ -64,7 +64,7 @@ export const FooterDesk = () => {
                                         href={social.instagram}
                                         target={'_blank'}>
                                         <button className="btn btn-outline-primary" type="button">
-                                            {<IgIcon iconFill='#2F3394' iconHeight={isMobile ? '30' : '52'} />}
+                                            {<IgIcon iconFill='white' iconHeight={isMobile ? '30' : '52'} />}
                                         </button>
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@ export const FooterDesk = () => {
                                             className="btn btn-outline-primary"
                                             type="button"
                                         >
-                                            {<EmailIcon iconFill='#2F3394' iconHeight={isMobile ? '30' : '52'} />}
+                                            {<EmailIcon iconFill='white' iconHeight={isMobile ? '30' : '52'} />}
                                         </button>
                                     </a>
                                 </div>

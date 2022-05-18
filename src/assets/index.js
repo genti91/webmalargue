@@ -38,9 +38,10 @@ export { default as logoTiendaNubeCenter } from "./img/SVG/Logo-TiendanubeCenter
 
 // Icons
 export { default as mas } from "./img/SVG/mas.svg";
-export { default as faIcon } from "./img/SVG/faceboockIcon.svg";
-export { default as igIcon } from "./img/SVG/instagramIcon.svg";
-export { default as emailIcon } from "./img/SVG/emailIcon.svg";
+export { default as faIcon } from "./img/SVG/facebookW.svg";
+export { default as faIconW } from "./img/faIconW.png";
+export { default as igIcon } from "./img/SVG/igIconW.svg";
+export { default as emailIcon } from "./img/SVG/emailIconW.svg";
 export { default as whatsAppCTA } from "./img/SVG/boton-whatsapp.svg";
 
 // logos partners

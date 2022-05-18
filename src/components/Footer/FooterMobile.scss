@@ -2,6 +2,7 @@
     background-color: #ededed;
     padding: 40px 20px 0 20px;
 
+
     h2{
         a{
             color: var(--bs-primary);
@@ -76,11 +77,13 @@
         padding-left: 15px;
     }
     .btn-outline-primary{
-        height: 52px;
-        width: 52px;
+        background-color: var(--bs-primary);
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         padding: 0px;
         border: 0px;
+        margin-right: 1em;
         &:active{
             background-color: transparent !important;
             
