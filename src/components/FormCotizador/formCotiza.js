@@ -29,7 +29,80 @@ export const formCotiza = [
       type: 'email',
       required: true,
       errorMessage: 'Por favor completa este campo',
-      validation: /^\S+@\S+$/i,
+    },
+  },
+  {
+    colSize: { md: 6 },
+    label: 'Prov. de Origen',
+    inputProps: {
+      name: 'provOrigen',
+      type: 'select',
+      options: [
+        {
+          value: 'AMBA',
+          name: 'AMBA',
+        },
+        {
+          value: 'Mendoza',
+          name: 'Mendoza',
+        },
+        {
+          value: 'San Luis',
+          name: 'San Luis',
+        },
+        {
+          value: 'La Pampa',
+          name: 'La Pampa',
+        },
+        {
+          value: 'San Juan',
+          name: 'San Juan',
+        },
+        {
+          value: 'Santa Fe',
+          name: 'Santa Fe',
+        },
+      ],
+      placeholder: 'Seleccioná una provincia',
+      required: true,
+      errorMessage: 'Por favor completa este campo para cotizar',
+    },
+  },
+  {
+    colSize: { md: 6 },
+    label: 'Prov. de Destino',
+    inputProps: {
+      name: 'provDestino',
+      type: 'select',
+      options: [
+        {
+          value: 'AMBA',
+          name: 'AMBA',
+        },
+        {
+          value: 'Mendoza',
+          name: 'Mendoza',
+        },
+        {
+          value: 'San Luis',
+          name: 'San Luis',
+        },
+        {
+          value: 'La Pampa',
+          name: 'La Pampa',
+        },
+        {
+          value: 'San Juan',
+          name: 'San Juan',
+        },
+        {
+          value: 'Santa Fe',
+          name: 'Santa Fe',
+        },
+      ],
+      placeholder: 'Seleccioná una provincia',
+      required: true,
+      errorMessage: 'Por favor completa este campo para cotizar',
     },
   },
   {
@@ -45,7 +118,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 6 },
-    label: 'Cod. Postal Origen',
+    label: 'Cód. Postal Origen',
     inputProps: {
       name: 'originCP',
       type: 'text',
@@ -67,7 +140,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 6 },
-    label: 'Cod. Postal Destino',
+    label: 'Cód. Postal Destino',
     inputProps: {
       name: 'destinyCP',
       type: 'text',
@@ -90,18 +163,17 @@ export const formCotiza = [
       type: 'select',
       options: [
         {
-          value: 'efectivo',
-          name: 'Efectivo',
+          value: 'mercado pago',
+          name: 'Mercado Pago',
         },
         {
           value: 'transferencia',
           name: 'Transferencia',
         },
       ],
-      placeholder: 'Efectivo',
+      placeholder: 'Seleccioná un tipo de pago',
       required: true,
       errorMessage: 'Por favor completa este campo para cotizar',
-      validation: /^\S+@\S+$/i,
     },
   },
   {
@@ -120,7 +192,7 @@ export const formCotiza = [
           name: 'Encomiendas',
         },
         {
-          value: 'Recepcion',
+          value: 'Recepción',
           name: 'recepcion',
         },
         {
@@ -128,10 +200,9 @@ export const formCotiza = [
           name: 'Otros',
         },
       ],
-      placeholder: 'Mudanza',
+      placeholder: 'Seleccioná un tipo de servicio',
       required: true,
       errorMessage: 'Por favor completa este campo para cotizar',
-      validation: /^\S+@\S+$/i,
     },
   },
   {

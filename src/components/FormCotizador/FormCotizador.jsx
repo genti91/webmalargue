@@ -16,7 +16,7 @@ const { Check } = Form
 
 const FormCotizacion = (props) => {
   const [bultos, setBultos] = useState([])
-  const [seguro, setSeguro] = useState('No')
+  const [seguro, setSeguro] = useState(false)
   const [selectedBultos, setSelectedBultos] = useState([])
 
   const { form, setInForm, resetForm } = useForm({
@@ -72,45 +72,51 @@ const FormCotizacion = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault()
-    if (validate()) {
-      form.page = 'Individuos'
-      emailjs
-        .send(
-          'service_vv6p4ni',
-          'template_sa97o4k',
-          {
-            ...form,
-            seguro,
-            tableTemplate: tableTemplateGenerator({
+          const tableTemplate = tableTemplateGenerator({
               columns: tableCotizaDictionary,
               dataSource: bultos,
-            }),
-          },
-          'user_EpLgdCxfdM9GfQOvqBiSt'
-        )
-        .then(
-          (response) => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Formulario enviado correctamente',
-              showConfirmButton: false,
-              timer: 1500,
             })
-            navigate('/gracias')
-            resetForm()
-          },
-          (err) => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Error al enviar el formulario',
-              showConfirmButton: false,
-              timer: 1500,
-            })
-            console.log('FAILED...', err)
-          }
-        )
+          console.log('file: FormCotizador.jsx ~ line 79 ~ submitForm ~ tableTemplate', tableTemplate)
+    if (validate()) {
+      // form.page = 'Individuos'
+      // emailjs
+      //   .send(
+      //     'service_vv6p4ni',
+      //     'template_sa97o4k',
+      //     {
+      //       ...form,
+      //       seguro: seguro ? 'Si' : 'No',	
+      //       tableTemplate: tableTemplateGenerator({
+      //         columns: tableCotizaDictionary,
+      //         dataSource: bultos,
+      //       }),
+
+      //     },
+      //     'user_EpLgdCxfdM9GfQOvqBiSt'
+      //   )
+      //   .then(
+      //     (response) => {
+      //       Swal.fire({
+      //         position: 'top-end',
+      //         icon: 'success',
+      //         title: 'Formulario enviado correctamente',
+      //         showConfirmButton: false,
+      //         timer: 1500,
+      //       })
+      //       navigate('/gracias')
+      //       resetForm()
+      //     },
+      //     (err) => {
+      //       Swal.fire({
+      //         position: 'top-end',
+      //         icon: 'error',
+      //         title: 'Error al enviar el formulario',
+      //         showConfirmButton: false,
+      //         timer: 1500,
+      //       })
+      //       console.log('FAILED...', err)
+      //     }
+      //   )
     }
   }
   return (
@@ -197,14 +203,25 @@ const FormCotizacion = (props) => {
                         </>
                       )}
                       {item.inputProps.type.match(/radio|checkbox/) && (
-                        <Check
+                        <>
+                          <Check
                           {...item.inputProps}
                           form={form}
                           value='Si'
                           onChange={(e) =>
-                            setSeguro(e.target.checked ? 'Si' : 'No')
+                            setSeguro(e.target.checked)
                           }
                         />
+                        {seguro && (
+                          <TextInput
+                          type="text"
+                          name="valorDeclarado"
+                          placeholder="Valor Declarado"
+                          setInForm={setInForm}
+                          form={form}
+                        />
+                        )}
+                        </>
                       )}
                       {item.inputProps.type === 'submit' && (
                         <input {...item.inputProps} />
@@ -215,6 +232,10 @@ const FormCotizacion = (props) => {
               </Col>
             </Row>
           </form>
+          <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
+              columns: tableCotizaDictionary,
+              dataSource: bultos,
+            })}} />
         </Container>
       </Row>
     </section>
