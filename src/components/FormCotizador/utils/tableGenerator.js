@@ -12,10 +12,11 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
       if (accesKey !== 'seleccionar') {
         if (accesKey === 'sumatoria') {
           const sumatoria = Object.entries(row).reduce((acc, [keyReducer, value]) => {
-            if(keyReducer.match(/alto|ancho|profundidad/)) return acc = acc ? acc * Number(value) : Number(value)
+            if(keyReducer.match(/alto|ancho|profundidad/)) 
+              return acc = acc ? acc * (Number(value) / 100) : Number(value) / 100
             return acc
           }, 0)
-          formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${(((sumatoria||0)/1000)*Number(row?.cantBultos)).toFixed(2)}</td>`
+          formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${(((sumatoria||0))*Number(row?.cantBultos)).toFixed(2)}</td>`
         } else formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${row[accesKey]}</td>`
       }
     })
