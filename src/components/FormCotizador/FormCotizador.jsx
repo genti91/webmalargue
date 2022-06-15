@@ -72,51 +72,46 @@ const FormCotizacion = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault()
-          const tableTemplate = tableTemplateGenerator({
-              columns: tableCotizaDictionary,
-              dataSource: bultos,
-            })
-          console.log('file: FormCotizador.jsx ~ line 79 ~ submitForm ~ tableTemplate', tableTemplate)
+    const tableTemplate = tableTemplateGenerator({
+      columns: tableCotizaDictionary,
+      dataSource: bultos,
+    })
     if (validate()) {
-      // form.page = 'Individuos'
-      // emailjs
-      //   .send(
-      //     'service_vv6p4ni',
-      //     'template_sa97o4k',
-      //     {
-      //       ...form,
-      //       seguro: seguro ? 'Si' : 'No',	
-      //       tableTemplate: tableTemplateGenerator({
-      //         columns: tableCotizaDictionary,
-      //         dataSource: bultos,
-      //       }),
-
-      //     },
-      //     'user_EpLgdCxfdM9GfQOvqBiSt'
-      //   )
-      //   .then(
-      //     (response) => {
-      //       Swal.fire({
-      //         position: 'top-end',
-      //         icon: 'success',
-      //         title: 'Formulario enviado correctamente',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       navigate('/gracias')
-      //       resetForm()
-      //     },
-      //     (err) => {
-      //       Swal.fire({
-      //         position: 'top-end',
-      //         icon: 'error',
-      //         title: 'Error al enviar el formulario',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       console.log('FAILED...', err)
-      //     }
-      //   )
+      form.page = 'Individuos'
+      emailjs
+        .send(
+          'service_vv6p4ni',
+          'template_sa97o4k',
+          {
+            ...form,
+            seguro: seguro ? 'Si' : 'No',	
+            tableTemplate
+          },
+          'user_EpLgdCxfdM9GfQOvqBiSt'
+        )
+        .then(
+          () => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Formulario enviado correctamente',
+              showConfirmButton: false,
+              timer: 1500,
+            })
+            navigate('/gracias')
+            resetForm()
+          },
+          (err) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Error al enviar el formulario',
+              showConfirmButton: false,
+              timer: 1500,
+            })
+            console.log('FAILED...', err)
+          }
+        )
     }
   }
   return (
@@ -176,14 +171,23 @@ const FormCotizacion = (props) => {
                             </Col>
                           </Row>
                           <TableComponent
-                            columns={tableCotizaDictionary}
+                            columns={{seleccionar: <Check
+                              type='checkbox'
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  const selected = bultos.map((_bulto, index)=> index)
+                                setSelectedBultos(selected)
+                                } else setSelectedBultos([])
+                              }}
+                            />,
+                              ...tableCotizaDictionary}}
                             dataSource={bultos.map((row, index) => ({
                               ...row,
                               seleccionar: (
                                 <Check
                                   type='checkbox'
                                   checked={selectedBultos.includes(index)}
-                                  onClick={() => {
+                                  onChange={() => {
                                     if (selectedBultos.includes(index)) {
                                       const filteredBultos =
                                         selectedBultos.filter(
@@ -207,16 +211,14 @@ const FormCotizacion = (props) => {
                           <Check
                           {...item.inputProps}
                           form={form}
-                          value='Si'
-                          onChange={(e) =>
-                            setSeguro(e.target.checked)
-                          }
+                          onChange={(e) =>setSeguro(e.target.checked)}
                         />
                         {seguro && (
                           <TextInput
                           type="text"
                           name="valorDeclarado"
                           placeholder="Valor Declarado"
+                          required
                           setInForm={setInForm}
                           form={form}
                         />
@@ -232,10 +234,10 @@ const FormCotizacion = (props) => {
               </Col>
             </Row>
           </form>
-          <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
+          {/* <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
               columns: tableCotizaDictionary,
               dataSource: bultos,
-            })}} />
+            })}} /> */}
         </Container>
       </Row>
     </section>

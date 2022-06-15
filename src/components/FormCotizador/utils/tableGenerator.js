@@ -15,7 +15,7 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
             if(keyReducer.match(/alto|ancho|profundidad/)) return acc = acc ? acc * Number(value) : Number(value)
             return acc
           }, 0)
-          formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${(sumatoria||0)/1000}</td>`
+          formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${(((sumatoria||0)/1000)*Number(row?.cantBultos)).toFixed(2)}</td>`
         } else formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${row[accesKey]}</td>`
       }
     })

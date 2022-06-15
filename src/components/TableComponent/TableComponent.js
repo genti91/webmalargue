@@ -6,14 +6,14 @@ const TableComponent = ({ columns, dataSource }) => {
       <thead>
         <tr>
           {Object.entries(columns).map(([key, label]) => (
-            <th key={key}>{label}</th>
+            <th key={key} className='text-center'>{label}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         {!!dataSource && dataSource?.length ? (
           dataSource.map((row, index) => (
-            <tr key={index}>
+            <tr key={index} >
               {Object.keys(columns).map((accesKey) => (
                 <td className='text-center' key={accesKey}>
                   {row[accesKey]}
