@@ -49,7 +49,6 @@ const Individuos = () => {
         target="_blank"
         rel="noreferrer"
       >
-        {" "}
         <i className="fa fa-whatsapp whatsapp-icon"></i>
       </a>
     </>

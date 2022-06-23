@@ -4,7 +4,6 @@ import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import './Tracking.scss'
 import { Bullet } from './Bullet'
 import { SearchBox } from './SearchBox'
-import { Col, Container, Row } from 'react-bootstrap'
 
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState([])

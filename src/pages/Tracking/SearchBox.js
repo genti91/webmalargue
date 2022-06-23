@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { getTickets } from './services/getTickets'
 import Spinner from 'react-bootstrap/Spinner'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 import './searchBox.scss'
 

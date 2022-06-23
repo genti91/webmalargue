@@ -5,11 +5,8 @@ import { CardDeck } from "../components/CardDeck/CardDeck";
 import { bgHome } from "../assets";
 import { BannerHome } from "../components/BannerHome/BannerHome";
 import { Novedades } from "../components/Novedades/Novedades";
-import { LogoCarousel } from "../components/LogoCarousel/LogoCarousel";
 import { Container, Row } from "react-bootstrap";
-import { DeviceDetect } from "../components/LogoCarousel/DeviceDetect";
 
-// import { IoHome } from "react-icons/io5";
 const Home = () => {
   return (
     <Row
@@ -29,8 +26,6 @@ const Home = () => {
       <Container>
         <Novedades />
       </Container>
-      {/* <LogoCarousel /> */}
-      {/* <DeviceDetect /> */}
     </Row>
   );
 };
