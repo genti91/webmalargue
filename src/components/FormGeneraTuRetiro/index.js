@@ -6,32 +6,21 @@ import Swal from 'sweetalert2'
 import { useForm } from '../../hooks'
 import TextInput from '../TextInput'
 import TextInputArea from '../TextInputArea'
-import { formCotiza } from './formCotiza'
+import { formGeneraDestinatario, formGeneraRemitente } from './formGenera'
 import '../../pages/Cotiza/Cotiza.scss'
-import TableComponent from '../TableComponent/TableComponent'
-import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
-import FormAddBulto from './FormAddBulto'
-import { tableTemplateGenerator } from '../../helpers/tableGenerator'
+import TableComponent from "../TableComponent/TableComponent"
+import { tableCotizaDictionary } from "../../pages/Cotiza/tableCotizaDictionary"
+import FormAddBulto from "../FormCotizador/FormAddBulto"
+import { tableTemplateGenerator } from "../../helpers/tableGenerator"
 const { Check } = Form
 
-const FormCotizacion = (props) => {
+const FormGeneraTuRetiro = () => {
+  
   const [bultos, setBultos] = useState([])
   const [seguro, setSeguro] = useState(false)
   const [selectedBultos, setSelectedBultos] = useState([])
 
-  const { form, setInForm, resetForm } = useForm({
-    origin: '',
-    destiny: '',
-    originCP: '',
-    destinyCP: '',
-    name: '',
-    email: '',
-    message: '',
-    service: '',
-    pago: '',
-    tel: '',
-    tableTemplate: '',
-  })
+  const { form, setInForm, resetForm } = useForm({})
   const navigate = useNavigate()
 
   const addBultoHandler = (newBulto) => {
@@ -53,7 +42,10 @@ const FormCotizacion = (props) => {
   }
 
   const validate = () => {
-    const isInvalid = formCotiza.some((input) => {
+    const isInvalid = formGeneraRemitente.some((input) => {
+      if (!input.inputProps?.required) return false
+      return !form[input.inputProps?.name]
+    }) || formGeneraDestinatario.some((input) => {
       if (!input.inputProps?.required) return false
       return !form[input.inputProps?.name]
     })
@@ -81,7 +73,7 @@ const FormCotizacion = (props) => {
       emailjs
         .send(
           'service_vv6p4ni',
-          'template_sa97o4k',
+          'template_a5on8fl',
           {
             ...form,
             seguro: seguro ? 'Si' : 'No',	
@@ -114,6 +106,7 @@ const FormCotizacion = (props) => {
         )
     }
   }
+
   return (
     <section>
       <Row>
@@ -124,10 +117,11 @@ const FormCotizacion = (props) => {
                 <Row>
                   <Col xs={12} md={9}>
                     <h2>
-                      Completá el formulario y te enviaremos la cotización
+                      Completá el formulario y generamos tu retiro
                     </h2>
                   </Col>
-                  {formCotiza.map((item, index) => (
+                  <h3>DATOS DEL REMITENTE</h3>
+                  {formGeneraRemitente.map((item, index) => (
                     <Col {...item?.colSize} key={index}>
                       {item?.label && <label>{item.label}</label>}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
@@ -152,9 +146,6 @@ const FormCotizacion = (props) => {
                           <Row className='justify-content-end'>
                             <Col md={6}>
                               <Row className='justify-content-around'>
-                                <FormAddBulto
-                                  addBultoHandler={addBultoHandler}
-                                />
                                 <Button
                                   variant='danger'
                                   className='col-md-4'
@@ -170,41 +161,7 @@ const FormCotizacion = (props) => {
                               </Row>
                             </Col>
                           </Row>
-                          <TableComponent
-                            columns={{seleccionar: <Check
-                              type='checkbox'
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  const selected = bultos.map((_bulto, index)=> index)
-                                setSelectedBultos(selected)
-                                } else setSelectedBultos([])
-                              }}
-                            />,
-                              ...tableCotizaDictionary}}
-                            dataSource={bultos.map((row, index) => ({
-                              ...row,
-                              seleccionar: (
-                                <Check
-                                  type='checkbox'
-                                  checked={selectedBultos.includes(index)}
-                                  onChange={() => {
-                                    if (selectedBultos.includes(index)) {
-                                      const filteredBultos =
-                                        selectedBultos.filter(
-                                          (bulto) => bulto !== index
-                                        )
-                                      return setSelectedBultos(filteredBultos)
-                                    }
-                                    setSelectedBultos([
-                                      ...selectedBultos,
-                                      index,
-                                    ])
-                                  }}
-                                />
-                              ),
-                            }))}
-                          />
-                        </>
+                          </>
                       )}
                       {item.inputProps.type.match(/radio|checkbox/) && (
                         <>
@@ -230,6 +187,113 @@ const FormCotizacion = (props) => {
                       )}
                     </Col>
                   ))}
+                  <h3>DATOS DEL DESTINATARIO</h3>
+                  {formGeneraDestinatario.map((item, index) => (
+                    <Col {...item?.colSize} key={index}>
+                      {item?.label && <label>{item.label}</label>}
+                      {item.inputProps.type.match(/text|select|email|tel/) && (
+                        <>
+                          {item.inputProps.type !== 'textarea' ? (
+                            <TextInput
+                              {...item.inputProps}
+                              setInForm={setInForm}
+                              form={form}
+                            />
+                          ) : (
+                            <TextInputArea
+                              {...item.inputProps}
+                              setInForm={setInForm}
+                              form={form}
+                            />
+                          )}
+                        </>
+                      )}
+                      {item.inputProps.type === 'table' && (
+                        <>
+                        <Row className='justify-content-end'>
+                          <Col md={6}>
+                            <Row className='justify-content-around'>
+                              <FormAddBulto
+                                addBultoHandler={addBultoHandler}
+                              />
+                              <Button
+                                variant='danger'
+                                className='col-md-4'
+                                onClick={removeBultoHandler}
+                                style={{
+                                  color: '#fff',
+                                  backgroundColor: '#dc3545',
+                                  borderColor: '#dc3545',
+                                }}
+                              >
+                                Quitar Bultos
+                              </Button>
+                            </Row>
+                          </Col>
+                        </Row>
+                        <TableComponent
+                          columns={{seleccionar: <Check
+                            type='checkbox'
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                const selected = bultos.map((_bulto, index)=> index)
+                              setSelectedBultos(selected)
+                              } else setSelectedBultos([])
+                            }}
+                          />,
+                            ...tableCotizaDictionary}}
+                          dataSource={bultos.map((row, index) => ({
+                            ...row,
+                            seleccionar: (
+                              <Check
+                                type='checkbox'
+                                checked={selectedBultos.includes(index)}
+                                onChange={() => {
+                                  if (selectedBultos.includes(index)) {
+                                    const filteredBultos =
+                                      selectedBultos.filter(
+                                        (bulto) => bulto !== index
+                                      )
+                                    return setSelectedBultos(filteredBultos)
+                                  }
+                                  setSelectedBultos([
+                                    ...selectedBultos,
+                                    index,
+                                  ])
+                                }}
+                              />
+                            ),
+                          }))}
+                        />
+                      </>
+                      )}
+                      {item.inputProps.type.match(/radio|checkbox/) && (
+                        <>
+                          <Check
+                          {...item.inputProps}
+                          form={form}
+                          onChange={(e) =>setSeguro(e.target.checked)}
+                        />
+                        {seguro && (
+                          <TextInput
+                          type="text"
+                          name="valorDeclarado"
+                          placeholder="Valor Declarado"
+                          required
+                          setInForm={setInForm}
+                          form={form}
+                        />
+                        )}
+                        </>
+                      )}
+                      {
+
+                      }
+                      {item.inputProps.type === 'submit' && (
+                        <input {...item.inputProps} />
+                      )}
+                    </Col>
+                  ))}
                 </Row>
               </Col>
             </Row>
@@ -243,4 +307,4 @@ const FormCotizacion = (props) => {
     </section>
   )
 }
-export default FormCotizacion
+export default FormGeneraTuRetiro

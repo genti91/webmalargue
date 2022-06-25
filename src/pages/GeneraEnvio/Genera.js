@@ -1,7 +1,8 @@
 import React from 'react'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
-import FormGenera from '../../components/FormGenera'
+import FormGeneraTuRetiro from "../../components/FormGeneraTuRetiro"
+// import FormGenera from '../../components/FormGenera'
 
 import './Genera.scss'
 
@@ -19,7 +20,8 @@ const Genera = () => {
             <h2>Envianos tu consulta</h2>
           </div> */}
           <div id='FormCotizador' className='pb-5'>
-            <FormGenera />
+            {/* <FormGenera /> */}
+            <FormGeneraTuRetiro />
           </div>
         </div>
       </div>

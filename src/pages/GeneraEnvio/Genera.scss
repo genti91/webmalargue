@@ -10,6 +10,16 @@
         margin-top: 85px;
         margin-bottom: 40px;
       }
+      h3 {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        color: var(--bs-primary) !important;
+        // margin-top: 85px;
+        // margin-bottom: 40px;
+        margin-block: 30px;
+        text-decoration: underline;
+      }
       label {
         font-weight: 500;
         font-size: 16px;

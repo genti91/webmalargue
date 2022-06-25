@@ -132,7 +132,7 @@ const FormGenera = (props) => {
                 <Row>
                   <Col xs={12} md={9}>
                     <h2>
-                      Completá el formulario y nos pondremos en contacto con vos
+                      Completá el formulario y generatmos tu retiro
                     </h2>
                   </Col>
                   <Col md={6}>
