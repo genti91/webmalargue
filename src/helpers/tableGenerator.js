@@ -17,7 +17,7 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
   })
   dataSource.forEach((row) => {
     formedRows += `<tr style="text-align: center;">`
-    Object.keys({...columns, sumatoria: 'Sumatoria'}).forEach((accesKey) => {
+    Object.keys({...columns, sumatoria: 'Sumatoria m3'}).forEach((accesKey) => {
       if (accesKey !== 'seleccionar') {
         if (accesKey === 'sumatoria') {
           sumatoriaMetros = (((sumatoriaHandler(row)||0))*Number(row?.cantBultos)).toFixed(4)
