@@ -147,7 +147,7 @@ const Form = (props) => {
           <input
             type='submit'
             className='btn btn-primary bg-primary'
-            value='Cotizá tu envío'
+            value='Enviar consulta'
             style={{
               outline: 'none',
               border: 'none',
