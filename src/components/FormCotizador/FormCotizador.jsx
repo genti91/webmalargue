@@ -240,10 +240,10 @@ const FormCotizacion = (props) => {
               </Col>
             </Row>
           </form>
-          <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
+          {/* <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
               columns: tableCotizaDictionary,
               dataSource: bultos,
-            })}} />
+            })}} /> */}
         </Container>
       </Row>
     </section>

@@ -1,13 +1,3 @@
-import {
-  FaMapMarkerAlt,
-  FaUser,
-  FaEnvelope,
-  FaCommentDots,
-  FaShippingFast,
-  FaWeight,
-  FaMapMarkedAlt,
-} from 'react-icons/fa'
-import { IoBusinessSharp } from 'react-icons/io5'
 const form_shipment = [
   {
     name: 'name',
@@ -127,7 +117,6 @@ const form_shipment = [
     validation: /^\S+@\S+$/i,
     // icon: <FaWeight />,
   },
-
 
   {
     name: 'service',
@@ -303,6 +292,32 @@ const form_shipment = [
     errorMessage: 'Por favor completa este campo',
     validation: /^[0-9]+$/i,
     // icon: <FaEnvelope />,
+  },
+  {
+    name: 'asunto',
+    type: 'select',
+    options: [
+      {
+        value: 'Consulta',
+        name: 'Consulta',
+      },
+      {
+        value: 'Sugerencia y/o reclamos',
+        name: 'Sugerencia y/o reclamos',
+      },
+      {
+        value: 'Comentarios',
+        name: 'Comentarios',
+      },
+      {
+        value: 'Otro',
+        name: 'Otro',
+      },
+    ],
+    placeholder: 'Consulta',
+    required: true,
+    errorMessage: 'Por favor completa este campo para enviar tu consulta',
+    validation: /^\S+@\S+$/i,
   },
   {
     name: 'message',

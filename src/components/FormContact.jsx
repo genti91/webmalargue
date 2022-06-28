@@ -123,12 +123,12 @@ const Form = (props) => {
           </label>
           <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
         </Col>
-        {/* <Col
-            md={6}
-            >
-            <label>Asunto<span>*</span></label>
-            <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
-          </Col> */}
+        <Col md={12}>
+          <label>
+            Asunto<span>*</span>
+          </label>
+          <TextInput {...form_shipment[21]} setInForm={setInForm} form={form} />
+        </Col>
       </Row>
       <label>
         Tu mensaje<span>*</span>
