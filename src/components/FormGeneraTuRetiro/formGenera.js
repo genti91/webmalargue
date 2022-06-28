@@ -67,8 +67,6 @@ export const formGeneraRemitente = [
     inputProps: {
       name: 'Rpiso',
       type: 'text',
-      required: true,
-      errorMessage: 'Por favor completa este campo',
     },
   },
   {
@@ -77,8 +75,6 @@ export const formGeneraRemitente = [
     inputProps: {
       name: 'Rdpto',
       type: 'text',
-      required: true,
-      errorMessage: 'Por favor completa este campo',
     },
   },
   // {

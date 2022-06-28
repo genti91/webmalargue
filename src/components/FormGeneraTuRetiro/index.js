@@ -74,7 +74,7 @@ const FormGeneraTuRetiro = () => {
       emailjs
         .send(
           'service_lv636bu',
-          'template_cb5y2fc',
+          'template_ivcl13k',
           {
             ...form,
             seguro: seguro ? 'Si' : 'No',

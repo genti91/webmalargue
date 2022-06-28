@@ -85,7 +85,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             validation={/^[0-9]+$/}
             required
             name='peso'
-            placeholder='Peso sumatoria total (kg)'
+            placeholder='Peso por bulto (kg)'
             value={form.peso || ''}
             setInForm={setInForm}
             form={form}

@@ -81,7 +81,7 @@ const FormCotizacion = (props) => {
       emailjs
         .send(
           'service_lv636bu',
-          'template_cb5y2fc',
+          'template_kpseg54',
           {
             ...form,
             seguro: seguro ? 'Si' : 'No',
