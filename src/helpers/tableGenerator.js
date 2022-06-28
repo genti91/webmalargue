@@ -37,8 +37,11 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
     )
     formedRows += `</tr>`
   })
-  console.log(sumatoriaMetrosTotal);
+  console.log(sumatoriaMetrosTotal)
   return `<table style="margin-top: 20px; border-spacing: 0px !important;"><thead><tr>${formedColumns}</tr></thead><tbody>${formedRows}</tbody></table><div><p style="margin-top: 10px; margin-bottom: 0px;">Peso Total: <span style="font-weight: bold;">${sumatoriaBultos}</span></p><p>Metros Aforados: <span style="font-weight: bold;">${(
     (sumatoriaMetrosTotal || 0) * 350
-  ).toFixed(4)}</span></><br></div>`
+  ).toFixed(4)}</span></p>
+  <p>Metros Cúbicos: <span style="font-weight: bold;">${(
+    sumatoriaMetrosTotal || 0
+  ).toFixed(4)}</span></p></><br></div>`
 }
