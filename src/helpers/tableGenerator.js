@@ -24,7 +24,7 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
             sumatoriaMetros = (
               (sumatoriaHandler(row) || 0) * Number(row?.cantBultos)
             ).toFixed(4)
-            sumatoriaBultos += row?.cantBultos * row?.peso
+            sumatoriaBultos += parseInt(row?.cantBultos) * parseInt(row?.peso)
             formedRows += `<td style="border: 0.5px solid #111; box-sizing: border-box;">${
               sumatoriaMetros || 0
             }</td>`
