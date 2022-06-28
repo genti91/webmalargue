@@ -91,12 +91,7 @@ const FormGenera = (props) => {
     if (validate(form)) {
       form.page = 'Individuos'
       emailjs
-        .send(
-          'service_vv6p4ni',
-          'template_0xseu89',
-          form,
-          'user_EpLgdCxfdM9GfQOvqBiSt'
-        )
+        .send('service_vv6p4ni', 'template_ivcl13k', form, 'fRtOuVBrm3PpHzBca')
         .then(
           (response) => {
             Swal.fire({
@@ -131,9 +126,7 @@ const FormGenera = (props) => {
               <Col md={10}>
                 <Row>
                   <Col xs={12} md={9}>
-                    <h2>
-                      Completá el formulario y generatmos tu retiro
-                    </h2>
+                    <h2>Completá el formulario y generatmos tu retiro</h2>
                   </Col>
                   <Col md={6}>
                     <label>Nombre Remitente</label>
@@ -167,7 +160,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6} >
+                  <Col md={6}>
                     <label>Destino</label>
                     <TextInput
                       {...form_shipment[4]}
@@ -247,7 +240,7 @@ const FormGenera = (props) => {
                       form={form}
                     />
                   </Col>
-                  <Col md={6} >
+                  <Col md={6}>
                     <label>Cuit</label>
                     <TextInput
                       {...form_shipment[20]}
@@ -265,12 +258,8 @@ const FormGenera = (props) => {
                     {/* <span className="helper_text">
                         *Recordá completar todos los campos del formulario.
                       </span> */}
-                    <Row
-                      className='justify-content-end'
-                    >
-                      <Col
-                        md={2}
-                      >
+                    <Row className='justify-content-end'>
+                      <Col md={2}>
                         <input
                           type='submit'
                           className='btn btn-primary bg-primary'

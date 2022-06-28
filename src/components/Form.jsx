@@ -1,127 +1,122 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "../hooks";
-import TextInput from "./TextInput";
-import { form_shipment } from "../constant/forms";
-import TextInputArea from "./TextInputArea";
-import emailjs from "emailjs-com";
-import Swal from "sweetalert2";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useForm } from '../hooks'
+import TextInput from './TextInput'
+import { form_shipment } from '../constant/forms'
+import TextInputArea from './TextInputArea'
+import emailjs from 'emailjs-com'
+import Swal from 'sweetalert2'
 const Form = (props) => {
   const { form, setInForm } = useForm({
-    origin: "",
-    destiny: "",
-    name: "",
-    email: "",
-    message: "",
-  });
-  const history = useNavigate();
+    origin: '',
+    destiny: '',
+    name: '',
+    email: '',
+    message: '',
+  })
+  const history = useNavigate()
   const resetForm = () => {
     setInForm({
-      origin: "",
-      destiny: "",
-      name: "",
-      email: "",
-      message: "",
-    });
-  };
+      origin: '',
+      destiny: '',
+      name: '',
+      email: '',
+      message: '',
+    })
+  }
   const validate = (form) => {
-    const { origin, destiny, name, email, message } = form;
+    const { origin, destiny, name, email, message } = form
     if (origin.length === 0) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debe ingresar una ciudad de origen",
+        position: 'center',
+        icon: 'error',
+        title: 'Debe ingresar una ciudad de origen',
         showConfirmButton: false,
         timer: 1500,
-      });
-      return false;
+      })
+      return false
     } else if (destiny.length === 0) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debe ingresar una ciudad de destino",
+        position: 'center',
+        icon: 'error',
+        title: 'Debe ingresar una ciudad de destino',
         showConfirmButton: false,
         timer: 1500,
-      });
-      return false;
+      })
+      return false
     } else if (name.length === 0) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debe ingresar un nombre",
+        position: 'center',
+        icon: 'error',
+        title: 'Debe ingresar un nombre',
         showConfirmButton: false,
         timer: 1500,
-      });
-      return false;
+      })
+      return false
     } else if (email.length === 0) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debe ingresar un email",
+        position: 'center',
+        icon: 'error',
+        title: 'Debe ingresar un email',
         showConfirmButton: false,
         timer: 1500,
-      });
-      return false;
+      })
+      return false
     } else if (message.length === 0) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Debe ingresar un mensaje",
+        position: 'center',
+        icon: 'error',
+        title: 'Debe ingresar un mensaje',
         showConfirmButton: false,
         timer: 1500,
-      });
-      return false;
+      })
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   const submitForm = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (validate(form)) {
-      form.page = "Individuos";
+      form.page = 'Individuos'
       emailjs
-        .send(
-          "service_vv6p4ni",
-          "template_sa97o4k",
-          form,
-          "user_EpLgdCxfdM9GfQOvqBiSt"
-        )
+        .send('service_vv6p4ni', 'template_cb5y2fc', form, 'fRtOuVBrm3PpHzBca')
         .then(
           (response) => {
             Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Formulario enviado correctamente",
+              position: 'center',
+              icon: 'success',
+              title: 'Formulario enviado correctamente',
               showConfirmButton: false,
               timer: 1500,
-            });
-            history.push("/gracias");
-            resetForm();
+            })
+            history.push('/gracias')
+            resetForm()
           },
           (err) => {
             Swal.fire({
-              position: "center",
-              icon: "error",
-              title: "Error al enviar el formulario",
+              position: 'center',
+              icon: 'error',
+              title: 'Error al enviar el formulario',
               showConfirmButton: false,
               timer: 1500,
-            });
-            console.log("FAILED...", err);
+            })
+            console.log('FAILED...', err)
           }
-        );
-    } 
-  };
+        )
+    }
+  }
   return (
-    <div className="container-form text-center">
-      <span className="form-title">
+    <div className='container-form text-center'>
+      <span className='form-title'>
         Cotizá tu envío completando todos tus datos. From
       </span>
-      <form id="contact-form" onSubmit={submitForm} method="POST">
-        <div className="wrapper_inputs">
+      <form id='contact-form' onSubmit={submitForm} method='POST'>
+        <div className='wrapper_inputs'>
           <TextInput {...form_shipment[0]} setInForm={setInForm} form={form} />
           <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} />
         </div>
-        <div className="wrapper_inputs">
+        <div className='wrapper_inputs'>
           <TextInput {...form_shipment[2]} setInForm={setInForm} form={form} />
           <TextInput {...form_shipment[3]} setInForm={setInForm} form={form} />
         </div>
@@ -130,20 +125,20 @@ const Form = (props) => {
           setInForm={setInForm}
           form={form}
         />
-        <span className="helper_text">
+        <span className='helper_text'>
           *Recordá completar todos los campos del formulario.
         </span>
         <input
-          type="submit"
-          className="btn-pill-quote bg-secondary"
-          value="Cotizá tu envío"
+          type='submit'
+          className='btn-pill-quote bg-secondary'
+          value='Cotizá tu envío'
           style={{
-            outline: "none",
-            border: "none",
+            outline: 'none',
+            border: 'none',
           }}
         />
       </form>
     </div>
-  );
-};
-export default Form;
+  )
+}
+export default Form

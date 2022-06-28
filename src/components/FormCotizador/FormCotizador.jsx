@@ -81,13 +81,13 @@ const FormCotizacion = (props) => {
       emailjs
         .send(
           'service_vv6p4ni',
-          'template_sa97o4k',
+          'template_cb5y2fc',
           {
             ...form,
-            seguro: seguro ? 'Si' : 'No',	
-            tableTemplate
+            seguro: seguro ? 'Si' : 'No',
+            tableTemplate,
           },
-          'user_EpLgdCxfdM9GfQOvqBiSt'
+          'fRtOuVBrm3PpHzBca'
         )
         .then(
           () => {
@@ -171,16 +171,22 @@ const FormCotizacion = (props) => {
                             </Col>
                           </Row>
                           <TableComponent
-                            columns={{seleccionar: <Check
-                              type='checkbox'
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  const selected = bultos.map((_bulto, index)=> index)
-                                setSelectedBultos(selected)
-                                } else setSelectedBultos([])
-                              }}
-                            />,
-                              ...tableCotizaDictionary}}
+                            columns={{
+                              seleccionar: (
+                                <Check
+                                  type='checkbox'
+                                  onChange={(e) => {
+                                    if (e.target.checked) {
+                                      const selected = bultos.map(
+                                        (_bulto, index) => index
+                                      )
+                                      setSelectedBultos(selected)
+                                    } else setSelectedBultos([])
+                                  }}
+                                />
+                              ),
+                              ...tableCotizaDictionary,
+                            }}
                             dataSource={bultos.map((row, index) => ({
                               ...row,
                               seleccionar: (
@@ -209,20 +215,20 @@ const FormCotizacion = (props) => {
                       {item.inputProps.type.match(/radio|checkbox/) && (
                         <>
                           <Check
-                          {...item.inputProps}
-                          form={form}
-                          onChange={(e) =>setSeguro(e.target.checked)}
-                        />
-                        {seguro && (
-                          <TextInput
-                          type="text"
-                          name="valorDeclarado"
-                          placeholder="Valor Declarado"
-                          required
-                          setInForm={setInForm}
-                          form={form}
-                        />
-                        )}
+                            {...item.inputProps}
+                            form={form}
+                            onChange={(e) => setSeguro(e.target.checked)}
+                          />
+                          {seguro && (
+                            <TextInput
+                              type='text'
+                              name='valorDeclarado'
+                              placeholder='Valor Declarado'
+                              required
+                              setInForm={setInForm}
+                              form={form}
+                            />
+                          )}
                         </>
                       )}
                       {item.inputProps.type === 'submit' && (
