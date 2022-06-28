@@ -306,10 +306,6 @@ const form_shipment = [
         name: 'Sugerencia y/o reclamos',
       },
       {
-        value: 'Comentarios',
-        name: 'Comentarios',
-      },
-      {
         value: 'Otro',
         name: 'Otro',
       },
