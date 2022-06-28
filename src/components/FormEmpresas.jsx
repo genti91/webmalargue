@@ -107,7 +107,7 @@ const FormEmpresas = (props) => {
     if (validate(form)) {
       form.page = 'Empresas'
       emailjs
-        .send('service_vv6p4ni', 'template_cb5y2fc', form, 'fRtOuVBrm3PpHzBca')
+        .send('service_lv636bu', 'template_cb5y2fc', form, 'fRtOuVBrm3PpHzBca')
         .then(
           (response) => {
             Swal.fire({

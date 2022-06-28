@@ -80,7 +80,7 @@ const FormCotizacion = (props) => {
       form.page = 'Individuos'
       emailjs
         .send(
-          'service_vv6p4ni',
+          'service_lv636bu',
           'template_cb5y2fc',
           {
             ...form,
