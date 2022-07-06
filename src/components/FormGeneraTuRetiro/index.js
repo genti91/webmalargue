@@ -60,6 +60,16 @@ const FormGeneraTuRetiro = () => {
       })
       return false
     }
+    if (!bultos.length) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Por favor, es necesario cargar al menos un bulto',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      return false
+    }
     return true
   }
 

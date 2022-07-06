@@ -22,13 +22,34 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 12 },
+    colSize: { md: 6 },
     label: 'Email',
     inputProps: {
       name: 'email',
       type: 'email',
       required: true,
       errorMessage: 'Por favor completa este campo',
+    },
+  },
+  {
+    colSize: { md: 6 },
+    label: 'Rango Horario',
+    inputProps: {
+      name: 'rangoHorario',
+      type: 'select',
+      options: [
+        {
+          value: ' 8-12',
+          name: ' 8-12',
+        },
+        {
+          value: ' 12-16',
+          name: ' 12-16',
+        },
+      ],
+      placeholder: 'Seleccioná un rango horario',
+      required: true,
+      errorMessage: 'Por favor completa este campo para cotizar',
     },
   },
   {
