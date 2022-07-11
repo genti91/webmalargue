@@ -92,7 +92,6 @@ const FormAddBulto = ({ addBultoHandler }) => {
           />
           <TextInput
             type='text'
-            validation={/^[0-9]+$/}
             required
             name='descripcion'
             placeholder='Descripción'

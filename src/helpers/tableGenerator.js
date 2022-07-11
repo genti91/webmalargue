@@ -1,6 +1,6 @@
 const sumatoriaHandler = (row) =>
   Object.entries(row).reduce((acc, [keyReducer, value]) => {
-    if (keyReducer.match(/alto|ancho|profundidad|descripcion/))
+    if (keyReducer.match(/alto|ancho|profundidad/))
       return (acc = acc ? acc * (Number(value) / 100) : Number(value) / 100)
     return acc
   }, 0)
