@@ -222,7 +222,13 @@ const FormGeneraTuRetiro = () => {
                         <>
                           <Row className='justify-content-end'>
                             <Col md={6}>
-                              <Row className='justify-content-around'>
+                              <Row
+                                className='justify-content-around'
+                                style={{
+                                  marginRight: '10px',
+                                  marginLeft: '10px',
+                                }}
+                              >
                                 <FormAddBulto
                                   addBultoHandler={addBultoHandler}
                                 />

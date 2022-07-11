@@ -55,7 +55,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             validation={/^[0-9]+$/}
             required
             name='alto'
-            placeholder='Alto (cm)'
+            placeholder='Alto (En CM, ej: 80cm)'
             value={form.alto || ''}
             setInForm={setInForm}
             form={form}
@@ -65,7 +65,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             validation={/^[0-9]+$/}
             required
             name='ancho'
-            placeholder='Ancho (cm)'
+            placeholder='Ancho (En CM, ej: 80cm)'
             value={form.ancho || ''}
             setInForm={setInForm}
             form={form}
@@ -75,7 +75,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             validation={/^[0-9]+$/}
             required
             name='profundidad'
-            placeholder='Profundidad (cm)'
+            placeholder='Profundidad (En CM, ej: 80cm)'
             value={form.profundidad || ''}
             setInForm={setInForm}
             form={form}
@@ -85,7 +85,17 @@ const FormAddBulto = ({ addBultoHandler }) => {
             validation={/^[0-9]+$/}
             required
             name='peso'
-            placeholder='Peso por bulto (kg)'
+            placeholder='Peso por bulto (KG)'
+            value={form.peso || ''}
+            setInForm={setInForm}
+            form={form}
+          />
+          <TextInput
+            type='text'
+            validation={/^[0-9]+$/}
+            required
+            name='descripcion'
+            placeholder='Descripción'
             value={form.peso || ''}
             setInForm={setInForm}
             form={form}

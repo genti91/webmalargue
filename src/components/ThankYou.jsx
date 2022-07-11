@@ -18,8 +18,9 @@ const ThankYouPage = (props) => {
               className='hero-title-big'
               style={{ fontSize: '48px', lineHeight: '1.2em' }}
             >
-              Gracias por completar el formulario, pronto recibirás una
-              cotización en tu casilla de email
+              Gracias por realizar una cotización. Recibirás una cotización
+              dentro de las próximas 24hs hábiles en tu casilla de correo
+              electrónico
             </span>
           </div>
         </div>

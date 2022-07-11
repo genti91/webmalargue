@@ -102,7 +102,7 @@ const FormCotizacion = (props) => {
         .then(
           () => {
             Swal.fire({
-              position: 'top-end',
+              position: 'top',
               icon: 'success',
               title:
                 'Recibirás una cotización dentro de las próximas 24hs hábiles',
@@ -114,7 +114,7 @@ const FormCotizacion = (props) => {
           },
           (err) => {
             Swal.fire({
-              position: 'top-end',
+              position: 'top',
               icon: 'error',
               title: 'Error al enviar el formulario',
               showConfirmButton: false,
@@ -162,7 +162,13 @@ const FormCotizacion = (props) => {
                         <>
                           <Row className='justify-content-end'>
                             <Col md={6}>
-                              <Row className='justify-content-around'>
+                              <Row
+                                className='justify-content-around'
+                                style={{
+                                  marginRight: '10px',
+                                  marginLeft: '10px',
+                                }}
+                              >
                                 <FormAddBulto
                                   addBultoHandler={addBultoHandler}
                                 />
@@ -174,6 +180,7 @@ const FormCotizacion = (props) => {
                                     color: '#fff',
                                     backgroundColor: '#dc3545',
                                     borderColor: '#dc3545',
+                                    marginTop: '10px',
                                   }}
                                 >
                                   Quitar Bultos
