@@ -97,7 +97,8 @@ const FormGenera = (props) => {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Formulario enviado correctamente',
+              title:
+                'Recibirás una cotización dentro de las próximas 24hs hábiles',
               showConfirmButton: false,
               timer: 1500,
             })

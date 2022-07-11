@@ -66,7 +66,7 @@ const FormCotizacion = (props) => {
         timer: 1500,
       })
       return false
-    } 
+    }
     if (!bultos.length) {
       Swal.fire({
         position: 'top-end',
@@ -104,7 +104,8 @@ const FormCotizacion = (props) => {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Formulario enviado correctamente',
+              title:
+                'Recibirás una cotización dentro de las próximas 24hs hábiles',
               showConfirmButton: false,
               timer: 1500,
             })
