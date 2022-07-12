@@ -177,8 +177,19 @@ export const formCotiza = [
     },
   },
   {
+    colSize: { md: 12 },
+    label: 'Descripción de los bultos',
+    inputProps: {
+      name: 'descripcion',
+      type: 'text',
+      required: true,
+      errorMessage: 'Por favor completa este campo',
+      validation: false,
+    },
+  },
+  {
     colSize: { md: 6 },
-    label: 'Tipo de pago',
+    label: 'Forma de pago',
     inputProps: {
       name: 'pago',
       type: 'select',

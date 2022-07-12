@@ -312,6 +312,17 @@ export const formGeneraDestinatario = [
     },
   },
   {
+    colSize: { md: 6 },
+    label: 'Descripción de los bultos',
+    inputProps: {
+      name: 'descripcion',
+      type: 'text',
+      required: true,
+      errorMessage: 'Por favor completa este campo',
+      validation: false,
+    },
+  },
+  {
     colSize: { md: 12 },
     inputProps: {
       label: 'Incluir seguro',

@@ -4,5 +4,4 @@ export const tableCotizaDictionary = {
   ancho: 'Ancho (cm)',
   profundidad: 'Prof (cm)',
   peso: 'Peso (kg)',
-  descripcion: 'Desc.',
 }

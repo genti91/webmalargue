@@ -90,15 +90,6 @@ const FormAddBulto = ({ addBultoHandler }) => {
             setInForm={setInForm}
             form={form}
           />
-          <TextInput
-            type='text'
-            required
-            name='descripcion'
-            placeholder='Descripción'
-            value={form.peso || ''}
-            setInForm={setInForm}
-            form={form}
-          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant='primary' onClick={validateBulto}>
