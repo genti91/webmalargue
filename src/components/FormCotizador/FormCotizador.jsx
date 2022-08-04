@@ -109,7 +109,7 @@ const FormCotizacion = (props) => {
               showConfirmButton: false,
               timer: 1500,
             })
-            navigate('/gracias')
+            navigate('/gracias?type=cotizacion')
             resetForm()
           },
           (err) => {

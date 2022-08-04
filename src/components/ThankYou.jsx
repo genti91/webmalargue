@@ -1,4 +1,12 @@
+import { useSearchParams } from "react-router-dom"
+
+const paragraphByType = {
+  cotizacion: 'Muchas gracias por su contacto.  Estaremos enviando la cotización a la brevedad',
+  retiro: 'Gracias por solicitar el retiro. ¡Estaremos coordinando el mismo a la brevedad!'
+}
+
 const ThankYouPage = (props) => {
+  const [searchParams] = useSearchParams();
   return (
     <div
       className='hero-landing-1'
@@ -18,9 +26,10 @@ const ThankYouPage = (props) => {
               className='hero-title-big'
               style={{ fontSize: '48px', lineHeight: '1.2em' }}
             >
-              Gracias por realizar una cotización. Recibirás una cotización
+              {paragraphByType[searchParams.get('type')]}
+              {/* Gracias por realizar una cotización. Recibirás una cotización
               dentro de las próximas 24hs hábiles en tu casilla de correo
-              electrónico
+              electrónico */}
             </span>
           </div>
         </div>

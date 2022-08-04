@@ -102,7 +102,7 @@ const FormGeneraTuRetiro = () => {
               showConfirmButton: false,
               timer: 1500,
             })
-            navigate('/gracias')
+            navigate('/gracias?type=retiro')
             resetForm()
           },
           (err) => {
