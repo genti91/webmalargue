@@ -12,12 +12,19 @@ import TableComponent from '../TableComponent/TableComponent'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
 import FormAddBulto from '../FormCotizador/FormAddBulto'
 import { tableTemplateGenerator } from '../../helpers/tableGenerator'
+import { useSearchParams } from 'react-router-dom'
+
 const { Check } = Form
 
 const FormGeneraTuRetiro = () => {
   const [bultos, setBultos] = useState([])
   const [seguro, setSeguro] = useState(false)
   const [selectedBultos, setSelectedBultos] = useState([])
+  const [searchParams] = useSearchParams()
+
+  const ads = () => {
+    if (searchParams.get('ads')) return true
+  }
 
   const { form, setInForm, resetForm } = useForm({})
   const navigate = useNavigate()
@@ -89,6 +96,7 @@ const FormGeneraTuRetiro = () => {
             ...form,
             seguro: seguro ? 'Si' : 'No',
             tableTemplate,
+            ads: ads(),
           },
           'fRtOuVBrm3PpHzBca'
         )
