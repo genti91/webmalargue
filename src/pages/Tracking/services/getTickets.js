@@ -9,7 +9,6 @@ export const getTickets = async (trackingId) => {
       }
     )
     .catch((error) => {
-      console.log('file: getTickets.js ~ line 14 ~ getTickets ~ error', error)
       throw error
     })
   const { data } = await response.json()

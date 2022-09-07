@@ -32,19 +32,19 @@ const Tracking = () => {
             <SearchBox setTrackingData={setTrackingData} />
             {trackingData.length
               ? trackingData.map(({ des, fecha, cod, index, destino }) => (
-                <div key={cod} className='row align-items-center step'>
-                  <Bullet fecha={fecha} order={index} />
-                  <div className={'status col-10 d-flex flex-column'}>
-                    <div className='title'>
-                      {des}{' '}
-                      {(des === 'En sucursal ' ||
-                        des === 'En viaje a sucursal') &&
-                        destino}
+                  <div key={cod} className='row align-items-center step'>
+                    <Bullet fecha={fecha} order={index} />
+                    <div className={'status col-10 d-flex flex-column'}>
+                      <div className='title'>
+                        {des}{' '}
+                        {(des === 'En sucursal ' ||
+                          des === 'En viaje a sucursal') &&
+                          destino}
+                      </div>
+                      <div className='data'>{fecha}</div>
                     </div>
-                    <div className='data'>{fecha}</div>
                   </div>
-                </div>
-              ))
+                ))
               : null}
           </div>
         </div>

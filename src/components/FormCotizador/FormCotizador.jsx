@@ -12,12 +12,19 @@ import TableComponent from '../TableComponent/TableComponent'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
 import FormAddBulto from './FormAddBulto'
 import { tableTemplateGenerator } from '../../helpers/tableGenerator'
+import { useSearchParams } from 'react-router-dom'
+
 const { Check } = Form
 
 const FormCotizacion = (props) => {
   const [bultos, setBultos] = useState([])
   const [seguro, setSeguro] = useState(false)
   const [selectedBultos, setSelectedBultos] = useState([])
+  const [searchParams] = useSearchParams()
+
+  const ads = () => {
+    if (searchParams.get('ads')) return true
+  }
 
   const { form, setInForm, resetForm } = useForm({
     origin: '',
@@ -95,6 +102,7 @@ const FormCotizacion = (props) => {
           {
             ...form,
             seguro: seguro ? 'Si' : 'No',
+            ads: ads(),
             tableTemplate,
           },
           'fRtOuVBrm3PpHzBca'
