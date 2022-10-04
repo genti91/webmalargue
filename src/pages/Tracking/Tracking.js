@@ -46,6 +46,44 @@ const Tracking = () => {
                   </div>
                 ))
               : null}
+
+            {trackingData.length <= 0 ? (
+              <div
+                className='justify-content-center'
+                style={{
+                  display: 'flex',
+                  height: '100%',
+                  width: '100%',
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    marginRight: '25px',
+                  }}
+                >
+                  ¿Dudas sobre cómo <br />
+                  seguir tu envío?
+                </p>
+                <button
+                  className='btn btn-primary'
+                  style={{
+                    color: '#fff',
+                    textDecoration: 'none',
+                    width: '30%',
+                  }}
+                  type='button'
+                >
+                  <a
+                    href='/envio'
+                    style={{ color: '#fff', textDecoration: 'none' }}
+                  >
+                    Seguí esta guía
+                  </a>
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
