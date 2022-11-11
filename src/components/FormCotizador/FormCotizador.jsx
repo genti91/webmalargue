@@ -18,6 +18,7 @@ const FormCotizacion = (props) => {
   const [bultos, setBultos] = useState([])
   const [seguro, setSeguro] = useState(false)
   const [selectedBultos, setSelectedBultos] = useState([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const { form, setInForm, resetForm } = useForm({
     origin: '',
@@ -83,6 +84,7 @@ const FormCotizacion = (props) => {
   const submitForm = (e) => {
     e.preventDefault()
     if (validate()) {
+      setIsSubmitting(true)
       const tableTemplate = tableTemplateGenerator({
         columns: tableCotizaDictionary,
         dataSource: bultos,
@@ -109,6 +111,7 @@ const FormCotizacion = (props) => {
               showConfirmButton: false,
               timer: 1500,
             })
+            setIsSubmitting(false)
             navigate('/gracias?type=cotizacion')
             resetForm()
           },
@@ -120,6 +123,7 @@ const FormCotizacion = (props) => {
               showConfirmButton: false,
               timer: 1500,
             })
+            setIsSubmitting(false)
             console.log('FAILED...', err)
           }
         )
@@ -250,7 +254,7 @@ const FormCotizacion = (props) => {
                         </>
                       )}
                       {item.inputProps.type === 'submit' && (
-                        <input {...item.inputProps} />
+                        <input {...item.inputProps} disabled={isSubmitting} value={isSubmitting ? 'Cargando...' : item.inputProps.value} />
                       )}
                     </Col>
                   ))}
