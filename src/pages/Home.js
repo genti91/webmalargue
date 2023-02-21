@@ -6,6 +6,7 @@ import { bgHome } from "../assets";
 import { BannerHome } from "../components/BannerHome/BannerHome";
 import { Novedades } from "../components/Novedades/Novedades";
 import { Container, Row } from "react-bootstrap";
+import { BannerHome1 } from '../components/BannerHome1';
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <Container>
         <CardDeck />
       </Container>
+      <BannerHome1 />
       <BannerHome />
       <Container>
         <Novedades />

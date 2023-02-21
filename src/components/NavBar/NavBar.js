@@ -124,6 +124,13 @@ export const NavBar = () => {
                 {links.contacto.name}
               </NavLink>
             </NavItem>
+            <NavItem>
+              <a
+                href='tel:08101122020'
+              >
+                0810-112-2020
+              </a>
+            </NavItem>
           </Nav>
         </Navbar.Collapse>
       </Container>

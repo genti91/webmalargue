@@ -14,7 +14,7 @@ import { isMobile } from "react-device-detect";
 import { SucursalesMobile } from "../../components/Sucursales/SucursalesMobile";
 
 const Contacto = () => {
-  const { phone, adress, social, email } = siteData;
+  const { phone, wpp, social, email } = siteData;
 
   const iconSize = "42";
   const iconColor = "#EB1C23";
@@ -38,24 +38,43 @@ const Contacto = () => {
             <div className="row">
               <div className="col-1">
                 <a
-                  href={"https://wa.me/" + phone.num}
+                  href={`tel:${phone.num}`}
                   target={"_blank"}
                   rel="noreferrer"
                 >
                   <button className="btn btn-outline-primary" type="button">
-                    {
-                      <WhatsAppIcon
-                        iconWidth={iconSize}
-                        iconFill={iconColor}
-                        iconHeight={iconSize}
-                      />
-                    }
+                    <WhatsAppIcon
+                      iconWidth={iconSize}
+                      iconFill={iconColor}
+                      iconHeight={iconSize}
+                    />
                   </button>
                 </a>
               </div>
-              <div className="col-11 ">
+              <div className="col-11">
                 <h3>Teléfono</h3>
                 <p>{phone.display}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-1">
+                <a
+                  href={"https://wa.me/" + wpp.num}
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  <button className="btn btn-outline-primary" type="button">
+                    <WhatsAppIcon
+                      iconWidth={iconSize}
+                      iconFill={iconColor}
+                      iconHeight={iconSize}
+                    />
+                  </button>
+                </a>
+              </div>
+              <div className="col-11">
+                <h3>Whatsapp</h3>
+                <p>{wpp.display}</p>
               </div>
             </div>
             <div className="row">

@@ -1,5 +1,9 @@
 const siteData = {
     phone: {
+        display: '0810-112-2020',
+        num: '08101122020',
+    },
+    wpp: {
         display: '+54 9 11 6362-2778',
         num: '5491163622778',
     },
