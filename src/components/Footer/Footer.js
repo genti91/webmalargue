@@ -13,7 +13,7 @@ export const Footer = () => {
       <Container id='termsAndCond' fluid>
         <Container>
           <Row>
-            <Col>{isMobile ? <Link to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link> : null}</Col>
+            <Col>{isMobile ? <Link style={{ color: '#222222', textDecoration: 'none' }} to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link> : null}</Col>
           </Row>
         </Container>
       </Container>

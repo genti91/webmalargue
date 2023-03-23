@@ -136,7 +136,7 @@ export const FooterDesk = () => {
             </div>
             <div className='col-md-6'>
               <p className='footerStrong'>
-              <Link to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link>
+              <Link style={{ color: '#222222', textDecoration: 'none' }} to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link>
               </p>
             </div>
           </div>
