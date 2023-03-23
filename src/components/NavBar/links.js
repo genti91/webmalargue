@@ -30,6 +30,14 @@ export const links = {
     to: '/cotiza',
     name: 'Cotiza',
   },
+  faq: {
+    to: '/preguntas-frecuentes',
+    name: 'FAQs',
+  },
+  privacyPolicy: {
+    to: '/politica-privacidad',
+    name: '',
+  },
   genera: {
     to: '/genera',
     name: 'Genera tu envío',

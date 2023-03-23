@@ -98,6 +98,13 @@ export const NavBar = () => {
             </NavItem>
             <NavItem>
               <NavLink
+                to={links.faq.to}
+              >
+                {links.faq.name}
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
                 to={links.cotiza.to}
               >
                 {links.cotiza.name}

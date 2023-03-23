@@ -24,6 +24,8 @@ import {
 import TagManager from 'react-gtm-module'
 import ScrollToTop from './ScrollToTop'
 import Envio from '../pages/Envio/Envio'
+import FAQPage from '../pages/FAQPage/FAQPage'
+import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy'
 
 const tagManagerArgs = {
   gtmId: 'GTM-KBPBZN4',
@@ -66,6 +68,10 @@ export const AppRouter = () => {
           element={[<NavBar />, <Cotiza />, <Footer />, <WhatsAppChat />]}
         />
         <Route
+          path={links.faq.to}
+          element={[<NavBar />, <FAQPage />, <Footer />, <WhatsAppChat />]}
+        />
+        <Route
           path={links.genera.to}
           element={[<NavBar />, <GeneraEnvio />, <Footer />, <WhatsAppChat />]}
         />
@@ -80,6 +86,10 @@ export const AppRouter = () => {
         <Route
           path={links.envio.to}
           element={[<NavBar />, <Envio />, <Footer />, <WhatsAppChat />]}
+        />
+        <Route
+          path={links.privacyPolicy.to}
+          element={[<NavBar />, <PrivacyPolicy />, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.contacto.to}

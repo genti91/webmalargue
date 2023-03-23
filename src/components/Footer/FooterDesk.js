@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import { isMobile } from 'react-device-detect'
+import { Link } from 'react-router-dom'
 
 import {
   tarjetas,
@@ -135,7 +136,7 @@ export const FooterDesk = () => {
             </div>
             <div className='col-md-6'>
               <p className='footerStrong'>
-                {/* Politicas de privacidad | Terminos y condiciones */}
+              <Link to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link>
               </p>
             </div>
           </div>

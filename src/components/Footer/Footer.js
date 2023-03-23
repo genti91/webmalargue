@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { isMobile } from 'react-device-detect'
+import { Link } from 'react-router-dom'
 import { FooterDesk } from './FooterDesk'
 
 import { FooterMobile } from './FooterMobile'
@@ -12,7 +13,7 @@ export const Footer = () => {
       <Container id='termsAndCond' fluid>
         <Container>
           <Row>
-            <Col>{/* Políticas de privacidad | Términos y condiciones */}</Col>
+            <Col>{isMobile ? <Link to='/politica-privacidad'>Políticas de privacidad | Términos y condiciones</Link> : null}</Col>
           </Row>
         </Container>
       </Container>
