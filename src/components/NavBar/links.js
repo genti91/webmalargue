@@ -32,7 +32,7 @@ export const links = {
   },
   faq: {
     to: '/preguntas-frecuentes',
-    name: 'FAQs',
+    name: 'FAQS',
   },
   privacyPolicy: {
     to: '/politica-privacidad',
