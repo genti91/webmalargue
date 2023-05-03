@@ -1,13 +1,12 @@
 import React from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
-import { isMobile } from 'react-device-detect'
 
 import {
   seguirEnvioIMG,
   seguirTuto01,
-  seguirTuto02,
   seguirTuto03,
   seguirTuto04,
+  imgRemitoSeguimiento
 } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import { links } from '../../components/NavBar/links'
@@ -48,7 +47,7 @@ const Envio = () => {
             <p>En tu remito, identificá tu número de seguimiento /tracking</p>
           </Col>
           <Col md={5} xs={12}>
-            <Image fluid alt={'Seguir envio paso02'} src={seguirTuto02} />
+            <Image fluid alt={'Seguir envio paso02'} src={imgRemitoSeguimiento} />
           </Col>
         </Row>
         <hr />

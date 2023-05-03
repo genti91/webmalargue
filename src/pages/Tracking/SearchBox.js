@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getTickets } from './services/getTickets'
 import Spinner from 'react-bootstrap/Spinner'
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 
 import './searchBox.scss'
@@ -102,7 +102,7 @@ export const SearchBox = ({ setTrackingData }) => {
     <>
       <form id='searchBox' className='d-flex' onSubmit={handleSubmit}>
         <Container>
-          <Row>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <input
               type='text'
               id='uname'
@@ -114,7 +114,7 @@ export const SearchBox = ({ setTrackingData }) => {
             <button onClick={handleSubmit} className={'btn btn-primary'}>
               Enviar
             </button>
-          </Row>
+          </div>
         </Container>
       </form>
       <div className='row justify-content-center mb-5'>

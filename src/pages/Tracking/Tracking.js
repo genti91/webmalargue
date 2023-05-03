@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { remitoIMG, seguimientoIMG } from '../../assets'
+import { imgRemito, seguimientoIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import './Tracking.scss'
 import { Bullet } from './Bullet'
 import { SearchBox } from './SearchBox'
+import { Link } from 'react-router-dom'
 
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState([])
@@ -22,29 +23,37 @@ const Tracking = () => {
         >
           <div className='col-md-6'>
             <h1 className='heroTitle'>
-              En tu remito encontrarás el número de seguimiento
+              Ingresá tu código de seguimiento
             </h1>
-            <img className='img-fluid mt-4' src={remitoIMG} alt='remito' />
-            <div>
-              <h3>Ingresá el número de seguimiento </h3>
-            </div>
 
             <SearchBox setTrackingData={setTrackingData} />
+            <h3 className='heroTitle' style={{ margin: 0, paddingTop: 0 }}>¿No sabes dónde encontrarlo?</h3>
+            <h4 style={{
+              fontFamily: 'Poppins',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '15px',
+              lineHeight: '30px',
+              textAlign: 'center',
+              color: '#2F3394'
+            }}>En tu remito encontrarás el código de seguimiento</h4>
+            <img className='img-fluid mt-4' src={imgRemito} alt='remito' />
+
             {trackingData.length
               ? trackingData.map(({ des, fecha, cod, index, destino }) => (
-                  <div key={cod} className='row align-items-center step'>
-                    <Bullet fecha={fecha} order={index} />
-                    <div className={'status col-10 d-flex flex-column'}>
-                      <div className='title'>
-                        {des}{' '}
-                        {(des === 'En sucursal ' ||
-                          des === 'En viaje a sucursal') &&
-                          destino}
-                      </div>
-                      <div className='data'>{fecha}</div>
+                <div key={cod} className='row align-items-center step'>
+                  <Bullet fecha={fecha} order={index} />
+                  <div className={'status col-10 d-flex flex-column'}>
+                    <div className='title'>
+                      {des}{' '}
+                      {(des === 'En sucursal ' ||
+                        des === 'En viaje a sucursal') &&
+                        destino}
                     </div>
+                    <div className='data'>{fecha}</div>
                   </div>
-                ))
+                </div>
+              ))
               : null}
 
             {trackingData.length <= 0 ? (
@@ -52,13 +61,14 @@ const Tracking = () => {
                 className='justify-content-center'
                 style={{
                   display: 'flex',
-                  height: '100%',
+                  height: '62px',
                   width: '100%',
+                  marginTop: '72px'
                 }}
               >
                 <p
                   style={{
-                    fontSize: '24px',
+                    fontSize: '20px',
                     fontWeight: 'bold',
                     marginRight: '25px',
                   }}
@@ -67,20 +77,22 @@ const Tracking = () => {
                   seguir tu envío?
                 </p>
                 <button
-                  className='btn btn-primary'
+                  className='btn-primary'
                   style={{
                     color: '#fff',
                     textDecoration: 'none',
                     width: '30%',
+                    height: '50px',
+                    borderRadius: '5px'
                   }}
                   type='button'
                 >
-                  <a
-                    href='/envio'
-                    style={{ color: '#fff', textDecoration: 'none' }}
+                  <Link
+                    to='/envio'
+                    style={{ color: '#fff', textDecoration: 'none', fontSize: '18px' }}
                   >
                     Seguí esta guía
-                  </a>
+                  </Link>
                 </button>
               </div>
             ) : null}
