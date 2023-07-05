@@ -89,53 +89,53 @@ const FormCotizacion = (props) => {
   }
 
   const submitForm = (e) => {
-    e.preventDefault()
-    if (validate()) {
-      setIsSubmitting(true)
-      const tableTemplate = tableTemplateGenerator({
-        columns: tableCotizaDictionary,
-        dataSource: bultos,
-      })
-      form.page = 'Individuos'
-      emailjs
-        .send(
-          'service_lv636bu',
-          'template_kpseg54',
-          {
-            ...form,
-            seguro: seguro ? 'Si' : 'No',
-            ads: ads(),
-            tableTemplate,
-          },
-          'fRtOuVBrm3PpHzBca'
-        )
-        .then(
-          () => {
-            Swal.fire({
-              position: 'top',
-              icon: 'success',
-              title:
-                'Recibirás una cotización dentro de las próximas 24hs hábiles',
-              showConfirmButton: false,
-              timer: 1500,
-            })
-            setIsSubmitting(false)
-            navigate('/gracias?type=cotizacion')
-            resetForm()
-          },
-          (err) => {
-            Swal.fire({
-              position: 'top',
-              icon: 'error',
-              title: 'Error al enviar el formulario',
-              showConfirmButton: false,
-              timer: 1500,
-            })
-            setIsSubmitting(false)
-            console.log('FAILED...', err)
-          }
-        )
-    }
+    // e.preventDefault()
+    // if (validate()) {
+    //   setIsSubmitting(true)
+    //   const tableTemplate = tableTemplateGenerator({
+    //     columns: tableCotizaDictionary,
+    //     dataSource: bultos,
+    //   })
+    //   form.page = 'Individuos'
+    //   emailjs
+    //     .send(
+    //       'service_lv636bu',
+    //       'template_kpseg54',
+    //       {
+    //         ...form,
+    //         seguro: seguro ? 'Si' : 'No',
+    //         ads: ads(),
+    //         tableTemplate,
+    //       },
+    //       'fRtOuVBrm3PpHzBca'
+    //     )
+    //     .then(
+    //       () => {
+    //         Swal.fire({
+    //           position: 'top',
+    //           icon: 'success',
+    //           title:
+    //             'Recibirás una cotización dentro de las próximas 24hs hábiles',
+    //           showConfirmButton: false,
+    //           timer: 1500,
+    //         })
+    //         setIsSubmitting(false)
+    //         navigate('/gracias?type=cotizacion')
+    //         resetForm()
+    //       },
+    //       (err) => {
+    //         Swal.fire({
+    //           position: 'top',
+    //           icon: 'error',
+    //           title: 'Error al enviar el formulario',
+    //           showConfirmButton: false,
+    //           timer: 1500,
+    //         })
+    //         setIsSubmitting(false)
+    //         console.log('FAILED...', err)
+    //       }
+    //     )
+    // }
   }
   return (
     <section>
