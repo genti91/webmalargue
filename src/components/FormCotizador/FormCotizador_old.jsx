@@ -13,7 +13,7 @@ import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
 import FormAddBulto from './FormAddBulto'
 import { tableTemplateGenerator } from '../../helpers/tableGenerator'
 import { useSearchParams } from 'react-router-dom'
-import { getCotizacion } from './services/getCotizacion'
+
 const { Check } = Form
 
 const FormCotizacion = (props) => {
@@ -88,73 +88,54 @@ const FormCotizacion = (props) => {
     return true
   }
 
-  const submitForm = async (e) => {
-    e.preventDefault()
-      
-    try{
-      let res = await getCotizacion({
-        cpOrigen: "5500",
-        cpDestino: "5500",
-        kilosReales: "30",
-        kilosAforados: "10",
-        metrosCubicos: "10",
-        bultos: 1,
-        valorDeclarado: "2000"
-      })
-      console.log(res)
-    }catch(err){
-      console.log(err)
-    }
-
-    if (validate()) {
-      console.log(form)
-      console.log(bultos)
-
-      // setIsSubmitting(true)
-      // const tableTemplate = tableTemplateGenerator({
-      //   columns: tableCotizaDictionary,
-      //   dataSource: bultos,
-      // })
-      // form.page = 'Individuos'
-      // emailjs
-      //   .send(
-      //     'service_lv636bu',
-      //     'template_kpseg54',
-      //     {
-      //       ...form,
-      //       seguro: seguro ? 'Si' : 'No',
-      //       ads: ads(),
-      //       tableTemplate,
-      //     },
-      //     'fRtOuVBrm3PpHzBca'
-      //   )
-      //   .then(
-      //     () => {
-      //       Swal.fire({
-      //         position: 'top',
-      //         icon: 'success',
-      //         title:
-      //           'Recibirás una cotización dentro de las próximas 24hs hábiles',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       setIsSubmitting(false)
-      //       navigate('/gracias?type=cotizacion')
-      //       resetForm()
-      //     },
-      //     (err) => {
-      //       Swal.fire({
-      //         position: 'top',
-      //         icon: 'error',
-      //         title: 'Error al enviar el formulario',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       setIsSubmitting(false)
-      //       console.log('FAILED...', err)
-      //     }
-      //   )
-    }
+  const submitForm = (e) => {
+    // e.preventDefault()
+    // if (validate()) {
+    //   setIsSubmitting(true)
+    //   const tableTemplate = tableTemplateGenerator({
+    //     columns: tableCotizaDictionary,
+    //     dataSource: bultos,
+    //   })
+    //   form.page = 'Individuos'
+    //   emailjs
+    //     .send(
+    //       'service_lv636bu',
+    //       'template_kpseg54',
+    //       {
+    //         ...form,
+    //         seguro: seguro ? 'Si' : 'No',
+    //         ads: ads(),
+    //         tableTemplate,
+    //       },
+    //       'fRtOuVBrm3PpHzBca'
+    //     )
+    //     .then(
+    //       () => {
+    //         Swal.fire({
+    //           position: 'top',
+    //           icon: 'success',
+    //           title:
+    //             'Recibirás una cotización dentro de las próximas 24hs hábiles',
+    //           showConfirmButton: false,
+    //           timer: 1500,
+    //         })
+    //         setIsSubmitting(false)
+    //         navigate('/gracias?type=cotizacion')
+    //         resetForm()
+    //       },
+    //       (err) => {
+    //         Swal.fire({
+    //           position: 'top',
+    //           icon: 'error',
+    //           title: 'Error al enviar el formulario',
+    //           showConfirmButton: false,
+    //           timer: 1500,
+    //         })
+    //         setIsSubmitting(false)
+    //         console.log('FAILED...', err)
+    //       }
+    //     )
+    // }
   }
   return (
     <section>
