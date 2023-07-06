@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IconContext } from "react-icons";
+
 const TextInput = (props) => {
   const [blur, setBlur] = useState(false);
   const handleChange = (e) => {
@@ -15,7 +16,8 @@ const TextInput = (props) => {
           name={props.name}
           type={props.type}
           placeholder={props.placeholder}
-          className="input_container__field"
+          // arreglar la clase de error
+          className={props.error ? "input_container__field_error" : "input_container__field"}
           onFocus={() => setBlur(!blur)}
           onBlur={() => setBlur(false)}
           onChange={(e) => handleChange(e)}

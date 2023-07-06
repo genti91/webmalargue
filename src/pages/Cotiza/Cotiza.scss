@@ -37,13 +37,17 @@
                     }
         
             }
-        
-            .input_area_container{
-                margin-top: 0PX;
-                margin-bottom: 2em;
-            }
-        
 
+            .input_area_container{
+              margin-top: 0PX;
+              margin-bottom: 2em;
+            }
+            
+            .input_container__field_error{
+              @extend .input_container__field;
+              border-color: var(--bs-error) !important;
+            }
+            
         }
 
         

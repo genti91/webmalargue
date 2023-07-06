@@ -22,6 +22,7 @@ const FormCotizacion = (props) => {
   const [selectedBultos, setSelectedBultos] = useState([])
   const [searchParams] = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErorrs] = useState({})
 
   const ads = () => {
     if (searchParams.get('ads')) return true
@@ -61,10 +62,33 @@ const FormCotizacion = (props) => {
   }
 
   const validate = () => {
-    const isInvalid = formCotiza.some((input) => {
+    var isInvalid = formCotiza.some((input) => {
       if (!input.inputProps?.required) return false
       return !form[input.inputProps?.name]
     })
+
+    // si el form esta completo chequea que los campos sean validos (hay que seguirlo y hacerlo mejor)
+    if (!isInvalid){
+      isInvalid = formCotiza.some((input) => {
+        if (input.inputProps.name === 'email') {
+          if (!form.email.includes('@') || !form.email.includes('.')){
+            setErorrs({ ...errors, email: 'Email invalido' })
+            return true;
+          } else {
+            setErorrs({ ...errors, email: null })
+          }
+        }
+        if (input.inputProps.name === 'tel') {
+          if (isNaN(form.tel)) {
+            setErorrs({ ...errors, tel: 'Teléfono invalido' })
+            return true;
+          } else {
+            setErorrs({ ...errors, tel: null })
+          }
+        }
+      })
+    }
+
     if (isInvalid) {
       Swal.fire({
         position: 'top-end',
@@ -91,31 +115,15 @@ const FormCotizacion = (props) => {
   const submitForm = async (e) => {
     e.preventDefault()
       
-    try{
-      let res = await getCotizacion({
-        cpOrigen: "5500",
-        cpDestino: "5500",
-        kilosReales: "30",
-        kilosAforados: "10",
-        metrosCubicos: "10",
-        bultos: 1,
-        valorDeclarado: "2000"
-      })
-      console.log(res)
-    }catch(err){
-      console.log(err)
-    }
-
+    
     if (validate()) {
-      console.log(form)
-      console.log(bultos)
+      setIsSubmitting(true)
+      const tableTemplate = tableTemplateGenerator({
+        columns: tableCotizaDictionary,
+        dataSource: bultos,
+      })
+      form.page = 'Individuos'
 
-      // setIsSubmitting(true)
-      // const tableTemplate = tableTemplateGenerator({
-      //   columns: tableCotizaDictionary,
-      //   dataSource: bultos,
-      // })
-      // form.page = 'Individuos'
       // emailjs
       //   .send(
       //     'service_lv636bu',
@@ -128,32 +136,40 @@ const FormCotizacion = (props) => {
       //     },
       //     'fRtOuVBrm3PpHzBca'
       //   )
-      //   .then(
-      //     () => {
-      //       Swal.fire({
-      //         position: 'top',
-      //         icon: 'success',
-      //         title:
-      //           'Recibirás una cotización dentro de las próximas 24hs hábiles',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       setIsSubmitting(false)
-      //       navigate('/gracias?type=cotizacion')
-      //       resetForm()
-      //     },
-      //     (err) => {
-      //       Swal.fire({
-      //         position: 'top',
-      //         icon: 'error',
-      //         title: 'Error al enviar el formulario',
-      //         showConfirmButton: false,
-      //         timer: 1500,
-      //       })
-      //       setIsSubmitting(false)
-      //       console.log('FAILED...', err)
-      //     }
-      //   )
+
+      // llamada a la api de cotizacion y navegacion a la pagina de gracias con el mensaje de cotizacion
+      getCotizacion({
+        cpOrigen: form.originCP,
+        cpDestino: form.destinyCP,
+        ...tableTemplate
+      })
+        .then(
+          (res) => {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title:
+                'Recibirás una cotización dentro de las próximas 24hs hábiles',
+              showConfirmButton: false,
+              timer: 1500,
+            })
+            setIsSubmitting(false)
+            // envia por parametro el mensaje de cotizacion a el componente ThankYou.jsx
+            navigate('/gracias?type=cotizacion&msg=' + res.msg)
+            resetForm()
+          },
+          (err) => {
+            Swal.fire({
+              position: 'top',
+              icon: 'error',
+              title: 'Error al enviar el formulario',
+              showConfirmButton: false,
+              timer: 1500,
+            })
+            setIsSubmitting(false)
+            console.log('FAILED...', err)
+          }
+        )
     }
   }
   return (
@@ -179,6 +195,7 @@ const FormCotizacion = (props) => {
                               {...item.inputProps}
                               setInForm={setInForm}
                               form={form}
+                              error={errors[item.inputProps.name]}
                             />
                           ) : (
                             <TextInputArea
