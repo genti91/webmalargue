@@ -7,6 +7,7 @@ const TextInput = (props) => {
     props.setInForm( e.target.name, e.target.value);
   };
   return (
+    // DATA in border_active!!!
     <div className={`input_container ${blur && "border_active"}`}>
       <IconContext.Provider value={{ className: "input_icon" }}>
         <div className="input_container__icon">{props.icon}</div>

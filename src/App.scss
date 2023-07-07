@@ -181,6 +181,11 @@ textarea {
   border: 2px solid #2f3394;
   border-radius: 8px;
 }
+.border_active_error {
+  color: red !important;
+  border: 2px solid red !important;
+  border-radius: 8px;
+}
 .input_icon {
   color: #2f3394;
   height: 20px;
