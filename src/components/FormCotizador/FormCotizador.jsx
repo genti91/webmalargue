@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import emailjs from 'emailjs-com'
@@ -61,6 +61,12 @@ const FormCotizacion = (props) => {
     setBultos(bultos.filter((_bulto, index) => !selectedBultos.includes(index)))
     setSelectedBultos([])
   }
+
+  useEffect(() => {
+    let errors = validateInputs(form)
+    setErorrs(errors)
+
+  }, [form])
 
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
