@@ -5,6 +5,8 @@ import { useForm } from '../../hooks'
 import TextInput from '../TextInput'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
 
+const TituloGuia = {marginTop:"10px" , marginBottom:"-15px"};
+
 const FormAddBulto = ({ addBultoHandler }) => {
   const [show, setShow] = useState(false)
   const { form, setInForm, resetForm } = useForm({})
@@ -40,6 +42,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
+          <div style={TituloGuia}>Cantidad de Bultos</div>
           <TextInput
             type='text'
             validation={/^[0-9]+$/}
@@ -50,6 +53,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             setInForm={setInForm}
             form={form}
           />
+          <div style={TituloGuia}>Alto en cm</div>
           <TextInput
             type='text'
             validation={/^[0-9]+$/}
@@ -60,6 +64,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             setInForm={setInForm}
             form={form}
           />
+          <div style={TituloGuia}>Ancho en cm</div>
           <TextInput
             type='text'
             validation={/^[0-9]+$/}
@@ -70,6 +75,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             setInForm={setInForm}
             form={form}
           />
+          <div style={TituloGuia}>Profundidad en cm</div>
           <TextInput
             type='text'
             validation={/^[0-9]+$/}
@@ -80,6 +86,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             setInForm={setInForm}
             form={form}
           />
+          <div style={TituloGuia}>Peso en kg</div>
           <TextInput
             type='text'
             validation={/^[0-9]+$/}
