@@ -14,6 +14,7 @@ import FormAddBulto from './FormAddBulto'
 import { tableTemplateGenerator } from '../../helpers/tableGenerator'
 import { useSearchParams } from 'react-router-dom'
 import { getCotizacion } from './services/getCotizacion'
+import { validateInputs } from './validateInputs'
 const { Check } = Form
 
 const FormCotizacion = (props) => {
@@ -67,26 +68,14 @@ const FormCotizacion = (props) => {
       return !form[input.inputProps?.name]
     })
 
-    // si el form esta completo chequea que los campos sean validos (hay que seguirlo y hacerlo mejor)
+    console.log(isInvalid)
+
+    // si el form esta completo chequea que los campos sean validos
     if (!isInvalid){
-      isInvalid = formCotiza.some((input) => {
-        if (input.inputProps.name === 'email') {
-          if (!form.email.includes('@') || !form.email.includes('.')){
-            setErorrs({ ...errors, email: 'Email invalido' })
-            return true;
-          } else {
-            setErorrs({ ...errors, email: null })
-          }
-        }
-        if (input.inputProps.name === 'tel') {
-          if (isNaN(form.tel)) {
-            setErorrs({ ...errors, tel: 'Teléfono invalido' })
-            return true;
-          } else {
-            setErorrs({ ...errors, tel: null })
-          }
-        }
-      })
+      let errors = validateInputs(form)
+      console.log('errors:',errors)
+      setErorrs(errors)
+      if (errors) isInvalid = true
     }
 
     if (isInvalid) {
