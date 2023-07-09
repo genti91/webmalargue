@@ -18,7 +18,7 @@ export const formCotiza = [
       type: 'tel',
       required: true,
       errorMessage: 'Por favor completa este campo',
-      validation: /^[0-9]+$/i,
+      validation: /^(?:\d{8,10})$/i,
     },
   },
   {
@@ -29,6 +29,7 @@ export const formCotiza = [
       type: 'email',
       required: true,
       errorMessage: 'Por favor completa este campo',
+      validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
   },
   {

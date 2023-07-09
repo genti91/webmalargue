@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import emailjs from 'emailjs-com'
@@ -48,16 +48,7 @@ const FormCotizacion = (props) => {
 
   const [tarifa, setTarifa] = useState([])
 
-  // const getTarifa = async () => {
-  //   try {
-  //     let res = await getTarifa()
-  //     setLocations(res.locOrigen)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-  useEffect(async () => {
+  useLayoutEffect(async () => {
     try {
       let res = await getTarifa()
       setTarifa(res)
@@ -65,10 +56,6 @@ const FormCotizacion = (props) => {
       console.log(err)
     }
   }, [])
-
-  useEffect(() => {
-    console.log(tarifa)
-  }, [tarifa])
 
   const addBultoHandler = (newBulto) => {
     if (bultos.length === 10)
@@ -107,7 +94,7 @@ const FormCotizacion = (props) => {
       let errors = validateInputs(form)
       console.log('errors:',errors)
       setErorrs(errors)
-      if (errors) isInvalid = true
+      if (Object.keys(errors).length !== 0) isInvalid = true
     }
 
     if (isInvalid) {
