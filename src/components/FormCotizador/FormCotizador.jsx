@@ -15,6 +15,7 @@ import { tableTemplateGenerator } from '../../helpers/tableGenerator'
 import { useSearchParams } from 'react-router-dom'
 import { getCotizacion } from './services/getCotizacion'
 import { validateInputs } from './validateInputs'
+import LocationSelect from '../LocationSelect/LocationSelect'
 import { getTarifa } from './services/getTarifa'
 const { Check } = Form
 
@@ -45,6 +46,30 @@ const FormCotizacion = (props) => {
   })
   const navigate = useNavigate()
 
+  const [tarifa, setTarifa] = useState([])
+
+  // const getTarifa = async () => {
+  //   try {
+  //     let res = await getTarifa()
+  //     setLocations(res.locOrigen)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
+  useEffect(async () => {
+    try {
+      let res = await getTarifa()
+      setTarifa(res)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(tarifa)
+  }, [tarifa])
+
   const addBultoHandler = (newBulto) => {
     if (bultos.length === 10)
       return Swal.fire({
@@ -68,19 +93,6 @@ const FormCotizacion = (props) => {
     setErorrs(errors)
 
   }, [form])
-
-  const printTarifa = async (tarifa) => {
-    try {
-      let res = await getTarifa()
-      console.log(res)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    printTarifa()
-  }, [])
 
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
@@ -123,7 +135,7 @@ const FormCotizacion = (props) => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-      
+      console.log('form:',form)
     
     if (validate()) {
       setIsSubmitting(true)
@@ -199,20 +211,31 @@ const FormCotizacion = (props) => {
                       {item?.label && <label>{item.label}</label>}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
                         <>
-                          {item.inputProps.type !== 'textarea' ? (
-                            <TextInput
+                          {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? 
+                            <LocationSelect
                               {...item.inputProps}
+                              locations={item.inputProps.name === 'origin' ? tarifa.locOrigen : tarifa.locDestino}
                               setInForm={setInForm}
-                              form={form}
                               error={errors[item.inputProps.name]}
                             />
-                          ) : (
-                            <TextInputArea
-                              {...item.inputProps}
-                              setInForm={setInForm}
-                              form={form}
-                            />
-                          )}
+                            :
+                            <>
+                              {item.inputProps.type !== 'textarea' ? (
+                                <TextInput
+                                  {...item.inputProps}
+                                  setInForm={setInForm}
+                                  form={form}
+                                  error={errors[item.inputProps.name]}
+                                />
+                              ) : (
+                                <TextInputArea
+                                  {...item.inputProps}
+                                  setInForm={setInForm}
+                                  form={form}
+                                />
+                              )}
+                            </>
+                          }
                         </>
                       )}
                       {item.inputProps.type === 'table' && (
