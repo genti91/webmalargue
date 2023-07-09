@@ -99,11 +99,11 @@ const FormAddBulto = ({ addBultoHandler }) => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='primary' onClick={validateBulto}>
-            Guardar
-          </Button>
           <Button variant='secondary' onClick={handleClose}>
             Cancelar
+          </Button>
+          <Button variant='primary' onClick={validateBulto}>
+            Guardar
           </Button>
         </Modal.Footer>
       </Modal>
