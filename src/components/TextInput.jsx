@@ -8,7 +8,7 @@ const TextInput = (props) => {
   };
   return (
     // DATA in border_active!!!
-    <div className={`input_container ${blur && "border_active"}`}>
+    <div className={`input_container ` + (blur && (props.error ? 'border_active_error' : 'border_active' ))}>
       <IconContext.Provider value={{ className: "input_icon" }}>
         <div className="input_container__icon">{props.icon}</div>
       </IconContext.Provider>
@@ -26,7 +26,7 @@ const TextInput = (props) => {
       ) : (
         <>
           <select
-            name={props.name}
+            name={props.name} 
             id={props.name}
             className="input_container__field"
             onFocus={() => setBlur(!blur)}

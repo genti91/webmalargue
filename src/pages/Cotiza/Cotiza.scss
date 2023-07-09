@@ -31,7 +31,11 @@
             border-color: transparent !important; /* Change to transparent to hide the focus border */
           }
         }
-        
+        .input_container__field_error {
+          @extend .input_container__field;
+          border: solid 1px var(--bs-error) !important;
+          
+        }
       }
     }
   
