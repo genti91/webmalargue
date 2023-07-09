@@ -32,7 +32,7 @@ const LocationSelect = ({locations, setInForm, name}) => {
   };
 
   const handleOptionClick = (option) => {
-    setInForm( name, option.nombre)
+    setInForm( name, option.id)
     setSearchQuery(option.nombre)
     setDropdownVisible(false)
   };

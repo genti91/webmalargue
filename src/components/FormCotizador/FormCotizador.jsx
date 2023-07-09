@@ -147,8 +147,8 @@ const FormCotizacion = (props) => {
 
       // llamada a la api de cotizacion y navegacion a la pagina de gracias con el mensaje de cotizacion
       getCotizacion({
-        cpOrigen: form.originCP,
-        cpDestino: form.destinyCP,
+        origen: form.origin,
+        destino: form.destiny,
         ...tableTemplate
       })
         .then(
