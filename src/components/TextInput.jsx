@@ -18,7 +18,7 @@ const TextInput = (props) => {
           type={props.type}
           placeholder={props.placeholder}
           // arreglar la clase de error
-          className={props.error ? "input_container__field_error" : "input_container__field"}
+          className={"input_container__field " + (props.error &&  "input_container__field_error")}
           onFocus={() => setBlur(!blur)}
           onBlur={() => setBlur(false)}
           onChange={(e) => handleChange(e)}

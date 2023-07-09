@@ -32,9 +32,7 @@
           }
         }
         .input_container__field_error {
-          @extend .input_container__field;
-          border: solid 1px var(--bs-error) !important;
-          
+          border-color: var(--bs-error) !important;
         }
       }
     }
