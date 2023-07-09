@@ -15,6 +15,7 @@ import { tableTemplateGenerator } from '../../helpers/tableGenerator'
 import { useSearchParams } from 'react-router-dom'
 import { getCotizacion } from './services/getCotizacion'
 import { validateInputs } from './validateInputs'
+import { getTarifa } from './services/getTarifa'
 const { Check } = Form
 
 const FormCotizacion = (props) => {
@@ -67,6 +68,19 @@ const FormCotizacion = (props) => {
     setErorrs(errors)
 
   }, [form])
+
+  const printTarifa = async (tarifa) => {
+    try {
+      let res = await getTarifa()
+      console.log(res)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    printTarifa()
+  }, [])
 
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
