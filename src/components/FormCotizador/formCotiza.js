@@ -60,29 +60,105 @@ export const formCotiza = [
       name: 'provOrigen',
       type: 'select',
       options: [
-        {
+        /* {
           value: 'AMBA',
           name: 'AMBA',
+        }, */
+        {
+          value:'Buenos Aires',
+          name: 'Buenos Aires',
         },
         {
-          value: 'Mendoza',
-          name: 'Mendoza',
+          value:'CABA',
+          name: 'CABA',
         },
         {
-          value: 'San Luis',
-          name: 'San Luis',
+          value:'Catamarca',
+          name: 'Catamarca',
+        },
+        {
+          value:'Chaco',
+          name: 'Chaco',
+        },
+        {
+          value:'Chubut',
+          name: 'Chubut',
+        },
+        {
+          value:'Córdoba',
+          name: 'Córdoba',
+        },
+        {
+          value:'Corrientes',
+          name: 'Corrientes',
+        },
+        {
+          value:'Entre Ríos',
+          name: 'Entre Ríos',
+        },
+        {
+          value:'Formosa',
+          name: 'Formosa',
+        },
+        {
+          value:'Jujuy',
+          name: 'Jujuy',
         },
         {
           value: 'La Pampa',
           name: 'La Pampa',
         },
         {
+          value:'La Rioja',
+          name: 'La Rioja',
+        },
+        {
+          value: 'Mendoza',
+          name: 'Mendoza',
+        },
+        {
+          value:'Misiones',
+          name: 'Misiones',
+        },
+        {
+          value:'Neuquén',
+          name: 'Neuquén',
+        },
+        {
+          value:'Río Negro',
+          name: 'Río Negro',
+        },
+        {
+          value:'Salta',
+          name: 'Salta',
+        },
+        {
           value: 'San Juan',
           name: 'San Juan',
         },
         {
+          value: 'San Luis',
+          name: 'San Luis',
+        },
+        {
+          value:'Santa Cruz',
+          name: 'Santa Cruz',
+        },
+        {
           value: 'Santa Fe',
           name: 'Santa Fe',
+        },
+        {
+          value:'Santiago del Estero',
+          name: 'Santiago del Estero',
+        },
+        {
+          value:'Tierra del Fuego',
+          name: 'Tierra del Fuego',
+        },
+        {
+          value:'Tucumán',
+          name: 'Tucumán',
         },
       ],
       placeholder: 'Seleccioná una provincia',
@@ -97,7 +173,7 @@ export const formCotiza = [
       name: 'provDestino',
       type: 'select',
       options: [
-        {
+        /* {
           value: 'AMBA',
           name: 'AMBA',
         },
@@ -120,6 +196,102 @@ export const formCotiza = [
         {
           value: 'Santa Fe',
           name: 'Santa Fe',
+        }, */
+        {
+          value:'Buenos Aires',
+          name: 'Buenos Aires',
+        },
+        {
+          value:'CABA',
+          name: 'CABA',
+        },
+        {
+          value:'Catamarca',
+          name: 'Catamarca',
+        },
+        {
+          value:'Chaco',
+          name: 'Chaco',
+        },
+        {
+          value:'Chubut',
+          name: 'Chubut',
+        },
+        {
+          value:'Córdoba',
+          name: 'Córdoba',
+        },
+        {
+          value:'Corrientes',
+          name: 'Corrientes',
+        },
+        {
+          value:'Entre Ríos',
+          name: 'Entre Ríos',
+        },
+        {
+          value:'Formosa',
+          name: 'Formosa',
+        },
+        {
+          value:'Jujuy',
+          name: 'Jujuy',
+        },
+        {
+          value: 'La Pampa',
+          name: 'La Pampa',
+        },
+        {
+          value:'La Rioja',
+          name: 'La Rioja',
+        },
+        {
+          value: 'Mendoza',
+          name: 'Mendoza',
+        },
+        {
+          value:'Misiones',
+          name: 'Misiones',
+        },
+        {
+          value:'Neuquén',
+          name: 'Neuquén',
+        },
+        {
+          value:'Río Negro',
+          name: 'Río Negro',
+        },
+        {
+          value:'Salta',
+          name: 'Salta',
+        },
+        {
+          value: 'San Juan',
+          name: 'San Juan',
+        },
+        {
+          value: 'San Luis',
+          name: 'San Luis',
+        },
+        {
+          value:'Santa Cruz',
+          name: 'Santa Cruz',
+        },
+        {
+          value: 'Santa Fe',
+          name: 'Santa Fe',
+        },
+        {
+          value:'Santiago del Estero',
+          name: 'Santiago del Estero',
+        },
+        {
+          value:'Tierra del Fuego',
+          name: 'Tierra del Fuego',
+        },
+        {
+          value:'Tucumán',
+          name: 'Tucumán',
         },
       ],
       placeholder: 'Seleccioná una provincia',
@@ -216,7 +388,7 @@ export const formCotiza = [
       name: 'service',
       type: 'select',
       options: [
-        {
+        /* {
           value: 'mudanza',
           name: 'Mudanza',
         },
@@ -227,6 +399,16 @@ export const formCotiza = [
         {
           value: 'Recepción',
           name: 'recepcion',
+        }, */
+        {
+          value: 'caja',
+          name: 'Caja',
+        },{
+          value: 'mudanza',
+          name: 'Mudanza',
+        },{
+          value: 'paquete',
+          name: 'Paquete',
         },
         {
           value: 'otros',
