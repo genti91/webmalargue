@@ -32,7 +32,7 @@ export const formCotiza = [
       validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
   },
-  {
+  /* {
     colSize: { md: 6 },
     label: 'Rango Horario',
     inputProps: {
@@ -52,7 +52,7 @@ export const formCotiza = [
       required: true,
       errorMessage: 'Por favor completa este campo para cotizar',
     },
-  },
+  }, */
   {
     colSize: { md: 6 },
     label: 'Prov. de Origen',
