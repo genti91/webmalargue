@@ -75,12 +75,6 @@ const FormCotizacion = (props) => {
     setSelectedBultos([])
   }
 
-  useEffect(() => {
-    let errors = validateInputs(form)
-    setErorrs(errors)
-
-  }, [form])
-
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
       if (!input.inputProps?.required) return false
@@ -212,7 +206,8 @@ const FormCotizacion = (props) => {
                                   {...item.inputProps}
                                   setInForm={setInForm}
                                   form={form}
-                                  error={errors[item.inputProps.name]}
+                                  setErorrs={setErorrs}
+                                  errors={errors}
                                 />
                               ) : (
                                 <TextInputArea
