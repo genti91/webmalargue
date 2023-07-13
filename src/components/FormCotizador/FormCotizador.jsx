@@ -26,6 +26,7 @@ const FormCotizacion = (props) => {
   const [searchParams] = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErorrs] = useState({})
+  const [cotizacion, setCotizacion] = useState('')
 
   const ads = () => {
     if (searchParams.get('ads')) return true
@@ -78,6 +79,8 @@ const FormCotizacion = (props) => {
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
       if (!input.inputProps?.required) return false
+      console.log(input.inputProps.name)
+      console.log(form[input.inputProps?.name])
       return !form[input.inputProps?.name]
     })
 
@@ -147,17 +150,18 @@ const FormCotizacion = (props) => {
       })
         .then(
           (res) => {
-            Swal.fire({
-              position: 'top',
-              icon: 'success',
-              title:
-                'Recibirás una cotización dentro de las próximas 24hs hábiles',
-              showConfirmButton: false,
-              timer: 1500,
-            })
+            // Swal.fire({
+            //   position: 'top',
+            //   icon: 'success',
+            //   title:
+            //     'Recibirás una cotización dentro de las próximas 24hs hábiles',
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // })
             setIsSubmitting(false)
             // envia por parametro el mensaje de cotizacion a el componente ThankYou.jsx
-            navigate('/gracias?type=cotizacion&msg=' + res.msg)
+            setCotizacion(res.msg)
+            //navigate('/gracias?type=cotizacion&msg=' + res.msg)
             resetForm()
           },
           (err) => {
@@ -334,6 +338,7 @@ const FormCotizacion = (props) => {
             })}} /> */}
         </Container>
       </Row>
+      <div style={{marginTop:'20px', textAlign: 'center'}}>{cotizacion}</div>
     </section>
   )
 }

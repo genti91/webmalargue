@@ -9,8 +9,10 @@ const TextInput = (props) => {
   };
   const onBlurFunction = () => {
     setBlur(false);
-    let errors = validateInputs(props.form)
-    props.setErorrs(errors)
+    if (props.errors) {
+      let errors = validateInputs(props.form)
+      props.setErorrs(errors)
+    }
   };
   return (
     // DATA in border_active!!!
