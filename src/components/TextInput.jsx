@@ -14,7 +14,7 @@ const TextInput = (props) => {
   };
   return (
     // DATA in border_active!!!
-    <div className={`input_container ` + (blur && (props?.errors[props.name] ? 'border_active_error' : 'border_active' ))}>
+    <div className={`input_container ` + (blur && ((props.errors && props.errors[props.name]) ? 'border_active_error' : 'border_active' ))}>
       <IconContext.Provider value={{ className: "input_icon" }}>
         <div className="input_container__icon">{props.icon}</div>
       </IconContext.Provider>
