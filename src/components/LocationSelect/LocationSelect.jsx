@@ -33,6 +33,11 @@ const LocationSelect = ({locations, setInForm, name}) => {
 
   const handleOptionClick = (option) => {
     setInForm( name, option.id)
+    if (name === 'origin') {
+      setInForm('originCP', option.codigoPostal)
+    } else {
+       setInForm('destinyCP', option.codigoPostal)
+    }
     setSearchQuery(option.nombre)
     setDropdownVisible(false)
   };

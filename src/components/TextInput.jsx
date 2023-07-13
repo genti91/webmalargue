@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { IconContext } from "react-icons";
+import { validateInputs } from './FormCotizador/validateInputs'
 
 const TextInput = (props) => {
   const [blur, setBlur] = useState(false);
   const handleChange = (e) => {
     props.setInForm( e.target.name, e.target.value);
   };
+  const onBlurFunction = () => {
+    setBlur(false);
+    let errors = validateInputs(props.form)
+    props.setErorrs(errors)
+  };
   return (
     // DATA in border_active!!!
-    <div className={`input_container ` + (blur && (props.error ? 'border_active_error' : 'border_active' ))}>
+    <div className={`input_container ` + (blur && (props.errors[props.name] ? 'border_active_error' : 'border_active' ))}>
       <IconContext.Provider value={{ className: "input_icon" }}>
         <div className="input_container__icon">{props.icon}</div>
       </IconContext.Provider>
@@ -18,9 +24,10 @@ const TextInput = (props) => {
           type={props.type}
           placeholder={props.placeholder}
           // arreglar la clase de error
-          className={"input_container__field " + (props.error &&  "input_container__field_error")}
+          className={"input_container__field " + (props.errors[props.name] &&  "input_container__field_error")}
           onFocus={() => setBlur(!blur)}
-          onBlur={() => setBlur(false)}
+          onBlur={() => onBlurFunction()}
+          value={props.name === 'originCP' || props.name === 'destinyCP' ? props.form[props.name] : null}
           onChange={(e) => handleChange(e)}
         />
       ) : (
