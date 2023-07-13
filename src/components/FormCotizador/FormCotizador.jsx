@@ -234,6 +234,7 @@ const FormCotizacion = (props) => {
                                 style={{
                                   marginRight: '10px',
                                   marginLeft: '10px',
+                                  rowGap: '10px',
                                 }}
                               >
                                 <FormAddBulto
@@ -247,7 +248,8 @@ const FormCotizacion = (props) => {
                                     color: '#fff',
                                     backgroundColor: '#dc3545',
                                     borderColor: '#dc3545',
-                                    marginTop: '10px',
+                                    /* marginTop: '10px', */
+                                    padding: '15px'
                                   }}
                                 >
                                   Quitar Bultos

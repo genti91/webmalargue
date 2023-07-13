@@ -37,7 +37,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
 
   return (
     <>
-      <Button variant='primary' className='col-md-4' onClick={handleShow}>
+      <Button variant='primary' className='col-md-4' onClick={handleShow} style={{padding: '15px'}}>
         Agregar Bulto
       </Button>
       <Modal show={show} onHide={handleClose}>
