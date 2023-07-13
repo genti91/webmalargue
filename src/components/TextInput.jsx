@@ -14,7 +14,7 @@ const TextInput = (props) => {
   };
   return (
     // DATA in border_active!!!
-    <div className={`input_container ` + (blur && (props.errors[props.name] ? 'border_active_error' : 'border_active' ))}>
+    <div className={`input_container ` + (blur && (props?.errors[props.name] ? 'border_active_error' : 'border_active' ))}>
       <IconContext.Provider value={{ className: "input_icon" }}>
         <div className="input_container__icon">{props.icon}</div>
       </IconContext.Provider>
@@ -24,7 +24,7 @@ const TextInput = (props) => {
           type={props.type}
           placeholder={props.placeholder}
           // arreglar la clase de error
-          className={"input_container__field " + (props.errors[props.name] &&  "input_container__field_error")}
+          className={"input_container__field " + ((props.errors && props.errors[props.name]) &&  "input_container__field_error")}
           onFocus={() => setBlur(!blur)}
           onBlur={() => onBlurFunction()}
           value={props.name === 'originCP' || props.name === 'destinyCP' ? props.form[props.name] : null}
