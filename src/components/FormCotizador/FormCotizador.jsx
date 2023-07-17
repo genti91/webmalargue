@@ -129,27 +129,28 @@ const FormCotizacion = (props) => {
       })
       form.page = 'Individuos'
 
-      // emailjs
-      //   .send(
-      //     'service_lv636bu',
-      //     'template_kpseg54',
-      //     {
-      //       ...form,
-      //       seguro: seguro ? 'Si' : 'No',
-      //       ads: ads(),
-      //       tableTemplate,
-      //     },
-      //     'fRtOuVBrm3PpHzBca'
-      //   )
-
+      
       // llamada a la api de cotizacion y navegacion a la pagina de gracias con el mensaje de cotizacion
       getCotizacion({
         origen: form.origin,
         destino: form.destiny,
         ...tableTemplate
       })
-        .then(
-          (res) => {
+      .then(
+        (res) => {
+            emailjs
+              .send(
+                'service_lv636bu',
+                'template_kj69e2x',
+                {
+                  ...form,
+                  seguro: seguro ? 'Si' : 'No',
+                  ads: ads(),
+                  tableTemplate,
+                  cotizacion: res.msg,
+                },
+                'fRtOuVBrm3PpHzBca'
+              )
             // Swal.fire({
             //   position: 'top',
             //   icon: 'success',
