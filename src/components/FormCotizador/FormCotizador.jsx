@@ -230,13 +230,12 @@ const FormCotizacion = (props) => {
                       {item.inputProps.type === 'table' && (
                         <>
                           <Row className='justify-content-end'>
-                            <Col md={6}>
+                            <Col md={4}>
                               <Row
                                 className='justify-content-around'
                                 style={{
-                                  marginRight: '10px',
-                                  marginLeft: '10px',
                                   rowGap: '10px',
+                                  marginTop: '35px',
                                 }}
                               >
                                 <FormAddBulto
@@ -244,7 +243,7 @@ const FormCotizacion = (props) => {
                                 />
                                 <Button
                                   variant='danger'
-                                  className='col-md-4'
+                                  className='col-md-5'
                                   onClick={removeBultoHandler}
                                   style={{
                                     color: '#fff',
@@ -258,7 +257,7 @@ const FormCotizacion = (props) => {
                                 </Button>
                               </Row>
                             </Col>
-                          </Row>
+                          <Col md={8}>
                           <TableComponent
                             columns={{
                               seleccionar: (
@@ -299,6 +298,8 @@ const FormCotizacion = (props) => {
                               ),
                             }))}
                           />
+                          </Col>
+                          </Row>
                         </>
                       )}
                       {item.inputProps.type.match(/radio|checkbox/) && (
@@ -350,7 +351,7 @@ const FormCotizacion = (props) => {
               </div>
             </div>
             <div style={{margin:'auto', marginTop: '3.5rem' , display: 'flex', justifyContent: 'space-around'}}>
-              <Button variant='primary' className='col-md-4' style={{padding: '10px', width:'100px'}}>
+              <Button onClick={() => {resetForm(); setCotizacion(''); setBultos([])}} variant='primary' className='col-md-4' style={{padding: '10px', width:'100px'}}>
                 Volver
               </Button>
               <Button variant='primary' className='col-md-4' style={{padding: '10px', width:'100px', visibility: 'hidden'}}>
