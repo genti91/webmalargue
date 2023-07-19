@@ -1,7 +1,19 @@
 export const formCotiza = [
   {
-    colSize: { md: 6 },
-    label: 'Nombre o razón social',
+    colSize: { md: 4 },
+    label: 'Email',
+    inputProps: {
+      name: 'email',
+      type: 'email',
+      required: true,
+      errorMessage: 'Por favor completa este campo',
+      validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    },
+  },
+  {
+    colSize: { md: 4 },
+    //label: 'Nombre o razón social',
+    label: 'Nombre',
     inputProps: {
       name: 'name',
       type: 'text',
@@ -11,7 +23,7 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 6 },
+    colSize: { md: 4 },
     label: 'Teléfono',
     inputProps: {
       name: 'tel',
@@ -19,17 +31,6 @@ export const formCotiza = [
       required: true,
       errorMessage: 'Por favor completa este campo',
       validation: /^(?:\d{8,10})$/i,
-    },
-  },
-  {
-    colSize: { md: 6 },
-    label: 'Email',
-    inputProps: {
-      name: 'email',
-      type: 'email',
-      required: true,
-      errorMessage: 'Por favor completa este campo',
-      validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
   },
   /* {
@@ -53,254 +54,254 @@ export const formCotiza = [
       errorMessage: 'Por favor completa este campo para cotizar',
     },
   }, */
+  // {
+  //   colSize: { md: 6 },
+  //   label: 'Prov. de Origen',
+  //   inputProps: {
+  //     name: 'provOrigen',
+  //     type: 'select',
+  //     options: [
+  //       /* {
+  //         value: 'AMBA',
+  //         name: 'AMBA',
+  //       }, */
+  //       {
+  //         value:'Buenos Aires',
+  //         name: 'Buenos Aires',
+  //       },
+  //       {
+  //         value:'CABA',
+  //         name: 'CABA',
+  //       },
+  //       {
+  //         value:'Catamarca',
+  //         name: 'Catamarca',
+  //       },
+  //       {
+  //         value:'Chaco',
+  //         name: 'Chaco',
+  //       },
+  //       {
+  //         value:'Chubut',
+  //         name: 'Chubut',
+  //       },
+  //       {
+  //         value:'Córdoba',
+  //         name: 'Córdoba',
+  //       },
+  //       {
+  //         value:'Corrientes',
+  //         name: 'Corrientes',
+  //       },
+  //       {
+  //         value:'Entre Ríos',
+  //         name: 'Entre Ríos',
+  //       },
+  //       {
+  //         value:'Formosa',
+  //         name: 'Formosa',
+  //       },
+  //       {
+  //         value:'Jujuy',
+  //         name: 'Jujuy',
+  //       },
+  //       {
+  //         value: 'La Pampa',
+  //         name: 'La Pampa',
+  //       },
+  //       {
+  //         value:'La Rioja',
+  //         name: 'La Rioja',
+  //       },
+  //       {
+  //         value: 'Mendoza',
+  //         name: 'Mendoza',
+  //       },
+  //       {
+  //         value:'Misiones',
+  //         name: 'Misiones',
+  //       },
+  //       {
+  //         value:'Neuquén',
+  //         name: 'Neuquén',
+  //       },
+  //       {
+  //         value:'Río Negro',
+  //         name: 'Río Negro',
+  //       },
+  //       {
+  //         value:'Salta',
+  //         name: 'Salta',
+  //       },
+  //       {
+  //         value: 'San Juan',
+  //         name: 'San Juan',
+  //       },
+  //       {
+  //         value: 'San Luis',
+  //         name: 'San Luis',
+  //       },
+  //       {
+  //         value:'Santa Cruz',
+  //         name: 'Santa Cruz',
+  //       },
+  //       {
+  //         value: 'Santa Fe',
+  //         name: 'Santa Fe',
+  //       },
+  //       {
+  //         value:'Santiago del Estero',
+  //         name: 'Santiago del Estero',
+  //       },
+  //       {
+  //         value:'Tierra del Fuego',
+  //         name: 'Tierra del Fuego',
+  //       },
+  //       {
+  //         value:'Tucumán',
+  //         name: 'Tucumán',
+  //       },
+  //     ],
+  //     placeholder: 'Seleccioná una provincia',
+  //     required: true,
+  //     errorMessage: 'Por favor completa este campo para cotizar',
+  //   },
+  // },
+  // {
+  //   colSize: { md: 6 },
+  //   label: 'Prov. de Destino',
+  //   inputProps: {
+  //     name: 'provDestino',
+  //     type: 'select',
+  //     options: [
+  //       /* {
+  //         value: 'AMBA',
+  //         name: 'AMBA',
+  //       },
+  //       {
+  //         value: 'Mendoza',
+  //         name: 'Mendoza',
+  //       },
+  //       {
+  //         value: 'San Luis',
+  //         name: 'San Luis',
+  //       },
+  //       {
+  //         value: 'La Pampa',
+  //         name: 'La Pampa',
+  //       },
+  //       {
+  //         value: 'San Juan',
+  //         name: 'San Juan',
+  //       },
+  //       {
+  //         value: 'Santa Fe',
+  //         name: 'Santa Fe',
+  //       }, */
+  //       {
+  //         value:'Buenos Aires',
+  //         name: 'Buenos Aires',
+  //       },
+  //       {
+  //         value:'CABA',
+  //         name: 'CABA',
+  //       },
+  //       {
+  //         value:'Catamarca',
+  //         name: 'Catamarca',
+  //       },
+  //       {
+  //         value:'Chaco',
+  //         name: 'Chaco',
+  //       },
+  //       {
+  //         value:'Chubut',
+  //         name: 'Chubut',
+  //       },
+  //       {
+  //         value:'Córdoba',
+  //         name: 'Córdoba',
+  //       },
+  //       {
+  //         value:'Corrientes',
+  //         name: 'Corrientes',
+  //       },
+  //       {
+  //         value:'Entre Ríos',
+  //         name: 'Entre Ríos',
+  //       },
+  //       {
+  //         value:'Formosa',
+  //         name: 'Formosa',
+  //       },
+  //       {
+  //         value:'Jujuy',
+  //         name: 'Jujuy',
+  //       },
+  //       {
+  //         value: 'La Pampa',
+  //         name: 'La Pampa',
+  //       },
+  //       {
+  //         value:'La Rioja',
+  //         name: 'La Rioja',
+  //       },
+  //       {
+  //         value: 'Mendoza',
+  //         name: 'Mendoza',
+  //       },
+  //       {
+  //         value:'Misiones',
+  //         name: 'Misiones',
+  //       },
+  //       {
+  //         value:'Neuquén',
+  //         name: 'Neuquén',
+  //       },
+  //       {
+  //         value:'Río Negro',
+  //         name: 'Río Negro',
+  //       },
+  //       {
+  //         value:'Salta',
+  //         name: 'Salta',
+  //       },
+  //       {
+  //         value: 'San Juan',
+  //         name: 'San Juan',
+  //       },
+  //       {
+  //         value: 'San Luis',
+  //         name: 'San Luis',
+  //       },
+  //       {
+  //         value:'Santa Cruz',
+  //         name: 'Santa Cruz',
+  //       },
+  //       {
+  //         value: 'Santa Fe',
+  //         name: 'Santa Fe',
+  //       },
+  //       {
+  //         value:'Santiago del Estero',
+  //         name: 'Santiago del Estero',
+  //       },
+  //       {
+  //         value:'Tierra del Fuego',
+  //         name: 'Tierra del Fuego',
+  //       },
+  //       {
+  //         value:'Tucumán',
+  //         name: 'Tucumán',
+  //       },
+  //     ],
+  //     placeholder: 'Seleccioná una provincia',
+  //     required: true,
+  //     errorMessage: 'Por favor completa este campo para cotizar',
+  //   },
+  // },
   {
-    colSize: { md: 6 },
-    label: 'Prov. de Origen',
-    inputProps: {
-      name: 'provOrigen',
-      type: 'select',
-      options: [
-        /* {
-          value: 'AMBA',
-          name: 'AMBA',
-        }, */
-        {
-          value:'Buenos Aires',
-          name: 'Buenos Aires',
-        },
-        {
-          value:'CABA',
-          name: 'CABA',
-        },
-        {
-          value:'Catamarca',
-          name: 'Catamarca',
-        },
-        {
-          value:'Chaco',
-          name: 'Chaco',
-        },
-        {
-          value:'Chubut',
-          name: 'Chubut',
-        },
-        {
-          value:'Córdoba',
-          name: 'Córdoba',
-        },
-        {
-          value:'Corrientes',
-          name: 'Corrientes',
-        },
-        {
-          value:'Entre Ríos',
-          name: 'Entre Ríos',
-        },
-        {
-          value:'Formosa',
-          name: 'Formosa',
-        },
-        {
-          value:'Jujuy',
-          name: 'Jujuy',
-        },
-        {
-          value: 'La Pampa',
-          name: 'La Pampa',
-        },
-        {
-          value:'La Rioja',
-          name: 'La Rioja',
-        },
-        {
-          value: 'Mendoza',
-          name: 'Mendoza',
-        },
-        {
-          value:'Misiones',
-          name: 'Misiones',
-        },
-        {
-          value:'Neuquén',
-          name: 'Neuquén',
-        },
-        {
-          value:'Río Negro',
-          name: 'Río Negro',
-        },
-        {
-          value:'Salta',
-          name: 'Salta',
-        },
-        {
-          value: 'San Juan',
-          name: 'San Juan',
-        },
-        {
-          value: 'San Luis',
-          name: 'San Luis',
-        },
-        {
-          value:'Santa Cruz',
-          name: 'Santa Cruz',
-        },
-        {
-          value: 'Santa Fe',
-          name: 'Santa Fe',
-        },
-        {
-          value:'Santiago del Estero',
-          name: 'Santiago del Estero',
-        },
-        {
-          value:'Tierra del Fuego',
-          name: 'Tierra del Fuego',
-        },
-        {
-          value:'Tucumán',
-          name: 'Tucumán',
-        },
-      ],
-      placeholder: 'Seleccioná una provincia',
-      required: true,
-      errorMessage: 'Por favor completa este campo para cotizar',
-    },
-  },
-  {
-    colSize: { md: 6 },
-    label: 'Prov. de Destino',
-    inputProps: {
-      name: 'provDestino',
-      type: 'select',
-      options: [
-        /* {
-          value: 'AMBA',
-          name: 'AMBA',
-        },
-        {
-          value: 'Mendoza',
-          name: 'Mendoza',
-        },
-        {
-          value: 'San Luis',
-          name: 'San Luis',
-        },
-        {
-          value: 'La Pampa',
-          name: 'La Pampa',
-        },
-        {
-          value: 'San Juan',
-          name: 'San Juan',
-        },
-        {
-          value: 'Santa Fe',
-          name: 'Santa Fe',
-        }, */
-        {
-          value:'Buenos Aires',
-          name: 'Buenos Aires',
-        },
-        {
-          value:'CABA',
-          name: 'CABA',
-        },
-        {
-          value:'Catamarca',
-          name: 'Catamarca',
-        },
-        {
-          value:'Chaco',
-          name: 'Chaco',
-        },
-        {
-          value:'Chubut',
-          name: 'Chubut',
-        },
-        {
-          value:'Córdoba',
-          name: 'Córdoba',
-        },
-        {
-          value:'Corrientes',
-          name: 'Corrientes',
-        },
-        {
-          value:'Entre Ríos',
-          name: 'Entre Ríos',
-        },
-        {
-          value:'Formosa',
-          name: 'Formosa',
-        },
-        {
-          value:'Jujuy',
-          name: 'Jujuy',
-        },
-        {
-          value: 'La Pampa',
-          name: 'La Pampa',
-        },
-        {
-          value:'La Rioja',
-          name: 'La Rioja',
-        },
-        {
-          value: 'Mendoza',
-          name: 'Mendoza',
-        },
-        {
-          value:'Misiones',
-          name: 'Misiones',
-        },
-        {
-          value:'Neuquén',
-          name: 'Neuquén',
-        },
-        {
-          value:'Río Negro',
-          name: 'Río Negro',
-        },
-        {
-          value:'Salta',
-          name: 'Salta',
-        },
-        {
-          value: 'San Juan',
-          name: 'San Juan',
-        },
-        {
-          value: 'San Luis',
-          name: 'San Luis',
-        },
-        {
-          value:'Santa Cruz',
-          name: 'Santa Cruz',
-        },
-        {
-          value: 'Santa Fe',
-          name: 'Santa Fe',
-        },
-        {
-          value:'Santiago del Estero',
-          name: 'Santiago del Estero',
-        },
-        {
-          value:'Tierra del Fuego',
-          name: 'Tierra del Fuego',
-        },
-        {
-          value:'Tucumán',
-          name: 'Tucumán',
-        },
-      ],
-      placeholder: 'Seleccioná una provincia',
-      required: true,
-      errorMessage: 'Por favor completa este campo para cotizar',
-    },
-  },
-  {
-    colSize: { md: 6 },
+    colSize: { md: 4 },
     label: 'Localidad Origen',
     inputProps: {
       name: 'origin',
@@ -311,8 +312,8 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 6 },
-    label: 'Cód. Postal Origen',
+    colSize: { md: 2 },
+    label: 'CP',
     inputProps: {
       name: 'originCP',
       type: 'text',
@@ -322,7 +323,7 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 6 },
+    colSize: { md: 4 },
     label: 'Localidad Destino',
     inputProps: {
       name: 'destiny',
@@ -333,8 +334,8 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 6 },
-    label: 'Cód. Postal Destino',
+    colSize: { md: 2 },
+    label: 'CP',
     inputProps: {
       name: 'destinyCP',
       type: 'text',
@@ -420,17 +421,17 @@ export const formCotiza = [
       errorMessage: 'Por favor completa este campo para cotizar',
     },
   },
-  {
-    colSize: { md: 12 },
-    label: 'Tu mensaje',
-    inputProps: {
-      name: 'message',
-      type: 'textarea',
-      required: true,
-      errorMessage: 'Por favor completa este campo para cotizar',
-      validation: false,
-    },
-  },
+  // {
+  //   colSize: { md: 12 },
+  //   label: 'Tu mensaje',
+  //   inputProps: {
+  //     name: 'message',
+  //     type: 'textarea',
+  //     required: true,
+  //     errorMessage: 'Por favor completa este campo para cotizar',
+  //     validation: false,
+  //   },
+  // },
   {
     colSize: { md: 12 },
     inputProps: {

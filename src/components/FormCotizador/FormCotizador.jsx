@@ -182,6 +182,7 @@ const FormCotizacion = (props) => {
     <section>
       <Row>
         <Container>
+        { !cotizacion ? 
           <form id='contact-form' onSubmit={submitForm} method='POST'>
             <Row className='justify-content-md-center'>
               <Col md={10}>
@@ -329,14 +330,17 @@ const FormCotizacion = (props) => {
                 </Row>
               </Col>
             </Row>
-          </form>
+          </form> :
+
+          <div style={{marginTop:'20px', textAlign: 'center'}}>{cotizacion}</div>
+          
+          }
           {/* <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
               columns: tableCotizaDictionary,
               dataSource: bultos,
             })}} /> */}
         </Container>
       </Row>
-      <div style={{marginTop:'20px', textAlign: 'center'}}>{cotizacion}</div>
     </section>
   )
 }
