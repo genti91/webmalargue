@@ -198,8 +198,8 @@ const FormCotizacion = (props) => {
                     </h2>
                   </Col>
                   {formCotiza.map((item, index) => (
-                    <Col {...item?.colSize} style={item.inputProps.type === 'submit' ? { display:'flex', justifyContent:'end' } : null} key={index}>
-                      {item?.label && <label>{item.label}</label>}
+                    <Col {...item?.colSize} style={item.inputProps?.css} key={index}>
+                      {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
                         <>
                           {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? 
