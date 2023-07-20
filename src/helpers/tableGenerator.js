@@ -52,5 +52,8 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
   // ).toFixed(4)}</span></p></><br></div>`
 
   // parametros para el cotizador
-  return {metrosCubicos: sumatoriaMetrosTotal, kilosReales: sumatoriaBultos, bultos: bultosTotal}
+ 
+  let kilosAforados = (sumatoriaMetrosTotal || 0) * 350  > sumatoriaBultos ? (sumatoriaMetrosTotal || 0) * 350 : sumatoriaBultos
+
+  return {metrosCubicos: sumatoriaMetrosTotal, kilosReales: sumatoriaBultos, bultos: bultosTotal, kilosAforados: kilosAforados}
 }

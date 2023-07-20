@@ -32,7 +32,8 @@ const LocationSelect = ({locations, setInForm, name}) => {
   };
 
   const handleOptionClick = (option) => {
-    setInForm( name, option.id)
+    setInForm( name, option.nombre)
+    setInForm( name + 'Id', option.id)
     if (name === 'origin') {
       setInForm('originCP', option.codigoPostal)
     } else {

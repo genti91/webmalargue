@@ -35,6 +35,8 @@ const FormCotizacion = (props) => {
   const { form, setInForm, resetForm } = useForm({
     origin: '',
     destiny: '',
+    originId: '',
+    destinyId: '',
     originCP: '',
     destinyCP: '',
     name: '',
@@ -133,8 +135,9 @@ const FormCotizacion = (props) => {
       
       // llamada a la api de cotizacion y navegacion a la pagina de gracias con el mensaje de cotizacion
       getCotizacion({
-        origen: form.origin,
-        destino: form.destiny,
+        origen: form.originId,
+        destino: form.destinyId,
+        valorDeclarado: form?.valorDeclarado,
         ...tableTemplate
       })
       .then(
@@ -338,14 +341,14 @@ const FormCotizacion = (props) => {
           </form> :
 
           <div style={{textAlign: 'center', marginTop:'20px', paddingTop: '5rem', paddingBottom: '5rem', color:'#2f3394'}}>
-            <div style={{marginBottom: '3.5rem'}}>RESUMEN: {/* {tarifa.locOrigen.filter((e)=> (e.id === form.origin))} / {tarifa.locDestino.filter((e)=> (e.id === form.destiny))} / */} {bultos[0].cantBultos} Bultos / {bultos[0].alto}cm x {bultos[0].ancho}cm x {bultos[0].profundidad}cm/ {bultos[0].peso}kg</div>
+            <div style={{marginBottom: '3.5rem', fontSize:'1.7rem'}}>RESUMEN: {form.origin} / {form.destiny} / {bultos[0].cantBultos} Bultos / {bultos[0].alto}cm x {bultos[0].ancho}cm x {bultos[0].profundidad}cm/ {bultos[0].peso}kg</div>
             <div>Recordá que el valor es estimado ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito.</div>
             <div style={{margin:'auto', display: 'flex', justifyContent: 'space-around', marginTop: '3.5rem' }}>
-              <div div style={{marginTop:'20px', textAlign: 'center', border:'2px', color:'#2f3394' , padding: '5px'}}>
+              <div style={{marginTop:'20px', textAlign: 'center', border:'2px', color:'#2f3394' , padding: '5px'}}>
                 <div style={{fontWeight:'bold'}}>Tipo de Servicio</div>
                 <div>{form.service}</div>
               </div>
-              <div div style={{marginTop:'20px', textAlign: 'center', border:'2px', color: '#2f3394', padding: '5px'}}>
+              <div style={{marginTop:'20px', textAlign: 'center', border:'2px', color: '#2f3394', padding: '5px'}}>
                 <div style={{fontWeight:'bold'}}>Precio sin IVA</div>
                 <div>ARS ${cotizacion}</div>
               </div>
