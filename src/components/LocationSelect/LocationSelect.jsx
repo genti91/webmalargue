@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './LocationSelect.scss'
 
-const LocationSelect = ({locations, setInForm, name}) => {
+const LocationSelect = ({locations, setInForm, name, placeholder}) => {
 
   const [searchQuery, setSearchQuery] = useState('')
   const [dropdownVisible, setDropdownVisible] = useState(false)
@@ -16,7 +16,7 @@ const LocationSelect = ({locations, setInForm, name}) => {
     if (value.length > 0) {
       const filteredOptions = locations
         .filter((location) =>
-          location.nombre.toLowerCase().startsWith(value.toLowerCase())
+          location.nombre.toLowerCase().includes(value.toLowerCase())
         )
         .sort((a, b) => a.nombre.localeCompare(b.nombre))
         .slice(0, 10)
@@ -53,6 +53,7 @@ const LocationSelect = ({locations, setInForm, name}) => {
           onChange={handleSearchChange}
           onFocus={() => setBlur(!blur)}
           onBlur={() => setBlur(false)}
+          placeholder={placeholder}
         />
 
       </div>

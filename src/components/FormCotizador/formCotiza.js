@@ -56,10 +56,10 @@ export const formCotiza = [
   }, */
   {
     colSize: { md: 12},
-    label: 'ORIGEN',
+    name: 'ORIGEN',
     inputProps: {
-      type: 'divisorOrigen',
-      css: { backgroundColor: '#2f3394', padding: '0.5rem 1rem', itemCenter: 'center', marginBottom: '20px'},
+      type: 'divisor',
+      css: { backgroundColor: '#2f3394', padding: '0.5rem 1rem', itemCenter: 'center', marginBottom: '20px' },
       labelCss: { color: 'white', marginBottom: '0' },
     }
   },
@@ -76,7 +76,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 2 },
-    label: 'CP',
+    label: 'Cp',
     inputProps: {
       name: 'originCP',
       type: 'text',
@@ -200,10 +200,10 @@ export const formCotiza = [
   },
   {
     colSize: { md: 12},
-    label: 'DESTINO',
+    name: 'DESTINO',
     inputProps: {
-      type: 'divisorDestino',
-      css: { backgroundColor: '#2f3394', padding: '0.5rem 1rem', itemCenter: 'center', marginBottom: '20px'},
+      type: 'divisor',
+      css: { backgroundColor: '#2f3394', padding: '0.5rem 1rem', itemCenter: 'center', marginBottom: '20px' },
       labelCss: { color: 'white', marginBottom: '0' },
     }
   },
@@ -220,7 +220,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 2 },
-    label: 'CP',
+    label: 'Cp',
     inputProps: {
       name: 'destinyCP',
       type: 'text',
@@ -364,9 +364,9 @@ export const formCotiza = [
   },
   {
     colSize: { md: 12},
-    label: 'BULTOS',
+    name: 'BULTOS',
     inputProps: {
-      type: 'divisorBultos',
+      type: 'divisor',
       css: { backgroundColor: '#c4c6df' , padding: '0.5rem 1rem', itemCenter: 'center' , marginBottom: '20px'},
       labelCss: { color: '#2f3394' , marginBottom: '0' },
     }

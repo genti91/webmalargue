@@ -17,6 +17,7 @@ import { getCotizacion } from './services/getCotizacion'
 import { validateInputs } from './validateInputs'
 import LocationSelect from '../LocationSelect/LocationSelect'
 import { getTarifa } from './services/getTarifa'
+import ResultadoCotizado from '../ResultadoCotizado/ResultadoCotizado'
 const { Check } = Form
 
 const FormCotizacion = (props) => {
@@ -198,8 +199,9 @@ const FormCotizacion = (props) => {
                     </h2>
                   </Col>
                   {formCotiza.map((item, index) => (
-                    <Col {...item?.colSize} style={item.inputProps?.css} key={index}>
-                      {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>}
+                    <Col {...item?.colSize} key={index}>
+                      { item.inputProps.type === 'divisor' && <Col style={item.inputProps?.css}><label style={item.inputProps?.labelCss}>{item.name}</label></Col>}
+                      {/* {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>} */}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
                         <>
                           {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? 
@@ -208,12 +210,14 @@ const FormCotizacion = (props) => {
                               locations={item.inputProps.name === 'origin' ? tarifa.locOrigen : tarifa.locDestino}
                               setInForm={setInForm}
                               error={errors[item.inputProps.name]}
+                              placeholder={item.label}
                             />
                             :
                             <>
                               {item.inputProps.type !== 'textarea' ? (
                                 <TextInput
                                   {...item.inputProps}
+                                  placeholder={item.label}
                                   setInForm={setInForm}
                                   form={form}
                                   setErorrs={setErorrs}
@@ -338,32 +342,8 @@ const FormCotizacion = (props) => {
                 </Row>
               </Col>
             </Row>
-          </form> :
-
-          <div style={{textAlign: 'center', marginTop:'20px', paddingTop: '5rem', paddingBottom: '5rem', color:'#2f3394'}}>
-            <div style={{marginBottom: '3.5rem', fontSize:'1.7rem'}}>RESUMEN: {form.origin} / {form.destiny} / {bultos[0].cantBultos} Bultos / {bultos[0].alto}cm x {bultos[0].ancho}cm x {bultos[0].profundidad}cm/ {bultos[0].peso}kg</div>
-            <div>Recordá que el valor es estimado ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito.</div>
-            <div style={{margin:'auto', display: 'flex', justifyContent: 'space-around', marginTop: '3.5rem' }}>
-              <div style={{marginTop:'20px', textAlign: 'center', border:'2px', color:'#2f3394' , padding: '5px'}}>
-                <div style={{fontWeight:'bold'}}>Tipo de Servicio</div>
-                <div>{form.service}</div>
-              </div>
-              <div style={{marginTop:'20px', textAlign: 'center', border:'2px', color: '#2f3394', padding: '5px'}}>
-                <div style={{fontWeight:'bold'}}>Precio sin IVA</div>
-                <div>ARS ${cotizacion}</div>
-              </div>
-            </div>
-            <div style={{margin:'auto', marginTop: '3.5rem' , display: 'flex', justifyContent: 'space-around'}}>
-              <Button onClick={() => {resetForm(); setCotizacion(''); setBultos([])}} variant='primary' className='col-md-4' style={{padding: '10px', width:'100px'}}>
-                Volver
-              </Button>
-              <Button variant='primary' className='col-md-4' style={{padding: '10px', width:'100px', visibility: 'hidden'}}>
-                Solicitar
-              </Button>
-            </div>
-          </div>                               
-          
-
+          </form> :                           
+          <ResultadoCotizado goBack={()=>{resetForm();setBultos([]);setCotizacion('')}} form={form} cotizacion={cotizacion} bultos={bultos} />
           }
           {/* <div dangerouslySetInnerHTML={{__html: tableTemplateGenerator({
               columns: tableCotizaDictionary,
