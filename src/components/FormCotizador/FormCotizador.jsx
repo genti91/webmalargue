@@ -237,12 +237,11 @@ const FormCotizacion = (props) => {
                       {item.inputProps.type === 'table' && (
                         <>
                           <Row className='justify-content-end'>
-                            <Col md={4}>
+                            <Col md={16}>
                               <Row
                                 className='justify-content-around'
                                 style={{
                                   rowGap: '10px',
-                                  marginTop: '35px',
                                 }}
                               >
                                 <FormAddBulto
@@ -264,7 +263,7 @@ const FormCotizacion = (props) => {
                                 </Button>
                               </Row>
                             </Col>
-                          <Col md={8}>
+                          <Col md={16}>
                           <TableComponent
                             columns={{
                               seleccionar: (
