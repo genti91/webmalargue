@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import emailjs from 'emailjs-com'
@@ -53,10 +53,9 @@ const FormCotizacion = (props) => {
 
   const [tarifa, setTarifa] = useState([])
 
-  useLayoutEffect(async () => {
+  useEffect(async () => {
     try {
       let res = await getTarifa()
-      console.log(res)
       setTarifa(res)
     } catch (err) {
       console.log(err)
