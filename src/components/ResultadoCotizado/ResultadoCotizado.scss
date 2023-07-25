@@ -1,0 +1,47 @@
+#ResultadoCotizado{
+
+  padding-top: 5rem;
+
+  h1{
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--bs-primary);
+  }
+  .recordaText{
+    color: var(--bs-primary);
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .modalidadText{
+    color: var(--bs-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .modalidad{
+    background-color: var(--bs-primary);
+  }
+  .imageContainer{
+    background-color: var(--bs-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .boxImage{
+    max-width: 14rem;
+  }
+  span{
+    padding: 0;
+  }
+  .cotiKey{
+    color: var(--bs-primary);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  .cotiValue{
+    color: gray;
+  }
+
+}

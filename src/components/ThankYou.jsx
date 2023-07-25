@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom"
 
 const paragraphByType = {
-  cotizacion: 'Muchas gracias por su contacto.  Estaremos enviando la cotización a la brevedad',
+  //cotizacion: 'Muchas gracias por su contacto.  Estaremos enviando la cotización a la brevedad',
+  cotizacion: '',
   retiro: 'Gracias por solicitar el retiro. ¡Estaremos coordinando el mismo a la brevedad!'
 }
 
@@ -27,6 +28,7 @@ const ThankYouPage = (props) => {
               style={{ fontSize: '48px', lineHeight: '1.2em' }}
             >
               {paragraphByType[searchParams.get('type')]}
+              {searchParams.get('type') === 'cotizacion' ? searchParams.get('msg') : null}
               {/* Gracias por realizar una cotización. Recibirás una cotización
               dentro de las próximas 24hs hábiles en tu casilla de correo
               electrónico */}
