@@ -22,7 +22,7 @@ const { Check } = Form
 
 const FormCotizacion = (props) => {
   const [bultos, setBultos] = useState([])
-  const [seguro, setSeguro] = useState(false)
+  const [seguro, setSeguro] = useState(true)
   const [selectedBultos, setSelectedBultos] = useState([])
   const [searchParams] = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -189,11 +189,11 @@ const FormCotizacion = (props) => {
       <Row>
         <Container>
         { !cotizacion ? 
-          <form id='contact-form' onSubmit={submitForm} method='POST'>
+          <form id='contact-form' onSubmit={submitForm} method='POST' className='shadow form-container'>
             <Row className='justify-content-md-center'>
               <Col md={10}>
                 <Row>
-                  <Col xs={12} md={9}>
+                  <Col xs={12} md={12} className='text-center'>
                     <h2>
                       Completá el formulario y te enviaremos la cotización
                     </h2>
@@ -237,33 +237,15 @@ const FormCotizacion = (props) => {
                       {item.inputProps.type === 'table' && (
                         <>
                           <Row className='justify-content-end'>
-                            <Col md={16}>
-                              <Row
-                                className='justify-content-around'
-                                style={{
-                                  rowGap: '10px',
-                                }}
-                              >
+                            <Col md={12}>
+                              <Row>
                                 <FormAddBulto
                                   addBultoHandler={addBultoHandler}
+                                  removeBultoHandler={removeBultoHandler}
                                 />
-                                <Button
-                                  variant='danger'
-                                  className='col-md-5'
-                                  onClick={removeBultoHandler}
-                                  style={{
-                                    color: '#fff',
-                                    backgroundColor: '#dc3545',
-                                    borderColor: '#dc3545',
-                                    /* marginTop: '10px', */
-                                    padding: '15px'
-                                  }}
-                                >
-                                  Quitar Bultos
-                                </Button>
                               </Row>
                             </Col>
-                          <Col md={16}>
+                          <Col md={12}>
                           <TableComponent
                             columns={{
                               seleccionar: (
@@ -310,12 +292,13 @@ const FormCotizacion = (props) => {
                       )}
                       {item.inputProps.type.match(/radio|checkbox/) && (
                         <>
-                          <Check
+                          {/* <Check
                             {...item.inputProps}
                             form={form}
                             onChange={(e) => setSeguro(e.target.checked)}
-                          />
-                          {seguro && (
+                          /> */}
+                          {true && (
+                            <div className='d-flex'>
                             <TextInput
                               type='text'
                               name='valorDeclarado'
@@ -324,17 +307,24 @@ const FormCotizacion = (props) => {
                               setInForm={setInForm}
                               form={form}
                             />
+                            <div style={{backgroundColor: '#2F3394', marginBottom:'2rem', paddingLeft: '0.7rem', paddingRight:'0.7rem', color:'white', display:'flex', alignItems:'center'}}>$</div>
+                            </div>
                           )}
                         </>
                       )}
                       {item.inputProps.type === 'submit' && (
-                        <input
-                          {...item.inputProps}
-                          disabled={isSubmitting}
-                          value={
-                            isSubmitting ? 'Cargando...' : item.inputProps.value
-                          }
-                        />
+                        <Row md={12} className='justify-content-center mt-2'>
+                          <Col md={2}>
+                            <input
+                              {...item.inputProps}
+                              disabled={isSubmitting}
+                              style={{height:'3rem', lineHeight:'3rem', padding:'0', width:'100%'}}
+                              value={
+                                isSubmitting ? 'Cargando...' : item.inputProps.value
+                              }
+                            />
+                          </Col>
+                        </Row>
                       )}
                     </Col>
                   ))}

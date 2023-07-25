@@ -1,22 +1,14 @@
 import { useState } from 'react'
-import { Button, Modal, Col, Row } from 'react-bootstrap'
+import { Button, Modal, Col, Row, Container } from 'react-bootstrap'
 import Swal from 'sweetalert2'
 import { useForm } from '../../hooks'
 import TextInput from '../TextInput'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
 
-const TituloGuia = {marginTop:"10px" , marginBottom:"-15px"};
 const unitCss = {backgroundColor: '#2F3394', marginBottom:'2rem', paddingLeft: '0.7rem', paddingRight:'0.7rem', color:'white', display:'flex', alignItems:'center'}
 
-const FormAddBulto = ({ addBultoHandler }) => {
-  const [show, setShow] = useState(false)
+const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
   const { form, setInForm, resetForm } = useForm({})
-
-  const handleClose = () => {
-    resetForm()
-    setShow(false)
-  }
-  const handleShow = () => setShow(true)
 
   const validateBulto = () => {
     const isInvalid = Object.keys(tableCotizaDictionary).some((key) => {
@@ -33,19 +25,13 @@ const FormAddBulto = ({ addBultoHandler }) => {
         timer: 2500,
       })
     addBultoHandler(form)
-    handleClose()
+    resetForm()
   }
 
   return (
-    <>
-      {/* <Button variant='primary' className='col-md-5' onClick={handleShow} style={{padding: '15px'}}>
-        Agregar Bulto
-      </Button> */}
-      {/* <Modal show={show} onHide={handleClose}>
-        <Modal.Body> */}
-        <Row className="justify-content-center">
-          <Col md={2}>
-            {/* <div style={TituloGuia}>Cantidad de Bultos</div> */}
+    <Container>
+        <Row md={12} className="justify-content-center">
+          <Col xs={2}>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -57,8 +43,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
               form={form}
             />
           </Col>
-          <Col md={2} className='d-flex'>
-            {/* <div style={TituloGuia}>Peso en kg</div> */}
+          <Col className='d-flex'  xs={2}>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -71,8 +56,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             />
             <div style={unitCss}>kg</div>
           </Col>
-          <Col md={2} className='d-flex'>
-            {/* <div style={TituloGuia}>Ancho en cm</div> */}
+          <Col className='d-flex'>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -85,8 +69,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             />
             <div style={unitCss}>cm</div>
           </Col>
-          <Col md={2} className='d-flex'>
-            {/* <div style={TituloGuia}>Alto en cm</div> */}
+          <Col className='d-flex'>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -99,8 +82,7 @@ const FormAddBulto = ({ addBultoHandler }) => {
             />
             <div style={unitCss}>cm</div>
           </Col>
-          <Col md={2} className='d-flex'>
-            {/* <div style={TituloGuia}>Profundidad en cm</div> */}
+          <Col className='d-flex'>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -114,20 +96,27 @@ const FormAddBulto = ({ addBultoHandler }) => {
             <div style={unitCss}>cm</div>
           </Col>
         </Row>
-        <Button variant='primary' className='col-md-5' onClick={validateBulto} style={{padding: '15px'}}>
-          Agregar Bulto
-        </Button>
-        {/* </Modal.Body>
-        <Modal.Footer>
-          <Button variant='primary' onClick={validateBulto}>
-            Guardar
-            </Button>
-            <Button variant='secondary' onClick={handleClose}>
-            Cancelar
+        <Row className="justify-content-center gap-3">
+          <Button variant='primary' className='col-md-2' onClick={validateBulto} style={{ backgroundColor:'#419246', borderColor:'#419246', height:'3rem', lineHeight:'3rem', padding:'0'}}>
+            AGREGAR BULTOS
           </Button>
-        </Modal.Footer>
-      </Modal> */}
-    </>
+          <Button
+            variant='danger'
+            className='col-md-2'
+            onClick={removeBultoHandler}
+            style={{
+              color: '#fff',
+              backgroundColor: '#dc3545',
+              borderColor: '#dc3545',
+              height:'3rem',
+              lineHeight:'3rem',
+              padding:'0'
+            }}
+          >
+            QUITAR BULTOS
+          </Button>
+        </Row>
+    </Container>
   )
 }
 export default FormAddBulto

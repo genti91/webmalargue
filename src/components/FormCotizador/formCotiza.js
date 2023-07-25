@@ -378,7 +378,18 @@ export const formCotiza = [
     },
   },
   {
-    colSize: { md: 12 },
+    colSize: { md: 3 },
+    inputProps: {
+      label: 'Incluir seguro',
+      name: 'seguro',
+      type: 'checkbox',
+      required: false,
+      value: 'Si',
+      errorMessage: 'Por favor completa este campo para cotizar',
+    },
+  },
+  {
+    colSize: { md: 9 },
     label: 'Descripción de los bultos',
     inputProps: {
       name: 'descripcion',
@@ -460,26 +471,16 @@ export const formCotiza = [
   //   },
   // },
   {
-    colSize: { md: 12 },
-    inputProps: {
-      label: 'Incluir seguro',
-      name: 'seguro',
-      type: 'checkbox',
-      required: false,
-      value: 'Si',
-      errorMessage: 'Por favor completa este campo para cotizar',
-    },
-  },
-  {
     inputProps: {
       type: 'submit',
-      value: 'Cotizá tu envío',
+      value: 'COTIZAR',
       className: 'btn btn-primary bg-primary',
       style: {
         outline: 'none',
         border: 'none',
       },
       css: { display:'flex', justifyContent:'end' },
+      required: true,
     },
   },
 ]
