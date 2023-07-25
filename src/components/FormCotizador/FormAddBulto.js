@@ -41,8 +41,8 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
 
   return (
     <Container>
-        <Row md={12} className="justify-content-center">
-          <Col xs={2}>
+        <Row sm={12} className="justify-content-center">
+          <Col sm={3}>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -54,7 +54,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
               form={form}
             />
           </Col>
-          <Col className='d-flex'  xs={2}>
+          <Col className='d-flex' sm={3}>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
@@ -67,7 +67,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
             />
             <div style={unitCss}>kg</div>
           </Col>
-          <Col>
+          <Col sm={2}>
             <div className='d-flex'>
               <TextInput
                 type='text'
@@ -83,7 +83,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
             </div>
             <div style={maxUnitCss}>*250 cm max.</div>
           </Col>
-          <Col>
+          <Col sm={2}>
             <div className='d-flex'>
               <TextInput
                 type='text'
@@ -100,7 +100,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
             <div style={maxUnitCss}>*250 cm max.</div>
           </Col>
           <Col>
-            <div className='d-flex'>
+            <div className='d-flex' sm={2}>
               <TextInput
                 type='text'
                 validation={/^[0-9]+$/}

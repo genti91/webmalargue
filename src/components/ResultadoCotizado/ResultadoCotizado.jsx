@@ -70,7 +70,7 @@ const ResultadoCotizado = (props) => {
             </Row>
           </Col> 
         </Row>        
-        <Button onClick={props.goBack} className='col-md-2 mt-4' style={{height:'3rem', lineHeight:'3rem', padding:'0'}}>SOLICITAR</Button>
+        <Button onClick={props.goBack} className='col-md-3 mt-4' style={{height:'3rem', lineHeight:'3rem', padding:'0'}}>REALIZAR NUEVA COTIZACION</Button>
       </Row>
     </Container>
   )
