@@ -2,6 +2,15 @@ import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import './ResultadoCotizado.scss'
 
 const ResultadoCotizado = (props) => {
+  let medidas = ''
+  let cantidad = 0
+  let peso = 0
+  props.bultos.forEach(bulto => {
+    cantidad += Number(bulto.cantBultos)
+    peso += Number(bulto.peso)
+    if (medidas !== '') medidas += ' / '
+    medidas += `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`
+  })
   return(
     <Container id='ResultadoCotizado'>
       <Row className='shadow'>
@@ -16,26 +25,26 @@ const ResultadoCotizado = (props) => {
             <Col md={3}>
               <Row className='mb-4'>
                 <Row className='d-inline'>
-                  <span className='cotiKey'>ORIGEN:</span><span className='cotiValue'>{props.form.origin}</span>
+                  <span className='cotiKey'>BULTOS:</span><span className='cotiValue'>{cantidad}</span>
                 </Row>
               </Row>
               <Row className='d-inline'>
-                <span className='cotiKey'>BULTOS:</span><span className='cotiValue'>{props.bultos[0].cantBultos}</span>
+                <span className='cotiKey'>ORIGEN:</span><span className='cotiValue'>{props.form.origin}</span>
               </Row>
             </Col>
             <Col md={3}>
               <Row className='mb-4'>
                 <Row className='d-inline'>
-                  <span className='cotiKey'>DESTINO:</span><span className='cotiValue'>{props.form.destiny}</span>
+                  <span className='cotiKey'>PESO:</span><span className='cotiValue'>{peso}kg</span>
                 </Row>
               </Row>
               <Row className='d-inline'>
-                <span className='cotiKey'>PESO:</span><span className='cotiValue'>{props.bultos[0].peso}</span>
+                <span className='cotiKey'>DESTINO:</span><span className='cotiValue'>{props.form.destiny}</span>
               </Row>
             </Col>
             <Col md={3}>
               <Row className='d-inline'>
-                <span className='cotiKey'>MEDIDAS:</span><span className='cotiValue'>{props.bultos[0].alto}cm x {props.bultos[0].ancho}cm x {props.bultos[0].profundidad}cm</span>
+                <span className='cotiKey'>MEDIDAS:</span><span className='cotiValue'>{medidas}</span>
               </Row>
             </Col>
           </Row>
@@ -49,7 +58,7 @@ const ResultadoCotizado = (props) => {
               <p className='modalidadText'>MODALIDAD DE ENVÍO</p>
             </Row>
             <Row className='modalidad pt-3'>
-              <p style={{color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>{props.form.service}</p>
+              <p style={{color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>{props.form.service.charAt(0).toUpperCase() + props.form.service.slice(1)}</p>
             </Row>
           </Col>
           <Col md={4} className='border'>
