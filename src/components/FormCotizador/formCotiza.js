@@ -381,10 +381,9 @@ export const formCotiza = [
     colSize: { md: 3 },
     inputProps: {
       label: 'Incluir seguro',
-      name: 'seguro',
+      name: 'valorDeclarado',
       type: 'checkbox',
-      required: false,
-      value: 'Si',
+      required: true,
       errorMessage: 'Por favor completa este campo para cotizar',
     },
   },
@@ -480,7 +479,6 @@ export const formCotiza = [
         border: 'none',
       },
       css: { display:'flex', justifyContent:'end' },
-      required: true,
     },
   },
 ]

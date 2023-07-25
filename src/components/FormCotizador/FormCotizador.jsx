@@ -47,6 +47,7 @@ const FormCotizacion = (props) => {
     pago: '',
     tel: '',
     tableTemplate: '',
+    valorDeclarado: '',
   })
   const navigate = useNavigate()
 
@@ -65,7 +66,7 @@ const FormCotizacion = (props) => {
   const addBultoHandler = (newBulto) => {
     if (bultos.length === 10)
       return Swal.fire({
-        position: 'top-end',
+        position: 'middle',
         icon: 'error',
         title: 'Límite alcanzado',
         text: 'Solo se pueden ingresar 10 bultos por cotización, por favor, de ser necesario realice otra.',
@@ -82,9 +83,10 @@ const FormCotizacion = (props) => {
 
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
+      console.log(input)
       if (!input.inputProps?.required) return false
-      console.log(input.inputProps.name)
-      console.log(form[input.inputProps?.name])
+      // console.log(input.inputProps.name)
+      // console.log(form[input.inputProps?.name])
       return !form[input.inputProps?.name]
     })
 
@@ -100,7 +102,7 @@ const FormCotizacion = (props) => {
 
     if (isInvalid) {
       Swal.fire({
-        position: 'top-end',
+        position: 'middle',
         icon: 'error',
         title: 'Por favor completa todos los campos',
         showConfirmButton: false,
@@ -110,7 +112,7 @@ const FormCotizacion = (props) => {
     }
     if (!bultos.length) {
       Swal.fire({
-        position: 'top-end',
+        position: 'middle',
         icon: 'error',
         title: 'Por favor, es necesario cargar al menos un bulto',
         showConfirmButton: false,
@@ -138,7 +140,7 @@ const FormCotizacion = (props) => {
       getCotizacion({
         origen: form.originId,
         destino: form.destinyId,
-        valorDeclarado: form?.valorDeclarado,
+        valorDeclarado: form.valorDeclarado,
         ...tableTemplate
       })
       .then(
@@ -300,7 +302,7 @@ const FormCotizacion = (props) => {
                           {true && (
                             <div className='d-flex'>
                             <TextInput
-                              type='text'
+                              type='number'
                               name='valorDeclarado'
                               placeholder='Valor Declarado'
                               required
