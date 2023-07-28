@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import './LocationSelect.scss'
 
-const LocationSelect = ({locations, setInForm, name, placeholder}) => {
+const LocationSelect = ({locations, setInForm, name, placeholder, cp, form}) => {
 
-  const [searchQuery, setSearchQuery] = useState('')
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [dropdownOptions, setDropdownOptions] = useState([])
   const [blur, setBlur] = useState(false);
@@ -11,15 +10,20 @@ const LocationSelect = ({locations, setInForm, name, placeholder}) => {
   const handleSearchChange = (event) => {
     if (!locations) return
     const { value } = event.target
-    setSearchQuery(value)
+    setInForm( name, value)
 
     if (value.length > 0) {
-      const filteredOptions = locations
+      const filteredOptions = !cp ? locations
         .filter((location) =>
           location.nombre.toLowerCase().includes(value.toLowerCase())
         )
         .sort((a, b) => a.nombre.localeCompare(b.nombre))
+        .slice(0, 10) :
+        locations.filter((location) =>
+          location.codigoPostal.toString().includes(value)
+        )
         .slice(0, 10)
+
       setDropdownOptions(filteredOptions)
       if (filteredOptions.length === 0) {
         setDropdownVisible(false)
@@ -32,14 +36,15 @@ const LocationSelect = ({locations, setInForm, name, placeholder}) => {
   };
 
   const handleOptionClick = (option) => {
-    setInForm( name, option.nombre)
-    setInForm( name + 'Id', option.id)
-    if (name === 'origin') {
-      setInForm('originCP', option.codigoPostal)
+    if (name === 'origin' || name === 'originCP') {
+      setInForm( 'origin', option.nombre)
+      setInForm( 'originId', option.id)
+      setInForm( 'originCP', option.codigoPostal)
     } else {
-       setInForm('destinyCP', option.codigoPostal)
+      setInForm( 'destiny', option.nombre)
+      setInForm( 'destinyId', option.id)
+      setInForm( 'destinyCP', option.codigoPostal)
     }
-    setSearchQuery(option.nombre)
     setDropdownVisible(false)
   };
 
@@ -49,7 +54,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder}) => {
         <input
           className="input_container__field"
           type="text"
-          value={searchQuery}
+          value={form[name]}
           onChange={handleSearchChange}
           onFocus={() => setBlur(!blur)}
           onBlur={() => setBlur(false)}
@@ -65,7 +70,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder}) => {
               key={option.id}
               onClick={() => handleOptionClick(option)}
             >
-              {option.nombre}
+              {cp ? option.codigoPostal : option.nombre}
             </li>
           ))}
         </ul>

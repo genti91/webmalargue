@@ -60,7 +60,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
               validation={/^[0-9]+$/}
               required
               name='peso'
-              placeholder='Peso en KG'
+              placeholder='Peso en KG unitario'
               value={bulto.peso}
               setInForm={setInForm}
               form={form}
@@ -74,7 +74,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
                 validation={/^[0-9]+$/}
                 required
                 name='ancho'
-                placeholder='Ancho'
+                placeholder='Ancho unitario'
                 value={bulto.ancho}
                 setInForm={setInForm}
                 form={form}
@@ -90,7 +90,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
                 validation={/^[0-9]+$/}
                 required
                 name='alto'
-                placeholder='Alto'
+                placeholder='Alto unitario'
                 value={bulto.alto}
                 setInForm={setInForm}
                 form={form}
@@ -106,7 +106,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
                 validation={/^[0-9]+$/}
                 required
                 name='profundidad'
-                placeholder='Largo'
+                placeholder='Largo unitario'
                 value={bulto.profundidad}
                 setInForm={setInForm}
                 form={form}

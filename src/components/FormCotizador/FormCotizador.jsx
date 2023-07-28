@@ -205,15 +205,17 @@ const FormCotizacion = (props) => {
                       {/* {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>} */}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
                         <>
-                          {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? 
+                          {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' || item.inputProps.name === 'originCP' || item.inputProps.name === 'destinyCP' ? 
                             <LocationSelect
                               {...item.inputProps}
                               locations={item.inputProps.name === 'origin' ? tarifa.locOrigen : tarifa.locDestino}
                               setInForm={setInForm}
+                              form={form}
                               error={errors[item.inputProps.name]}
                               placeholder={item.label}
+                              cp={item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? false : true}
                             />
-                            :
+                            : 
                             <>
                               {item.inputProps.type !== 'textarea' ? (
                                 <TextInput
