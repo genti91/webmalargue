@@ -18,6 +18,7 @@ import { validateInputs } from './validateInputs'
 import LocationSelect from '../LocationSelect/LocationSelect'
 import { getTarifa } from './services/getTarifa'
 import ResultadoCotizado from '../ResultadoCotizado/ResultadoCotizado'
+import { set } from 'lodash'
 const { Check } = Form
 
 const FormCotizacion = (props) => {
@@ -49,7 +50,6 @@ const FormCotizacion = (props) => {
     tableTemplate: '',
     valorDeclarado: '',
   })
-  const navigate = useNavigate()
 
   const [tarifa, setTarifa] = useState([])
 
@@ -82,28 +82,26 @@ const FormCotizacion = (props) => {
 
   const validate = () => {
     var isInvalid = formCotiza.some((input) => {
-      console.log(input)
       if (!input.inputProps?.required) return false
-      // console.log(input.inputProps.name)
-      // console.log(form[input.inputProps?.name])
       return !form[input.inputProps?.name]
     })
 
-    console.log(isInvalid)
-
-    // si el form esta completo chequea que los campos sean validos
+    let locationError = false;
     if (!isInvalid){
       let errors = validateInputs(form)
-      console.log('errors:',errors)
       setErorrs(errors)
-      if (Object.keys(errors).length !== 0) isInvalid = true
+      if (Object.keys(errors).length !== 0) isInvalid = true;
+      let locationErrors = {destiny:'', destinyCP:'', origin:'', originCP:''}
+      if (form.destinyId === '') {locationErrors = {...locationErrors, destiny: 'Campo requerido', destinyCP: 'Campo requerido' }; locationError = true}
+      if (form.originId === '') {locationErrors = { ...locationErrors, origin: 'Campo requerido', originCP: 'Campo requerido' }; locationError = true}
+      setErorrs({...errors, ...locationErrors})
     }
 
-    if (isInvalid) {
+    if (isInvalid || locationError) {
       Swal.fire({
         position: 'middle',
         icon: 'error',
-        title: 'Por favor completa todos los campos',
+        title: locationError ? 'Por favor ingrese una localidad valida' : 'Por favor completa todos los campos',
         showConfirmButton: false,
         timer: 1500,
       })
@@ -212,6 +210,7 @@ const FormCotizacion = (props) => {
                               setInForm={setInForm}
                               form={form}
                               error={errors[item.inputProps.name]}
+                              errors={errors}
                               placeholder={item.label}
                               cp={item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? false : true}
                             />

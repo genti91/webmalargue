@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react';
 import './LocationSelect.scss'
 
-const LocationSelect = ({locations, setInForm, name, placeholder, cp, form}) => {
+const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, errors}) => {
 
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [dropdownOptions, setDropdownOptions] = useState([])
   const [blur, setBlur] = useState(false);
+  const [highlightedItem, setHighlightedItem] = useState(-1);
+  const inputRef = useRef(null);
 
   const handleSearchChange = (event) => {
     if (!locations) return
@@ -33,6 +35,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form}) => 
     } else {
       setDropdownVisible(false)
     }
+    setHighlightedItem(-1);
   };
 
   const handleOptionClick = (option) => {
@@ -46,27 +49,53 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form}) => 
       setInForm( 'destinyCP', option.codigoPostal)
     }
     setDropdownVisible(false)
+    setHighlightedItem(-1);
   };
+
+  const handleKeyDown = (e) => {
+    if (dropdownVisible) {
+      if (e.keyCode === 40) { //down
+        e.preventDefault();
+        setHighlightedItem((prevItem) => Math.min(prevItem + 1, dropdownOptions.length - 1));
+      } else if (e.keyCode === 38) { //up
+        e.preventDefault();
+        setHighlightedItem((prevItem) => Math.max(prevItem - 1, -1));
+      } else if (e.keyCode === 13 && highlightedItem >= 0) { //enter
+        e.preventDefault();
+        handleOptionClick(dropdownOptions[highlightedItem]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (dropdownVisible) {
+      inputRef.current.focus();
+    }else{
+      setHighlightedItem(-1);
+    }
+  }, [dropdownVisible]);
 
   return (
     <div>
-      <div className={`input_container ${blur && "border_active"}`}>
+      <div className={`input_container ` + (blur && ((errors && errors[name] === 'Campo requerido') ? 'border_active_error' : 'border_active' ))}>
         <input
-          className="input_container__field"
+          ref={inputRef}
+          className={"input_container__field " + ((errors && errors[name] === 'Campo requerido') &&  "input_container__field_error")}
           type="text"
           value={form[name]}
           onChange={handleSearchChange}
           onFocus={() => setBlur(!blur)}
           onBlur={() => setBlur(false)}
+          onKeyDown={handleKeyDown}
           placeholder={placeholder}
         />
 
       </div>
       {dropdownVisible && (
         <ul className="location_drop_down">
-          {dropdownOptions.map((option) => (
+          {dropdownOptions.map((option, index) => (
             <li
-              className="location_drop_down_item"
+              className={`location_drop_down_item ${index === highlightedItem ? 'highlighted' : ''}`}
               key={option.id}
               onClick={() => handleOptionClick(option)}
             >
