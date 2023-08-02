@@ -148,10 +148,11 @@ const FormCotizacion = (props) => {
                 'template_kj69e2x',
                 {
                   ...form,
-                  seguro: seguro ? 'Si' : 'No',
-                  ads: ads(),
-                  tableTemplate,
-                  cotizacion: res.msg,
+                  service: form.service.charAt(0).toUpperCase() + form.service.slice(1),
+                  medidas: bultos.map((bulto) => `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`).join(" / "),
+                  cantidad: bultos.reduce((acc, bulto) => acc + Number(bulto.cantBultos),0),
+                  peso: bultos.reduce((acc, bulto) => acc + Number(bulto.peso),0),
+                  cotizacion: res.valorizo,
                 },
                 'fRtOuVBrm3PpHzBca'
               )
