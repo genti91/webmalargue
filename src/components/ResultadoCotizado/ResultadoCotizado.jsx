@@ -1,5 +1,6 @@
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import './ResultadoCotizado.scss'
+import { useEffect } from 'react'
 
 const ResultadoCotizado = (props) => {
   let medidas = ''
@@ -11,6 +12,19 @@ const ResultadoCotizado = (props) => {
     if (medidas !== '') medidas += ' / '
     medidas += `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`
   })
+  
+  useEffect(() => {
+    var element = document.getElementById('ResultadoCotizado');
+    var headerOffset = 65;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+  }, [])
+
   return(
     <Container id='ResultadoCotizado'>
       <Row className='shadow'>
@@ -51,11 +65,11 @@ const ResultadoCotizado = (props) => {
         </Col>
       </Row>
       <Row className='shadow p-5 mt-4 d-flex justify-content-center gap-4 text-center'>
-        <p className='recordaText'>Recordá que el valor es estimativo ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito.</p>
+        <p className='recordaText'>Recordá que el valor es estimativo ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito. Incluye importe de seguro según valor declarado.</p>
         <Row className='d-flex justify-content-center gap-5'>
           <Col md={4} className='border'>
             <Row className='text-center pt-3'>
-              <p className='modalidadText'>MODALIDAD DE ENVÍO</p>
+              <p className='modalidadText'>TIPO DE SERVICIO</p>
             </Row>
             <Row className='modalidad pt-3'>
               <p style={{color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>{props.form.service.charAt(0).toUpperCase() + props.form.service.slice(1)}</p>

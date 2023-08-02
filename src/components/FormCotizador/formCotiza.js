@@ -69,7 +69,7 @@ export const formCotiza = [
     inputProps: {
       name: 'origin',
       type: 'text',
-      required: true,
+      required: false,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
@@ -80,7 +80,7 @@ export const formCotiza = [
     inputProps: {
       name: 'originCP',
       type: 'text',
-      required: true,
+      required: false,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
@@ -213,7 +213,7 @@ export const formCotiza = [
     inputProps: {
       name: 'destiny',
       type: 'text',
-      required: true,
+      required: false,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
@@ -224,7 +224,7 @@ export const formCotiza = [
     inputProps: {
       name: 'destinyCP',
       type: 'text',
-      required: true,
+      required: false,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
