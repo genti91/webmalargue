@@ -1,7 +1,6 @@
 import { Table } from 'react-bootstrap'
 
 const TableComponent = ({ columns, dataSource }) => {
-  console.log('columns', columns)
   return (
     <Table striped bordered hover size='md' style={{ marginBlock: '20px' }}>
       <thead>
