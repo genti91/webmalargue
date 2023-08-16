@@ -40,34 +40,39 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
   }, [form])
 
   return (
-    <Container>
+    <Container id='addBultos'>
         <Row sm={12} className="justify-content-center">
           <Col sm={3}>
+            <label>Cantidad</label>
             <TextInput
               type='text'
               validation={/^[0-9]+$/}
               required
               name='cantBultos'
-              placeholder='cantidad'
+              placeholder='Cantidad'
               value={bulto.cantBultos}
               setInForm={setInForm}
               form={form}
             />
           </Col>
-          <Col className='d-flex' sm={3}>
-            <TextInput
-              type='text'
-              validation={/^[0-9]+$/}
-              required
-              name='peso'
-              placeholder='Peso en KG unitario'
-              value={bulto.peso}
-              setInForm={setInForm}
-              form={form}
-            />
-            <div style={unitCss}>kg</div>
+          <Col sm={3}>
+            <label>Peso en KG unitario</label>
+            <div className='d-flex'>
+              <TextInput
+                type='text'
+                validation={/^[0-9]+$/}
+                required
+                name='peso'
+                placeholder='Peso en KG unitario'
+                value={bulto.peso}
+                setInForm={setInForm}
+                form={form}
+              />
+              <div style={unitCss}>kg</div>
+            </div>
           </Col>
           <Col sm={2}>
+            <label>Ancho unitario</label>
             <div className='d-flex'>
               <TextInput
                 type='text'
@@ -84,6 +89,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
             <div style={maxUnitCss}>*250 cm max.</div>
           </Col>
           <Col sm={2}>
+            <label>Alto unitario</label>
             <div className='d-flex'>
               <TextInput
                 type='text'
@@ -100,6 +106,7 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
             <div style={maxUnitCss}>*250 cm max.</div>
           </Col>
           <Col>
+            <label>Largo unitario</label>
             <div className='d-flex' sm={2}>
               <TextInput
                 type='text'

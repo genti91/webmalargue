@@ -3,14 +3,13 @@ import './ResultadoCotizado.scss'
 import { useEffect } from 'react'
 
 const ResultadoCotizado = (props) => {
-  let medidas = ''
+  let medidas = []
   let cantidad = 0
   let peso = 0
   props.bultos.forEach(bulto => {
     cantidad += Number(bulto.cantBultos)
-    peso += Number(bulto.peso)
-    if (medidas !== '') medidas += ' / '
-    medidas += `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`
+    peso += Number(bulto.peso) * Number(bulto.cantBultos)
+    medidas.push((`${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`) + (bulto.cantBultos > 1 ? ` (${bulto.cantBultos})` : ''))
   })
   
   useEffect(() => {
@@ -57,8 +56,9 @@ const ResultadoCotizado = (props) => {
               </Row>
             </Col>
             <Col md={3}>
-              <Row className='d-inline'>
-                <span className='cotiKey'>MEDIDAS:</span><span className='cotiValue'>{medidas}</span>
+              <Row className='d-flex'>
+                <span className='cotiKey'>MEDIDAS UNITARIAS:</span>
+                <div className='medidasContainer'>{medidas.map(medida => <p className='medidas'>{medida}</p>)}</div>
               </Row>
             </Col>
           </Row>

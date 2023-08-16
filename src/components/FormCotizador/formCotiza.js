@@ -69,18 +69,18 @@ export const formCotiza = [
     inputProps: {
       name: 'origin',
       type: 'text',
-      required: false,
+      required: true,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
   },
   {
     colSize: { md: 2 },
-    label: 'Cp',
+    label: 'CP',
     inputProps: {
       name: 'originCP',
       type: 'text',
-      required: false,
+      required: true,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
@@ -89,7 +89,7 @@ export const formCotiza = [
     colSize: { md: 5 },
     label: 'Prov. de Origen',
     inputProps: {
-      name: 'provOrigen',
+      name: 'provOrigin',
       type: 'select',
       options: [
         /* {
@@ -213,18 +213,18 @@ export const formCotiza = [
     inputProps: {
       name: 'destiny',
       type: 'text',
-      required: false,
+      required: true,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
   },
   {
     colSize: { md: 2 },
-    label: 'Cp',
+    label: 'CP',
     inputProps: {
       name: 'destinyCP',
       type: 'text',
-      required: false,
+      required: true,
       errorMessage: 'Por favor completa este campo',
       validation: false,
     },
@@ -233,7 +233,7 @@ export const formCotiza = [
     colSize: { md: 5 },
     label: 'Prov. de Destino',
     inputProps: {
-      name: 'provDestino',
+      name: 'provDestiny',
       type: 'select',
       options: [
         /* {
@@ -379,6 +379,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 3 },
+    label: 'Valor declarado total',
     inputProps: {
       label: 'Incluir seguro',
       name: 'valorDeclarado',
