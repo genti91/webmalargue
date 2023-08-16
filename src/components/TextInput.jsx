@@ -31,15 +31,17 @@ const TextInput = (props) => {
           onBlur={() => onBlurFunction()}
           value={props.name === 'originCP' || props.name === 'destinyCP' ? props.form[props.name] : props.value}
           onChange={(e) => handleChange(e)}
+          id={props.name}
         />
       ) : (
         <>
           <select
             name={props.name} 
             id={props.name}
-            className="input_container__field"
+            className={"input_container__field " + ((props.errors && props.errors[props.name]) &&  "input_container__field_error")}
             onFocus={() => setBlur(!blur)}
             onBlur={() => setBlur(false)}
+            value={props.form[props.name]}
             onChange={(e) => handleChange(e)}
           >
             <option value="" selected disabled hidden >{props.placeholder}</option>

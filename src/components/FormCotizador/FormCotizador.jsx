@@ -29,9 +29,23 @@ const FormCotizacion = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErorrs] = useState({})
   const [cotizacion, setCotizacion] = useState('')
+  const [duplicateCP, setDuplicateCP] = useState([])
+  const [showLocations, setShowLocations] = useState({})
 
   const ads = () => {
     if (searchParams.get('ads')) return true
+  }
+
+  const scrollTo = (id) => {
+    console.log(id)
+    var element = document.getElementById(id);
+    var headerOffset = 150;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
   }
 
   const { form, setInForm, resetForm } = useForm({
@@ -81,8 +95,13 @@ const FormCotizacion = (props) => {
   }
 
   const validate = () => {
+    let emptyInputId = ''
     var isInvalid = formCotiza.some((input) => {
       if (!input.inputProps?.required) return false
+      if (!form[input.inputProps?.name]) {
+        setErorrs({[input.inputProps?.name]: 'Campo requerido' })
+        emptyInputId = input.inputProps?.name
+      }
       return !form[input.inputProps?.name]
     })
 
@@ -105,7 +124,11 @@ const FormCotizacion = (props) => {
         showConfirmButton: false,
         timer: 1500,
       })
+      setTimeout(() => {
+        scrollTo(emptyInputId)
+      }, 1700);
       return false
+      
     }
     if (!bultos.length) {
       Swal.fire({
@@ -115,6 +138,9 @@ const FormCotizacion = (props) => {
         showConfirmButton: false,
         timer: 1500,
       })
+      setTimeout(() => {
+        scrollTo('addBultos')
+      }, 1700);
       return false
     }
     return true
@@ -122,8 +148,6 @@ const FormCotizacion = (props) => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-      console.log('form:',form)
-    
     if (validate()) {
       setIsSubmitting(true)
       const tableTemplate = tableTemplateGenerator({
@@ -201,7 +225,7 @@ const FormCotizacion = (props) => {
                   {formCotiza.map((item, index) => (
                     <Col {...item?.colSize} key={index}>
                       { item.inputProps.type === 'divisor' && <Col style={item.inputProps?.css}><label style={item.inputProps?.labelCss}>{item.name}</label></Col>}
-                      {/* {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>} */}
+                      {item?.label && <label style={item.inputProps?.labelCss}>{item.label}</label>}
                       {item.inputProps.type.match(/text|select|email|tel/) && (
                         <>
                           {item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' || item.inputProps.name === 'originCP' || item.inputProps.name === 'destinyCP' ? 
@@ -213,6 +237,10 @@ const FormCotizacion = (props) => {
                               error={errors[item.inputProps.name]}
                               errors={errors}
                               placeholder={item.label}
+                              duplicateCP={duplicateCP}
+                              setDuplicateCP={setDuplicateCP}
+                              setShowLocations={setShowLocations}
+                              showLocations={showLocations}
                               cp={item.inputProps.name === 'origin' || item.inputProps.name === 'destiny' ? false : true}
                             />
                             : 
@@ -305,9 +333,11 @@ const FormCotizacion = (props) => {
                             <TextInput
                               type='number'
                               name='valorDeclarado'
-                              placeholder='Valor Declarado'
+                              placeholder='Valor Declarado total'
                               required
                               setInForm={setInForm}
+                              setErorrs={setErorrs}
+                              errors={errors}
                               form={form}
                             />
                             <div style={{backgroundColor: '#2F3394', marginBottom:'2rem', paddingLeft: '0.7rem', paddingRight:'0.7rem', color:'white', display:'flex', alignItems:'center'}}>$</div>

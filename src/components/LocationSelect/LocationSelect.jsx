@@ -1,13 +1,58 @@
 import { useState, useRef, useEffect } from 'react';
 import './LocationSelect.scss'
 
-const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, errors}) => {
+const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, errors, duplicateCP, setDuplicateCP, showLocations, setShowLocations}) => {
 
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [dropdownOptions, setDropdownOptions] = useState([])
   const [blur, setBlur] = useState(false);
   const [highlightedItem, setHighlightedItem] = useState(-1);
   const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const uniquePostalCodes = {};
+  const duplicateCPlocal = [];
+
+  useEffect(() => {
+    console.log('showLocations:', showLocations)
+    console.log(duplicateCP)
+    if ((name === 'origin' || name === 'destiny') && showLocations[name + 'CP']) {
+        let options = duplicateCP.filter((location) => location.codigoPostal == showLocations[name + 'CP'])
+        if (options.length > 1) {
+          setDropdownOptions(options)
+          setDropdownVisible(true)
+          setInForm( name, '')
+          setInForm( name+'Id', '')
+        }
+      else{
+        setDropdownVisible(false)
+      }
+    }
+    console.log('name:', name)
+    if ((name === 'originCP' || name === 'destinyCP') && showLocations[name.slice(0, -2)]) {
+      console.log('holaaaa')
+      let options = duplicateCP.filter((location) => location.nombre == showLocations[name.slice(0, -2)])
+      if (options.length > 1) {
+        setDropdownOptions(options)
+        setDropdownVisible(true)
+        //setInForm(name.slice(0, -2), '')
+      }
+    else{
+      setDropdownVisible(false)
+    }
+  } 
+  }, [showLocations])
+
+  const checkDuplicate = (location, duplicate) => {
+    if (uniquePostalCodes[duplicate]) {
+      duplicateCPlocal.push(location);
+      return false;
+    } else {
+      uniquePostalCodes[duplicate] = true;
+      duplicateCPlocal.push(location);
+      return true;
+    }
+  }
+
 
   const handleSearchChange = (event) => {
     if (!locations) return
@@ -16,16 +61,19 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
 
     if (value.length > 0) {
       const filteredOptions = !cp ? locations
-        .filter((location) =>
-          location.nombre.toLowerCase().includes(value.toLowerCase())
-        )
+        .filter((location) => {
+          if (!location.nombre.toLowerCase().includes(value.toLowerCase())) return false;
+          return checkDuplicate(location, location.nombre);
+        })
         .sort((a, b) => a.nombre.localeCompare(b.nombre))
-        .slice(0, 10) :
-        locations.filter((location) =>
-          location.codigoPostal.toString().includes(value)
-        )
+        .slice(0, 10) 
+      :
+        locations.filter((location) => {
+          if (!location.codigoPostal.toString().includes(value)) return false;
+          return checkDuplicate(location, location.codigoPostal.toString());
+        })
         .slice(0, 10)
-
+      setDuplicateCP(duplicateCPlocal)
       setDropdownOptions(filteredOptions)
       if (filteredOptions.length === 0) {
         setDropdownVisible(false)
@@ -37,17 +85,18 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
     }
     setHighlightedItem(-1);
   };
-
+  
   const handleOptionClick = (option) => {
-    if (name === 'origin' || name === 'originCP') {
-      setInForm( 'origin', option.nombre)
-      setInForm( 'originId', option.id)
-      setInForm( 'originCP', option.codigoPostal)
-    } else {
-      setInForm( 'destiny', option.nombre)
-      setInForm( 'destinyId', option.id)
-      setInForm( 'destinyCP', option.codigoPostal)
+    if (name.includes('CP')) {
+      setShowLocations({[name]: option.codigoPostal})
+      name = name.slice(0, -2);
+    }else{
+      setShowLocations({[name]: option.nombre})
     }
+    setInForm( name, option.nombre)
+    setInForm( name + 'Id', option.id)
+    setInForm( name + 'CP', option.codigoPostal)
+    setInForm( 'prov' + name.charAt(0).toUpperCase() + name.slice(1), option.provincia)
     setDropdownVisible(false)
     setHighlightedItem(-1);
   };
@@ -64,6 +113,20 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
         e.preventDefault();
         handleOptionClick(dropdownOptions[highlightedItem]);
       }
+      if (dropdownRef.current && highlightedItem >= 0) {
+        const itemElement = dropdownRef.current.children[highlightedItem];
+        if (itemElement) {
+          const itemTop = itemElement.offsetTop;
+          const itemBottom = itemTop + itemElement.offsetHeight;
+          const dropdownTop = dropdownRef.current.scrollTop;
+          const dropdownBottom = dropdownTop + dropdownRef.current.offsetHeight;
+          if (itemTop < dropdownTop) {
+            dropdownRef.current.scrollTop = itemTop  - 30;
+          } else if (itemBottom > dropdownBottom) {
+            dropdownRef.current.scrollTop = itemBottom - dropdownRef.current.offsetHeight  + 30;
+          }
+        }
+      }
     }
   };
 
@@ -77,7 +140,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
 
   return (
     <div>
-      <div className={`input_container ` + (blur && ((errors && errors[name] === 'Campo requerido') ? 'border_active_error' : 'border_active' ))}>
+      <div id={name} className={`input_container ` + (blur && ((errors && errors[name] === 'Campo requerido') ? 'border_active_error' : 'border_active' ))}>
         <input
           ref={inputRef}
           className={"input_container__field " + ((errors && errors[name] === 'Campo requerido') &&  "input_container__field_error")}
@@ -92,7 +155,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
 
       </div>
       {dropdownVisible && (
-        <ul className="location_drop_down">
+        <ul ref={dropdownRef} className="location_drop_down" style={dropdownOptions.length > 10 ? {overflowY: 'scroll'} : null}>
           {dropdownOptions.map((option, index) => (
             <li
               className={`location_drop_down_item ${index === highlightedItem ? 'highlighted' : ''}`}

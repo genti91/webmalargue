@@ -39,9 +39,18 @@
     color: var(--bs-primary);
     font-weight: 600;
     margin-right: 0.5rem;
+    max-width: fit-content;
   }
   .cotiValue{
     color: gray;
+  }
+  .medidas{
+    color: gray;
+    margin: 0;
+  }
+  .medidasContainer{
+    max-width: fit-content;
+    padding: 0;
   }
 
 }
