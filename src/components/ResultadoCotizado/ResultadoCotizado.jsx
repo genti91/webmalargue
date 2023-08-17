@@ -48,7 +48,7 @@ const ResultadoCotizado = (props) => {
             <Col md={3}>
               <Row className='mb-4'>
                 <Row className='d-inline'>
-                  <span className='cotiKey'>PESO:</span><span className='cotiValue'>{peso}kg</span>
+                  <span className='cotiKey'>PESO TOTAL:</span><span className='cotiValue'>{peso}kg</span>
                 </Row>
               </Row>
               <Row className='d-inline'>
