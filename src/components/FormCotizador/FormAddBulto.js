@@ -18,7 +18,6 @@ const FormAddBulto = ({ addBultoHandler, removeBultoHandler }) => {
   const validateBulto = () => {
     const isInvalid = Object.keys(tableCotizaDictionary).some((key) => {
       if (key === 'seleccionar') return false
-      console.log(key)
       return form?.[key] ? (isNaN(form?.[key]) ? true : (((key === 'alto' || key === 'ancho') && form?.[key] > maxAnchoAlto) || (key === 'profundidad' && form?.[key] > maxProfundidad) ? true : false)) : true
     })
     if (isInvalid)
