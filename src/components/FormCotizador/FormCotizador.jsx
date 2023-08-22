@@ -37,7 +37,6 @@ const FormCotizacion = (props) => {
   }
 
   const scrollTo = (id) => {
-    console.log(id)
     var element = document.getElementById(id);
     var headerOffset = 150;
     var elementPosition = element.getBoundingClientRect().top;
@@ -156,43 +155,30 @@ const FormCotizacion = (props) => {
       })
       form.page = 'Individuos'
 
-      
-      // llamada a la api de cotizacion y navegacion a la pagina de gracias con el mensaje de cotizacion
       getCotizacion({
-        origen: form.originId,
-        destino: form.destinyId,
-        valorDeclarado: form.valorDeclarado,
+        ...form,
         ...tableTemplate
       })
       .then(
         (res) => {
-            emailjs
-              .send(
-                'service_lv636bu',
-                'template_kj69e2x',
-                {
-                  ...form,
-                  service: form.service.charAt(0).toUpperCase() + form.service.slice(1),
-                  medidas: bultos.map((bulto) => `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`).join(" / "),
-                  cantidad: bultos.reduce((acc, bulto) => acc + Number(bulto.cantBultos),0),
-                  peso: bultos.reduce((acc, bulto) => acc + Number(bulto.peso),0),
-                  cotizacion: res.valorizo,
-                },
-                'fRtOuVBrm3PpHzBca'
-              )
-            // Swal.fire({
-            //   position: 'top',
-            //   icon: 'success',
-            //   title:
-            //     'Recibirás una cotización dentro de las próximas 24hs hábiles',
-            //   showConfirmButton: false,
-            //   timer: 1500,
-            // })
+          console.log(res)
+          emailjs
+            .send(
+              'service_lv636bu',
+              'template_kj69e2x',
+              {
+                ...form,
+                service: form.service.charAt(0).toUpperCase() + form.service.slice(1),
+                medidas: bultos.map((bulto) => `${bulto.alto}cm x ${bulto.ancho}cm x ${bulto.profundidad}cm`).join(" / "),
+                cantidad: bultos.reduce((acc, bulto) => acc + Number(bulto.cantBultos),0),
+                peso: bultos.reduce((acc, bulto) => acc + Number(bulto.peso),0),
+                cotizacion: res.valorizo,
+                idLead: res.idLead,
+              },
+              'fRtOuVBrm3PpHzBca'
+            )
             setIsSubmitting(false)
-            // envia por parametro el mensaje de cotizacion a el componente ThankYou.jsx
             setCotizacion(res.valorizo)
-            //navigate('/gracias?type=cotizacion&msg=' + res.msg)
-            //  resetForm()
           },
           (err) => {
             Swal.fire({
@@ -236,7 +222,7 @@ const FormCotizacion = (props) => {
                               form={form}
                               error={errors[item.inputProps.name]}
                               errors={errors}
-                              placeholder={item.label}
+                              placeholder={((item.inputProps.name === 'origin' || item.inputProps.name === 'destiny') && tarifa.length === 0 )? 'Cargando localidades' : item.label}
                               duplicateCP={duplicateCP}
                               setDuplicateCP={setDuplicateCP}
                               setShowLocations={setShowLocations}

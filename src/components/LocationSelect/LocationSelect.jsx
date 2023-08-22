@@ -13,8 +13,6 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
   const duplicateCPlocal = [];
 
   useEffect(() => {
-    console.log('showLocations:', showLocations)
-    console.log(duplicateCP)
     if ((name === 'origin' || name === 'destiny') && showLocations[name + 'CP']) {
         let options = duplicateCP.filter((location) => location.codigoPostal == showLocations[name + 'CP'])
         if (options.length > 1) {
@@ -27,14 +25,11 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
         setDropdownVisible(false)
       }
     }
-    console.log('name:', name)
     if ((name === 'originCP' || name === 'destinyCP') && showLocations[name.slice(0, -2)]) {
-      console.log('holaaaa')
       let options = duplicateCP.filter((location) => location.nombre == showLocations[name.slice(0, -2)])
       if (options.length > 1) {
         setDropdownOptions(options)
         setDropdownVisible(true)
-        //setInForm(name.slice(0, -2), '')
       }
     else{
       setDropdownVisible(false)
