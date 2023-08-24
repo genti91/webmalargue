@@ -1,7 +1,7 @@
 const { REACT_APP_API_KEY } = process.env
 
 export const getCotizacion = async (props) => {
-  const cotizacion = await window
+  var cotizacion = await window
     .fetch(
       `https://www.softwarecristal.com/web/api/public/?token=${REACT_APP_API_KEY}&o=cotizacion`,
       {
@@ -21,6 +21,7 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
+  cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + props.valorDeclarado * 0.01}
   const prospecto = await window
     .fetch(
       `https://www.softwarecristal.com/web/apitest//?token=0b2df9d04a62ee1428202ebc9a17f7ced185f2c8324ade962bf4c95368b5348f&o=putProspecto`,
@@ -47,11 +48,11 @@ export const getCotizacion = async (props) => {
         method: 'POST',
         credentials: 'same-origin',
         body: JSON.stringify({
-          idProspecto: prospecto.idProspecto,
+          idProspecto: prospecto?.idProspecto,
           descripcion: "Cotización con vendedor Cotizador WEB",
           idVendedor: 123,
-          importeCotizado: cotizacion.valorizo,
-          importeOriginal: cotizacion.valorizo,
+          importeCotizado: cotizacion?.valorizo,
+          importeOriginal: cotizacion?.valorizo,
           markUp: 0,
           origen: 1,
           observaciones: JSON.stringify({
@@ -70,5 +71,5 @@ export const getCotizacion = async (props) => {
       throw error
     })
 
-  return {...cotizacion, ...prospecto, ...lead}
+  return {...cotizacion, ...lead}
 }
