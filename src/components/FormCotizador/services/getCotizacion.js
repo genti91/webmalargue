@@ -21,7 +21,7 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
-  cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + props.valorDeclarado * 0.01}
+  cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + cotizacion.seguro}
   const prospecto = await window
     .fetch(
       `https://www.softwarecristal.com/web/apitest//?token=0b2df9d04a62ee1428202ebc9a17f7ced185f2c8324ade962bf4c95368b5348f&o=putProspecto`,
