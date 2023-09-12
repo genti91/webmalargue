@@ -65,11 +65,10 @@ const ResultadoCotizado = (props) => {
         </Col>
       </Row>
       <Row className='shadow p-5 mt-4 d-flex justify-content-center gap-4 text-center'>
-        <p className='recordaText'>Recordá que el valor es estimativo ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito. Incluye importe de seguro según valor declarado.</p>
         <Row className='d-flex justify-content-center gap-5'>
           <Col md={4} className='border'>
             <Row className='text-center pt-3'>
-              <p className='modalidadText'>TIPO DE SERVICIO</p>
+              <p className='modalidadText'>TIPO DE ENVÍO</p>
             </Row>
             <Row className='modalidad pt-3'>
               <p style={{color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>{props.form.service.charAt(0).toUpperCase() + props.form.service.slice(1)}</p>
@@ -84,7 +83,8 @@ const ResultadoCotizado = (props) => {
             </Row>
           </Col> 
         </Row>        
-        <Button onClick={props.goBack} className='col-md-3 mt-4' style={{height:'3rem', lineHeight:'3rem', padding:'0'}}>REALIZAR NUEVA COTIZACION</Button>
+        <p className='recordaText'>Recordá que el valor es estimativo ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito. Incluye importe de seguro según valor declarado.</p>
+        <Button onClick={props.goBack} className='col-md-3 mt-3' style={{height:'3rem', lineHeight:'3rem', padding:'0'}}>REALIZAR NUEVA COTIZACION</Button>
       </Row>
     </Container>
   )

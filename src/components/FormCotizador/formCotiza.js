@@ -422,7 +422,7 @@ export const formCotiza = [
   },
   {
     colSize: { md: 6 },
-    label: 'Tipo de Servicio',
+    label: 'Tipo de Envío',
     inputProps: {
       name: 'service',
       type: 'select',
