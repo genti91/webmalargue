@@ -79,7 +79,7 @@ const ResultadoCotizado = (props) => {
               <p className='modalidadText'>PRECIO SIN IVA</p>
             </Row>
             <Row className='modalidad pt-3'>
-              <p style={{color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>ARS ${props.cotizacion}</p>
+              <p style={{display: 'flex', justifyContent: "center", color: 'white', fontWeight: '300', fontSize: '1.1rem'}}>ARS <p style={{fontWeight:"600", margin:'0', marginLeft:'4px'}}>${props.cotizacion}</p></p>
             </Row>
           </Col> 
         </Row>        
