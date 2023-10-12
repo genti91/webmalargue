@@ -12,11 +12,18 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
   let sumatoriaMetrosTotal = 0
   let sumatoriaBultos = 0
 
+  // total de bultos
+  let bultosTotal = 0
+
   Object.values({ ...columns, sumatoria: 'Sumatoria m3' }).forEach((label) => {
     if (label !== 'Seleccionar')
       formedColumns += `<th style="text-align: center; border: 0.5px solid #111; box-sizing: border-box; padding: 5px !important">${label}</th>`
   })
   dataSource.forEach((row) => {
+
+    // sumar bultos
+    bultosTotal += parseInt(row?.cantBultos)
+
     formedRows += `<tr style="text-align: center;">`
     Object.keys({ ...columns, sumatoria: 'Sumatoria m3' }).forEach(
       (accesKey) => {
@@ -37,10 +44,16 @@ export const tableTemplateGenerator = ({ columns, dataSource }) => {
     )
     formedRows += `</tr>`
   })
-  return `<table style="margin-top: 20px; border-spacing: 0px !important;"><thead><tr>${formedColumns}</tr></thead><tbody>${formedRows}</tbody></table><div><p style="margin-top: 10px; margin-bottom: 0px;">Peso Total: <span style="font-weight: bold;">${sumatoriaBultos}</span></p><p>Metros Aforados: <span style="font-weight: bold;">${(
-    (sumatoriaMetrosTotal || 0) * 350
-  ).toFixed(4)}</span></p>
-  <p>Metros Cúbicos: <span style="font-weight: bold;">${(
-    sumatoriaMetrosTotal || 0
-  ).toFixed(4)}</span></p></><br></div>`
+  // return `<table style="margin-top: 20px; border-spacing: 0px !important;"><thead><tr>${formedColumns}</tr></thead><tbody>${formedRows}</tbody></table><div><p style="margin-top: 10px; margin-bottom: 0px;">Peso Total: <span style="font-weight: bold;">${sumatoriaBultos}</span></p><p>Metros Aforados: <span style="font-weight: bold;">${(
+  //   (sumatoriaMetrosTotal || 0) * 350
+  // ).toFixed(4)}</span></p>
+  // <p>Metros Cúbicos: <span style="font-weight: bold;">${(
+  //   sumatoriaMetrosTotal || 0
+  // ).toFixed(4)}</span></p></><br></div>`
+
+  // parametros para el cotizador
+ 
+  let kilosAforados = (sumatoriaMetrosTotal || 0) * 350  > sumatoriaBultos ? (sumatoriaMetrosTotal || 0) * 350 : sumatoriaBultos
+
+  return {metrosCubicos: sumatoriaMetrosTotal, kilosReales: sumatoriaBultos, bultos: bultosTotal, kilosAforados: kilosAforados}
 }

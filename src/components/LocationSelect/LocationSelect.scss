@@ -1,0 +1,22 @@
+.location_drop_down {
+  position: absolute;
+  background-color: white;
+  margin-top: -30px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  padding: 10px;
+  max-height: 265px;
+}
+
+.location_drop_down_item {
+  list-style-type: none;  
+}
+
+.location_drop_down_item:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+.highlighted{
+  background-color: #f2f2f2;
+}

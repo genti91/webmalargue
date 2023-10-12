@@ -1,7 +1,7 @@
 export const tableCotizaDictionary = {
   cantBultos: 'Cant. de bultos',
-  alto: 'Alto (cm)',
-  ancho: 'Ancho (cm)',
-  profundidad: 'Prof (cm)',
-  peso: 'Peso (kg)',
+  peso: 'Peso U.(kg)',
+  ancho: 'Ancho U.(cm)',
+  alto: 'Alto U.(cm)',
+  profundidad: 'Largo U.(cm)',
 }
