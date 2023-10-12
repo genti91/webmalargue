@@ -1,5 +1,6 @@
 import React from 'react'
 import './Header.scss'
+import { NavLink } from 'react-router-dom'
 
 const Header = ({ image, title, page }) => {
   return (
@@ -20,7 +21,7 @@ const Header = ({ image, title, page }) => {
             <div className='row mt-5'>
               <div className='col-md-4 d-grid'>
                 <button className='btn btn-secondary' type='button'>
-                  <a href='/cotiza'> Cotizá ahora</a>
+                  <NavLink to='/cotiza'> Cotizá ahora</NavLink>
                 </button>
               </div>
               <div className='col-md-4 d-grid'>
