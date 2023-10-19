@@ -1,9 +1,9 @@
-const { REACT_APP_API_KEY } = process.env
+const { REACT_APP_API_KEY_COTIZA, REACT_APP_API_KEY_PROSP_LEAD } = process.env
 
 export const getCotizacion = async (props) => {
   var cotizacion = await window
     .fetch(
-      `https://www.softwarecristal.com/web/api/public/?token=${REACT_APP_API_KEY}&o=cotizacion`,
+      `https://www.softwarecristal.com/web/api/public/?token=${REACT_APP_API_KEY_COTIZA}&o=cotizacion`,
       {
         method: 'POST',
         credentials: 'same-origin',
@@ -24,7 +24,7 @@ export const getCotizacion = async (props) => {
   cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + cotizacion.seguro}
   const prospecto = await window
     .fetch(
-      `https://www.softwarecristal.com/web/apitest//?token=0b2df9d04a62ee1428202ebc9a17f7ced185f2c8324ade962bf4c95368b5348f&o=putProspecto`,
+      `https://www.softwarecristal.com/web/apitest/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putProspecto`,
       {
         method: 'POST',
         credentials: 'same-origin',
@@ -43,7 +43,7 @@ export const getCotizacion = async (props) => {
     })
   const lead = await window
     .fetch(
-      `https://www.softwarecristal.com/web/apitest//?token=0b2df9d04a62ee1428202ebc9a17f7ced185f2c8324ade962bf4c95368b5348f&o=putLead`,
+      `https://www.softwarecristal.com/web/apitest/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putLead`,
       {
         method: 'POST',
         credentials: 'same-origin',
@@ -70,6 +70,7 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
+    console.log(lead)
 
   return {...cotizacion, ...lead}
 }
