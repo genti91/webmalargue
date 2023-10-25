@@ -70,7 +70,6 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
-    console.log(lead)
 
   return {...cotizacion, ...lead}
 }

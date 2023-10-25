@@ -62,6 +62,8 @@ const FormCotizacion = (props) => {
     tel: '',
     tableTemplate: '',
     valorDeclarado: '',
+    originOption: {},
+    destinyOption: {},
   })
 
   const [tarifa, setTarifa] = useState([])
@@ -110,8 +112,10 @@ const FormCotizacion = (props) => {
       setErorrs(errors)
       if (Object.keys(errors).length !== 0) isInvalid = true;
       let locationErrors = {destiny:'', destinyCP:'', origin:'', originCP:''}
-      if (form.destinyId === '') {locationErrors = {...locationErrors, destiny: 'Campo requerido', destinyCP: 'Campo requerido' }; locationError = true}
-      if (form.originId === '') {locationErrors = { ...locationErrors, origin: 'Campo requerido', originCP: 'Campo requerido' }; locationError = true}
+      if (form.destinyId === '') {locationErrors = {...locationErrors, destiny: 'Campo requerido', destinyCP: 'Campo requerido' }; locationError = true; emptyInputId = 'destiny'}
+      if (form.destinyCP != form.destinyOption.codigoPostal) {locationErrors = {...locationErrors, destiny: 'Campo requerido', destinyCP: 'Campo requerido' }; locationError = true; emptyInputId = 'destiny'}
+      if (form.originId === '') {locationErrors = { ...locationErrors, origin: 'Campo requerido', originCP: 'Campo requerido' }; locationError = true; emptyInputId = 'origin'}
+      if (form.originCP != form.originOption.codigoPostal) {locationErrors = { ...locationErrors, origin: 'Campo requerido', originCP: 'Campo requerido' }; locationError = true; emptyInputId = 'origin'}
       setErorrs({...errors, ...locationErrors})
     }
 
@@ -161,7 +165,6 @@ const FormCotizacion = (props) => {
       })
       .then(
         (res) => {
-          console.log(res)
           emailjs
             .send(
               'service_lv636bu',

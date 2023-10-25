@@ -88,6 +88,7 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
     }else{
       setShowLocations({[name]: option.nombre})
     }
+    setInForm( name + 'Option', option)
     setInForm( name, option.nombre)
     setInForm( name + 'Id', option.id)
     setInForm( name + 'CP', option.codigoPostal)
