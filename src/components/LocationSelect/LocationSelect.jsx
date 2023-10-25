@@ -82,14 +82,12 @@ const LocationSelect = ({locations, setInForm, name, placeholder, cp, form, erro
   };
   
   const handleOptionClick = (option) => {
-    console.log(option)
     if (name.includes('CP')) {
       setShowLocations({[name]: option.codigoPostal})
       name = name.slice(0, -2);
     }else{
       setShowLocations({[name]: option.nombre})
     }
-    console.log(name)
     setInForm( name + 'Option', option)
     setInForm( name, option.nombre)
     setInForm( name + 'Id', option.id)
