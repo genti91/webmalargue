@@ -10,9 +10,9 @@ import { formGeneraDestinatario, formGeneraRemitente } from './formGenera'
 import '../../pages/Cotiza/Cotiza.scss'
 import TableComponent from '../TableComponent/TableComponent'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
-import FormAddBulto from '../FormCotizador/FormAddBulto'
 import { tableTemplateGenerator } from '../../helpers/tableGenerator'
 import { useSearchParams } from 'react-router-dom'
+import FormAddBultoRetiro from './FormAddBultoRetiro'
 
 const { Check } = Form
 
@@ -233,7 +233,7 @@ const FormGeneraTuRetiro = () => {
                       {item.inputProps.type === 'table' && (
                         <>
                           <Row className='justify-content-end'>
-                            <Col md={6}>
+                            <Col md={12}>
                               <Row
                                 className='justify-content-around'
                                 style={{
@@ -241,7 +241,7 @@ const FormGeneraTuRetiro = () => {
                                   marginLeft: '10px',
                                 }}
                               >
-                                <FormAddBulto
+                                <FormAddBultoRetiro
                                   addBultoHandler={addBultoHandler}
                                 />
                                 <Button
