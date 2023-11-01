@@ -10,7 +10,7 @@ import { formGeneraDestinatario, formGeneraRemitente } from './formGenera'
 import '../../pages/Cotiza/Cotiza.scss'
 import TableComponent from '../TableComponent/TableComponent'
 import { tableCotizaDictionary } from '../../pages/Cotiza/tableCotizaDictionary'
-import { tableTemplateGenerator } from '../../helpers/tableGenerator'
+import { tableTemplateGenerator } from '../../helpers/tableGeneratorOld'
 import { useSearchParams } from 'react-router-dom'
 import FormAddBultoRetiro from './FormAddBultoRetiro'
 
