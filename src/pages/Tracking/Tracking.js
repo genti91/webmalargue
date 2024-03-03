@@ -27,6 +27,29 @@ const Tracking = () => {
             </h1>
 
             <SearchBox setTrackingData={setTrackingData} />
+            
+
+            <dv>
+            {trackingData.length
+              ? trackingData.map(({ des, fecha, cod, index, destino, dondeEsta }) => (
+                <div key={cod} className='row align-items-center step'>
+                  <Bullet fecha={fecha} order={index} />
+                  <div className={'status col-10 d-flex flex-column'}>
+                    <div className='title'>
+                      {des}{' '}
+                      {(
+                        (des === 'En Sucursal Origen') && dondeEsta)||
+                        ((des === 'En sucursal Destino') &&
+                        destino)}
+                    </div>
+                    <div className='data'>{fecha}</div>
+                  </div>
+                </div>
+              ))
+            :null}
+            </dv>
+
+            <div>
             <h3 className='heroTitle' style={{ margin: 0, paddingTop: 0 }}>¿No sabes dónde encontrarlo?</h3>
             <h4 style={{
               fontFamily: 'Poppins',
@@ -38,23 +61,7 @@ const Tracking = () => {
               color: '#2F3394'
             }}>En tu remito encontrarás el código de seguimiento</h4>
             <img className='img-fluid mt-4' src={imgRemito} alt='remito' />
-
-            {trackingData.length
-              ? trackingData.map(({ des, fecha, cod, index, destino }) => (
-                <div key={cod} className='row align-items-center step'>
-                  <Bullet fecha={fecha} order={index} />
-                  <div className={'status col-10 d-flex flex-column'}>
-                    <div className='title'>
-                      {des}{' '}
-                      {(des === 'En sucursal ' ||
-                        des === 'En viaje a sucursal') &&
-                        destino}
-                    </div>
-                    <div className='data'>{fecha}</div>
-                  </div>
-                </div>
-              ))
-              : null}
+            </div>
 
             {trackingData.length <= 0 ? (
               <div
@@ -95,7 +102,7 @@ const Tracking = () => {
                   </Link>
                 </button>
               </div>
-            ) : null}
+            ):null}
           </div>
         </div>
       </div>
