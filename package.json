@@ -16,6 +16,8 @@
     "emailjs-com": "^3.2.0",
     "html-react-parser": "^1.4.12",
     "lodash": "4.17.21",
+    "node": "^21.6.2",
+    "openssl": "^2.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.2",
     "react-device-detect": "^2.1.2",

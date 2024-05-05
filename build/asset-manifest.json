@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/css/main.bbe5a0a2.chunk.css",
     "main.js": "/static/js/main.9c6b9a73.chunk.js",
     "main.js.map": "/static/js/main.9c6b9a73.chunk.js.map",
@@ -10,6 +11,18 @@
     "index.html": "/index.html",
     "static/css/main.bbe5a0a2.chunk.css.map": "/static/css/main.bbe5a0a2.chunk.css.map",
     "static/js/2.9c448d10.chunk.js.LICENSE.txt": "/static/js/2.9c448d10.chunk.js.LICENSE.txt",
+=======
+    "main.css": "/static/css/main.e32ae932.chunk.css",
+    "main.js": "/static/js/main.2069ddbe.chunk.js",
+    "main.js.map": "/static/js/main.2069ddbe.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c2e8e232.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c2e8e232.js.map",
+    "static/js/2.dcc836e1.chunk.js": "/static/js/2.dcc836e1.chunk.js",
+    "static/js/2.dcc836e1.chunk.js.map": "/static/js/2.dcc836e1.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.e32ae932.chunk.css.map": "/static/css/main.e32ae932.chunk.css.map",
+    "static/js/2.dcc836e1.chunk.js.LICENSE.txt": "/static/js/2.dcc836e1.chunk.js.LICENSE.txt",
+>>>>>>> 6ded65f73f91d2e17ee5ab6260e454a281e98fa1
     "static/media/Logo-Tiendanube.a32a2c26.svg": "/static/media/Logo-Tiendanube.a32a2c26.svg",
     "static/media/Logo-TiendanubeCenter.780de713.svg": "/static/media/Logo-TiendanubeCenter.780de713.svg",
     "static/media/Logo_de_Tiendanube.d1f6b9cc.svg": "/static/media/Logo_de_Tiendanube.d1f6b9cc.svg",
@@ -81,8 +94,14 @@
   },
   "entrypoints": [
     "static/js/runtime-main.c2e8e232.js",
+<<<<<<< HEAD
     "static/js/2.9c448d10.chunk.js",
     "static/css/main.bbe5a0a2.chunk.css",
     "static/js/main.9c6b9a73.chunk.js"
+=======
+    "static/js/2.dcc836e1.chunk.js",
+    "static/css/main.e32ae932.chunk.css",
+    "static/js/main.2069ddbe.chunk.js"
+>>>>>>> 6ded65f73f91d2e17ee5ab6260e454a281e98fa1
   ]
 }
