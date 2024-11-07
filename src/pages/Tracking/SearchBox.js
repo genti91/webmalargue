@@ -112,7 +112,7 @@ export const SearchBox = ({ setTrackingData }) => {
               onChange={handleInputChange}
             />
             <button onClick={handleSubmit} className={'btn btn-primary'}>
-              Enviar
+              Buscar
             </button>
           </div>
         </Container>
