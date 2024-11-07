@@ -10,7 +10,7 @@ export const SearchBox = ({ setTrackingData }) => {
   const [searchValue, setSearchValue] = useState('')
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [emptyTraking, setEmptyTraking] = useState(false)
+  const [emptyTracking, setEmptyTracking] = useState(false)
   const [searchParams] = useSearchParams()
 
   const handleInputChange = (e) => setSearchValue(e.target.value)
@@ -20,7 +20,7 @@ export const SearchBox = ({ setTrackingData }) => {
     try {
       setLoading(true)
       setError(false)
-      setEmptyTraking(false)
+      setEmptyTracking(false)
       setTrackingData([])
       let documento, origen
       if (!searchValue.includes('-')) {
@@ -42,7 +42,7 @@ export const SearchBox = ({ setTrackingData }) => {
         origen = formatedSearchValue[2]
       }
       const data = await getTickets({ documento, origen })
-      if (!data.length) setEmptyTraking(true)
+      if (!data.length) setEmptyTracking(true)
       setTrackingData(data)
       setLoading(false)
     } catch (error) {
@@ -58,7 +58,7 @@ export const SearchBox = ({ setTrackingData }) => {
         try {
           setLoading(true)
           setError(false)
-          setEmptyTraking(false)
+          setEmptyTracking(false)
           setTrackingData([])
           let documento, origen
           if (!searchValue.includes('-')) {
@@ -83,7 +83,7 @@ export const SearchBox = ({ setTrackingData }) => {
             origen = formatedSearchValue[2]
           }
           const data = await getTickets({ documento, origen })
-          if (!data.length) setEmptyTraking(true)
+          if (!data.length) setEmptyTracking(true)
           setTrackingData(data)
           setLoading(false)
         } catch (error) {
@@ -108,6 +108,7 @@ export const SearchBox = ({ setTrackingData }) => {
               id='uname'
               name='name'
               className='form-control me-2'
+              placeholder='XXXX-XXXXXXXXXXXX-U'
               value={searchValue}
               onChange={handleInputChange}
             />
@@ -126,7 +127,7 @@ export const SearchBox = ({ setTrackingData }) => {
         {error && (
           <p style={{ color: 'red' }}>El código de seguimiento es incorrecto</p>
         )}
-        {emptyTraking && <p>Guía no encontrada</p>}
+        {emptyTracking && <p>Guía no encontrada</p>}
       </div>
     </>
   )
