@@ -60,7 +60,7 @@ const ReusableAccordion = ({ data }) => {
                       height: '20px',
                     }}
                     src={active ? accordionMinus : accordionPlus}
-                    alt='plus-menis-button'
+                    alt='plus-minus-button'
                   />
                 </div>
                 <Accordion.Body

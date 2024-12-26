@@ -12,7 +12,7 @@ import { useWindowSize } from '../../hooks/useWindowSize'
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState([])
   const { width } = useWindowSize()
-  console.log(trackingData, 'TD')
+
   function reformatDatetime(value) {
     // Split the date and time parts
     const [datePart, timePart] = value.split(' ')

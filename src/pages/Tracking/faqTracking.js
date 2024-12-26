@@ -2,7 +2,7 @@ import { imgRemito } from '../../assets'
 
 export const faqTracking = [
   {
-    question: '¿Dónde encuentro mí código de seguimiento?',
+    question: '¿Dónde encuentro mi código de seguimiento?',
     response: 'En tu remito encontrarás el código de seguimiento.',
     image: imgRemito,
     alt: "Imágen remito",
@@ -10,11 +10,11 @@ export const faqTracking = [
   {
     question: '¿A qué hora llega mi pedido?',
     response:
-      'Cuando tu envío esté en camino, pasaremos por tu domicilio entre las XX y las XX.',
+      'Cuando tu envío esté en camino, pasaremos por tu domicilio entre las 9:00 y las 15:00hs.',
   },
   {
     question: '¿Me podrían dar un horario de entrega más acotado? ',
-    response: 'Nuestros transportistas están entregando de XX y XX, y pueden pasar por tu domicilio en cualquier momento dentro de ese rango horario.',
+    response: 'Nuestros transportistas están entregando de 9:00 a 15:00hs y pueden pasar por tu domicilio en cualquier momento dentro de ese rango horario.',
   },
   {
     question: 'No estaré, ¿puede recibir otra persona?',
@@ -22,7 +22,7 @@ export const faqTracking = [
   },
   {
     question: '¿Y si no hay nadie en mi domicilio?',
-    response: 'Sí no hay nadie en tu domicilio, ni tampoco una portería o seguridad para poder dejarlo a tu nombre, intentaremos comunicarnos con vos por teléfono para recoordinar. Si no podemos contactarte, volveremos a pasar XXXX.',
+    response: 'Si no hay nadie en tu domicilio, ni tampoco una portería o seguridad para poder dejarlo a tu nombre, intentaremos comunicarnos con vos por teléfono para recoordinar.  Si no podemos contactarte, volveremos a visitarte una vez más.',
   },
   {
     question: '¿Puedo cambiar la dirección?',
@@ -34,6 +34,6 @@ export const faqTracking = [
   },
   {
     question: 'Mi envío figura en “Entrega Fallida”, ¿Qué hago?',
-    response: 'Si no pudimos entregar tu envío, por ejemplo porque no encontramos a nadie en el domicilio y no pudimos contactarnos con vos, volveremos a pasar XXXX.',
+    response: 'Si no pudimos entregar tu envío, por ejemplo porque no encontramos a nadie en el domicilio y no pudimos contactarnos con vos, volveremos a visitarte una vez más.',
   },
 ]
