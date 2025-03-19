@@ -33,7 +33,7 @@ const Pag2 = () => {
                             <br />
                             Expreso Malargüe brinda un servicio integral a sus clientes. Desarrolló procesos de calidad para brindar una mejor prestación tanto a empresas como a particulares que desean enviar sus paquetes, comprar insumos o transportar producto terminado a distintos puntos del país.<br />
                             <br />
-                            Cuenta con una amplia red de sucursales propias ubicadas en las ciudades de Buenos Aires, Mendoza, Rosario, San Luis, San Rafael, Realicó, Tunuyán, Gral. Alvear y Malargüe. Sin embargo, llega a todo el país a través de su red de socios estratégicos.<br />
+                            Cuenta con una amplia red de sucursales propias ubicadas en las ciudades de Buenos Aires, Mendoza, Rosario, San Luis, San Rafael, Realicó, Gral. Alvear y Malargüe. Sin embargo, llega a todo el país a través de su red de socios estratégicos.<br />
                             <br />
                             Expreso Malargüe trabaja en un proceso de mejora continua, comprendiendo el desafío y la responsabilidad que es transportar los bienes de nuestros clientes.
                         </p>

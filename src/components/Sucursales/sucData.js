@@ -24,10 +24,6 @@ export const sucList=[
         address: 'Ruta Nacional 188 y Ruta Nacional 35',
     },
     {
-        city: 'Tunuyán',
-        address: 'San Martin 584, Valle de Uco',
-    },
-    {
         city: 'San Luis',
         address: 'Calle 101, Parque Industrial N. San Luis Capital',
     },
