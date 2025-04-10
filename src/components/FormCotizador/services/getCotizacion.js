@@ -24,7 +24,7 @@ export const getCotizacion = async (props) => {
   cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + cotizacion.seguro}
   const prospecto = await window
     .fetch(
-      `https://www.softwarecristal.com/web/apitest/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putProspecto`,
+      `https://www.softwarecristal.com/web/api/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putProspecto`,
       {
         method: 'POST',
         credentials: 'same-origin',
@@ -43,7 +43,7 @@ export const getCotizacion = async (props) => {
     })
   const lead = await window
     .fetch(
-      `https://www.softwarecristal.com/web/apitest/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putLead`,
+      `https://www.softwarecristal.com/web/api/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putLead`,
       {
         method: 'POST',
         credentials: 'same-origin',
