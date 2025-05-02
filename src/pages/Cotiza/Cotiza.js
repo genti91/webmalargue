@@ -13,6 +13,25 @@ const Cotiza = () => {
       />
       <div id='main' className='container'>
         <div className='row'>
+          {/* Mensaje de alerta */}
+          <div style={{
+            background: '#e3f0ff',
+            color: '#2f3394',
+            borderRadius: '6px',
+            padding: '16px',
+            marginBottom: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            fontWeight: 500
+          }}>
+            <span style={{
+              fontSize: '1.5rem',
+              marginRight: '12px'
+            }}>ℹ️</span>
+            <span>
+              <b>¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs.</b> Luego, quedarán pendientes para programarse el día hábil posterior.
+            </span>
+          </div>
           <div id='FormCotizador' className='pb-5'>
             <FormCotizador />
           </div>
