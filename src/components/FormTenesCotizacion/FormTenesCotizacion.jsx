@@ -1,18 +1,19 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import emailjs from 'emailjs-com'
 import Swal from 'sweetalert2'
 import { useForm } from '../../hooks'
 import TextInput from '../TextInput'
 import { form_shipment } from '../../constant/forms'
 import { Col, Row } from 'react-bootstrap'
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const FormTenesCotizacion = () => {
     const [selectedOption, setSelectedOption] = useState('');
+    const recaptchaRef = useRef(null);
+    const [recaptchaToken, setRecaptchaToken] = useState(null);
+
 
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
@@ -22,7 +23,7 @@ export const FormTenesCotizacion = () => {
         numero_cotizacion: '',
         email: '',
     })
-    
+
     const validate = (form) => {
         const { numero_cotizacion, email } = form
         if (numero_cotizacion.length === 0) {
@@ -49,7 +50,15 @@ export const FormTenesCotizacion = () => {
 
     const submitForm = (e) => {
         e.preventDefault()
-        if (validate(form)) {
+        if (!validate(form)) return
+        if (!recaptchaToken) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Por favor completa el reCAPTCHA',
+                timer: 1500,
+                showConfirmButton: false,
+            });
+            return;
         }
     }
 
@@ -105,8 +114,13 @@ export const FormTenesCotizacion = () => {
                                 <TextInput name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
                             </Col>
                         </Row>
+                        <ReCAPTCHA
+                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            onChange={token => setRecaptchaToken(token)}
+                            ref={recaptchaRef}
+                        />
                         <Button
-                            className='tw-w-[158px] tw-h-12 p-0 tw-self-end'
+                            className='tw-ml-auto tw-mt-7 tw-w-[158px] tw-h-12 p-0 tw-self-end'
                             type='submit'
                         >
                             Continuar

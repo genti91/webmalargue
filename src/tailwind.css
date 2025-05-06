@@ -558,6 +558,18 @@ video {
   margin-top: 2rem;
 }
 
+.tw-mt-7 {
+  margin-top: 1.75rem;
+}
+
+.tw-mr-auto {
+  margin-right: auto;
+}
+
+.tw-ml-auto {
+  margin-left: auto;
+}
+
 .tw-flex {
   display: flex;
 }
