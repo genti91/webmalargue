@@ -2,6 +2,14 @@ import { useState } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import emailjs from 'emailjs-com'
+import Swal from 'sweetalert2'
+import { useForm } from '../../hooks'
+import TextInput from '../TextInput'
+import { form_shipment } from '../../constant/forms'
+import { Col, Row } from 'react-bootstrap'
 
 export const FormTenesCotizacion = () => {
     const [selectedOption, setSelectedOption] = useState('');
@@ -9,6 +17,41 @@ export const FormTenesCotizacion = () => {
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
+
+    const { form, setInForm } = useForm({
+        numero_cotizacion: '',
+        email: '',
+    })
+    
+    const validate = (form) => {
+        const { numero_cotizacion, email } = form
+        if (numero_cotizacion.length === 0) {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Debe ingresar un número de cotización',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+            return false
+        } else if (email.length === 0) {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Debe ingresar un email',
+                showConfirmButton: false,
+                timer: 1500,
+            })
+            return false
+        }
+        return true
+    }
+
+    const submitForm = (e) => {
+        e.preventDefault()
+        if (validate(form)) {
+        }
+    }
 
     return (
         <div id='tenes-cotizacion' className='tw-flex tw-flex-col tw-pb-14'>
@@ -46,18 +89,39 @@ export const FormTenesCotizacion = () => {
                 </span>
             </div>
             {selectedOption === 'si' &&
-                <div>
-
+                <div className='tw-mt-8' id='contactanos'>
+                    <form id='contact-form' onSubmit={submitForm} method='POST'>
+                        <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
+                            <Col md={12}>
+                                <label>
+                                    Ingresá el email que utilizas para cotizar<span>*</span>
+                                </label>
+                                <TextInput {...form_shipment[1]} setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
+                            </Col>
+                            <Col md={12}>
+                                <label>
+                                    Ingresá el número de cotización<span>*</span>
+                                </label>
+                                <TextInput name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
+                            </Col>
+                        </Row>
+                        <Button
+                            className='tw-w-[158px] tw-h-12 p-0 tw-self-end'
+                            type='submit'
+                        >
+                            Continuar
+                        </Button>
+                    </form>
                 </div>
             }
             {selectedOption === 'no' &&
                 <div className='tw-self-end'>
                     <Link to='/cotiza'>
-                    <Button
-                        className='tw-w-[158px] tw-h-12 p-0'
-                    >
-                       Cotizar 
-                    </Button>
+                        <Button
+                            className='tw-w-[158px] tw-h-12 p-0'
+                        >
+                            Cotizar
+                        </Button>
                     </Link>
                 </div>
             }
