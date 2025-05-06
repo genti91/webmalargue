@@ -14,6 +14,9 @@ const Genera = () => {
         lineaSecundaria='' // Si no hay linea enviar ''
         image={cotizaIMG}
       />
+        <div className='tw-bg-green-200 tw-p-4'>
+          <span className='tw-bg-blue-500'>HOLA TAILWIND</span>
+        </div>
       <div id='main' className='container'>
         <div className='row pt-5 gap-4'>
           <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior."/>
