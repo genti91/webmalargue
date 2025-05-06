@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Importing Sass with Bootstrap CSS
+import "./tailwind.css";
 import "./App.scss";
 import App from "./App";
 
