@@ -545,6 +545,30 @@ video {
   display: none;
 }
 
+.tw-flex {
+  display: flex;
+}
+
+.tw-h-2 {
+  height: 0.5rem;
+}
+
+.tw-h-5 {
+  height: 1.25rem;
+}
+
+.tw-w-5 {
+  width: 1.25rem;
+}
+
+.tw-items-center {
+  align-items: center;
+}
+
+.tw-gap-2 {
+  gap: 0.5rem;
+}
+
 .tw-bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
