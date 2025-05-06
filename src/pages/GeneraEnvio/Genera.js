@@ -14,6 +14,7 @@ const Genera = () => {
         lineaSecundaria='' // Si no hay linea enviar ''
         image={cotizaIMG}
       />
+      <span className='tw-bg-blue-500 tw-text-white tw-p-4'>HOLA TAILWIND</span>
       <div id='main' className='container'>
         <div className='row'>
           {/* <div className="col-md-12">
