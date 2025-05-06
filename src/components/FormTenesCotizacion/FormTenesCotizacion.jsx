@@ -99,7 +99,7 @@ export const FormTenesCotizacion = () => {
             </div>
             {selectedOption === 'si' &&
                 <div className='tw-mt-8' id='contactanos'>
-                    <form id='contact-form' onSubmit={submitForm} method='POST'>
+                    <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
                         <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
                             <Col md={12}>
                                 <label>
