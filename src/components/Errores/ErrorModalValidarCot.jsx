@@ -1,7 +1,7 @@
 import { Button, Modal } from 'react-bootstrap'
 import emailjs from 'emailjs-com'
 
-const ErrorModal = ({ show, setShow, emailForm }) => {
+const ErrorModalValidarCot = ({ show, setShow, emailForm }) => {
     const handleClose = () => {
         setShow(false)
     }
@@ -31,4 +31,4 @@ const ErrorModal = ({ show, setShow, emailForm }) => {
         </Modal>
     )
 }
-export default ErrorModal
+export default ErrorModalValidarCot

@@ -6,7 +6,7 @@ import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
-import ErrorModal from './ErrorModal'
+import ErrorModalValidarCot from '../Errores/ErrorModalValidarCot'
 import { useLoading } from '../../context/LoadingContext';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
@@ -43,15 +43,17 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         e.preventDefault()
         if (!validate(form)) return
         try {
+            setError('NO VIGENTE')
+
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
             if (validarVigenciaCotizacion(oportunidad.data.creacion)) {
-                setError(true)
+                setError('NO VIGENTE')
                 return
             }
             let prospecto = await getProspecto(form.numero_cotizacion, form.email)
             if (!prospecto.data) {
-                setError(true)
+                setError('SIN PROSPECTO')
                 return
             }
             storeProspecto(prospecto.data)
@@ -71,7 +73,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     return (
         <>
-            <ErrorModal show={show} setShow={setShow} emailForm={emailForm} />
+            <ErrorModalValidarCot show={show} setShow={setShow} emailForm={emailForm} />
             <div className='tw-mt-8' id='contactanos'>
                 <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
                     <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
