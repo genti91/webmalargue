@@ -2,10 +2,18 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com'
 
-export const ErrorNoVigente = ({email, id, fecha}) => {
+export const ErrorNoVigente = ({ email, id, fecha }) => {
+    function formatFecha(fechaStr) {
+        const fecha = new Date(fechaStr);
+        if (isNaN(fecha)) return null;
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        const anio = fecha.getFullYear();
+        return `${dia}/${mes}/${anio}`;
+    }
     const sendEmail = () => {
         emailjs
-            .send('service_lv636bu', 'template_borvbgd', {email, id, fecha}, 'fRtOuVBrm3PpHzBca')
+            .send('service_lv636bu', 'template_borvbgd', { email, id, fecha:formatFecha(fecha) }, 'fRtOuVBrm3PpHzBca')
     }
     return (
         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
