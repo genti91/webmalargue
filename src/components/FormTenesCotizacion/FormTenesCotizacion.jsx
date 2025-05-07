@@ -7,11 +7,12 @@ import { useForm } from '../../hooks'
 import { Warning } from '../../components/Errores/Warning'
 
 export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
-    const [selectedOption, setSelectedOption] = useState(email && numeroCotizacion ? 'si' : 'no');
+    const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
     const [error, setError] = useState();
-    const handleChange = (event) => {
-        setSelectedOption(event.target.value);
+    const handleChange = (value) => {
+        setSavedCotizacion(value);
     };
+    
 
     const { form, setInForm } = useForm({
         numero_cotizacion: numeroCotizacion || '',
@@ -62,8 +63,8 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
                             name='cotizacion'
                             id='cotizacion-si'
                             value='si'
-                            onChange={handleChange}
-                            defaultChecked={selectedOption === 'si'}
+                            onChange={() => handleChange(true)}
+                            defaultChecked={savedCotizacion === true}
                         />
                         <label
                             htmlFor='cotizacion-si'
@@ -78,7 +79,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
                             name='cotizacion'
                             id='cotizacion-no'
                             value='no'
-                            onChange={handleChange}
+                            onChange={() => handleChange(false)}
                         />
                         <label
                             htmlFor='cotizacion-no'
@@ -88,10 +89,10 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
                         </label>
                     </span>
                 </div>
-                {selectedOption === 'si' &&
+                {savedCotizacion === true &&
                     <Form form={form} setInForm={setInForm} setError={setError} disableInputs={email && numeroCotizacion} />
                 }
-                {selectedOption === 'no' &&
+                {savedCotizacion === false &&
                     <div className='tw-self-end'>
                         <Link to='/cotiza'>
                             <Button

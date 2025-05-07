@@ -79,7 +79,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                     <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
                         <Col md={12}>
                             <label>
-                                Ingresá el email que utilizas para cotizar<span>*</span>
+                                Ingresá el email que utilizaste para cotizar<span>*</span>
                             </label>
                             <TextInput disabled={disableInputs} value={form.email} error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
                         </Col>

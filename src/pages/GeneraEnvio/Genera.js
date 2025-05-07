@@ -18,7 +18,7 @@ const Genera = () => {
                 image={cotizaIMG}
             />
             <div id='main' className='container'>
-                <div className='row pt-5 gap-4'>
+                <div className='row tw-py-20 gap-4'>
                     <FormTenesCotizacion email={email} numeroCotizacion={numeroCotizacion} />
                 </div>
             </div>
