@@ -1,9 +1,9 @@
-const { REACT_APP_API_KEY_COTIZA } = process.env
+const { REACT_APP_API_HOST, REACT_APP_API_KEY_COTIZA } = process.env
 
 export const getTickets = async (trackingId) => {
   const response = await window
     .fetch(
-      `https://www.softwarecristal.com/web/api/public/?o=getTracking&token=${REACT_APP_API_KEY_COTIZA}`,
+      `${REACT_APP_API_HOST}/?o=getTracking&token=${REACT_APP_API_KEY_COTIZA}`,
       {
         method: 'POST',
         credentials: 'same-origin',
