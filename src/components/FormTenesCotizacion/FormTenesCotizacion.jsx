@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import { Form } from './Form'
 import { useForm } from '../../hooks'
 
-export const FormTenesCotizacion = () => {
-    const [selectedOption, setSelectedOption] = useState('');
-    const [error, setError] = useState(false);
+export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
+    const [selectedOption, setSelectedOption] = useState(email && numeroCotizacion ? 'si' : 'no');
+    const [error, setError] = useState();
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
 
     const { form, setInForm } = useForm({
-        numero_cotizacion: '',
-        email: '',
+        numero_cotizacion: numeroCotizacion || '',
+        email: email || '',
     })
 
     if (error) {
@@ -27,7 +27,7 @@ export const FormTenesCotizacion = () => {
                 <div className='lg:tw-ml-auto tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-20 tw-mt-5'>
                     <Button
                         className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
-                        style={{ 
+                        style={{
                             backgroundColor: '#6C757D',
                             border: '1px solid #6C757D',
                         }}
@@ -58,6 +58,7 @@ export const FormTenesCotizacion = () => {
                         id='cotizacion-si'
                         value='si'
                         onChange={handleChange}
+                        defaultChecked={selectedOption === 'si'}
                     />
                     <label
                         htmlFor='cotizacion-si'
