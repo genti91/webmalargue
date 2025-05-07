@@ -3,7 +3,7 @@ const { REACT_APP_API_HOST, REACT_APP_API_KEY_COTIZA, REACT_APP_API_KEY_PROSP_LE
 export const getCotizacion = async (props) => {
   var cotizacion = await window
     .fetch(
-      `${REACT_APP_API_HOST}?token=${REACT_APP_API_KEY_COTIZA}&o=cotizacion`,
+      `${REACT_APP_API_HOST}/public/?token=${REACT_APP_API_KEY_COTIZA}&o=cotizacion`,
       {
         method: 'POST',
         credentials: 'same-origin',
@@ -23,6 +23,7 @@ export const getCotizacion = async (props) => {
     })
   cotizacion = {...cotizacion, valorizo: cotizacion.valorizo + cotizacion.seguro}
   const prospecto = await window
+        // /CRM/PUT generar prospecto
     .fetch(
       `${REACT_APP_API_HOST}/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putProspecto`,
       {
@@ -41,7 +42,9 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
+    console.log('prospecto', prospecto)
   const lead = await window
+        // /CRM/PUT generar oprotunidad
     .fetch(
       `${REACT_APP_API_HOST}/?token=${REACT_APP_API_KEY_PROSP_LEAD}&o=putLead`,
       {
@@ -70,6 +73,7 @@ export const getCotizacion = async (props) => {
     .catch((error) => {
       throw error
     })
+    console.log('lead', lead)
 
   return {...cotizacion, ...lead}
 }

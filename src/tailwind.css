@@ -726,6 +726,11 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
+.tw-text-\[\#EB1C23\] {
+  --tw-text-opacity: 1;
+  color: rgb(235 28 35 / var(--tw-text-opacity, 1));
+}
+
 @media (min-width: 640px) {
   .sm\:tw-flex-row {
     flex-direction: row;
