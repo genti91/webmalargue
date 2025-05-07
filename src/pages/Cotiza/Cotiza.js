@@ -32,7 +32,7 @@ const Cotiza = () => {
             <span style={{
               textAlign: 'center'
             }}>
-              <b>¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs.</b> Luego, quedarán pendientes para programarse el día hábil posterior.
+              <b>¡ATENCIÓN!</b> Si necesitás cotizar pallets, equipos completos o mudanzas, escribinos a info@expresomalargue.com.
             </span>
           </div>
           <div id='FormCotizador' className='pb-5'>
