@@ -6,8 +6,8 @@ import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
-import FormAddBultoRetiro from '../FormGeneraTuRetiro/FormAddBultoRetiro'
 import ErrorModal from './ErrorModal'
+import { useLoading } from '../../context/LoadingContext';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -17,6 +17,7 @@ export const Form = ({ form, setInForm, setError }) => {
     const [errors, setErrors] = useState({});
     const [show, setShow] = useState(false);
     const [emailForm, setEmailForm] = useState({})
+    const { setLoading } = useLoading();
 
     const validate = (form) => {
         const { numero_cotizacion, email } = form
@@ -38,7 +39,7 @@ export const Form = ({ form, setInForm, setError }) => {
         e.preventDefault()
         if (!validate(form)) return
         try {
-            // TODO: Agregar loading
+            setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
             if (validarVigenciaCotizacion(oportunidad.data.creacion)) {
                 setError(true)
@@ -59,12 +60,14 @@ export const Form = ({ form, setInForm, setError }) => {
             })
             setShow(true)
             return
+        } finally {
+            setLoading(false)
         }
     }
 
     return (
         <>
-            <ErrorModal show={show} setShow={setShow} emailForm={emailForm}/>
+            <ErrorModal show={show} setShow={setShow} emailForm={emailForm} />
             <div className='tw-mt-8' id='contactanos'>
                 <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
                     <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
