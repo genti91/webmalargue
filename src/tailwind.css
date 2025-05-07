@@ -597,6 +597,10 @@ video {
   height: 48px;
 }
 
+.tw-h-\[38px\] {
+  height: 38px;
+}
+
 .tw-w-5 {
   width: 1.25rem;
 }
@@ -623,6 +627,10 @@ video {
 
 .tw-w-8\/12 {
   width: 66.666667%;
+}
+
+.tw-w-\[133px\] {
+  width: 133px;
 }
 
 .tw-snap-end {
@@ -693,6 +701,10 @@ video {
 .tw-bg-\[\#6C757D\] {
   --tw-bg-opacity: 1;
   background-color: rgb(108 117 125 / var(--tw-bg-opacity, 1));
+}
+
+.tw-p-0 {
+  padding: 0px;
 }
 
 .tw-pb-14 {

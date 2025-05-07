@@ -6,6 +6,8 @@ import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
+import FormAddBultoRetiro from '../FormGeneraTuRetiro/FormAddBultoRetiro'
+import ErrorModal from './ErrorModal'
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -13,6 +15,8 @@ export const Form = ({ form, setInForm, setError }) => {
     const recaptchaRef = useRef(null);
     const [recaptchaToken, setRecaptchaToken] = useState(null);
     const [errors, setErrors] = useState({});
+    const [show, setShow] = useState(false);
+    const [emailForm, setEmailForm] = useState({})
 
     const validate = (form) => {
         const { numero_cotizacion, email } = form
@@ -48,42 +52,50 @@ export const Form = ({ form, setInForm, setError }) => {
             // TODO: Guardar el prospecto para usarlo en el siguiente paso
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
-            // TODO: Mostrar modal con mensaje de error
+            setEmailForm({
+                email: form.email,
+                id: form.numero_cotizacion,
+                error: JSON.stringify(error),
+            })
+            setShow(true)
             return
         }
     }
 
     return (
-        <div className='tw-mt-8' id='contactanos'>
-            <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
-                <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
-                    <Col md={12}>
-                        <label>
-                            Ingresá el email que utilizas para cotizar<span>*</span>
-                        </label>
-                        <TextInput value={form.email} error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
-                    </Col>
-                    <Col md={12}>
-                        <label>
-                            Ingresá el número de cotización<span>*</span>
-                        </label>
-                        <TextInput value={form.numero_cotizacion} error={errors.numero_cotizacion} name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
-                    </Col>
-                </Row>
-                <ReCAPTCHA
-                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                    onChange={token => setRecaptchaToken(token)}
-                    ref={recaptchaRef}
-                />
-                <Button
-                    className='tw-ml-auto tw-mt-7 tw-w-[158px] tw-h-12 p-0 tw-self-end'
-                    type='submit'
-                    disabled={!recaptchaToken || form.numero_cotizacion.length === 0 || form.email.length === 0}
-                >
-                    Continuar
-                </Button>
-            </form>
-        </div>
+        <>
+            <ErrorModal show={show} setShow={setShow} emailForm={emailForm}/>
+            <div className='tw-mt-8' id='contactanos'>
+                <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
+                    <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
+                        <Col md={12}>
+                            <label>
+                                Ingresá el email que utilizas para cotizar<span>*</span>
+                            </label>
+                            <TextInput value={form.email} error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
+                        </Col>
+                        <Col md={12}>
+                            <label>
+                                Ingresá el número de cotización<span>*</span>
+                            </label>
+                            <TextInput value={form.numero_cotizacion} error={errors.numero_cotizacion} name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
+                        </Col>
+                    </Row>
+                    <ReCAPTCHA
+                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        onChange={token => setRecaptchaToken(token)}
+                        ref={recaptchaRef}
+                    />
+                    <Button
+                        className='tw-ml-auto tw-mt-7 tw-w-[158px] tw-h-12 p-0 tw-self-end'
+                        type='submit'
+                        disabled={!recaptchaToken || form.numero_cotizacion.length === 0 || form.email.length === 0}
+                    >
+                        Continuar
+                    </Button>
+                </form>
+            </div>
+        </>
     );
 };
 
