@@ -35,6 +35,10 @@ export const Form = ({ form, setInForm, setError }) => {
         return true
     }
 
+    let storeProspecto = (prospecto) => {
+        localStorage.setItem('prospecto', JSON.stringify(prospecto))
+    }
+
     const submitForm = async (e) => {
         e.preventDefault()
         if (!validate(form)) return
@@ -50,7 +54,7 @@ export const Form = ({ form, setInForm, setError }) => {
                 setError(true)
                 return
             }
-            // TODO: Guardar el prospecto para usarlo en el siguiente paso
+            storeProspecto(prospecto.data)
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
             setEmailForm({
