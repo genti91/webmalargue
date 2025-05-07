@@ -1,22 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
+import { Form } from './Form'
 import { useForm } from '../../hooks'
-import TextInput from '../TextInput'
-import { Col, Row } from 'react-bootstrap'
-import ReCAPTCHA from 'react-google-recaptcha';
-
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 export const FormTenesCotizacion = () => {
     const [selectedOption, setSelectedOption] = useState('');
-    const recaptchaRef = useRef(null);
-    const [recaptchaToken, setRecaptchaToken] = useState(null);
-    const [errors, setErrors] = useState({});
-
-
+    const [error, setError] = useState(false);
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
@@ -26,34 +17,34 @@ export const FormTenesCotizacion = () => {
         email: '',
     })
 
-    const validate = (form) => {
-        const { numero_cotizacion, email } = form
-        let errors = {}
-        if (!numero_cotizacion) {
-            errors.numero_cotizacion = 'Debe ingresar un número de cotización'
-        } else if (!EMAIL_REGEX.test(email)) {
-            errors.email = 'Ingresá un email válido (ej.: tuemail@dominio.com)'
-        }
-
-        setErrors(errors)
-        if (Object.keys(errors).length > 0) {
-            return false
-        }
-        return true
-    }
-
-    const submitForm = (e) => {
-        e.preventDefault()
-        if (!validate(form)) return
-        if (!recaptchaToken) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Por favor completa el reCAPTCHA',
-                timer: 1500,
-                showConfirmButton: false,
-            });
-            return;
-        }
+    if (error) {
+        return (
+            <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
+                <img src={`assets/icon-no-cotizacion.png`} alt="icon" className="tw-h-[48px] tw-w-[48px]" />
+                <h2 className='tw-text-[28px]'>No encontramos una cotización vigente</h2>
+                <h3 className='tw-text-[21px] tw-w-8/12'>Puede ser que el email que ingresaste no sea donde recibiste la cotización
+                    o que la cotización ya no se encuentre vigente.</h3>
+                <div className='lg:tw-ml-auto tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-20 tw-mt-5'>
+                    <Button
+                        className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
+                        style={{ 
+                            backgroundColor: '#6C757D',
+                            border: '1px solid #6C757D',
+                        }}
+                        onClick={() => setError(false)}
+                    >
+                        Volver
+                    </Button>
+                    <Link to='/cotiza'>
+                        <Button
+                            className='tw-w-[158px] tw-h-12 p-0'
+                        >
+                            Cotizar
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -92,36 +83,7 @@ export const FormTenesCotizacion = () => {
                 </span>
             </div>
             {selectedOption === 'si' &&
-                <div className='tw-mt-8' id='contactanos'>
-                    <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
-                        <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
-                            <Col md={12}>
-                                <label>
-                                    Ingresá el email que utilizas para cotizar<span>*</span>
-                                </label>
-                                <TextInput error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
-                            </Col>
-                            <Col md={12}>
-                                <label>
-                                    Ingresá el número de cotización<span>*</span>
-                                </label>
-                                <TextInput error={errors.numero_cotizacion} name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
-                            </Col>
-                        </Row>
-                        <ReCAPTCHA
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                            onChange={token => setRecaptchaToken(token)}
-                            ref={recaptchaRef}
-                        />
-                        <Button
-                            className='tw-ml-auto tw-mt-7 tw-w-[158px] tw-h-12 p-0 tw-self-end'
-                            type='submit'
-                            disabled={!recaptchaToken || form.numero_cotizacion.length === 0 || form.email.length === 0}
-                        >
-                            Continuar
-                        </Button>
-                    </form>
-                </div>
+                <Form form={form} setInForm={setInForm} setError={setError} />
             }
             {selectedOption === 'no' &&
                 <div className='tw-self-end'>

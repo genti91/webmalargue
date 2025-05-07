@@ -565,6 +565,18 @@ video {
   margin-bottom: 2em;
 }
 
+.tw-mb-7 {
+  margin-bottom: 1.75rem;
+}
+
+.tw-mb-20 {
+  margin-bottom: 5rem;
+}
+
+.tw-mt-5 {
+  margin-top: 1.25rem;
+}
+
 .tw-flex {
   display: flex;
 }
@@ -577,6 +589,14 @@ video {
   height: 1.25rem;
 }
 
+.tw-h-\[45px\] {
+  height: 45px;
+}
+
+.tw-h-\[48px\] {
+  height: 48px;
+}
+
 .tw-w-5 {
   width: 1.25rem;
 }
@@ -585,12 +605,48 @@ video {
   width: 158px;
 }
 
+.tw-w-\[45px\] {
+  width: 45px;
+}
+
+.tw-w-\[48px\] {
+  width: 48px;
+}
+
+.tw-w-3\/12 {
+  width: 25%;
+}
+
+.tw-w-6\/12 {
+  width: 50%;
+}
+
+.tw-w-8\/12 {
+  width: 66.666667%;
+}
+
+.tw-snap-end {
+  scroll-snap-align: end;
+}
+
+.tw-flex-row {
+  flex-direction: row;
+}
+
 .tw-flex-col {
   flex-direction: column;
 }
 
+.tw-content-center {
+  align-content: center;
+}
+
 .tw-items-center {
   align-items: center;
+}
+
+.tw-justify-center {
+  justify-content: center;
 }
 
 .tw-gap-2 {
@@ -601,12 +657,50 @@ video {
   gap: 1.75rem;
 }
 
+.tw-gap-3 {
+  gap: 0.75rem;
+}
+
+.tw-gap-5 {
+  gap: 1.25rem;
+}
+
+.tw-gap-8 {
+  gap: 2rem;
+}
+
+.tw-gap-14 {
+  gap: 3.5rem;
+}
+
+.tw-gap-12 {
+  gap: 3rem;
+}
+
 .tw-self-end {
   align-self: flex-end;
 }
 
+.tw-self-center {
+  align-self: center;
+}
+
+.tw-bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.tw-bg-\[\#6C757D\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(108 117 125 / var(--tw-bg-opacity, 1));
+}
+
 .tw-pb-14 {
   padding-bottom: 3.5rem;
+}
+
+.tw-text-center {
+  text-align: center;
 }
 
 .tw-text-xl {
@@ -619,6 +713,14 @@ video {
   line-height: 1rem;
 }
 
+.tw-text-\[21px\] {
+  font-size: 21px;
+}
+
+.tw-text-\[28px\] {
+  font-size: 28px;
+}
+
 .tw-text-\[\#2F3394\] {
   --tw-text-opacity: 1;
   color: rgb(47 51 148 / var(--tw-text-opacity, 1));
@@ -629,13 +731,32 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
+.tw-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+@media (min-width: 640px) {
+  .sm\:tw-flex-row {
+    flex-direction: row;
+  }
+}
+
 @media (min-width: 768px) {
   .md\:tw-w-8\/12 {
     width: 66.666667%;
   }
+
+  .md\:tw-gap-12 {
+    gap: 3rem;
+  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:tw-ml-auto {
+    margin-left: auto;
+  }
+
   .lg\:tw-w-5\/12 {
     width: 41.666667%;
   }
