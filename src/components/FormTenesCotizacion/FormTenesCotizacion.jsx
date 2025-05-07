@@ -84,7 +84,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
                 </span>
             </div>
             {selectedOption === 'si' &&
-                <Form form={form} setInForm={setInForm} setError={setError} />
+                <Form form={form} setInForm={setInForm} setError={setError} disableInputs={email && numeroCotizacion} />
             }
             {selectedOption === 'no' &&
                 <div className='tw-self-end'>

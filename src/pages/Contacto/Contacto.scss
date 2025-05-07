@@ -113,6 +113,12 @@
 
     }
 
+    .input_disabled {
+      border-color: #B2B2B2 !important;
+      background-color: #E9ECEF !important;
+      color: #756C7D !important;
+    }
+
     .input_container__field_error {
       border-color: var(--bs-error) !important;
     }

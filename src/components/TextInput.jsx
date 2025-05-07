@@ -26,12 +26,13 @@ const TextInput = (props) => {
                         name={props.name}
                         type={props.type}
                         placeholder={props.placeholder}
-                        className={"input_container__field " + (((props.errors && props.errors[props.name]) || props.error) && "input_container__field_error")}
+                        className={`input_container__field ${props.disabled ? 'input_disabled ': ''}` + (((props.errors && props.errors[props.name]) || props.error) && "input_container__field_error")}
                         onFocus={() => setBlur(!blur)}
                         onBlur={() => onBlurFunction()}
                         value={props.name === 'originCP' || props.name === 'destinyCP' ? props.form[props.name] : props.value}
                         onChange={(e) => handleChange(e)}
                         id={props.name}
+                        disabled={props.disabled}
                     />
                 ) : (
                     <>

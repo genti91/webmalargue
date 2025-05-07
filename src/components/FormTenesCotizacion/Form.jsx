@@ -11,7 +11,7 @@ import { useLoading } from '../../context/LoadingContext';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
-export const Form = ({ form, setInForm, setError }) => {
+export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const recaptchaRef = useRef(null);
     const [recaptchaToken, setRecaptchaToken] = useState(null);
     const [errors, setErrors] = useState({});
@@ -79,13 +79,13 @@ export const Form = ({ form, setInForm, setError }) => {
                             <label>
                                 Ingresá el email que utilizas para cotizar<span>*</span>
                             </label>
-                            <TextInput value={form.email} error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
+                            <TextInput disabled={disableInputs} value={form.email} error={errors.email} name="email" setInForm={setInForm} form={form} placeholder='Ej: email@dominio.com' />
                         </Col>
                         <Col md={12}>
                             <label>
                                 Ingresá el número de cotización<span>*</span>
                             </label>
-                            <TextInput value={form.numero_cotizacion} error={errors.numero_cotizacion} name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
+                            <TextInput disabled={disableInputs} value={form.numero_cotizacion} error={errors.numero_cotizacion} name='numero_cotizacion' type='number' setInForm={setInForm} form={form} placeholder='Ej: 3822' />
                         </Col>
                     </Row>
                     <ReCAPTCHA
