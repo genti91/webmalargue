@@ -161,7 +161,8 @@ const FormCotizacion = (props) => {
 
       getCotizacion({
         ...form,
-        ...tableTemplate
+        ...tableTemplate,
+        tarifa: tarifa.verTarifa.numero,
       })
       .then(
         (res) => {
