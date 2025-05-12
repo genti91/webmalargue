@@ -10,6 +10,7 @@ const Genera = () => {
 
     const email = searchParams.get('email')
     const numeroCotizacion = searchParams.get('numero_cotizacion')
+    const flujo = searchParams.get('flujo')
     return (
         <section id='genera'>
             <BannerHeader
@@ -18,8 +19,8 @@ const Genera = () => {
                 image={cotizaIMG}
             />
             <div id='main' className='container'>
-                <div className='row tw-py-20 gap-4'>
-                    <FormTenesCotizacion email={email} numeroCotizacion={numeroCotizacion} />
+                <div className='row pt-5 gap-4'>
+                    <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />
                 </div>
             </div>
         </section>
