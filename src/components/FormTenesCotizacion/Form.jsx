@@ -43,7 +43,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
-            if (validarVigenciaCotizacion(oportunidad.data.creacion)) {
+            if (!oportunidad.data) {
+                setError({
+                    type: 'ENLACE MANIPULADO',
+                    payload: form.numero_cotizacion,
+                })
+                return
+            }
+            if (validarVigenciaCotizacion(oportunidad.data[0].creacion)) {
                 setError({
                     type: 'NO VIGENTE',
                     payload: oportunidad.data.creacion,
@@ -51,8 +58,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 return
             }
             let prospecto = await getProspecto(form.numero_cotizacion, form.email)
-            // TODO: Si el id y emil no coinciden, mostrar error manipulado - hay que ver como viene la respuesta de ese caso
-            // si el id o email no existen mostrar enlace manipulado
             if (!prospecto.data) {
                 setError({
                     type: 'ENLACE MANIPULADO',
