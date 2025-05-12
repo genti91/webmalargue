@@ -18,6 +18,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
     };
+    
 
     const { form, setInForm } = useForm({
         numero_cotizacion: numeroCotizacion || '',
@@ -65,8 +66,8 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                             name='cotizacion'
                             id='cotizacion-si'
                             value='si'
-                            onChange={handleChange}
-                            defaultChecked={selectedOption === 'si'}
+                            onChange={() => handleChange(true)}
+                            defaultChecked={savedCotizacion === true}
                         />
                         <label
                             htmlFor='cotizacion-si'
@@ -81,7 +82,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                             name='cotizacion'
                             id='cotizacion-no'
                             value='no'
-                            onChange={handleChange}
+                            onChange={() => handleChange(false)}
                         />
                         <label
                             htmlFor='cotizacion-no'
@@ -91,10 +92,10 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                         </label>
                     </span>
                 </div>
-                {selectedOption === 'si' &&
+                {savedCotizacion === true &&
                     <Form form={form} setInForm={setInForm} setError={setError} disableInputs={email && numeroCotizacion} />
                 }
-                {selectedOption === 'no' &&
+                {savedCotizacion === false &&
                     <div className='tw-self-end'>
                         <Link to='/cotiza'>
                             <Button
