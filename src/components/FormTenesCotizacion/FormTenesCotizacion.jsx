@@ -12,11 +12,11 @@ import { ErrorAPI } from '../Errores/ErrorAPI'
 import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
 
 export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
-    const [selectedOption, setSelectedOption] = useState(email && numeroCotizacion ? 'si' : 'no');
+    const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
     const [error, setError] = useState({});
     const [show, setShow] = useState(false);
-    const handleChange = (event) => {
-        setSelectedOption(event.target.value);
+    const handleChange = (value) => {
+        setSavedCotizacion(value);
     };
     
 
