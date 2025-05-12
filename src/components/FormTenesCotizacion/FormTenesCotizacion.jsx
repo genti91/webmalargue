@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,15 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
         email: email || '',
     })
 
+    useEffect(() => {
+        if (error.type === 'API CRISTAL' && flujo !== 'email' && flujo) {
+            setShow(true);
+        }
+    }, [error]);
+
     if (error.type) {
+        console.log('error', error)
+        console.log('flujo', flujo)
         if (!flujo) {
             return (
                 <ErrorCotizacionEmail setError={setError} />
@@ -36,10 +44,9 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
             case 'ENLACE MANIPULADO':
                 return <ErrorEnlaceManipulado email={form.email} id={form.numero_cotizacion} />
             case 'API CRISTAL':
-               if (flujo == 'coti') 
+                if (flujo == 'email') {
                     return <ErrorAPI email={form.email} id={form.numero_cotizacion} error={error.payload} />
-                else
-                setShow(true)
+                }
             default:
                 break;
         }
