@@ -1,0 +1,19 @@
+#tenes-cotizacion {
+  h2 {
+    text-align: left;
+    font: normal normal 600 24px Poppins;
+    color: #2F3394;
+  }
+
+  input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    background-color: #2F3394;
+    color: #2F3394;
+    border-color: #2F3394;
+    accent-color: #2F3394;
+    border: 2px solid #2F3394;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}

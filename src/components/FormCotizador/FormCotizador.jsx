@@ -161,14 +161,15 @@ const FormCotizacion = (props) => {
 
       getCotizacion({
         ...form,
-        ...tableTemplate
+        ...tableTemplate,
+        tarifa: tarifa.verTarifa.numero,
       })
       .then(
         (res) => {
           emailjs
             .send(
               'service_lv636bu',
-              'template_kj69e2x',
+              'template_sv96d5d',
               {
                 ...form,
                 service: form.service.charAt(0).toUpperCase() + form.service.slice(1),
