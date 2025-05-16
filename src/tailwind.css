@@ -653,6 +653,30 @@ video {
   width: 48px;
 }
 
+.tw-w-20 {
+  width: 5rem;
+}
+
+.tw-w-\[100px\] {
+  width: 100px;
+}
+
+.tw-w-\[200px\] {
+  width: 200px;
+}
+
+.tw-w-\[170px\] {
+  width: 170px;
+}
+
+.tw-w-\[150px\] {
+  width: 150px;
+}
+
+.tw-w-\[160px\] {
+  width: 160px;
+}
+
 @keyframes tw-spin {
   to {
     transform: rotate(360deg);
@@ -862,6 +886,10 @@ video {
 
   .lg\:tw-w-5\/12 {
     width: 41.666667%;
+  }
+
+  .lg\:tw-w-\[215px\] {
+    width: 215px;
   }
 
   .lg\:tw-gap-10 {
