@@ -1,43 +1,31 @@
-import _ from '../@lodash';
-import { useCallback, useState } from "react";
+import { useState, useCallback } from 'react';
+import isEqual from 'lodash/isEqual';
+import set from 'lodash/fp/set';
 
 function useForm(initialState, onSubmit) {
   const [form, setForm] = useState(initialState);
 
   const handleChange = useCallback((event) => {
     event.persist();
-    setForm((_form) =>
-      _.setIn(
-        { ..._form },
-        event.target.name,
-        event.target.type === "checkbox"
-          ? event.target.checked
-          : event.target.value
-      )
-    );
+    const { name, value, type, checked } = event.target;
+    const val = type === "checkbox" ? checked : value;
+    setForm(prev => set(name, val, prev)); // inmutable
   }, []);
 
   const resetForm = useCallback(() => {
-    if (!_.isEqual(initialState, form)) {
+    if (!isEqual(initialState, form)) {
       setForm(initialState);
     }
   }, [form, initialState]);
 
   const setInForm = useCallback((name, value) => {
-    setForm((_form) => _.setIn(_form, name, value));
+    setForm(prev => set(name, value, prev)); // inmutable
   }, []);
 
-  const handleSubmit = useCallback(
-    (event) => {
-      if (event) {
-        event.preventDefault();
-      }
-      if (onSubmit) {
-        onSubmit();
-      }
-    },
-    [onSubmit]
-  );
+  const handleSubmit = useCallback((event) => {
+    if (event) event.preventDefault();
+    onSubmit?.();
+  }, [onSubmit]);
 
   return {
     form,
