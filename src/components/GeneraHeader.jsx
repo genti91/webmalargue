@@ -1,4 +1,4 @@
-const GeneraHeader = ({ selectedIndex = 2 }) => {
+const GeneraHeader = ({ selectedIndex }) => {
     return (
         <div 
             className='tw-flex tw-border-[#CFD6DC] tw-border-[1px] tw-rounded-md tw-py-4 tw-justify-center tw-h-[72px] tw-items-center tw-overflow-visible'

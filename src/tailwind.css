@@ -700,6 +700,10 @@ video {
   flex-direction: column;
 }
 
+.tw-flex-wrap {
+  flex-wrap: wrap;
+}
+
 .tw-place-content-center {
   place-content: center;
 }

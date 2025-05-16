@@ -6,7 +6,8 @@ import { FormTenesCotizacion } from '../../components/FormTenesCotizacion/FormTe
 import { useSearchParams } from 'react-router-dom'
 import './Genera.scss'
 import { useGenera } from "../../context/GeneraContext";
-import { FormGeneraRemitente } from '../../components/FormGeneraRemitente'
+import { FormGeneraRemitente } from '../../components/FormGeneraRemitente/FormGeneraRemitente'
+import { FormGeneraDestinatario } from '../../components/FormGeneraDestinatario/FormGeneraDestinatario'
 
 const Genera = () => {
     const [searchParams] = useSearchParams()
@@ -14,9 +15,10 @@ const Genera = () => {
     const email = searchParams.get('email')
     const numeroCotizacion = searchParams.get('numero_cotizacion')
     const flujo = searchParams.get('flujo')
+    const [currentStep, setCurrentStep] = React.useState(0)
     const [formRemitente, setFormRemitente] = React.useState({
         nombre: '',
-        apellido: '',
+        email: '',
         tipo_documento: '',
         numero_documento: '',
         codigo_de_area: '',
@@ -29,6 +31,26 @@ const Genera = () => {
         piso: '',
         dpto: '',
     })
+    const [formDestinatario, setFormDestinatario] = React.useState({
+        nombre: '',
+        email: '',
+        tipo_documento: '',
+        numero_documento: '',
+        codigo_de_area: '',
+        telefono: '',
+        provincia: '',
+        localidad: '',
+        cp: '',
+        calle: '',
+        numero: '',
+        piso: '',
+        dpto: '',
+        observaciones: '',
+        factura_a_nombre_de: '',
+        tipo_de_contribuyente: '',
+        notificacion: '',
+    })
+
     const getCotizacion = () => {
         const cotizacion = localStorage.getItem('cotizacion')
         if (cotizacion) {
@@ -38,6 +60,18 @@ const Genera = () => {
     useEffect(() => {
         getCotizacion()
     }, [])
+    const setInRemitenteForm = (field, value) => {
+        setFormRemitente((prevState) => ({
+            ...prevState,
+            [field]: value,
+        }))
+    }
+    const setInDestinatarioForm = (field, value) => {
+        setFormDestinatario((prevState) => ({
+            ...prevState,
+            [field]: value,
+        }))
+    }
     return (
         <section id='genera'>
             <BannerHeader
@@ -49,7 +83,7 @@ const Genera = () => {
                 <div className='row gap-4 tw-pt-4'>
                     {(cotizacion && cotizacion.id) ?
                         <>
-                            <GeneraHeader />
+                            <GeneraHeader selectedIndex={currentStep} />
                             <div className='tw-text-[#2F3394] tw-text-[20px] tw-w-full tw-flex tw-flex-col tw-items-end tw-justify-end mt-4'>
                                 <div>
                                     <span className='tw-font-bold'>Cotización:</span> {cotizacion.id}
@@ -58,7 +92,9 @@ const Genera = () => {
                                     <span className='tw-font-bold'>Precio final:</span> {cotizacion.precioFinal}
                                 </div>
                             </div>
-                            <FormGeneraRemitente form={formRemitente} setForm={setFormRemitente} datosPrevios={cotizacion.remitente} />
+
+                            {currentStep == 0 && <FormGeneraRemitente form={formRemitente} setInForm={setInRemitenteForm} datosPrevios={cotizacion.remitente} setCurrentStep={setCurrentStep} />}
+                            {currentStep == 1 && <FormGeneraDestinatario form={formDestinatario} setInForm={setInDestinatarioForm} datosPrevios={cotizacion.destinatario} setCurrentStep={setCurrentStep} />}
                         </>
                         :
                         <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />
