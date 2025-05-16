@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Form } from './Form'
 import { useForm } from '../../hooks'
-import { Warning } from '../../components/Errores/Warning'
+import { Warning } from '../Errores/Warning'
+import { ErrorCotizacionEmail } from '../Errores/ErrorCotizacionEmail'
+import { ErrorNoVigente } from '../Errores/ErrorNoVigente'
+import ErrorModalValidarCot from '../Errores/ErrorModalValidarCot'
+import { ErrorAPI } from '../Errores/ErrorAPI'
+import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
 
-export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
+export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
-    const [error, setError] = useState();
+    const [error, setError] = useState({});
+    const [show, setShow] = useState(false);
     const handleChange = (value) => {
         setSavedCotizacion(value);
     };
@@ -19,40 +25,37 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion }) => {
         email: email || '',
     })
 
-    if (error) {
-        return (
-            <>
-                <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
-                    <img src={`assets/icon-no-cotizacion.png`} alt="icon" className="tw-h-[48px] tw-w-[48px]" />
-                    <h2 className='tw-text-[28px]'>No encontramos una cotización vigente</h2>
-                    <h3 className='tw-text-[21px] tw-w-8/12'>Puede ser que el email que ingresaste no sea donde recibiste la cotización
-                        o que la cotización ya no se encuentre vigente.</h3>
-                    <div className='lg:tw-ml-auto tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-20 tw-mt-5'>
-                        <Button
-                            className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
-                            style={{
-                                backgroundColor: '#6C757D',
-                                border: '1px solid #6C757D',
-                            }}
-                            onClick={() => setError(false)}
-                        >
-                            Volver
-                        </Button>
-                        <Link to='/cotiza'>
-                            <Button
-                                className='tw-w-[158px] tw-h-12 p-0'
-                            >
-                                Cotizar
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-            </>
-        )
+    useEffect(() => {
+        if (error.type === 'API CRISTAL' && flujo !== 'email' && flujo) {
+            setShow(true);
+        }
+    }, [error]);
+
+    if (error.type) {
+        console.log('error', error)
+        console.log('flujo', flujo)
+        if (!flujo) {
+            return (
+                <ErrorCotizacionEmail setError={setError} />
+            )
+        }
+        switch (error.type) {
+            case 'NO VIGENTE':
+                return <ErrorNoVigente email={form.email} id={form.numero_cotizacion} fecha={error.payload} />
+            case 'ENLACE MANIPULADO':
+                return <ErrorEnlaceManipulado email={form.email} id={form.numero_cotizacion} />
+            case 'API CRISTAL':
+                if (flujo == 'email') {
+                    return <ErrorAPI email={form.email} id={form.numero_cotizacion} error={error.payload} />
+                }
+            default:
+                break;
+        }
     }
 
     return (
         <>
+            <ErrorModalValidarCot show={show} setShow={setShow} emailForm={{ email: form.email, id: form.numero_cotizacion, error: error.payload }} />
             <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior." />
             <div id='tenes-cotizacion' className='tw-flex tw-flex-col tw-pb-14'>
                 <h2>¿Ya tenes una cotización?</h2>
