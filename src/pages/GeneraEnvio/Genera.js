@@ -1,6 +1,7 @@
 import React from 'react'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
+import GeneraHeader from '../../components/GeneraHeader'
 import { FormTenesCotizacion } from '../../components/FormTenesCotizacion/FormTenesCotizacion'
 import { useSearchParams } from 'react-router-dom'
 import './Genera.scss'
@@ -18,8 +19,9 @@ const Genera = () => {
                 lineaSecundaria='' // Si no hay linea enviar ''
                 image={cotizaIMG}
             />
-            <div id='main' className='container'>
-                <div className='row tw-py-20 gap-4'>
+            <div id='main' className='container tw-py-20'>
+                <div className='row gap-4 tw-pt-4'>
+                    <GeneraHeader />
                     <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />
                 </div>
             </div>
