@@ -26,6 +26,7 @@ import ScrollToTop from './ScrollToTop'
 import Envio from '../pages/Envio/Envio'
 import FAQPage from '../pages/FAQPage/FAQPage'
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy'
+import { GeneraProvider } from '../context/GeneraContext'
 
 const tagManagerArgs = {
   gtmId: 'GTM-KBPBZN4',
@@ -73,7 +74,7 @@ export const AppRouter = () => {
         />
         <Route
           path={links.genera.to}
-          element={[<NavBar />, <GeneraEnvio />, <Footer />, <WhatsAppChat />]}
+          element={[<NavBar />, <GeneraProvider><GeneraEnvio /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.tracking.to}

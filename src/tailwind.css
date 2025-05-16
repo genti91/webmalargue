@@ -561,6 +561,10 @@ video {
   margin-bottom: 5rem;
 }
 
+.tw-mb-5 {
+  margin-bottom: 1.25rem;
+}
+
 .tw-mb-\[2em\] {
   margin-bottom: 2em;
 }
@@ -645,36 +649,20 @@ video {
   width: 158px;
 }
 
-.tw-w-\[215px\] {
-  width: 215px;
-}
-
-.tw-w-\[48px\] {
-  width: 48px;
-}
-
-.tw-w-20 {
-  width: 5rem;
-}
-
-.tw-w-\[100px\] {
-  width: 100px;
+.tw-w-\[170px\] {
+  width: 170px;
 }
 
 .tw-w-\[200px\] {
   width: 200px;
 }
 
-.tw-w-\[170px\] {
-  width: 170px;
+.tw-w-\[48px\] {
+  width: 48px;
 }
 
-.tw-w-\[150px\] {
-  width: 150px;
-}
-
-.tw-w-\[160px\] {
-  width: 160px;
+.tw-w-full {
+  width: 100%;
 }
 
 @keyframes tw-spin {
@@ -695,8 +683,20 @@ video {
   place-content: center;
 }
 
+.tw-content-end {
+  align-content: flex-end;
+}
+
+.tw-items-end {
+  align-items: flex-end;
+}
+
 .tw-items-center {
   align-items: center;
+}
+
+.tw-justify-end {
+  justify-content: flex-end;
 }
 
 .tw-justify-center {
@@ -733,6 +733,10 @@ video {
 
 .tw-rounded-full {
   border-radius: 9999px;
+}
+
+.tw-rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .tw-rounded-md {
@@ -780,9 +784,13 @@ video {
   padding: 0.5rem;
 }
 
-.tw-py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.tw-p-4 {
+  padding: 1rem;
+}
+
+.tw-py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .tw-py-4 {
@@ -800,6 +808,10 @@ video {
 
 .tw-text-center {
   text-align: center;
+}
+
+.tw-text-\[20px\] {
+  font-size: 20px;
 }
 
 .tw-text-\[21px\] {
@@ -892,17 +904,7 @@ video {
     width: 215px;
   }
 
-  .lg\:tw-gap-10 {
-    gap: 2.5rem;
-  }
-
   .lg\:tw-gap-4 {
     gap: 1rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .xl\:tw-gap-20 {
-    gap: 5rem;
   }
 }

@@ -43,6 +43,7 @@ export const getCotizacion = async (props) => {
         .catch((error) => {
             throw error
         })
+    //TODO: enviar el tamaño de los bultos
     const lead = await window
         // /CRM/PUT generar oprotunidad
         .fetch(
@@ -59,6 +60,10 @@ export const getCotizacion = async (props) => {
                     markUp: 0,
                     origen: 1,
                     observaciones: JSON.stringify({
+                        provOrigen: props.provOrigin,
+                        provDestino: props.provDestiny,
+                        locOrigen: props.origin,
+                        locDestino: props.destiny,
                         cpOrigen: props.originCP,
                         cpDestino: props.destinyCP,
                         kilosReales: props.kilosReales,
