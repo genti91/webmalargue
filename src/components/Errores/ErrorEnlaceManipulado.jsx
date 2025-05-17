@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com'
 
 export const ErrorEnlaceManipulado = ({email, id}) => {
+    let tituloEmail = `Problema detectado en generación de retiro desde un email de cotización - Cotización N° ${id}`
+    let descripcionEmail = `El usuario intentó solicitar el retiro mediante el botón de acceso incluido en un email de cotización recibido anteriormente, pero el enlace no era válido o fue modificado, lo que impidió completar el proceso.` 
     const sendEmail = () => {
-        // TODO: Cambiar el template a uno nuevo para el error de enlace manipulado
         emailjs
-            .send('service_lv636bu', 'template_v8q8x4j', {email, id}, 'fRtOuVBrm3PpHzBca')
+            .send('service_lv636bu', 'template_borvbgd', { titulo:tituloEmail, email, id, descripcion:descripcionEmail }, 'fRtOuVBrm3PpHzBca')
     }
     return (
         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
