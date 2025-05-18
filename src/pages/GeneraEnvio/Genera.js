@@ -8,6 +8,7 @@ import './Genera.scss'
 import { useGenera } from "../../context/GeneraContext";
 import { FormGeneraRemitente } from '../../components/FormGeneraRemitente/FormGeneraRemitente'
 import { FormGeneraDestinatario } from '../../components/FormGeneraDestinatario/FormGeneraDestinatario'
+import { GeneraResumen } from '../../components/GeneraResumen/GeneraResumen'
 
 const Genera = () => {
     const [searchParams] = useSearchParams()
@@ -15,7 +16,7 @@ const Genera = () => {
     const email = searchParams.get('email')
     const numeroCotizacion = searchParams.get('numero_cotizacion')
     const flujo = searchParams.get('flujo')
-    const [currentStep, setCurrentStep] = React.useState(0)
+    const [currentStep, setCurrentStep] = React.useState(2)
     const [formRemitente, setFormRemitente] = React.useState({
         nombre: '',
         email: '',
@@ -95,6 +96,7 @@ const Genera = () => {
 
                             {currentStep == 0 && <FormGeneraRemitente form={formRemitente} setInForm={setInRemitenteForm} datosPrevios={cotizacion.remitente} setCurrentStep={setCurrentStep} />}
                             {currentStep == 1 && <FormGeneraDestinatario form={formDestinatario} setInForm={setInDestinatarioForm} datosPrevios={cotizacion.destinatario} setCurrentStep={setCurrentStep} />}
+                            {currentStep == 2 && <GeneraResumen cotizacion={cotizacion} datosRemitente={formRemitente} datosDestinatario={formDestinatario} setCurrentStep={setCurrentStep}/>}
                         </>
                         :
                         <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />
