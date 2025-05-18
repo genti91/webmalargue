@@ -84,7 +84,7 @@ const Genera = () => {
                     {(cotizacion && cotizacion.id) ?
                         <>
                             <GeneraHeader selectedIndex={currentStep} />
-                            <div className='tw-text-[#2F3394] tw-text-[20px] tw-w-full tw-flex tw-flex-col tw-items-end tw-justify-end mt-4'>
+                            <div className='tw-text-[#2F3394] tw-text-[20px] tw-w-full tw-flex tw-flex-col tw-items-center md:tw-items-end tw-justify-end mt-4'>
                                 <div>
                                     <span className='tw-font-bold'>Cotización:</span> {cotizacion.id}
                                 </div>

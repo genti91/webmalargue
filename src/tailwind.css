@@ -704,10 +704,6 @@ video {
   align-items: flex-start;
 }
 
-.tw-items-end {
-  align-items: flex-end;
-}
-
 .tw-items-center {
   align-items: center;
 }
@@ -999,6 +995,10 @@ video {
 
   .md\:tw-flex-row {
     flex-direction: row;
+  }
+
+  .md\:tw-items-end {
+    align-items: flex-end;
   }
 
   .md\:tw-gap-12 {
