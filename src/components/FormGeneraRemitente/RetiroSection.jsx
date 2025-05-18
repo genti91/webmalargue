@@ -9,7 +9,7 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                 <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                     Datos para el {envio ? 'envío' : 'retiro'}
                 </h2>
-                <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                <div className='tw-flex tw-items-center tw-justify-between tw-flex-col md:tw-flex-row  tw-gap-9 tw-w-full'>
                     <TitleTextInput
                         title='Provinvia'
                         input={datosPrevios.provincia}
@@ -27,7 +27,7 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         zipCode
                     />
                 </div>
-                <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                <div className='tw-flex tw-items-center tw-justify-between tw-flex-col md:tw-flex-row tw-gap-9 tw-w-full'>
                     <TitleTextInput
                         title='Calle'
                         placeholder='Ej.: Av. Garmendia'

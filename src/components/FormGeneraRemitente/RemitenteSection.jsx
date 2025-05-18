@@ -2,12 +2,12 @@ import TitleTextInput from '../TextInputs/TitleTextInput'
 
 export default function RemitenteSection({ form, setInForm, destinatario }) {
     return (
-        <div className='tw-flex tw-flex-col tw-flex-wrap tw-items-start tw-justify-center tw-w-full'>
+        <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full md:tw-flex-row'>
             <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-6 tw-w-full'>
                 <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                     Datos del {destinatario ? 'destinatario' : 'remitente'}
                 </h2>
-                <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
                     <TitleTextInput
                         title='Nombre y apellido / Razón social'
                         placeholder='Ej.: María López'
@@ -23,14 +23,14 @@ export default function RemitenteSection({ form, setInForm, destinatario }) {
                         mandatory
                     />
                 </div>
-                <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
-                    <TitleTextInput
-                        title='Tipo documento'
-                        input={form.tipo_documento}
-                        setInput={(value) => setInForm('tipo_documento', value)}
-                        mandatory
-                        zipCode
-                    />
+                <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                        <TitleTextInput
+                            title='Tipo documento'
+                            input={form.tipo_documento}
+                            setInput={(value) => setInForm('tipo_documento', value)}
+                            mandatory
+                            zipCode
+                        />
                     <TitleTextInput
                         title='Número de documento / CUIT'
                         placeholder='Ej.: 11222333 (sin puntos ni guiones)'

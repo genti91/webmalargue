@@ -27,7 +27,7 @@ export default function ObsSection({ form, setInForm }) {
                     <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                         Facturación
                     </h2>
-                    <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                    <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
                         <TitleSelectInput
                             title="Factura a nombre de"
                             input={form.factura_a_nombre_de}

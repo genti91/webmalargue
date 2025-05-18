@@ -17,9 +17,9 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
                     <RemitenteSection form={form} setInForm={setInForm} destinatario />
                     <RetiroSection form={form} setInForm={setInForm} datosPrevios={datosPrevios} envio />
                     <BottomSection form={form} setInForm={setInForm} />
-                    <div className='lg:tw-ml-auto tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mt-5'>
+                    <div className='md:tw-ml-auto tw-flex tw-flex-col md:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mt-5'>
                         <Button
-                            className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
+                            className='md:tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
                             style={{
                                 backgroundColor: '#6C757D',
                                 border: '1px solid #6C757D',
@@ -31,7 +31,7 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
                             Volver
                         </Button>
                         <Button
-                            className='tw-w-[158px] tw-h-12 p-0'
+                            className='md:tw-w-[158px] tw-h-12 p-0'
                             type='submit'
                         >
                             Continuar
