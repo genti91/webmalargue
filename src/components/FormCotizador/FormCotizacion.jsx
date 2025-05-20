@@ -1,9 +1,8 @@
 import TitleTextInput from '../TextInputs/TitleTextInput'
-import OrigenSection from './OrigenSection'
 import { useForm } from '../../hooks'
-import TitleSelectInput from '../TextInputs/TitleSelectInput'
+import OrigenSection from './OrigenSection'
 import DestinoSection from './DestinoSection'
-import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput'
+import BultosSection from './BultosSection'
 
 export default function FormCotizacion() {
   const { form, setInForm, resetForm } = useForm({
@@ -81,12 +80,15 @@ export default function FormCotizacion() {
         provincias={provincias}
       />
 
-      <TitleTextUnitInput
-        title='Ancho unitario'
-        input={form.width}
-        setInput={(value) => setInForm('width', value)}
-        mandatory
+      <BultosSection
+        form={form}
+        setInForm={setInForm}
+        provincias={provincias}
       />
+
+      <button className='tw-self-end tw-mt-6 tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md'>
+        Cotizar
+      </button>
     </div>
   )
 }

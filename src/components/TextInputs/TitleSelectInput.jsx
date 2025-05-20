@@ -4,7 +4,8 @@ export default function TitleSelectInput({
   setInput,
   mandatory = false,
   placeholder = 'Seleccione una opción',
-  options = []
+  options = [],
+  error = false
 }) {
   return (
     <div className="tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full">
@@ -26,6 +27,9 @@ export default function TitleSelectInput({
           </option>
         ))}
       </select>
+      {error && (
+        <span className="tw-text-[#EB1C23] tw-text-xs">{error}</span>
+      )}
     </div>
   );
 }
