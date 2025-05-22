@@ -8,6 +8,7 @@ import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
 
 import { useLoading } from '../../context/LoadingContext';
+import { useGenera } from '../../context/GeneraContext';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -16,6 +17,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const [recaptchaToken, setRecaptchaToken] = useState(null);
     const [errors, setErrors] = useState({});
     const { setLoading } = useLoading();
+    const { setCotizacion } = useGenera();
 
     const validate = (form) => {
         const { numero_cotizacion, email } = form
@@ -33,17 +35,47 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         return true
     }
 
-    let storeProspecto = (prospecto) => {
-        localStorage.setItem('prospecto', JSON.stringify(prospecto))
+    let storeCotizacion = (cotizacion) => {
+        cotizacion = {
+            "idLead": 4924,
+            "importeCotizado": 12300.3199999999997089616954326629638671875,
+            "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
+        }
+        let datosCot = JSON.parse(cotizacion.observaciones)
+        let cleanCotizacion = {
+            id: cotizacion.idLead,
+            precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            remitente: {
+                provincia: datosCot.provOrigen,
+                localidad: datosCot.locOrigen,
+                cp: datosCot.cpOrigen,
+            },
+            destinatario: {
+                provincia: datosCot.provDestino,
+                localidad: datosCot.locDestino,
+                cp: datosCot.cpDestino,
+            },
+            bultos: {
+                //TODO: agregar lista de bultos y descripcion
+                valorDeclarado: datosCot.valorDeclarado,
+            }
+        }
+
+        localStorage.setItem('cotizacion', JSON.stringify(cleanCotizacion))
+        setCotizacion(cleanCotizacion)
     }
 
     const submitForm = async (e) => {
         e.preventDefault()
         if (!validate(form)) return
+        storeCotizacion('')
+        return
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
-            if (!oportunidad.data) {
+            if (!oportunidad.data || oportunidad.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
                     payload: form.numero_cotizacion,
@@ -58,14 +90,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 return
             }
             let prospecto = await getProspecto(form.numero_cotizacion, form.email)
-            if (!prospecto.data) {
+            if (!prospecto.data || prospecto.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
                     payload: form.numero_cotizacion,
                 })
                 return
             }
-            storeProspecto(prospecto.data)
+            storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
             setError({
