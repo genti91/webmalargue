@@ -35,7 +35,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         return true
     }
 
-    let storeCotizacion = (cotizacion) => {
+    let storeCotizacion = async (cotizacion) => {
         cotizacion = {
             "idLead": 4924,
             "importeCotizado": 12300.3199999999997089616954326629638671875,
@@ -62,6 +62,15 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 valorDeclarado: datosCot.valorDeclarado,
             }
         }
+
+        let oldCotizacion = localStorage.getItem('cotizacion')
+        if (oldCotizacion) {
+            oldCotizacion = await JSON.parse(oldCotizacion)
+            if (oldCotizacion.id !== cleanCotizacion.id) {
+                localStorage.removeItem('cotizacion_forms');
+            }
+        }
+
 
         localStorage.setItem('cotizacion', JSON.stringify(cleanCotizacion))
         setCotizacion(cleanCotizacion)

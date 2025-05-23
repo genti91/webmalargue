@@ -58,9 +58,28 @@ const Genera = () => {
             setCotizacion(JSON.parse(cotizacion))
         }
     }
+    const getCotizacionForms = async () => {
+        let forms = localStorage.getItem('cotizacion_forms')
+        if (forms) {
+            forms = await JSON.parse(forms)
+            setFormRemitente(forms.remitente)
+            setFormDestinatario(forms.destinatario)
+        }
+    }
+    const updateCotizacionForms = async () => {
+        let forms = {
+            remitente: formRemitente,
+            destinatario: formDestinatario,
+        }
+        localStorage.setItem('cotizacion_forms', JSON.stringify(forms))
+    }
     useEffect(() => {
         getCotizacion()
+        getCotizacionForms()
     }, [])
+    useEffect(() => {
+        updateCotizacionForms()
+    }, [currentStep])
     const setInRemitenteForm = (field, value) => {
         setFormRemitente((prevState) => ({
             ...prevState,
@@ -96,7 +115,7 @@ const Genera = () => {
 
                             {currentStep == 0 && <FormGeneraRemitente form={formRemitente} setInForm={setInRemitenteForm} datosPrevios={cotizacion.remitente} setCurrentStep={setCurrentStep} />}
                             {currentStep == 1 && <FormGeneraDestinatario form={formDestinatario} setInForm={setInDestinatarioForm} datosPrevios={cotizacion.destinatario} setCurrentStep={setCurrentStep} />}
-                            {currentStep == 2 && <GeneraResumen cotizacion={cotizacion} datosRemitente={formRemitente} datosDestinatario={formDestinatario} setCurrentStep={setCurrentStep}/>}
+                            {currentStep == 2 && <GeneraResumen cotizacion={cotizacion} datosRemitente={formRemitente} datosDestinatario={formDestinatario} setCurrentStep={setCurrentStep} />}
                         </>
                         :
                         <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />

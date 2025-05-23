@@ -41,8 +41,8 @@ export default function RemitenteSection({ form, setInForm, destinatario }) {
                     <TitleTextInput
                         title='Código de área'
                         placeholder='Ej.: 11'
-                        input={form.codigo_area}
-                        setInput={(value) => setInForm('codigo_area', value)}
+                        input={form.codigo_de_area}
+                        setInput={(value) => setInForm('codigo_de_area', value)}
                         mandatory
                         zipCode
                     />

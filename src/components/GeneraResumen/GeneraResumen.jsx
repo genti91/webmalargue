@@ -3,6 +3,8 @@ import { Warning } from '../Errores/Warning';
 import { useGenera } from '../../context/GeneraContext';
 import Accordion from '../Accordion/Accordion';
 import TableComponent from '../TableComponent/TableComponent'
+import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput';
+import TitleTextInput from '../TextInputs/TitleTextInput';
 
 export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, datosDestinatario }) => {
     const { setCotizacion } = useGenera();
@@ -13,31 +15,40 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
     const items = [
         {
             header: 'Remitente',
-            body: <div><span className="tw-font-bold">Nombre y apellido / Razón social:</span>  dato ingresado por el usuario</div>
+            body: <RemitenteDestinatarioData datos={datosRemitente} datosCoti={cotizacion.remitente} />
         },
         {
             header: 'Destinatario',
-            body: 'Body',
+            body: <RemitenteDestinatarioData datos={datosDestinatario} datosCoti={cotizacion.destinatario} />
         },
         {
             header: 'Bultos',
-            body: <TableComponent columns={[]} dataSource={[]} />,
+            body: <BultosData data={cotizacion.bultos} />
         },
         {
             header: 'Observaciones',
-            body: 'Body',
+            body: <div><span className="tw-font-bold">Observaciones:</span> {datosDestinatario.observaciones}</div>
         },
         {
             header: 'Facturación',
-            body: 'Body',
+            body:
+                <div className='tw-flex tw-flex-col tw-gap-2'>
+                    <div><span className="tw-font-bold">Factura a nombre de:</span> {datosDestinatario.factura_a_nombre_de}</div>
+                    <div><span className="tw-font-bold">Tipo de contribuyente:</span> {datosDestinatario.tipo_de_contribuyente}</div>
+                </div>
         },
         {
             header: 'Notificación',
-            body: 'Body',
+            body: <div><span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span> {datosDestinatario.notificacion}</div>
         },
         {
             header: 'Detalle de la tarifa',
-            body: 'Body',
+            body:
+                <div className='tw-flex tw-flex-col tw-gap-2'>
+                    <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> {cotizacion.precioFinal}</div>
+                    <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
+                    <div><span className="tw-font-bold">Seguro:</span> {cotizacion.seguro}</div>
+                </div>
         }
     ];
     return (
@@ -59,8 +70,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                                 border: '1px solid #6C757D',
                             }}
                             onClick={() => {
-                                setCurrentStep(0);
-                                setCotizacion(null);
+                                setCurrentStep(1);
                             }}
                         >
                             Volver
@@ -76,4 +86,44 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
             </div>
         </div>
     );
+}
+
+
+const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
+    return (
+        <div className='tw-flex tw-flex-col tw-gap-2'>
+            <div><span className="tw-font-bold">Nombre y apellido / Razón social:</span> {datos.nombre}</div>
+            <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
+            <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento} {datos.numero_documento}</div>
+            <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
+            <div><span className="tw-font-bold">Dirección:</span> {datos.calle} {datos.numero} {datos.piso} {datos.dpto} {datosCoti.localidad} {datosCoti.provincia} {datosCoti.cp}</div>
+        </div>
+    )
+}
+
+const BultosData = ({ data }) => {
+    return (
+        <div>
+            <TableComponent columns={[]} dataSource={[]} />
+            <div className="tw-flex tw-flex-col md:tw-flex-row tw-items-start tw-gap-9 tw-w-full tw-mt-6">
+                <div className="md:tw-w-[43%] tw-w-full">
+                    <TitleTextUnitInput
+                        title="Valor declarado total"
+                        unit="$"
+                        placeholder="Ej.: 10000"
+                        mandatory
+                        input={data.valorDeclarado}
+                    />
+                </div>
+                <div className="tw-w-full">
+                    <TitleTextInput
+                        title="Descripción de los bultos"
+                        placeholder="Indicá la descripción de los bultos"
+                        mandatory
+                        input={data.descripcion}
+                    />
+                </div>
+            </div>
+        </div>
+    )
 }
