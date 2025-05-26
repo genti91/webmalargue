@@ -686,22 +686,6 @@ video {
   width: 100%;
 }
 
-.tw-w-\[33\%\] {
-  width: 33%;
-}
-
-.tw-w-\[35\%\] {
-  width: 35%;
-}
-
-.tw-w-\[40\%\] {
-  width: 40%;
-}
-
-.tw-w-\[43\%\] {
-  width: 43%;
-}
-
 .tw-max-w-\[160px\] {
   max-width: 160px;
 }
@@ -778,10 +762,6 @@ video {
 
 .tw-gap-9 {
   gap: 2.25rem;
-}
-
-.tw-gap-5 {
-  gap: 1.25rem;
 }
 
 .tw-self-end {
@@ -1165,10 +1145,6 @@ video {
 
   .lg\:tw-w-\[215px\] {
     width: 215px;
-  }
-
-  .lg\:tw-flex-row {
-    flex-direction: row;
   }
 
   .lg\:tw-gap-4 {

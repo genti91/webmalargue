@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export default function TitleTextInput({ 
   email = false, 
   title, 
@@ -7,7 +9,8 @@ export default function TitleTextInput({
   placeholder = 'Ingrese el campo', 
   zipCode = false, 
   disabled = false,
-  error = false
+  error = false,
+  type = 'text'
 }) {
   return (
     <div className={`tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full ${zipCode && 'md:tw-max-w-[158px]'}`}>
@@ -16,7 +19,7 @@ export default function TitleTextInput({
         {mandatory && <span className="tw-font-bold tw-text-[#EB1C23]"> *</span>}
       </h2>
       <input
-        type="text"
+        type={type}
         value={input}
         placeholder={placeholder}
         onChange={(e) => setInput(e.target.value)}
