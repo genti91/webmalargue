@@ -2,7 +2,7 @@ import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import TitleSelectInput from '../TextInputs/TitleSelectInput'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 
-export default function ObsSection({ form, setInForm }) {
+export default function ObsSection({ errors, form, setInForm }) {
     return (
         <>
             <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full'>
@@ -17,6 +17,7 @@ export default function ObsSection({ form, setInForm }) {
                             placeholder='Ingresá las observaciones que consideres necesarias.'
                             input={form.observaciones}
                             setInput={(value) => setInForm('observaciones', value)}
+                            error={errors.observaciones}
                         />
                     </div>
                 </div>
@@ -35,14 +36,13 @@ export default function ObsSection({ form, setInForm }) {
                             mandatory={true}
                             placeholder="Seleccioná una opción"
                             options={[{value:'Remitente', label:'Remitente'}, {value:'Destinatario', label:'Destinatario'}]}
+                            error={errors.factura_a_nombre_de}
                         />
-                        <TitleSelectInput
-                            title="Tipo de contribuyente"
+                        <TitleTextInput
+                            title='Tipo de contribuyente'
                             input={form.tipo_de_contribuyente}
-                            setInput={(value) => setInForm('tipo_de_contribuyente', value)}
-                            mandatory={true}
-                            placeholder="Seleccioná una opción"
-                            options={[{value:'Responsable inscripto', label:'Responsable inscripto'}, {value:'Exento', label:'Exento'}, {value:'Consumidor final', label:'Consumidor final'}, {value:'Monotributista', label:'Monotributista'}]}
+                            mandatory
+                            disabled
                         />
                     </div>
                 </div>
@@ -61,6 +61,7 @@ export default function ObsSection({ form, setInForm }) {
                             mandatory={true}
                             placeholder="Seleccioná una opción"
                             options={[{value:'Remitente', label:'Remitente'}, {value:'Destinatario', label:'Destinatario'}]}
+                            error={errors.notificacion}
                         />
                     </div>
                 </div>

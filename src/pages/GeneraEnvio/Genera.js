@@ -16,7 +16,7 @@ const Genera = () => {
     const email = searchParams.get('email')
     const numeroCotizacion = searchParams.get('numero_cotizacion')
     const flujo = searchParams.get('flujo')
-    const [currentStep, setCurrentStep] = React.useState(0)
+    const [currentStep, setCurrentStep] = React.useState(1)
     const [formRemitente, setFormRemitente] = React.useState({
         nombre: '',
         email: '',
@@ -48,7 +48,7 @@ const Genera = () => {
         dpto: '',
         observaciones: '',
         factura_a_nombre_de: '',
-        tipo_de_contribuyente: '',
+        tipo_de_contribuyente: 'Consumidor final',
         notificacion: '',
     })
 
