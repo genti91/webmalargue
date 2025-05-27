@@ -1,13 +1,11 @@
 import { Button } from 'react-bootstrap';
 import { Warning } from '../Errores/Warning';
-import { useGenera } from '../../context/GeneraContext';
 import Accordion from '../Accordion/Accordion';
 import TableComponent from '../TableComponent/TableComponent'
 import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput';
 import TitleTextInput from '../TextInputs/TitleTextInput';
 
 export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, datosDestinatario }) => {
-    const { setCotizacion } = useGenera();
     const onSubmit = (e) => {
         e.preventDefault();
         setCurrentStep(2);
@@ -103,8 +101,17 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
 
 const BultosData = ({ data }) => {
     return (
-        <div>
-            <TableComponent columns={[]} dataSource={[]} />
+        <div className='tw-mt-[-15px]'>
+            <TableComponent 
+                columns={{
+                    cantBultos: 'Cant. de bultos',
+                    peso: 'Peso U.(kg)',
+                    ancho: 'Ancho U.(cm)',
+                    alto: 'Alto U.(cm)',
+                    profundidad: 'Largo U.(cm)',
+                }} 
+                dataSource={data.bultos} 
+            />
             <div className="tw-flex tw-flex-col md:tw-flex-row tw-items-start tw-gap-9 tw-w-full tw-mt-6">
                 <div className="md:tw-w-[43%] tw-w-full">
                     <TitleTextUnitInput
@@ -113,6 +120,7 @@ const BultosData = ({ data }) => {
                         placeholder="Ej.: 10000"
                         mandatory
                         input={data.valorDeclarado}
+                        disabled
                     />
                 </div>
                 <div className="tw-w-full">
@@ -121,6 +129,7 @@ const BultosData = ({ data }) => {
                         placeholder="Indicá la descripción de los bultos"
                         mandatory
                         input={data.descripcion}
+                        disabled
                     />
                 </div>
             </div>

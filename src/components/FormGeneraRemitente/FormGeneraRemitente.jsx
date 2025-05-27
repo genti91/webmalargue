@@ -11,6 +11,7 @@ export const FormGeneraRemitente = ({ form, setInForm, datosPrevios, setCurrentS
     const [errors, setErrors] = useState({});
     const onSubmit = (e) => {
         e.preventDefault();
+        window.scrollTo({ top: 590, behavior: 'smooth' });
         if (validate()) {
             setCurrentStep(1);
         }

@@ -94,7 +94,7 @@ export const formGeneraRemitente = [
     name: 'notificacion',
     required: 'Seleccioná una opción de notificación',
     validate: (value) =>
-      ['Remitente', 'Destinatario'].includes(value)
+      ['Remitente', 'Ambos (Remitente y Destinatario)'].includes(value)
         ? null
         : 'Seleccioná una opción válida',
   },

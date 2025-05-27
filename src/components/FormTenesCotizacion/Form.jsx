@@ -47,6 +47,13 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
+            //TODO: poner porcentaje de IVA como variable de entorno y validar el seguro
+            iva: (cotizacion.importeCotizado * 0.21).toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            seguro: (cotizacion.importeCotizado * 0.01).toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
             remitente: {
                 provincia: datosCot.provOrigen,
                 localidad: datosCot.locOrigen,
@@ -60,6 +67,10 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             bultos: {
                 //TODO: agregar lista de bultos y descripcion
                 valorDeclarado: datosCot.valorDeclarado,
+                descripcion: 'descripcion del bulto',
+                bultos: [{cantBultos:'1', peso: '21', ancho: '11', alto: '34', profundidad: '22'},
+                    {cantBultos:'2', peso: '12', ancho: '31', alto: '22', profundidad: '12'},
+                ],
             }
         }
 

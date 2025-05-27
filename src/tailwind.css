@@ -597,6 +597,14 @@ video {
   margin-top: 2rem;
 }
 
+.tw-mt-\[-10px\] {
+  margin-top: -10px;
+}
+
+.tw-mt-\[-15px\] {
+  margin-top: -15px;
+}
+
 .tw-flex {
   display: flex;
 }

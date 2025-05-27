@@ -10,6 +10,7 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
     const [errors, setErrors] = useState({});
         const onSubmit = (e) => {
             e.preventDefault();
+            window.scrollTo({ top: 590, behavior: 'smooth' });
             if (validate()) {
                 setCurrentStep(2);
             }
@@ -54,6 +55,7 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
                             }}
                             onClick={() => {
                                 setCurrentStep(0);
+                                window.scrollTo({ top: 590, behavior: 'smooth' });
                             }}
                         >
                             Volver
