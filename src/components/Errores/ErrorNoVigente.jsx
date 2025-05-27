@@ -11,9 +11,11 @@ export const ErrorNoVigente = ({ email, id, fecha }) => {
         const anio = fecha.getFullYear();
         return `${dia}/${mes}/${anio}`;
     }
+    let tituloEmail = `Cotización N° ${id} fuera de vigencia`
+    let descripcionEmail = `El usuario quiere solicitar el retiro sobre la cotización N° ${id} con fecha de emisión ${formatFecha(fecha)} y la misma ya se encuentra fuera de vigencia (7 días hábiles)` 
     const sendEmail = () => {
         emailjs
-            .send('service_lv636bu', 'template_borvbgd', { email, id, fecha:formatFecha(fecha) }, 'fRtOuVBrm3PpHzBca')
+            .send('service_lv636bu', 'template_borvbgd', { titulo:tituloEmail, email, id, descripcion:descripcionEmail }, 'fRtOuVBrm3PpHzBca')
     }
     return (
         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
