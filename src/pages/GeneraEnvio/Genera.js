@@ -16,7 +16,7 @@ const Genera = () => {
     const email = searchParams.get('email')
     const numeroCotizacion = searchParams.get('numero_cotizacion')
     const flujo = searchParams.get('flujo')
-    const [currentStep, setCurrentStep] = React.useState(2)
+    const [currentStep, setCurrentStep] = React.useState(localStorage.getItem('current_step') ? Number(localStorage.getItem('current_step')) : 0)
     const [formRemitente, setFormRemitente] = React.useState({
         nombre: '',
         email: '',
@@ -48,7 +48,7 @@ const Genera = () => {
         dpto: '',
         observaciones: '',
         factura_a_nombre_de: '',
-        tipo_de_contribuyente: '',
+        tipo_de_contribuyente: 'Consumidor final',
         notificacion: '',
     })
 
@@ -58,9 +58,30 @@ const Genera = () => {
             setCotizacion(JSON.parse(cotizacion))
         }
     }
+    const getCotizacionForms = async () => {
+        let forms = localStorage.getItem('cotizacion_forms')
+        if (forms) {
+            forms = await JSON.parse(forms)
+            setFormRemitente(forms.remitente)
+            setFormDestinatario(forms.destinatario)
+        }
+    }
+    const updateCotizacionForms = async () => {
+        let forms = {
+            remitente: formRemitente,
+            destinatario: formDestinatario,
+        }
+        localStorage.setItem('cotizacion_forms', JSON.stringify(forms))
+        console.log('seting currentStep', currentStep)
+        localStorage.setItem('current_step', currentStep)
+    }
     useEffect(() => {
         getCotizacion()
+        getCotizacionForms()
     }, [])
+    useEffect(() => {
+        updateCotizacionForms()
+    }, [currentStep])
     const setInRemitenteForm = (field, value) => {
         setFormRemitente((prevState) => ({
             ...prevState,
@@ -96,7 +117,7 @@ const Genera = () => {
 
                             {currentStep == 0 && <FormGeneraRemitente form={formRemitente} setInForm={setInRemitenteForm} datosPrevios={cotizacion.remitente} setCurrentStep={setCurrentStep} />}
                             {currentStep == 1 && <FormGeneraDestinatario form={formDestinatario} setInForm={setInDestinatarioForm} datosPrevios={cotizacion.destinatario} setCurrentStep={setCurrentStep} />}
-                            {currentStep == 2 && <GeneraResumen cotizacion={cotizacion} datosRemitente={formRemitente} datosDestinatario={formDestinatario} setCurrentStep={setCurrentStep}/>}
+                            {currentStep == 2 && <GeneraResumen cotizacion={cotizacion} datosRemitente={formRemitente} datosDestinatario={formDestinatario} setCurrentStep={setCurrentStep} />}
                         </>
                         :
                         <FormTenesCotizacion flujo={flujo} email={email} numeroCotizacion={numeroCotizacion} />

@@ -1,7 +1,7 @@
 import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 
-export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
+export default function RetiroSection({ errors, form, setInForm, datosPrevios, envio}) {
     return (
         <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full'>
             <LineFormDivisor />
@@ -14,17 +14,20 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         title='Provinvia'
                         input={datosPrevios.provincia}
                         mandatory
+                        disabled
                     />
                     <TitleTextInput
                         title='Localidad'
                         input={datosPrevios.localidad}
                         mandatory
+                        disabled
                     />
                     <TitleTextInput
                         title='Código postal'
                         input={datosPrevios.cp}
                         mandatory
                         zipCode
+                        disabled
                     />
                 </div>
                 <div className='tw-flex tw-items-center tw-justify-between tw-flex-col md:tw-flex-row tw-gap-9 tw-w-full'>
@@ -34,6 +37,7 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         input={form.calle}
                         setInput={(value) => setInForm('calle', value)}
                         mandatory
+                        error={errors.calle}
                     />
                     <TitleTextInput
                         title='Número'
@@ -42,6 +46,8 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         setInput={(value) => setInForm('numero', value)}
                         mandatory
                         zipCode
+                        error={errors.numero}
+                        type='number'
                     />
                     <TitleTextInput
                         title='Piso'
@@ -49,6 +55,8 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         input={form.piso}
                         setInput={(value) => setInForm('piso', value)}
                         zipCode
+                        error={errors.piso}
+                        type='number'
                     />
                     <TitleTextInput
                         title='Departamento'
@@ -56,6 +64,7 @@ export default function RetiroSection({ form, setInForm, datosPrevios, envio}) {
                         input={form.dpto}
                         setInput={(value) => setInForm('dpto', value)}
                         zipCode
+                        error={errors.dpto}
                     />
                 </div>
             </div>

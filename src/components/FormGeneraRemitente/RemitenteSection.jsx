@@ -1,6 +1,7 @@
+import TitleSelectInput from '../TextInputs/TitleSelectInput'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 
-export default function RemitenteSection({ form, setInForm, destinatario }) {
+export default function RemitenteSection({ errors, form, setInForm, destinatario }) {
     return (
         <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full md:tw-flex-row'>
             <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-6 tw-w-full'>
@@ -14,6 +15,7 @@ export default function RemitenteSection({ form, setInForm, destinatario }) {
                         input={form.nombre}
                         setInput={(value) => setInForm('nombre', value)}
                         mandatory
+                        error={errors.nombre}
                     />
                     <TitleTextInput
                         title='Email'
@@ -21,30 +23,37 @@ export default function RemitenteSection({ form, setInForm, destinatario }) {
                         input={form.email}
                         setInput={(value) => setInForm('email', value)}
                         mandatory
+                        error={errors.email}
                     />
                 </div>
                 <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
-                        <TitleTextInput
-                            title='Tipo documento'
-                            input={form.tipo_documento}
-                            setInput={(value) => setInForm('tipo_documento', value)}
-                            mandatory
-                            zipCode
-                        />
+                    <TitleSelectInput
+                        small
+                        title="Tipo documento"
+                        input={form.tipo_documento}
+                        setInput={(value) => setInForm('tipo_documento', value)}
+                        mandatory={true}
+                        placeholder="Seleccioná"
+                        options={[{value:'DNI', label:'DNI'}, {value:'CUIT', label:'CUIT'}, {value:'Cédula ', label:'Cédula '}]}
+                    />
                     <TitleTextInput
                         title='Número de documento / CUIT'
                         placeholder='Ej.: 11222333 (sin puntos ni guiones)'
                         input={form.numero_documento}
                         setInput={(value) => setInForm('numero_documento', value)}
                         mandatory
+                        error={errors.numero_documento}
+                        type='number'
                     />
                     <TitleTextInput
                         title='Código de área'
                         placeholder='Ej.: 11'
-                        input={form.codigo_area}
-                        setInput={(value) => setInForm('codigo_area', value)}
+                        input={form.codigo_de_area}
+                        setInput={(value) => setInForm('codigo_de_area', value)}
                         mandatory
                         zipCode
+                        error={errors.codigo_de_area}
+                        type='number'
                     />
                     <TitleTextInput
                         title='Número de teléfono'
@@ -52,6 +61,8 @@ export default function RemitenteSection({ form, setInForm, destinatario }) {
                         input={form.telefono}
                         setInput={(value) => setInForm('telefono', value)}
                         mandatory
+                        error={errors.telefono}
+                        type='number'
                     />
                 </div>
             </div>

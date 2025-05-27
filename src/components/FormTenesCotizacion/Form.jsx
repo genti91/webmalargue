@@ -35,7 +35,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         return true
     }
 
-    let storeCotizacion = (cotizacion) => {
+    let storeCotizacion = async (cotizacion) => {
         cotizacion = {
             "idLead": 4924,
             "importeCotizado": 12300.3199999999997089616954326629638671875,
@@ -45,6 +45,13 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         let cleanCotizacion = {
             id: cotizacion.idLead,
             precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            //TODO: poner porcentaje de IVA como variable de entorno y validar el seguro
+            iva: (cotizacion.importeCotizado * 0.21).toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            seguro: (cotizacion.importeCotizado * 0.01).toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
             remitente: {
@@ -60,8 +67,21 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             bultos: {
                 //TODO: agregar lista de bultos y descripcion
                 valorDeclarado: datosCot.valorDeclarado,
+                descripcion: 'descripcion del bulto',
+                bultos: [{cantBultos:'1', peso: '21', ancho: '11', alto: '34', profundidad: '22'},
+                    {cantBultos:'2', peso: '12', ancho: '31', alto: '22', profundidad: '12'},
+                ],
             }
         }
+
+        let oldCotizacion = localStorage.getItem('cotizacion')
+        if (oldCotizacion) {
+            oldCotizacion = await JSON.parse(oldCotizacion)
+            if (oldCotizacion.id !== cleanCotizacion.id) {
+                localStorage.removeItem('cotizacion_forms');
+            }
+        }
+
 
         localStorage.setItem('cotizacion', JSON.stringify(cleanCotizacion))
         setCotizacion(cleanCotizacion)

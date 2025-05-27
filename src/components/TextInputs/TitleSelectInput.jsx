@@ -5,10 +5,11 @@ export default function TitleSelectInput({
   mandatory = false,
   placeholder = 'Seleccione una opción',
   options = [],
-  error = false
+  error = false,
+  small
 }) {
   return (
-    <div className="tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full">
+    <div className={`tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full ${small && 'md:tw-max-w-[158px]'}`}>
       <h2 className="tw-text-base tw-font-normal tw-text-[#2F3394]">
         {title}
         {mandatory && <span className="tw-font-bold tw-text-[#EB1C23]"> *</span>}
@@ -16,7 +17,7 @@ export default function TitleSelectInput({
       <select
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        className="tw-border tw-border-[#2F3394] tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-bg-[#FFFFFF] tw-px-4"
+        className={`tw-border tw-border-[#2F3394] tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-bg-[#FFFFFF] tw-px-4 '}`}
         required={mandatory}
         aria-label={title}
       >
