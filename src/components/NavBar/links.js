@@ -40,7 +40,11 @@ export const links = {
   },
   genera: {
     to: '/genera',
-    name: 'Genera tu envío',
+    name: 'Solicitá tu retiro',
+  },
+  generaExito: {
+    to: '/genera/exito',
+    name: 'Solicitá tu retiro',
   },
   contacto: {
     to: '/contacto',

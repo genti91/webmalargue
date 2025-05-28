@@ -4,11 +4,14 @@ import Accordion from '../Accordion/Accordion';
 import TableComponent from '../TableComponent/TableComponent'
 import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput';
 import TitleTextInput from '../TextInputs/TitleTextInput';
+import ModalConfirmarPago from '../ModalConfirmarPago/ModalConfirmarPago';
+import { useState } from 'react';
 
 export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, datosDestinatario }) => {
+    const [show, setShow] = useState(false);
     const onSubmit = (e) => {
         e.preventDefault();
-        setCurrentStep(2);
+        setShow(true);
     }
     const items = [
         {
@@ -51,6 +54,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
     ];
     return (
         <div>
+            <ModalConfirmarPago show={show} setShow={setShow} /> 
             <h2 className='tw-text-[#2F3394] tw-text-[28px] tw-mb-5'>Corroborá que la información sea correcta</h2>
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
