@@ -51,7 +51,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
     ];
     return (
         <div>
-            <h2 className='tw-text-[#2F3394] tw-text-[28px] tw-mb-5'>Completá el formulario para solicitar el retiro</h2>
+            <h2 className='tw-text-[#2F3394] tw-text-[28px] tw-mb-5'>Corroborá que la información sea correcta</h2>
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
                 <form onSubmit={onSubmit} method='POST' className='tw-flex tw-flex-col tw-gap-9'>
