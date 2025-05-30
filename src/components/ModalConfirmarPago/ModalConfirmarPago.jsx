@@ -21,8 +21,7 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion }) => {
                 try {
                     setLoading(true);
                     const res = await postPreference(cotizacion);
-                    setPreferenceURL(res.init_point);
-                    console.log('Preference ID obtenida:', res.init_point);
+                    setPreferenceURL(res.sandbox_init_point);
                 } catch (err) {
                     console.error('Error al obtener preferenceId', err);
                 } finally {

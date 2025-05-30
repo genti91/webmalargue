@@ -20,7 +20,7 @@ export const createPreference = async (req, res) => {
                 failure: `${process.env.REACT_APP_URL}/fallo`,
                 pending: `${process.env.REACT_APP_URL}/pendiente`,
             },
-            auto_return: 'approved',
+            auto_return: 'all',
         },
     };
 
