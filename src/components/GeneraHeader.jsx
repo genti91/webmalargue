@@ -21,7 +21,7 @@ const GeneraHeader = ({ selectedIndex }) => {
                     >
                         {isCompleted ? (
                             <div className="tw-h-10 tw-w-10 tw-bg-[#2F3394] tw-rounded-full tw-flex tw-items-center tw-justify-center">
-                                <img src="assets/icon-done.png" alt="icon" />
+                                <img src="/assets/icon-done.png" alt="icon" />
                             </div>
                         ) : (
                             <div className={

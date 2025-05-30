@@ -28,6 +28,7 @@ import FAQPage from '../pages/FAQPage/FAQPage'
 import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy'
 import { GeneraProvider } from '../context/GeneraContext'
 import GeneraConfirmacionExito from '../pages/GeneraConfirmacion/GeneraConfirmacionExito'
+import GeneraConfirmacionFallo from '../pages/GeneraConfirmacion/GeneraConfirmacionFallo'
 
 const tagManagerArgs = {
   gtmId: 'GTM-KBPBZN4',
@@ -80,6 +81,10 @@ export const AppRouter = () => {
         <Route
           path={links.generaExito.to}
           element={[<NavBar />, <GeneraProvider><GeneraConfirmacionExito /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
+        />
+        <Route
+          path={links.generaFallo.to}
+          element={[<NavBar />, <GeneraProvider><GeneraConfirmacionFallo /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
         />
         <Route
           path={links.tracking.to}

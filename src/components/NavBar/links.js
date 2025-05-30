@@ -46,6 +46,10 @@ export const links = {
     to: '/genera/exito',
     name: 'Solicitá tu retiro',
   },
+  generaFallo: {
+    to: '/genera/fallo',
+    name: 'Solicitá tu retiro',
+  },
   contacto: {
     to: '/contacto',
     name: 'Contacto',
