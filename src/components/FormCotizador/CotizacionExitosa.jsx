@@ -1,3 +1,7 @@
+import { calculatePriceDetail } from '../CotizacionYRetiro/calculatePriceDetail'
+import { FinalPriceBox } from '../CotizacionYRetiro/FinalPriceBox'
+import { SavedBultosTable } from '../CotizacionYRetiro/SavedBultosTable'
+import { TarifaDetail } from '../CotizacionYRetiro/TarifaDetail'
 import { Warning } from '../Errores/Warning'
 import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import { SuccessCheckIcon } from './utils/icons'
@@ -24,34 +28,7 @@ export default function CotizacionExitosa({
     }
   }, [])
 
-
-  // Let's solve for x (base value) in the equation:
-  // x + (x * 0.01) + ((x + x*0.01) * 0.21) = total
-  // x + 0.01x + 0.21x + 0.0021x = total
-  // 1.2221x = total
-  // x = total / 1.2221
-  const rawValue = (cotizacion.valorizo / 1.2221).toLocaleString('es-AR', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })
-  const seguroValue = (
-    Number(cotizacion.valorizo / 1.2221) * 0.01
-  ).toLocaleString('es-AR', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })
-  const ivaValue = (
-    (Number(cotizacion.valorizo / 1.2221) +
-      Number(cotizacion.valorizo / 1.2221) * 0.01) *
-    0.21
-  ).toLocaleString('es-AR', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })
-  const finalValue = Number(cotizacion?.valorizo).toLocaleString('es-AR', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-  })
+  const { noTaxPrice, seguroValue, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.valorizo })
 
   return (
     <div
@@ -97,81 +74,15 @@ export default function CotizacionExitosa({
         <span className='tw-text-[#2F3394] tw-text-2xl tw-font-semibold'>
           Información de los bultos
         </span>
-        <div className='tw-w-full tw-overflow-x-auto'>
-          <table className='tw-w-full tw-border tw-bg-white tw-whitespace-nowrap lg:tw-whitespace-normal'>
-            <thead>
-              <tr className='tw-border-b tw-border-[#222]'>
-                <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                  Cantidad de bultos
-                </th>
-                <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                  Peso unitario (kg)
-                </th>
-                <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                  Ancho unitario (cm)
-                </th>
-                <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                  Alto unitario (cm)
-                </th>
-                <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                  Largo unitario (cm)
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {bultos.map((bulto, idx) => (
-                <tr key={idx} className={idx % 2 === 0 ? 'tw-bg-[#F5F5F5]' : ''}>
-                  <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                    {bulto?.quantity}{' '}
-                    {bulto?.quantity === '1' ? 'unidad' : 'unidades'}
-                  </td>
-                  <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                    {bulto?.weight}kg
-                  </td>
-                  <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                    {bulto?.width}cm
-                  </td>
-                  <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                    {bulto?.height}cm
-                  </td>
-                  <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
-                    {bulto?.length}cm
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <SavedBultosTable bultos={bultos} />
       </div>
       <LineFormDivisor />
 
       {/* Detalle de la Tarifa */}
-      <div className='tw-flex tw-flex-col gap-4 tw-mb-9'>
-        <span className='tw-text-[#2F3394] tw-text-2xl tw-font-semibold'>
-          Detalle de la tarifa
-        </span>
-        <span>
-          <strong>Precio sin impuestos nacionales: </strong>ARS ${rawValue}
-        </span>
-        <span>
-          <strong>Seguro: </strong>ARS ${seguroValue}
-        </span>
-        <span>
-          <strong>IVA (21%): </strong>ARS ${ivaValue}
-        </span>
-      </div>
+      <TarifaDetail noTaxPrice={noTaxPrice} seguroValue={seguroValue} ivaValue={ivaValue} /> 
 
       {/* Precio final */}
-      <div className='tw-flex tw-flex-col tw-justify-center tw-items-center tw-w-full'>
-        <div className='tw-flex tw-flex-col tw-w-[350px] tw-justify-center tw-items-center text-center tw-rounded-lg tw-border tw-border-[#707070] '>
-          <span className='tw-text-[#2F3394] tw-text-2xl tw-font-semibold tw-py-2'>
-            PRECIO FINAL
-          </span>
-          <span className='tw-w-full tw-text-white tw-text-2xl tw-font-semibold tw-bg-[#2F3394] tw-rounded-b-lg tw-py-2'>
-            ARS ${finalValue}
-          </span>
-        </div>
-      </div>
+      <FinalPriceBox price={finalValue} />
 
       {/* Botones Generar y Nueva Cotizacion */}
       <div className='tw-flex tw-w-full tw-flex-col lg:tw-flex-row lg:tw-justify-end lg:tw-items-center tw-gap-11 tw-mt-14'>

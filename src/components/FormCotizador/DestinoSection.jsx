@@ -70,7 +70,6 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
             placeholder='Seleccioná la provincia'
             options={provincesForFormSelect}
             error={errors.destinyOption}
-            disabled={true}
           />
         </div>
       </div>

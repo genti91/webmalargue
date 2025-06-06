@@ -109,20 +109,24 @@ export default function TitleTextInput({
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if the click is outside both the input and the dropdown
       if (
-        inputRef.current &&
-        !inputRef.current.contains(event.target) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
+        inputRef.current && !inputRef.current.contains(event.target) &&
+        dropdownRef.current && !dropdownRef.current.contains(event.target)
       ) {
-        setIsFocused(false)
-        setHighlightedIndex(-1)
+        setIsFocused(false);
+        setHighlightedIndex(-1);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    // Add event listener when component mounts
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up event listener when component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
   return (
     <div
@@ -159,28 +163,37 @@ export default function TitleTextInput({
           }}
           onFocus={() => {
             setIsFocused(true)
-            if (searchDropdown) {
-              setFilteredOptions(
-                searchOptions
-                  .sort((a, b) => {
-                    if (zipCode) {
-                      return a.codigoPostal - b.codigoPostal
-                    } else {
-                      return a.nombre.localeCompare(b.nombre)
-                    }
-                  })
-                  .slice(0, 10)
-              )
+            // Optionally pre-filter/sort options on focus if input is empty
+            if (searchDropdown && searchOptions.length > 0 && !input) {
+               setFilteredOptions(
+                 searchOptions
+                   .sort((a, b) => {
+                     if (zipCode) {
+                       return a.codigoPostal - b.codigoPostal
+                     } else {
+                       return a.nombre.localeCompare(b.nombre)
+                     }
+                   })
+                   .slice(0, 10)
+               );
             }
           }}
-          onBlur={() => {
-            // Delay closing the dropdown slightly to allow click on dropdown options
+          onBlur={(e) => {
+            // Use a small timeout to allow relatedTarget to be set before checking.
+            // This prevents the dropdown from closing immediately when clicking an option.
             setTimeout(() => {
-              setIsFocused(false)
-              setHighlightedIndex(-1)
-            }, 100)
+               // Check if the focus is moving to an element inside the dropdown.
+               // If it is, do nothing, allowing the click handler on the option to fire.
+               if (dropdownRef.current && dropdownRef.current.contains(e.relatedTarget)) {
+                 return;
+               }
+               // If focus is moving elsewhere (e.g., tabbing to the next input or clicking outside),
+               // close the dropdown.
+               setIsFocused(false);
+               setHighlightedIndex(-1);
+            }, 10); // A short delay is usually sufficient
           }}
-          className={`tw-border  tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-bg-[#FFFFFF] tw-px-4 ${
+          className={`tw-border  tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-px-4 ${
             error ? 'tw-border-[#EB1C23]' : 'tw-border-[#2F3394]'
           } ${
             disabled
@@ -192,6 +205,7 @@ export default function TitleTextInput({
           <ul
             ref={dropdownRef}
             className='tw-absolute tw-pl-1 tw-z-10 tw-w-full tw-mt-1 tw-bg-white tw-border tw-border-[#2F3394] tw-rounded-lg tw-max-h-60 tw-overflow-auto'
+            onMouseDown={(e) => e.preventDefault()} // Prevent input blur when clicking dropdown options
           >
             {filteredOptions.map((option, index) => (
               <li

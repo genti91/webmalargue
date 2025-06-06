@@ -177,7 +177,7 @@ export default function FormCotizacion() {
 
         <button
           onClick={onSubmit}
-          disabled={isSubmitting || Object.values(errors).some(error => error !== null)}
+          disabled={isSubmitting || Object.values(errors).some(error => error !== null) || !form.origin || !form.destiny || !form.originCP || !form.destinyCP || !form.email || !form.valorDeclarado}
           className='tw-self-end tw-mt-6 tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md disabled:tw-opacity-50'
         >
           {isSubmitting ? 'Cotizando...' : 'Cotizar'}

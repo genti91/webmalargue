@@ -40,7 +40,7 @@ export default function TitleTextUnitInput({
           onChange={handleChange}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
-          className={` tw-placeholder-[#B3B3B3] focus:tw-outline-none tw-rounded-l-lg tw-py-2 tw-w-full tw-pl-4 ${
+          className={` tw-placeholder-[#B3B3B3] focus:tw-outline-none tw-rounded-l-lg tw-py-2 tw-w-full tw-pl-4 tw-pr-2 ${
             disabled
               ? 'tw-bg-[#E9ECEF] tw-border-[#B2B2B2] tw-text-[#756C7D] tw-cursor-not-allowed'
               : 'tw-border-[#2F3394] tw-bg-[#FFFFFF]'
@@ -49,7 +49,7 @@ export default function TitleTextUnitInput({
           aria-label={title}
           disabled={disabled}
         />
-        <div className='tw-bg-[#2F3394] tw-rounded-r-lg tw-flex tw-items-center tw-self-stretch tw-ml-2 tw-px-2'>
+        <div className='tw-bg-[#2F3394] tw-rounded-r-lg tw-flex tw-items-center tw-self-stretch  tw-px-2'>
           <span className='tw-text-white tw-text-center'>{unit}</span>
         </div>
       </div>
