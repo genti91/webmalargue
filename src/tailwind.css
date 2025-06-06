@@ -561,6 +561,10 @@ video {
   margin-bottom: 5rem;
 }
 
+.tw-mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .tw-mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -579,6 +583,10 @@ video {
 
 .tw-ml-auto {
   margin-left: auto;
+}
+
+.tw-mt-12 {
+  margin-top: 3rem;
 }
 
 .tw-mt-5 {
@@ -601,20 +609,8 @@ video {
   margin-top: -15px;
 }
 
-.tw-mt-10 {
-  margin-top: 2.5rem;
-}
-
-.tw-mt-12 {
-  margin-top: 3rem;
-}
-
-.tw-mb-7 {
-  margin-bottom: 1.75rem;
-}
-
-.tw-mb-3 {
-  margin-bottom: 0.75rem;
+.tw-mt-4 {
+  margin-top: 1rem;
 }
 
 .tw-flex {
@@ -657,16 +653,8 @@ video {
   height: 72px;
 }
 
-.tw-h-4 {
-  height: 1rem;
-}
-
-.tw-h-2 {
-  height: 0.5rem;
-}
-
-.tw-h-\[64px\] {
-  height: 64px;
+.tw-h-\[1px\] {
+  height: 1px;
 }
 
 .tw-w-10 {
@@ -718,8 +706,20 @@ video {
   width: 100%;
 }
 
-.tw-w-\[64px\] {
-  width: 64px;
+.tw-w-\[211px\] {
+  width: 211px;
+}
+
+.tw-w-\[98\%\] {
+  width: 98%;
+}
+
+.tw-w-\[95\%\] {
+  width: 95%;
+}
+
+.tw-w-\[97\%\] {
+  width: 97%;
 }
 
 .tw-max-w-\[160px\] {
@@ -742,6 +742,10 @@ video {
 
 .tw-cursor-not-allowed {
   cursor: not-allowed;
+}
+
+.tw-cursor-pointer {
+  cursor: pointer;
 }
 
 .tw-flex-col {
@@ -780,6 +784,10 @@ video {
   gap: 0.25rem;
 }
 
+.tw-gap-14 {
+  gap: 3.5rem;
+}
+
 .tw-gap-2 {
   gap: 0.5rem;
 }
@@ -798,18 +806,6 @@ video {
 
 .tw-gap-9 {
   gap: 2.25rem;
-}
-
-.tw-gap-10 {
-  gap: 2.5rem;
-}
-
-.tw-gap-20 {
-  gap: 5rem;
-}
-
-.tw-gap-14 {
-  gap: 3.5rem;
 }
 
 .tw-self-end {
@@ -877,6 +873,10 @@ video {
 
 .tw-border-b {
   border-bottom-width: 1px;
+}
+
+.tw-border-t {
+  border-top-width: 1px;
 }
 
 .tw-border-\[\#222\] {
@@ -954,6 +954,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.tw-bg-\[\#CAC4D0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 196 208 / var(--tw-bg-opacity, 1));
+}
+
 .tw-bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -1027,6 +1032,22 @@ video {
   padding-top: 1rem;
 }
 
+.tw-pt-14 {
+  padding-top: 3.5rem;
+}
+
+.tw-pt-10 {
+  padding-top: 2.5rem;
+}
+
+.tw-pt-6 {
+  padding-top: 1.5rem;
+}
+
+.tw-pt-9 {
+  padding-top: 2.25rem;
+}
+
 .tw-text-left {
   text-align: left;
 }
@@ -1067,6 +1088,10 @@ video {
   line-height: 1rem;
 }
 
+.tw-text-\[24px\] {
+  font-size: 24px;
+}
+
 .tw-font-bold {
   font-weight: 700;
 }
@@ -1077,6 +1102,15 @@ video {
 
 .tw-font-semibold {
   font-weight: 600;
+}
+
+.tw-font-\[600\] {
+  font-weight: 600;
+}
+
+.tw-text-\[\#198754\] {
+  --tw-text-opacity: 1;
+  color: rgb(25 135 84 / var(--tw-text-opacity, 1));
 }
 
 .tw-text-\[\#222\] {
@@ -1109,6 +1143,11 @@ video {
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
 
+.tw-text-green-800 {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity, 1));
+}
+
 .tw-text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
@@ -1119,24 +1158,14 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.tw-text-yellow-600 {
+.tw-text-\[\#dc3545\] {
   --tw-text-opacity: 1;
-  color: rgb(202 138 4 / var(--tw-text-opacity, 1));
+  color: rgb(220 53 69 / var(--tw-text-opacity, 1));
 }
 
-.tw-text-green-400 {
+.tw-text-\[\#FF9500\] {
   --tw-text-opacity: 1;
-  color: rgb(74 222 128 / var(--tw-text-opacity, 1));
-}
-
-.tw-text-green-800 {
-  --tw-text-opacity: 1;
-  color: rgb(22 101 52 / var(--tw-text-opacity, 1));
-}
-
-.tw-text-\[\#198754\] {
-  --tw-text-opacity: 1;
-  color: rgb(25 135 84 / var(--tw-text-opacity, 1));
+  color: rgb(255 149 0 / var(--tw-text-opacity, 1));
 }
 
 .tw-placeholder-\[\#B3B3B3\]::placeholder {
@@ -1157,6 +1186,14 @@ video {
 @media (min-width: 640px) {
   .sm\:tw-w-\[347px\] {
     width: 347px;
+  }
+
+  .sm\:tw-w-\[158px\] {
+    width: 158px;
+  }
+
+  .sm\:tw-w-\[211px\] {
+    width: 211px;
   }
 
   .sm\:tw-flex-row {
@@ -1197,6 +1234,10 @@ video {
     align-items: flex-end;
   }
 
+  .md\:tw-justify-end {
+    justify-content: flex-end;
+  }
+
   .md\:tw-gap-12 {
     gap: 3rem;
   }
@@ -1213,6 +1254,10 @@ video {
 
   .lg\:tw-w-\[215px\] {
     width: 215px;
+  }
+
+  .lg\:tw-justify-end {
+    justify-content: flex-end;
   }
 
   .lg\:tw-gap-4 {

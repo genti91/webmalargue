@@ -7,7 +7,7 @@ initMercadoPago(process.env.REACT_APP_MP_PUBLIC_KEY, {
     locale: 'es-AR',
 });
 
-const ModalConfirmarPago = ({ show, setShow, cotizacion }) => {
+const ModalConfirmarPago = ({ show, setShow, cotizacion, id }) => {
     const handleClose = () => {
         setShow(false)
         setPreferenceURL(null);
@@ -17,10 +17,10 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion }) => {
 
     useEffect(() => {
         const obtenerPreference = async () => {
-            if (show && cotizacion) {
+            if (show && cotizacion && id) {
                 try {
                     setLoading(true);
-                    const res = await postPreference(cotizacion);
+                    const res = await postPreference(cotizacion, id);
                     setPreferenceURL(res.sandbox_init_point);
                 } catch (err) {
                     console.error('Error al obtener preferenceId', err);

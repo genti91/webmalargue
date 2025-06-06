@@ -42,16 +42,20 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
         }
         let datosCot = JSON.parse(cotizacion.observaciones)
+        let valorOriginal = (cotizacion.importeCotizado / 1.2221)
         let cleanCotizacion = {
             id: cotizacion.idLead,
             precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
             //TODO: poner porcentaje de IVA como variable de entorno y validar el seguro
-            iva: (cotizacion.importeCotizado * 0.21).toLocaleString('de-DE', {
+            iva: (valorOriginal * 0.21).toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
-            seguro: (cotizacion.importeCotizado * 0.01).toLocaleString('de-DE', {
+            seguro: (valorOriginal * 0.01).toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            valorOriginal: valorOriginal.toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
             remitente: {
