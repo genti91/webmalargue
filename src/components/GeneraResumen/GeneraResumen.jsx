@@ -4,11 +4,14 @@ import Accordion from '../Accordion/Accordion';
 import TableComponent from '../TableComponent/TableComponent'
 import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput';
 import TitleTextInput from '../TextInputs/TitleTextInput';
+import ModalConfirmarPago from '../ModalConfirmarPago/ModalConfirmarPago';
+import { useState } from 'react';
 
 export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, datosDestinatario }) => {
+    const [show, setShow] = useState(false);
     const onSubmit = (e) => {
         e.preventDefault();
-        setCurrentStep(2);
+        setShow(true);
     }
     const items = [
         {
@@ -31,31 +34,32 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
             header: 'Facturación',
             body:
                 <div className='tw-flex tw-flex-col tw-gap-2'>
-                    <div><span className="tw-font-bold">Factura a nombre de:</span> {datosDestinatario.factura_a_nombre_de}</div>
+                    <div><span className="tw-font-bold">Factura a nombre de:</span> {datosDestinatario.factura_a_nombre_de.label}</div>
                     <div><span className="tw-font-bold">Tipo de contribuyente:</span> {datosDestinatario.tipo_de_contribuyente}</div>
                 </div>
         },
         {
             header: 'Notificación',
-            body: <div><span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span> {datosDestinatario.notificacion}</div>
-        },
-        {
-            header: 'Detalle de la tarifa',
-            body:
-                <div className='tw-flex tw-flex-col tw-gap-2'>
-                    <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> {cotizacion.precioFinal}</div>
-                    <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
-                    <div><span className="tw-font-bold">Seguro:</span> {cotizacion.seguro}</div>
-                </div>
+            body: <div><span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span> {datosDestinatario.notificacion.label}</div>
         }
     ];
     return (
         <div>
+            <ModalConfirmarPago show={show} setShow={setShow} cotizacion={cotizacion.precioFinal} id={cotizacion.id} /> 
             <h2 className='tw-text-[#2F3394] tw-text-[28px] tw-mb-5'>Corroborá que la información sea correcta</h2>
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
                 <form onSubmit={onSubmit} method='POST' className='tw-flex tw-flex-col tw-gap-9'>
                     <Accordion items={items} />
+                    <div className='tw-w-[98%] tw-h-[1px] tw-bg-[#CAC4D0] tw-self-center'/>
+                    <div className='tw-flex tw-flex-col tw-gap-2'>
+                        <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
+                        <div className='tw-flex tw-flex-col tw-gap-2'>
+                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> {cotizacion.valorOriginal}</div>
+                            <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
+                            <div><span className="tw-font-bold">Seguro:</span> {cotizacion.seguro}</div>
+                        </div>
+                    </div>
                     <div className='tw-self-center tw-w-full sm:tw-w-[347px] tw-border tw-border-[#707070] tw-rounded-lg'>
                         <div className='tw-font-semibold tw-text-xl tw-text-[#2F3394] tw-py-3 tw-text-center'>PRECIO FINAL</div>
                         <div className='tw-bg-[#2F3394] tw-rounded-b-lg tw-font-bold tw-py-3 tw-text-center tw-text-white tw-text-xl'>ARS {cotizacion.precioFinal}</div>
@@ -92,7 +96,7 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
         <div className='tw-flex tw-flex-col tw-gap-2'>
             <div><span className="tw-font-bold">Nombre y apellido / Razón social:</span> {datos.nombre}</div>
             <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
-            <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento} {datos.numero_documento}</div>
+            <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
             <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
             <div><span className="tw-font-bold">Dirección:</span> {datos.calle} {datos.numero} {datos.piso} {datos.dpto} {datosCoti.localidad} {datosCoti.provincia} {datosCoti.cp}</div>
         </div>

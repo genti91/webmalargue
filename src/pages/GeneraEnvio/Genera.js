@@ -17,7 +17,7 @@ const Genera = () => {
     const numeroCotizacion = searchParams.get('numero_cotizacion')
     const flujo = searchParams.get('flujo')
     const [currentStep, setCurrentStep] = React.useState(localStorage.getItem('current_step') ? Number(localStorage.getItem('current_step')) : 0)
-    const [formRemitente, setFormRemitente] = React.useState({
+    const remitenteDefault = {
         nombre: '',
         email: '',
         tipo_documento: '',
@@ -31,8 +31,9 @@ const Genera = () => {
         numero: '',
         piso: '',
         dpto: '',
-    })
-    const [formDestinatario, setFormDestinatario] = React.useState({
+    }
+    const [formRemitente, setFormRemitente] = React.useState(remitenteDefault)
+    const destinatarioDefault = {
         nombre: '',
         email: '',
         tipo_documento: '',
@@ -50,7 +51,8 @@ const Genera = () => {
         factura_a_nombre_de: '',
         tipo_de_contribuyente: 'Consumidor final',
         notificacion: '',
-    })
+    }
+    const [formDestinatario, setFormDestinatario] = React.useState(destinatarioDefault)
 
     const getCotizacion = () => {
         const cotizacion = localStorage.getItem('cotizacion')
@@ -79,6 +81,15 @@ const Genera = () => {
         getCotizacion()
         getCotizacionForms()
     }, [])
+    useEffect(() => {
+        if (cotizacion === null) {
+            setFormDestinatario(destinatarioDefault)
+            setFormRemitente(remitenteDefault)
+        }
+    }, [cotizacion])
+    useEffect(() => {
+        updateCotizacionForms()
+    }, [currentStep])
     useEffect(() => {
         updateCotizacionForms()
     }, [currentStep])

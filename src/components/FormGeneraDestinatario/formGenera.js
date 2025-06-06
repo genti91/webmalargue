@@ -23,12 +23,12 @@ export const formGeneraRemitente = [
     name: 'numero_documento',
     required: 'Ingresá un número de documento o CUIT',
     validate: (value, form) => {
-      if (form.tipo_documento === 'DNI') {
+      if (form.tipo_documento.value === 'DNI') {
         return /^\d{8}$/.test(value)
           ? null
           : 'El DNI debe tener 8 dígitos numéricos';
       }
-      if (form.tipo_documento === 'CUIT') {
+      if (form.tipo_documento.value === 'CUIT') {
         return /^\d{11}$/.test(value)
           ? null
           : 'El CUIT debe tener 11 dígitos numéricos';
@@ -94,7 +94,7 @@ export const formGeneraRemitente = [
     name: 'notificacion',
     required: 'Seleccioná una opción de notificación',
     validate: (value) =>
-      ['Remitente', 'Ambos (Remitente y Destinatario)'].includes(value)
+      ['Remitente', 'Ambos (Remitente y Destinatario)'].includes(value.value)
         ? null
         : 'Seleccioná una opción válida',
   },
@@ -102,7 +102,7 @@ export const formGeneraRemitente = [
     name: 'factura_a_nombre_de',
     required: 'Seleccioná a nombre de quién se factura',
     validate: (value) =>
-      ['Remitente', 'Destinatario'].includes(value)
+      ['Remitente', 'Destinatario'].includes(value.value)
         ? null
         : 'Seleccioná una opción válida',
   },

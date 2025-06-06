@@ -57,7 +57,7 @@ export default function ObsSection({ errors, form, setInForm }) {
                         <TitleSelectInput
                             title="Persona que recibirá la confirmación del retiro"
                             input={form.notificacion}
-                            setInput={(value) => setInForm('notificacion', value)}
+                            setInput={(value) => {console.log(value);setInForm('notificacion', value)}}
                             mandatory={true}
                             placeholder="Seleccioná una opción"
                             options={[{value:'Remitente', label:'Remitente'}, {value:'Ambos (Remitente y Destinatario)', label:'Ambos (Remitente y Destinatario)'}]}

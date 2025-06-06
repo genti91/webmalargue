@@ -11,7 +11,7 @@ export const Warning = ({ boldText, text }) => {
             width: '100%'
         }}>
             <span className="tw-flex tw-items-center tw-gap-2">
-                <img src={`assets/icon-warning.png`} alt="icon" className="tw-h-5 tw-w-5" />
+                <img src={`/assets/icon-warning.png`} alt="icon" className="tw-h-5 tw-w-5" />
                 <span>
                     <b>{boldText}</b> {text}
                 </span>
