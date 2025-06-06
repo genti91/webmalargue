@@ -47,7 +47,7 @@ export default function RetiroSection({ errors, form, setInForm, datosPrevios, e
                         mandatory
                         zipCode
                         error={errors.numero}
-                        type='number'
+                        numeric
                     />
                     <TitleTextInput
                         title='Piso'
@@ -56,7 +56,7 @@ export default function RetiroSection({ errors, form, setInForm, datosPrevios, e
                         setInput={(value) => setInForm('piso', value)}
                         zipCode
                         error={errors.piso}
-                        type='number'
+                        numeric
                     />
                     <TitleTextInput
                         title='Departamento'

@@ -43,7 +43,7 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                         setInput={(value) => setInForm('numero_documento', value)}
                         mandatory
                         error={errors.numero_documento}
-                        type='number'
+                        numeric
                     />
                     <TitleTextInput
                         title='Código de área'
@@ -53,7 +53,7 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                         mandatory
                         zipCode
                         error={errors.codigo_de_area}
-                        type='number'
+                        numeric
                     />
                     <TitleTextInput
                         title='Número de teléfono'
@@ -62,7 +62,7 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                         setInput={(value) => setInForm('telefono', value)}
                         mandatory
                         error={errors.telefono}
-                        type='number'
+                        numeric
                     />
                 </div>
             </div>

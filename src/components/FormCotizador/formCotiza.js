@@ -10,50 +10,6 @@ export const formCotiza = [
       validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
   },
-  /* {
-    colSize: { md: 4 },
-    //label: 'Nombre o razón social',
-    label: 'Nombre',
-    inputProps: {
-      name: 'name',
-      type: 'text',
-      required: true,
-      errorMessage: 'Por favor completa este campo',
-      validation: false,
-    },
-  }, */
-  /* {
-    colSize: { md: 4 },
-    label: 'Teléfono',
-    inputProps: {
-      name: 'tel',
-      type: 'tel',
-      required: true,
-      errorMessage: 'Por favor completa este campo',
-      validation: /^(?:\d{8,10})$/i,
-    },
-  }, */
-  /* {
-    colSize: { md: 6 },
-    label: 'Rango Horario',
-    inputProps: {
-      name: 'rangoHorario',
-      type: 'select',
-      options: [
-        {
-          value: ' 8-12',
-          name: ' 8-12',
-        },
-        {
-          value: ' 12-16',
-          name: ' 12-16',
-        },
-      ],
-      placeholder: 'Seleccioná un rango horario',
-      required: true,
-      errorMessage: 'Por favor completa este campo para cotizar',
-    },
-  }, */
   {
     colSize: { md: 12},
     name: 'ORIGEN',
@@ -236,30 +192,6 @@ export const formCotiza = [
       name: 'provDestiny',
       type: 'select',
       options: [
-        /* {
-          value: 'AMBA',
-          name: 'AMBA',
-        },
-        {
-          value: 'Mendoza',
-          name: 'Mendoza',
-        },
-        {
-          value: 'San Luis',
-          name: 'San Luis',
-        },
-        {
-          value: 'La Pampa',
-          name: 'La Pampa',
-        },
-        {
-          value: 'San Juan',
-          name: 'San Juan',
-        },
-        {
-          value: 'Santa Fe',
-          name: 'Santa Fe',
-        }, */
         {
           value:'Buenos Aires',
           name: 'Buenos Aires',
@@ -427,18 +359,6 @@ export const formCotiza = [
       name: 'service',
       type: 'select',
       options: [
-        /* {
-          value: 'mudanza',
-          name: 'Mudanza',
-        },
-        {
-          value: 'encomiendas',
-          name: 'Encomiendas',
-        },
-        {
-          value: 'Recepción',
-          name: 'recepcion',
-        }, */
         {
           value: 'caja',
           name: 'Caja',
@@ -459,17 +379,6 @@ export const formCotiza = [
       errorMessage: 'Por favor completa este campo para cotizar',
     },
   },
-  // {
-  //   colSize: { md: 12 },
-  //   label: 'Tu mensaje',
-  //   inputProps: {
-  //     name: 'message',
-  //     type: 'textarea',
-  //     required: true,
-  //     errorMessage: 'Por favor completa este campo para cotizar',
-  //     validation: false,
-  //   },
-  // },
   {
     inputProps: {
       type: 'submit',
