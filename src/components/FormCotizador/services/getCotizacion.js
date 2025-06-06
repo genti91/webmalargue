@@ -20,7 +20,7 @@ export const getCotizacion = async (props) => {
         )
         .then((response) => response.json())
         .catch((error) => {
-            throw error
+            throw new Error(error)
         })
     cotizacion = { ...cotizacion, valorizo: cotizacion.valorizo }
     const prospecto = await window

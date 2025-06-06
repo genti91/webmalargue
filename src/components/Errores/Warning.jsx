@@ -7,7 +7,8 @@ export const Warning = ({ boldText, text }) => {
             border: '1px solid #B6D4FE',
             padding: '16px',
             display: 'flex',
-            fontWeight: 500
+            fontWeight: 500,
+            width: '100%'
         }}>
             <span className="tw-flex tw-items-center tw-gap-2">
                 <img src={`assets/icon-warning.png`} alt="icon" className="tw-h-5 tw-w-5" />
