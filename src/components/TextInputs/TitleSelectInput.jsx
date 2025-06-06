@@ -35,7 +35,7 @@ export default function TitleSelectInput({
 
   return (
     <div
-      className={`tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full ${
+      className={`tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full  ${
         small && 'md:tw-max-w-[158px]'
       }`}
     >
@@ -61,7 +61,7 @@ export default function TitleSelectInput({
                 ${
                   disabled
                     ? 'tw-bg-[#E9ECEF] tw-border-[#B2B2B2] tw-text-[#756C7D] tw-cursor-not-allowed'
-                    : 'tw-border-[#2F3394] tw-bg-[#FFFFFF]'
+                    : 'tw-border-[#2F3394] tw-bg-[#FFFFFF] tw-cursor-pointer'
                 }
         `}
         required={mandatory}

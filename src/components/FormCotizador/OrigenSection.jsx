@@ -70,7 +70,6 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
             placeholder='Seleccioná la provincia'
             options={provincesForFormSelect}
             error={errors.originOption}
-            disabled={true}
           />
         </div>
       </div>
