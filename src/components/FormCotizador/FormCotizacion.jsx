@@ -3,92 +3,186 @@ import { useForm } from '../../hooks'
 import OrigenSection from './OrigenSection'
 import DestinoSection from './DestinoSection'
 import BultosSection from './BultosSection'
+import { useState, useEffect, useRef } from 'react'
+import { getTarifa } from './services/getTarifa'
+import { getCotizacion } from './services/getCotizacion'
+import { formatCotizacionData } from './utils/cotizacionFormatter'
+import { useFieldValidation } from '../../hooks/useFieldValidation'
+import CotizacionExitosa from './CotizacionExitosa'
+import { Warning } from '../Errores/Warning'
 
 export default function FormCotizacion() {
+  const [errors, setErrors] = useState({
+    bultos: "Debés agregar al menos un bulto."
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [tarifa, setTarifa] = useState([])
+  const [cotizacion, setCotizacion] = useState()
+  const [finalData, setFinalData] = useState()
+
   const { form, setInForm, resetForm } = useForm({
     origin: '',
     destiny: '',
-    originId: '',
-    destinyId: '',
     originCP: '',
     destinyCP: '',
-    name: '',
     email: '',
     message: '',
-    service: '',
-    pago: '',
-    tel: '',
-    tableTemplate: '',
     valorDeclarado: '',
     originOption: {},
     destinyOption: {},
-    provincia: '', // BORRAR ESTE
-    width: '', // BORRAR ESTE
   })
+  const [bultos, setBultos] = useState([])
+  const { handleFieldChange } = useFieldValidation(setInForm, setErrors);
 
-  // Provincias de Argentina
-  const provincias = [
-    { value: 'buenos_aires', label: 'Buenos Aires' },
-    { value: 'catamarca', label: 'Catamarca' },
-    { value: 'chaco', label: 'Chaco' },
-    { value: 'chubut', label: 'Chubut' },
-    { value: 'cordoba', label: 'Córdoba' },
-    { value: 'corrientes', label: 'Corrientes' },
-    { value: 'entre_rios', label: 'Entre Ríos' },
-    { value: 'formosa', label: 'Formosa' },
-    { value: 'jujuy', label: 'Jujuy' },
-    { value: 'la_pampa', label: 'La Pampa' },
-    { value: 'la_rioja', label: 'La Rioja' },
-    { value: 'mendoza', label: 'Mendoza' },
-    { value: 'misiones', label: 'Misiones' },
-    { value: 'neuquen', label: 'Neuquén' },
-    { value: 'rio_negro', label: 'Río Negro' },
-    { value: 'salta', label: 'Salta' },
-    { value: 'san_juan', label: 'San Juan' },
-    { value: 'san_luis', label: 'San Luis' },
-    { value: 'santa_cruz', label: 'Santa Cruz' },
-    { value: 'santa_fe', label: 'Santa Fe' },
-    { value: 'santiago_del_estero', label: 'Santiago del Estero' },
-    { value: 'tierra_del_fuego', label: 'Tierra del Fuego' },
-    { value: 'tucuman', label: 'Tucumán' },
-  ];
+  const isMounted = useRef(true);
 
-  return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getTarifa();
+        if (isMounted.current) {
+          setTarifa(res);
+          setInForm('tarifa', Number(res.verTarifa.numero));
+        }
+      } catch (err) {
+        console.error('Error fetching locations:', err);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (bultos.length >= 1) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.bultos;
+        return newErrors;
+      });
+    } else {
+      setErrors(prev => ({
+        ...prev,
+        bultos: "Debés agregar al menos un bulto."
+      }));
+    }
+  }, [bultos]);
+
+  // Add validation for origin and destination
+  useEffect(() => {
+    if (form.originCP && form.destinyCP && form.originCP === form.destinyCP && form.origin === form.destiny) {
+      setErrors(prev => ({
+        ...prev,
+        destinyMatch: "El destino no puede ser igual al origen"
+      }));
+    } else {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.destinyMatch;
+        return newErrors;
+      });
+    }
+  }, [form.originCP, form.destinyCP]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    // Add validation for missing bultos
+    if (bultos.length === 0) {
+      setErrors(prev => ({
+        ...prev,
+        bultos: 'Debés agregar al menos un bulto'
+      }))
+      return
+    }
+    if (!Object.values(errors).every(error => error === null)) {
+      // Scroll to the first error
+      const firstErrorField = Object.keys(errors)[0]
+      const element = document.getElementById(firstErrorField)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      return
+    }
+    setIsSubmitting(true)
+    try {
+      const formattedData = formatCotizacionData(form, bultos)
+      setFinalData(formattedData)
+      const result = await getCotizacion(formattedData)
+      if (isMounted.current) { // Check if component is still mounted before setting state
+        setCotizacion(result)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    } finally {
+      if (isMounted.current) { // Check if component is still mounted before setting state
+        setIsSubmitting(false)
+      }
+    }
+  }
+
+  return cotizacion ? (
+    <CotizacionExitosa newQuoteHandler={()=>{resetForm();setBultos([]);setCotizacion('')}} finalData={finalData} cotizacion={cotizacion} bultos={bultos} />
+  ) : (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'>
+      <Warning boldText="¡ATENCIÓN!" text="Si necesitás cotizar pallets, equipos completos o mudanzas, escribinos a info@expresomalargue.com" />
       <h2 className='tw-text-[28px] tw-font-semibold tw-text-[#2F3394]'>
         Completá el formulario y cotizá en el momento
       </h2>
-      {/* Aquí va el formulario */}
-      <TitleTextInput
-        title='Email'
-        placeholder='Ej.: email@dominio.com'
-        input={form.email}
-        setInput={(value) => setInForm('email', value)}
-        mandatory
-        email
-      />
 
-      <OrigenSection
-        form={form}
-        setInForm={setInForm}
-        provincias={provincias}
-      />
+      <form
+        onSubmit={onSubmit}
+        className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'
+        >
+        <TitleTextInput
+          id='email'
+          title='Email'
+          placeholder='Ej.: email@dominio.com'
+          input={form.email}
+          setInput={(value) => handleFieldChange('email', value)}
+          mandatory
+          email
+          error={errors.email}
+          />
 
-      <DestinoSection
-        form={form}
-        setInForm={setInForm}
-        provincias={provincias}
-      />
+        <OrigenSection
+          tarifaOrigen={tarifa?.locOrigen}
+          form={form}
+          setInForm={setInForm}
+          locations={tarifa.locOrigen}
+          errors={errors}
+          onValidate={handleFieldChange}
+          />
 
-      <BultosSection
-        form={form}
-        setInForm={setInForm}
-        provincias={provincias}
-      />
+        <DestinoSection
+          tarifaDestino={tarifa?.locDestino}
+          form={form}
+          setInForm={setInForm}
+          locations={tarifa.locDestino}
+          errors={errors}
+          onValidate={handleFieldChange}
+          />
 
-      <button className='tw-self-end tw-mt-6 tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md'>
-        Cotizar
-      </button>
+        <BultosSection
+          form={form}
+          setInForm={setInForm}
+          bultos={bultos}
+          setBultos={setBultos}
+          errors={errors}
+          setErrors={setErrors}
+          onValidate={handleFieldChange}
+          />
+
+        <button
+          onClick={onSubmit}
+          disabled={isSubmitting || Object.values(errors).some(error => error !== null)}
+          className='tw-self-end tw-mt-6 tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md disabled:tw-opacity-50'
+        >
+          {isSubmitting ? 'Cotizando...' : 'Cotizar'}
+        </button>
+      </form>
     </div>
   )
 }
