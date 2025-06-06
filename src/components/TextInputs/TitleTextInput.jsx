@@ -180,7 +180,7 @@ export default function TitleTextInput({
               setHighlightedIndex(-1)
             }, 100)
           }}
-          className={`tw-border  tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-bg-[#FFFFFF] tw-px-4 ${
+          className={`tw-border  tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-px-4 ${
             error ? 'tw-border-[#EB1C23]' : 'tw-border-[#2F3394]'
           } ${
             disabled
