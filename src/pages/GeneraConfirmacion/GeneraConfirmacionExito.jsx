@@ -70,14 +70,14 @@ const GeneraConfirmacionExito = () => {
                             </div>
                         </div>
                         <div className='tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 lg:tw-justify-end tw-justify-center'>
-                            <Link to='/cotiza'>
+                            <Link to={'/tracking?trackingID=' + codigoSeguimiento}>
                                 <Button
                                     className='sm:tw-w-[158px] tw-w-full tw-h-12 p-0'
                                 >
                                     Seguí tu envío
                                 </Button>
                             </Link>
-                            <Link to='/cotiza'>
+                            <Link to='/genera'>
                                 <Button
                                     className='sm:tw-w-[211px] tw-w-full tw-h-12 p-0 tw-bg-[#198754]'
                                     style={{
