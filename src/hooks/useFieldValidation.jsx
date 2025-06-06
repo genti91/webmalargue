@@ -48,8 +48,7 @@ export const useFieldValidation = (setInForm, setErrors, bultos = []) => {
         error = inputValidators.validateBultoWeight(value);
         break;
       default:
-        // No validation needed for other fields
-        break;
+        break; // Satisfy eslint default-case rule
     }
 
     // Update errors state
