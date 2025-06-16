@@ -63,7 +63,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
                 <form onSubmit={onSubmit} method='POST' className='tw-flex tw-flex-col tw-gap-9'>
-                    <Accordion items={items} />
+                    <Accordion items={items} defaultActiveKey={"0"} />
                     <div className='tw-w-[98%] tw-h-[1px] tw-bg-[#CAC4D0] tw-self-center'/>
                     <div className='tw-flex tw-flex-col tw-gap-2'>
                         <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
