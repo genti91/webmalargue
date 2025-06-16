@@ -11,7 +11,7 @@ export default function RetiroSection({ errors, form, setInForm, datosPrevios, e
                 </h2>
                 <div className='tw-flex tw-items-center tw-justify-between tw-flex-col md:tw-flex-row  tw-gap-9 tw-w-full'>
                     <TitleTextInput
-                        title='Provinvia'
+                        title='Provincia'
                         input={datosPrevios.provincia}
                         mandatory
                         disabled
