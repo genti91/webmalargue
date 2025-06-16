@@ -28,7 +28,12 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
         },
         {
             header: 'Observaciones',
-            body: <div><span className="tw-font-bold">Observaciones:</span> {datosDestinatario.observaciones}</div>
+            body: <div>
+                    <span className="tw-font-bold">Observaciones:</span>{" "}
+                    {datosDestinatario.observaciones
+                        ? datosDestinatario.observaciones
+                        : "No ingresaste ninguna observación"}
+                </div>
         },
         {
             header: 'Facturación',
