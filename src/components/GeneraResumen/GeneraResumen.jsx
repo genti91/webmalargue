@@ -94,7 +94,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                             className='md:tw-w-[158px] tw-h-12 p-0'
                             type='submit'
                         >
-                            Continuar
+                            Realizar pago
                         </Button>
                     </div>
                 </form>
