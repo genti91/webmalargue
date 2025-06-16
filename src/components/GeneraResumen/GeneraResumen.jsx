@@ -98,7 +98,20 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
             <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
             <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
             <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
-            <div><span className="tw-font-bold">Dirección:</span> {datos.calle} {datos.numero} {datos.piso} {datos.dpto} {datosCoti.localidad} {datosCoti.provincia} {datosCoti.cp}</div>
+            <div>
+            <span className="tw-font-bold">Dirección:</span>{" "}
+            {[
+                datos.calle,
+                datos.numero,
+                datos.piso,
+                datos.dpto,
+                datosCoti.localidad,
+                datosCoti.provincia,
+                datosCoti.cp ? `CP ${datosCoti.cp}` : null
+            ]
+                .filter(Boolean)
+                .join(', ')}
+            </div>
         </div>
     )
 }
