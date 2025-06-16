@@ -3,8 +3,25 @@ import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import GeneraHeader from '../../components/GeneraHeader'
 import '../GeneraEnvio/Genera.scss'
 import { Button } from 'react-bootstrap';
+import { useSearchParams } from 'react-router-dom'
+import emailjs from 'emailjs-com'
 
 const GeneraConfirmacionFallo = () => {
+    const [searchParams] = useSearchParams()
+    console.log('Todos los search params:');
+    const paramsObj = Object.fromEntries(searchParams.entries());
+    const cotizacion = JSON.parse(localStorage.getItem('cotizacion')) || {};
+    const { remitente, _destinatario } = JSON.parse(localStorage.getItem('cotizacion_forms')) || {};
+    const emailBody = {
+        email: remitente.email,
+        id_cotizacion: cotizacion.id,
+        descripcion: JSON.stringify(paramsObj)
+    }
+    console.log('Email body:', emailBody);
+    const sendEmail = () => {
+        emailjs
+            .send('service_lv636bu', 'template_ton699n', emailBody, 'fRtOuVBrm3PpHzBca')
+    }
     return (
         <section id='genera'>
             <BannerHeader
@@ -26,7 +43,7 @@ const GeneraConfirmacionFallo = () => {
                         >
                             <Button
                                 className='tw-w-[158px] tw-mt-12 tw-mb-3 tw-h-12 p-0 tw-bg-[#6C757D]'
-                                // onClick={}
+                                onClick={sendEmail}
                             >
                                 Contactanos
                             </Button>
