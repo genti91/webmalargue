@@ -69,8 +69,8 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                         <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
                         <div className='tw-flex tw-flex-col tw-gap-2'>
                             <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> {cotizacion.valorOriginal}</div>
-                            <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
                             <div><span className="tw-font-bold">Seguro:</span> {cotizacion.seguro}</div>
+                            <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
                         </div>
                     </div>
                     <div className='tw-self-center tw-w-full sm:tw-w-[347px] tw-border tw-border-[#707070] tw-rounded-lg'>
