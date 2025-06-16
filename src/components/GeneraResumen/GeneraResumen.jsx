@@ -134,11 +134,11 @@ const BultosData = ({ data }) => {
         <div className='tw-mt-[-15px]'>
             <TableComponent 
                 columns={{
-                    cantBultos: 'Cant. de bultos',
-                    peso: 'Peso U.(kg)',
-                    ancho: 'Ancho U.(cm)',
-                    alto: 'Alto U.(cm)',
-                    profundidad: 'Largo U.(cm)',
+                    cantBultos: 'Cantidad de bultos',
+                    peso: 'Peso unitario (kg)',
+                    ancho: 'Ancho unitario (cm)',
+                    alto: 'Alto unitario (cm)',
+                    profundidad: 'Largo unitario (cm)',
                 }} 
                 dataSource={data.bultos} 
             />
