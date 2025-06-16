@@ -138,7 +138,7 @@ const Genera = () => {
                                     <span className='tw-font-bold'>Cotización:</span> {cotizacion.id}
                                 </div>
                                 <div>
-                                    <span className='tw-font-bold'>Precio final:</span> {cotizacion.precioFinal}
+                                    <span className='tw-font-bold'>Precio final:</span> ARS {cotizacion.precioFinal}
                                 </div>
                             </div>
 
