@@ -45,7 +45,15 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
         },
         {
             header: 'Notificación',
-            body: <div><span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span> {datosDestinatario.notificacion.label}</div>
+            body: (
+                <div>
+                    <span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span>{" "}
+                    {datosDestinatario.notificacion.value === 'Remitente'
+                        ? `Remitente (${datosRemitente.email})`
+                        : `Remitente (${datosRemitente.email}) y Destinatario (${datosDestinatario.email})`
+                    }
+                </div>
+            )
         }
     ];
     return (
