@@ -3,10 +3,9 @@ import { useState } from 'react';
 import './Accordion.scss';
 
 function Accordion({ items }) {
-    const [activeKey, setActiveKey] = useState(0);
+    const [activeKey, setActiveKey] = useState("0");
     return (
         <AccordionBoot
-            defaultActiveKey="0"
             activeKey={activeKey}
             onSelect={setActiveKey}
         >

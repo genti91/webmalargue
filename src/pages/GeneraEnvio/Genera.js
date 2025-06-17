@@ -105,6 +105,22 @@ const Genera = () => {
             [field]: value,
         }))
     }
+    useEffect(() => {
+        if (cotizacion && cotizacion.id) {
+            setFormRemitente((prevState) => ({
+                ...prevState,
+                localidad: cotizacion.remitente.localidad,
+                provincia: cotizacion.remitente.provincia,
+                cp: cotizacion.remitente.cp,
+            }))
+            setFormDestinatario((prevState) => ({
+                ...prevState,
+                localidad: cotizacion.destinatario.localidad,
+                provincia: cotizacion.destinatario.provincia,
+                cp: cotizacion.destinatario.cp,
+            }))
+        }
+    }, [cotizacion])
     return (
         <section id='genera'>
             <BannerHeader
@@ -122,7 +138,7 @@ const Genera = () => {
                                     <span className='tw-font-bold'>Cotización:</span> {cotizacion.id}
                                 </div>
                                 <div>
-                                    <span className='tw-font-bold'>Precio final:</span> {cotizacion.precioFinal}
+                                    <span className='tw-font-bold'>Precio final:</span> ARS {cotizacion.precioFinal}
                                 </div>
                             </div>
 

@@ -18,6 +18,7 @@ const GeneraConfirmacionExito = () => {
     const [numRetiro, setNumRetiro] = useState();
     const [codigoSeguimiento, setCodigoSeguimiento] = useState();
     const [errorRetiro, setErrorRetiro] = useState(paymentId ? false : true);
+    const [errorEmailBody, setErrorEmailBody] = useState({});
 
     const cargarRetiro = async () => {
         try {
@@ -29,6 +30,14 @@ const GeneraConfirmacionExito = () => {
             localStorage.setItem('codigo_seguimiento', res.codigoSeguimiento);
         } catch (err) {
             console.error('Error al cargar el retiro:', err);
+            setErrorEmailBody({
+                email: remitente.email,
+                id_cotizacion: cotizacion.id,
+                id_operacion_mp: paymentId,
+                remitente: JSON.stringify(remitente),
+                destinatario:  JSON.stringify(destinatario),
+                error: JSON.stringify(err.response ? err.response.data : err.message)
+            });
             setErrorRetiro(true);
         } finally {
             setLoading(false);
@@ -51,7 +60,7 @@ const GeneraConfirmacionExito = () => {
                 <div className='row tw-gap-14 tw-pt-4'>
                     <GeneraHeader selectedIndex={4} />
                     { errorRetiro ? 
-                        <ErrorProcesarRetiro />
+                        <ErrorProcesarRetiro emailBody={errorEmailBody}/>
                     :
                     <>
                         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#198754] tw-items-center tw-justify-center'>

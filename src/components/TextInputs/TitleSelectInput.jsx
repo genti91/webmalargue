@@ -35,7 +35,7 @@ export default function TitleSelectInput({
 
   return (
     <div
-      className={`tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-2 tw-w-full  ${
+      className={`tw-flex tw-flex-col tw-items-start tw-gap-2 tw-w-full  ${
         small && 'md:tw-max-w-[158px]'
       }`}
     >

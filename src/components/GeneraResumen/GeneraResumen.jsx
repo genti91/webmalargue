@@ -28,7 +28,12 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
         },
         {
             header: 'Observaciones',
-            body: <div><span className="tw-font-bold">Observaciones:</span> {datosDestinatario.observaciones}</div>
+            body: <div>
+                    <span className="tw-font-bold">Observaciones:</span>{" "}
+                    {datosDestinatario.observaciones
+                        ? datosDestinatario.observaciones
+                        : "No ingresaste ninguna observación"}
+                </div>
         },
         {
             header: 'Facturación',
@@ -40,7 +45,15 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
         },
         {
             header: 'Notificación',
-            body: <div><span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span> {datosDestinatario.notificacion.label}</div>
+            body: (
+                <div>
+                    <span className="tw-font-bold">Persona que recibirá la confirmación del retiro:</span>{" "}
+                    {datosDestinatario.notificacion.value === 'Remitente'
+                        ? `Remitente (${datosRemitente.email})`
+                        : `Remitente (${datosRemitente.email}) y Destinatario (${datosDestinatario.email})`
+                    }
+                </div>
+            )
         }
     ];
     return (
@@ -50,14 +63,14 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
                 <form onSubmit={onSubmit} method='POST' className='tw-flex tw-flex-col tw-gap-9'>
-                    <Accordion items={items} />
+                    <Accordion items={items} defaultActiveKey={"0"} />
                     <div className='tw-w-[98%] tw-h-[1px] tw-bg-[#CAC4D0] tw-self-center'/>
                     <div className='tw-flex tw-flex-col tw-gap-2'>
                         <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
                         <div className='tw-flex tw-flex-col tw-gap-2'>
-                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> {cotizacion.valorOriginal}</div>
-                            <div><span className="tw-font-bold">IVA (21%):</span> {cotizacion.iva}</div>
-                            <div><span className="tw-font-bold">Seguro:</span> {cotizacion.seguro}</div>
+                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> ARS {cotizacion.valorOriginal}</div>
+                            <div><span className="tw-font-bold">Seguro:</span> ARS {cotizacion.seguro}</div>
+                            <div><span className="tw-font-bold">IVA (21%):</span> ARS {cotizacion.iva}</div>
                         </div>
                     </div>
                     <div className='tw-self-center tw-w-full sm:tw-w-[347px] tw-border tw-border-[#707070] tw-rounded-lg'>
@@ -81,7 +94,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                             className='md:tw-w-[158px] tw-h-12 p-0'
                             type='submit'
                         >
-                            Continuar
+                            Realizar pago
                         </Button>
                     </div>
                 </form>
@@ -98,7 +111,20 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
             <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
             <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
             <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
-            <div><span className="tw-font-bold">Dirección:</span> {datos.calle} {datos.numero} {datos.piso} {datos.dpto} {datosCoti.localidad} {datosCoti.provincia} {datosCoti.cp}</div>
+            <div>
+            <span className="tw-font-bold">Dirección:</span>{" "}
+            {[
+                datos.calle,
+                datos.numero,
+                datos.piso,
+                datos.dpto,
+                datosCoti.localidad,
+                datosCoti.provincia,
+                datosCoti.cp ? `CP ${datosCoti.cp}` : null
+            ]
+                .filter(Boolean)
+                .join(', ')}
+            </div>
         </div>
     )
 }
@@ -108,11 +134,11 @@ const BultosData = ({ data }) => {
         <div className='tw-mt-[-15px]'>
             <TableComponent 
                 columns={{
-                    cantBultos: 'Cant. de bultos',
-                    peso: 'Peso U.(kg)',
-                    ancho: 'Ancho U.(cm)',
-                    alto: 'Alto U.(cm)',
-                    profundidad: 'Largo U.(cm)',
+                    cantBultos: 'Cantidad de bultos',
+                    peso: 'Peso unitario (kg)',
+                    ancho: 'Ancho unitario (cm)',
+                    alto: 'Alto unitario (cm)',
+                    profundidad: 'Largo unitario (cm)',
                 }} 
                 dataSource={data.bultos} 
             />

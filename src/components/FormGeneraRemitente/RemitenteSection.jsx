@@ -8,7 +8,7 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                 <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                     Datos del {destinatario ? 'destinatario' : 'remitente'}
                 </h2>
-                <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-gap-9 tw-w-full'>
                     <TitleTextInput
                         title='Nombre y apellido / Razón social'
                         placeholder='Ej.: María López'
@@ -26,7 +26,7 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                         error={errors.email}
                     />
                 </div>
-                <div className='tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-gap-9 tw-w-full'>
                     <TitleSelectInput
                         small
                         title="Tipo documento"

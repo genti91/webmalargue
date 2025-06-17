@@ -1,6 +1,11 @@
 import { Button } from 'react-bootstrap';
+import emailjs from 'emailjs-com'
 
-export const ErrorProcesarRetiro = () => {
+export const ErrorProcesarRetiro = ({emailBody}) => {
+    const sendEmail = () => {
+        emailjs
+            .send('service_lv636bu', 'template_fv9qlga', emailBody, 'fRtOuVBrm3PpHzBca')
+    }
     return (
         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#2F3394] tw-items-center tw-justify-center'>
             <img src={`/assets/icono-warning-retiro.png`} alt="icon" className="tw-h-[48px] tw-w-[48px]" />
@@ -14,6 +19,7 @@ export const ErrorProcesarRetiro = () => {
                 >
                     <Button
                         className='tw-w-[158px] tw-h-12 p-0'
+                        onClick={sendEmail}
                     >
                         Contactanos
                     </Button>
