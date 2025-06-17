@@ -8,8 +8,6 @@ export default function TitleTextUnitInput({
   info = false,
   disabled = false,
   error = false,
-  numeric = false,
-  decimal = false,
   onKeyDown,
   name
 }) {
@@ -39,6 +37,9 @@ export default function TitleTextUnitInput({
           value={input}
           onChange={handleChange}
           onKeyDown={onKeyDown}
+          onFocus={() => {
+            if (input === '') setInput('')
+          }}
           placeholder={placeholder}
           className={` tw-placeholder-[#B3B3B3] focus:tw-outline-none tw-rounded-l-lg tw-py-2 tw-w-full tw-pl-4 tw-pr-2 ${
             disabled
