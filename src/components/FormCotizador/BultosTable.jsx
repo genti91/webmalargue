@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import TitleTextInput from '../TextInputs/TitleTextInput'
-import TitleTextUnitInput from '../TextInputs/TitleTextUnitInput'
 import * as validators from './utils/inputValidators'
 import { EditPencilIcon, TrashIcon } from './utils/icons'
 
@@ -91,25 +89,25 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
 
   return (
     <div className='tw-w-full tw-overflow-x-auto tw-mt-6'>
-      <table className='tw-w-full tw-border tw-bg-white tw-whitespace-nowrap lg:tw-whitespace-normal'>
+      <table className='tw-w-full tw-border tw-border-[#DEE2E6] tw-bg-white tw-whitespace-nowrap lg:tw-whitespace-normal tw-border-collapse'>
         <thead>
-          <tr className='tw-border-b tw-border-[#222]'>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+          <tr className='tw-border-b-2 tw-border-black'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border-[#DEE2E6] tw-border-r tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Cantidad de bultos
             </th>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border-[#DEE2E6] tw-border-r tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Peso unitario (kg)
             </th>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border-[#DEE2E6] tw-border-r tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Ancho unitario (cm)
             </th>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border-[#DEE2E6] tw-border-r tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Alto unitario (cm)
             </th>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border-[#DEE2E6] tw-border-r tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Largo unitario (cm)
             </th>
-            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+            <th className='tw-font-bold tw-text-left tw-py-2 tw-px-3 tw-whitespace-nowrap lg:tw-whitespace-normal'>
               Acciones
             </th>
           </tr>
@@ -117,10 +115,13 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
         <tbody>
           {bultos && bultos.length > 0 ? (
             bultos.map((bulto, idx) => (
-              <tr key={idx} className={idx % 2 === 0 ? 'tw-bg-[#F5F5F5]' : ''}>
+              <tr
+                key={idx}
+                className={`${idx % 2 === 0 ? 'tw-bg-[#F5F5F5]' : ''}`}
+              >
                 {editingIndex === idx ? (
                   <>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <div className='tw-border-b tw-border-[#222]'>
                         <input
                           type="number"
@@ -132,7 +133,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                         />
                       </div>
                     </td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <div className='tw-border-b tw-border-[#222] tw-flex tw-items-center'>
                         <input
                           type="number"
@@ -145,7 +146,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                         <span className='tw-ml-1'>kg</span>
                       </div>
                     </td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <div className='tw-border-b tw-border-[#222] tw-flex tw-items-center'>
                         <input
                           type="number"
@@ -158,7 +159,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                         <span className='tw-ml-1'>cm</span>
                       </div>
                     </td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <div className='tw-border-b tw-border-[#222] tw-flex tw-items-center'>
                         <input
                           type="number"
@@ -171,7 +172,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                         <span className='tw-ml-1'>cm</span>
                       </div>
                     </td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <div className='tw-border-b tw-border-[#222] tw-flex tw-items-center'>
                         <input
                           type="number"
@@ -184,7 +185,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                         <span className='tw-ml-1'>cm</span>
                       </div>
                     </td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-flex tw-gap-3 tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-flex tw-justify-evenly tw-items-center tw-py-2 tw-px-3 tw-border-t tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <button
                         className='tw-p-1 tw-rounded hover:tw-bg-gray-200'
                         title='Guardar'
@@ -221,12 +222,12 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
                   </>
                 ) : (
                   <>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.quantity} {bulto?.quantity === "1" ? "unidad" : "unidades"}</td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.weight}kg</td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.width}cm</td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.height}cm</td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.length}cm</td>
-                    <td className='tw-py-2 tw-px-3 tw-border tw-flex tw-gap-3 tw-whitespace-nowrap lg:tw-whitespace-normal'>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.quantity} {bulto?.quantity === "1" ? "unidad" : "unidades"}</td>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.weight}kg</td>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.width}cm</td>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.height}cm</td>
+                    <td className='tw-py-2 tw-px-3 tw-border-t tw-border-r tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>{bulto?.length}cm</td>
+                    <td className='tw-flex tw-justify-evenly tw-items-center tw-py-2 tw-px-3 tw-border-t tw-border-[#DEE2E6] tw-whitespace-nowrap lg:tw-whitespace-normal'>
                       <button
                         className='tw-p-1 tw-rounded hover:tw-bg-gray-200'
                         title='Editar'
@@ -250,7 +251,7 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
             <tr>
               <td
                 colSpan={6}
-                className='tw-text-center tw-py-4 tw-text-[#222] tw-border-b tw-border-[#222]'
+                className="tw-text-center tw-py-4 tw-text-[#222] tw-border-t tw-border-r tw-border-[#DEE2E6]"
               >
                 Cargá la totalidad de bultos del envío que queres realizar
               </td>
