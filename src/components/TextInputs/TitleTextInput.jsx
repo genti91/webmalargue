@@ -146,6 +146,7 @@ export default function TitleTextInput({
           id={id}
           disabled={disabled}
           type={email ? 'email' : numeric ? 'number' : 'text'}
+          inputMode={numeric ? 'decimal' : 'text'}
           value={input}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
@@ -153,16 +154,11 @@ export default function TitleTextInput({
           aria-label={title}
           onChange={(e) => {
             const value = e.target.value
-            if (numeric) {
-              if (value === '' || /^[0-9]*$/.test(value)) {
-                setInput(value)
-              }
-            } else {
               setInput(value)
-            }
           }}
           onFocus={() => {
             setIsFocused(true)
+            if (input === "") setInput(input)
             // Optionally pre-filter/sort options on focus if input is empty
             if (searchDropdown && searchOptions.length > 0 && !input) {
                setFilteredOptions(
