@@ -40,9 +40,10 @@ const GeneraConfirmacionFallo = () => {
                             href='https://wa.me/5491163622778'
                             target='_blank'
                             rel='noreferrer'
+                            className='tw-w-full md:tw-w-[158px]'
                         >
                             <Button
-                                className='tw-w-[158px] tw-mt-12 tw-mb-3 tw-h-12 p-0 tw-bg-[#6C757D]'
+                                className='md:tw-w-[158px] tw-w-full tw-mt-12 tw-mb-3 tw-h-12 p-0 tw-bg-[#6C757D]'
                                 onClick={sendEmail}
                             >
                                 Contactanos
