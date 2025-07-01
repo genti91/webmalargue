@@ -601,10 +601,6 @@ video {
   margin-left: 0.25rem;
 }
 
-.tw-ml-2 {
-  margin-left: 0.5rem;
-}
-
 .tw-ml-auto {
   margin-left: auto;
 }
@@ -754,6 +750,14 @@ video {
   width: 100%;
 }
 
+.tw-w-\[100\%\] {
+  width: 100%;
+}
+
+.tw-border-collapse {
+  border-collapse: collapse;
+}
+
 @keyframes tw-spin {
   to {
     transform: rotate(360deg);
@@ -770,6 +774,10 @@ video {
 
 .tw-cursor-pointer {
   cursor: pointer;
+}
+
+.tw-resize-none {
+  resize: none;
 }
 
 .tw-flex-col {
@@ -806,6 +814,10 @@ video {
 
 .tw-justify-between {
   justify-content: space-between;
+}
+
+.tw-justify-evenly {
+  justify-content: space-evenly;
 }
 
 .tw-gap-1 {
@@ -868,6 +880,12 @@ video {
   overflow-x: auto;
 }
 
+.tw-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .tw-whitespace-nowrap {
   white-space: nowrap;
 }
@@ -919,6 +937,14 @@ video {
   border-top-width: 1px;
 }
 
+.tw-border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.tw-border-r {
+  border-right-width: 1px;
+}
+
 .tw-border-\[\#222\] {
   --tw-border-opacity: 1;
   border-color: rgb(34 34 34 / var(--tw-border-opacity, 1));
@@ -962,6 +988,16 @@ video {
 .tw-border-red-200 {
   --tw-border-opacity: 1;
   border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
+}
+
+.tw-border-\[\#DEE2E6\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(222 226 230 / var(--tw-border-opacity, 1));
+}
+
+.tw-border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
 }
 
 .tw-bg-\[\#02542D\] {
@@ -1110,6 +1146,10 @@ video {
   padding-left: 1rem;
 }
 
+.tw-pr-2 {
+  padding-right: 0.5rem;
+}
+
 .tw-pt-4 {
   padding-top: 1rem;
 }
@@ -1120,6 +1160,22 @@ video {
 
 .tw-pt-9 {
   padding-top: 2.25rem;
+}
+
+.tw-pr-5 {
+  padding-right: 1.25rem;
+}
+
+.tw-pr-10 {
+  padding-right: 2.5rem;
+}
+
+.tw-pl-10 {
+  padding-left: 2.5rem;
+}
+
+.tw-pr-4 {
+  padding-right: 1rem;
 }
 
 .tw-text-left {
@@ -1298,8 +1354,20 @@ video {
     width: 347px;
   }
 
+  .sm\:tw-w-full {
+    width: 100%;
+  }
+
   .sm\:tw-flex-row {
     flex-direction: row;
+  }
+
+  .sm\:tw-gap-9 {
+    gap: 2.25rem;
+  }
+
+  .sm\:tw-gap-6 {
+    gap: 1.5rem;
   }
 }
 
@@ -1310,6 +1378,10 @@ video {
 
   .md\:tw-flex {
     display: flex;
+  }
+
+  .md\:tw-h-auto {
+    height: auto;
   }
 
   .md\:tw-w-8\/12 {
@@ -1328,6 +1400,10 @@ video {
     max-width: 158px;
   }
 
+  .md\:tw-resize {
+    resize: both;
+  }
+
   .md\:tw-flex-row {
     flex-direction: row;
   }
@@ -1338,6 +1414,10 @@ video {
 
   .md\:tw-gap-12 {
     gap: 3rem;
+  }
+
+  .md\:tw-gap-9 {
+    gap: 2.25rem;
   }
 }
 

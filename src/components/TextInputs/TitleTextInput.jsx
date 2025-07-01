@@ -16,6 +16,8 @@ export default function TitleTextInput({
   searchOptions = [],
   onOptionSelect,
   zipCode = false,
+  textarea = false,
+  rows = 3,
 }) {
   const [isFocused, setIsFocused] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -128,6 +130,14 @@ export default function TitleTextInput({
     };
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
+  const isMobile = window.innerWidth < 768; // O usa un hook personalizado para detectar mobile
+  const shouldUseTextarea = textarea && isMobile;
+
+  const InputComponent = shouldUseTextarea ? 'textarea' : 'input';
+  const inputProps = shouldUseTextarea 
+    ? { rows }
+    : { type: email ? 'email' : numeric ? 'number' : 'text' };
+
   return (
     <div
       className={`tw-flex tw-flex-col tw-items-start tw-justify-start tw-gap-2 tw-w-full ${
@@ -141,11 +151,13 @@ export default function TitleTextInput({
         )}
       </h2>
       <div className='tw-relative tw-w-full'>
-        <input
+        {/* En móvil: textarea, en desktop: input normal */}
+        <InputComponent
           ref={inputRef}
           id={id}
           disabled={disabled}
-          type={email ? 'email' : numeric ? 'number' : 'text'}
+          {...inputProps}
+          inputMode={numeric ? 'decimal' : 'text'}
           value={input}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
@@ -153,13 +165,7 @@ export default function TitleTextInput({
           aria-label={title}
           onChange={(e) => {
             const value = e.target.value
-            if (numeric) {
-              if (value === '' || /^[0-9]*$/.test(value)) {
-                setInput(value)
-              }
-            } else {
               setInput(value)
-            }
           }}
           onFocus={() => {
             setIsFocused(true)
@@ -179,6 +185,7 @@ export default function TitleTextInput({
             }
           }}
           onBlur={(e) => {
+            if (input === "") setInput(input)
             // Use a small timeout to allow relatedTarget to be set before checking.
             // This prevents the dropdown from closing immediately when clicking an option.
             setTimeout(() => {
@@ -191,11 +198,11 @@ export default function TitleTextInput({
                // close the dropdown.
                setIsFocused(false);
                setHighlightedIndex(-1);
-            }, 10); // A short delay is usually sufficient
+            }, 10);
           }}
-          className={`tw-border  tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-px-4 ${
-            error ? 'tw-border-[#EB1C23]' : 'tw-border-[#2F3394]'
-          } ${
+          className={`tw-border tw-placeholder-[#B3B3B3] tw-rounded-lg tw-p-2 tw-w-full focus:tw-outline-none tw-px-4 ${
+            textarea ? 'tw-resize-none md:tw-resize md:tw-h-auto tw-rounded-lg no-scrollbar-arrows' : 'tw-truncate'
+          } ${error ? 'tw-border-[#EB1C23]' : 'tw-border-[#2F3394]'} ${
             disabled
               ? 'tw-bg-[#E9ECEF] tw-border-[#B2B2B2] tw-text-[#756C7D] tw-cursor-not-allowed'
               : 'tw-border-[#2F3394] tw-bg-[#FFFFFF]'

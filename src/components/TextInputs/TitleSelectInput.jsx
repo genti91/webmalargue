@@ -49,6 +49,9 @@ export default function TitleSelectInput({
       <select
         id={id}
         value={input?.value || ''}
+        onBlur={() => {
+          if (input?.value === '') setInput(input)
+        }}
         onChange={(e) => {
           const selectedOption = options.find(
             (opt) => opt.value === e.target.value
