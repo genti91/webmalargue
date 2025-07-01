@@ -37,7 +37,7 @@ export default function TitleTextUnitInput({
           value={input}
           onChange={handleChange}
           onKeyDown={onKeyDown}
-          onFocus={() => {
+          onBlur={() => {
             if (input === '') setInput('')
           }}
           placeholder={placeholder}

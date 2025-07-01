@@ -68,9 +68,9 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                     <div className='tw-flex tw-flex-col tw-gap-2'>
                         <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
                         <div className='tw-flex tw-flex-col tw-gap-2'>
-                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> ARS {cotizacion.valorOriginal}</div>
-                            <div><span className="tw-font-bold">Seguro:</span> ARS {cotizacion.seguro}</div>
-                            <div><span className="tw-font-bold">IVA (21%):</span> ARS {cotizacion.iva}</div>
+                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> ARS {formatPrice(cotizacion.valorOriginal)}</div>
+                            <div><span className="tw-font-bold">Seguro:</span> ARS {formatPrice(cotizacion.seguro)}</div>
+                            <div><span className="tw-font-bold">IVA (21%):</span> ARS {formatPrice(cotizacion.iva)}</div>
                         </div>
                     </div>
                     <div className='tw-self-center tw-w-full sm:tw-w-[347px] tw-border tw-border-[#707070] tw-rounded-lg'>
@@ -114,11 +114,10 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
             <div>
             <span className="tw-font-bold">Dirección:</span>{" "}
             {[
-                datos.calle,
-                datos.numero,
-                datos.piso,
-                datos.dpto,
-                datosCoti.localidad,
+                datos.calle + ' ' + datos.numero,
+                datos.piso ? `Piso ${datos.piso}` : null,
+                datos.dpto ? `Departamento ${datos.dpto}` : null,
+                datosCoti.localidad?.replace(/^\(\d+\)\s*/, '') || datosCoti.localidad,
                 datosCoti.provincia,
                 datosCoti.cp ? `CP ${datosCoti.cp}` : null
             ]
@@ -142,7 +141,7 @@ const BultosData = ({ data }) => {
                 }} 
                 dataSource={data.bultos} 
             />
-            <div className="tw-flex tw-flex-col md:tw-flex-row tw-items-start tw-gap-9 tw-w-full tw-mt-6">
+            <div className="tw-flex tw-flex-col md:tw-flex-row tw-items-start md:tw-gap-9 tw-gap-6 tw-w-full tw-mt-6">
                 <div className="md:tw-w-[43%] tw-w-full">
                     <TitleTextUnitInput
                         title="Valor declarado total"
@@ -166,3 +165,22 @@ const BultosData = ({ data }) => {
         </div>
     )
 }
+
+const formatPrice = (price) => {
+  if (!price) return '0,00';
+  const priceStr = price.toString();
+  if (priceStr.includes(',')) {
+    const [integerPart, decimalPart] = priceStr.split(',');
+    if (!decimalPart) {
+      return `${integerPart},00`;
+    }
+    if (decimalPart.length === 1) {
+      return `${integerPart},${decimalPart}0`;
+    }
+    return priceStr;
+  }
+  if (priceStr.includes('.')) {
+    return parseFloat(price).toFixed(2).replace('.', ',');
+  }
+  return `${priceStr},00`;
+};

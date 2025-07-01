@@ -22,13 +22,13 @@ export const formGeneraRemitente = [
   {
     name: 'numero_documento',
     required: 'Ingresá un número de documento o CUIT',
-    validate: (value, form) => {
-      if (form.tipo_documento.value === 'DNI') {
+    validate: (value, tipo_documento) => {
+      if (tipo_documento === 'DNI') {
         return /^\d{8}$/.test(value)
           ? null
           : 'El DNI debe tener 8 dígitos numéricos';
       }
-      if (form.tipo_documento.value === 'CUIT') {
+      if (tipo_documento === 'CUIT') {
         return /^\d{11}$/.test(value)
           ? null
           : 'El CUIT debe tener 11 dígitos numéricos';

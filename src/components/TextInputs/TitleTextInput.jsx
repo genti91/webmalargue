@@ -169,7 +169,6 @@ export default function TitleTextInput({
           }}
           onFocus={() => {
             setIsFocused(true)
-            if (input === "") setInput(input)
             // Optionally pre-filter/sort options on focus if input is empty
             if (searchDropdown && searchOptions.length > 0 && !input) {
                setFilteredOptions(
@@ -186,6 +185,7 @@ export default function TitleTextInput({
             }
           }}
           onBlur={(e) => {
+            if (input === "") setInput(input)
             // Use a small timeout to allow relatedTarget to be set before checking.
             // This prevents the dropdown from closing immediately when clicking an option.
             setTimeout(() => {
