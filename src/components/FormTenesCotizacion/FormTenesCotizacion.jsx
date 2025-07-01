@@ -57,8 +57,8 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
         <>
             <ErrorModalValidarCot show={show} setShow={setShow} emailForm={{ email: form.email, id: form.numero_cotizacion, error: error.payload }} />
             <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior." />
-            <div id='tenes-cotizacion' className='tw-flex tw-flex-col tw-pb-14'>
-                <h2>¿Ya tenes una cotización?</h2>
+            <div id='tenes-cotizacion' className='tw-flex tw-gap-6 tw-flex-col'>
+                <h2 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px] tw-m-0' >¿Ya tenes una cotización?</h2>
                 <div className='tw-flex tw-items-center tw-gap-7'>
                     <span className='tw-flex tw-items-center tw-gap-2'>
                         <input
@@ -68,10 +68,11 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                             value='si'
                             onChange={() => handleChange(true)}
                             defaultChecked={savedCotizacion === true}
+                            disabled={email && numeroCotizacion}
                         />
                         <label
                             htmlFor='cotizacion-si'
-                            className="tw-text-[#2F3394] tw-text-xl"
+                            className="tw-text-[#2F3394] tw-text-xl tw-text-[16px]"
                         >
                             Sí
                         </label>
@@ -83,10 +84,11 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                             id='cotizacion-no'
                             value='no'
                             onChange={() => handleChange(false)}
+                            disabled={email && numeroCotizacion}
                         />
                         <label
                             htmlFor='cotizacion-no'
-                            className="tw-text-[#2F3394] tw-text-xl"
+                            className="tw-text-[#2F3394] tw-text-xl tw-text-[16px]"
                         >
                             No
                         </label>
@@ -96,10 +98,10 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
                     <Form form={form} setInForm={setInForm} setError={setError} disableInputs={email && numeroCotizacion} />
                 }
                 {savedCotizacion === false &&
-                    <div className='tw-self-end'>
-                        <Link to='/cotiza'>
+                    <div className='tw-self-end md:tw-w-[158px] tw-w-full' >
+                        <Link to='/cotiza' className='md:tw-w-[158px] tw-w-full'>
                             <Button
-                                className='tw-w-[158px] tw-h-12 p-0 tw-mt-7'
+                                className='md:tw-w-[158px] tw-w-full tw-h-12 p-0 tw-mt-[12px]'
                             >
                                 Cotizar
                             </Button>
