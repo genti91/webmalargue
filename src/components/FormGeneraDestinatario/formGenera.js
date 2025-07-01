@@ -58,9 +58,9 @@ export const formGeneraRemitente = [
     name: 'calle',
     required: 'Ingresá una calle',
     validate: (value) =>
-      /^[a-zA-Z0-9\s]{1,100}$/.test(value)
+      /^[a-zA-Z0-9\s.\-/]{1,100}$/.test(value)
         ? null
-        : 'Debe tener hasta 100 caracteres alfanuméricos',
+        : 'Hasta 100 caracteres. Permite letras, números, espacios y símbolos como punto o guión.',
   },
   {
     name: 'numero',
