@@ -157,7 +157,7 @@ export default function BultosSection({
       <button
         onClick={addBultoHandler}
         disabled={hasErrors}
-        className='tw-mt-6 tw-self-center tw-bg-[#198754] tw-text-white tw-py-2 tw-px-3 tw-rounded-md disabled:tw-opacity-50'
+        className='tw-mt-6 tw-self-center tw-w-full lg:tw-w-fit tw-bg-[#198754] tw-text-white tw-py-2 tw-px-3 tw-rounded-md disabled:tw-opacity-50'
       >
         AGREGAR BULTOS
       </button>
