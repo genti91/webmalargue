@@ -601,10 +601,6 @@ video {
   margin-left: 0.25rem;
 }
 
-.tw-ml-2 {
-  margin-left: 0.5rem;
-}
-
 .tw-ml-auto {
   margin-left: auto;
 }
@@ -754,6 +750,14 @@ video {
   width: 100%;
 }
 
+.tw-max-w-\[350px\] {
+  max-width: 350px;
+}
+
+.tw-border-collapse {
+  border-collapse: collapse;
+}
+
 @keyframes tw-spin {
   to {
     transform: rotate(360deg);
@@ -774,6 +778,10 @@ video {
 
 .tw-flex-col {
   flex-direction: column;
+}
+
+.tw-flex-wrap {
+  flex-wrap: wrap;
 }
 
 .tw-place-content-center {
@@ -808,6 +816,10 @@ video {
   justify-content: space-between;
 }
 
+.tw-justify-evenly {
+  justify-content: space-evenly;
+}
+
 .tw-gap-1 {
   gap: 0.25rem;
 }
@@ -826,6 +838,10 @@ video {
 
 .tw-gap-3 {
   gap: 0.75rem;
+}
+
+.tw-gap-4 {
+  gap: 1rem;
 }
 
 .tw-gap-6 {
@@ -915,6 +931,14 @@ video {
   border-bottom-width: 1px;
 }
 
+.tw-border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.tw-border-r {
+  border-right-width: 1px;
+}
+
 .tw-border-t {
   border-top-width: 1px;
 }
@@ -954,9 +978,19 @@ video {
   border-color: rgb(207 214 220 / var(--tw-border-opacity, 1));
 }
 
+.tw-border-\[\#DEE2E6\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(222 226 230 / var(--tw-border-opacity, 1));
+}
+
 .tw-border-\[\#EB1C23\] {
   --tw-border-opacity: 1;
   border-color: rgb(235 28 35 / var(--tw-border-opacity, 1));
+}
+
+.tw-border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
 }
 
 .tw-border-red-200 {
@@ -1098,6 +1132,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.tw-py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .tw-pb-14 {
   padding-bottom: 3.5rem;
 }
@@ -1108,6 +1147,10 @@ video {
 
 .tw-pl-4 {
   padding-left: 1rem;
+}
+
+.tw-pr-2 {
+  padding-right: 0.5rem;
 }
 
 .tw-pt-4 {
@@ -1391,11 +1434,25 @@ video {
     gap: 2.25rem;
   }
 
+  .lg\:tw-gap-11 {
+    gap: 2.75rem;
+  }
+
   .lg\:tw-self-end {
     align-self: flex-end;
   }
 
   .lg\:tw-whitespace-normal {
     white-space: normal;
+  }
+
+  .lg\:tw-px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .lg\:tw-py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 }

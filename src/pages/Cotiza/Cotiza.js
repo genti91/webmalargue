@@ -12,7 +12,7 @@ const Cotiza = () => {
         image={cotizaIMG}
       />
       <div id='main' className='container'>
-        <div className='row tw-py-20'>          
+        <div className=' tw-flex tw-flex-wrap tw-py-10 lg:tw-py-20'>          
           <FormCotizacion />
         </div>
       </div>

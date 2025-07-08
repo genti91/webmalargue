@@ -13,7 +13,7 @@ import { Warning } from '../Errores/Warning'
 
 export default function FormCotizacion() {
   const [errors, setErrors] = useState({
-    bultos: "Debés agregar al menos un bulto."
+    bultos: 'Debés agregar al menos un bulto.',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [tarifa, setTarifa] = useState([])
@@ -32,72 +32,77 @@ export default function FormCotizacion() {
     destinyOption: {},
   })
   const [bultos, setBultos] = useState([])
-  const { handleFieldChange } = useFieldValidation(setInForm, setErrors);
+  const { handleFieldChange } = useFieldValidation(setInForm, setErrors)
 
-  const isMounted = useRef(true);
+  const isMounted = useRef(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getTarifa();
+        const res = await getTarifa()
         if (isMounted.current) {
-          setTarifa(res);
-          setInForm('tarifa', Number(res.verTarifa.numero));
+          setTarifa(res)
+          setInForm('tarifa', Number(res.verTarifa.numero))
         }
       } catch (err) {
-        console.error('Error fetching locations:', err);
+        console.error('Error fetching locations:', err)
       }
-    };
+    }
 
-    fetchData();
+    fetchData()
 
     return () => {
-      isMounted.current = false;
-    };
-  }, []);
+      isMounted.current = false
+    }
+  }, [])
 
   useEffect(() => {
     if (bultos.length >= 1) {
-      setErrors(prev => {
-        const newErrors = { ...prev };
-        delete newErrors.bultos;
-        return newErrors;
-      });
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors.bultos
+        return newErrors
+      })
     } else {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        bultos: "Debés agregar al menos un bulto."
-      }));
+        bultos: 'Debés agregar al menos un bulto.',
+      }))
     }
-  }, [bultos]);
+  }, [bultos])
 
   // Add validation for origin and destination
   useEffect(() => {
-    if (form.originCP && form.destinyCP && form.originCP === form.destinyCP && form.origin === form.destiny) {
-      setErrors(prev => ({
+    if (
+      form.originCP &&
+      form.destinyCP &&
+      form.originCP === form.destinyCP &&
+      form.origin === form.destiny
+    ) {
+      setErrors((prev) => ({
         ...prev,
-        destinyMatch: "El destino no puede ser igual al origen"
-      }));
+        destinyMatch: 'El destino no puede ser igual al origen',
+      }))
     } else {
-      setErrors(prev => {
-        const newErrors = { ...prev };
-        delete newErrors.destinyMatch;
-        return newErrors;
-      });
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors.destinyMatch
+        return newErrors
+      })
     }
-  }, [form.originCP, form.destinyCP]);
+  }, [form.originCP, form.destinyCP])
 
   const onSubmit = async (e) => {
     e.preventDefault()
     // Add validation for missing bultos
     if (bultos.length === 0) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        bultos: 'Debés agregar al menos un bulto'
+        bultos: 'Debés agregar al menos un bulto',
       }))
       return
     }
-    if (!Object.values(errors).every(error => error === null)) {
+    if (!Object.values(errors).every((error) => error === null)) {
       // Scroll to the first error
       const firstErrorField = Object.keys(errors)[0]
       const element = document.getElementById(firstErrorField)
@@ -111,23 +116,57 @@ export default function FormCotizacion() {
       const formattedData = formatCotizacionData(form, bultos)
       setFinalData(formattedData)
       const result = await getCotizacion(formattedData)
-      if (isMounted.current) { // Check if component is still mounted before setting state
+      // await emailjs.send(
+      //   process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      //   process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      //   {
+      //     email: form.email,
+      //     origin: form.origin,
+      //     destiny: form.destiny,
+      //     originCP: form.originCP,
+      //     destinyCP: form.destinyCP,
+      //     valorDeclarado: form.valorDeclarado,
+      //     medidas: bultos
+      //       .map((b) => `${b.alto}x${b.ancho}x${b.profundidad}cm`)
+      //       .join(' / '),
+      //     cantidad: bultos.reduce((sum, b) => sum + Number(b.cantBultos), 0),
+      //     peso: bultos.reduce((sum, b) => sum + Number(b.peso), 0),
+      //     cotizacion: result.valorizo,
+      //     idLead: result.idLead,
+      //   },
+      //   process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      // )
+      if (isMounted.current) {
+        // Check if component is still mounted before setting state
         setCotizacion(result)
       }
     } catch (error) {
       console.error('Error submitting form:', error)
     } finally {
-      if (isMounted.current) { // Check if component is still mounted before setting state
+      if (isMounted.current) {
+        // Check if component is still mounted before setting state
         setIsSubmitting(false)
       }
     }
   }
 
   return cotizacion ? (
-    <CotizacionExitosa newQuoteHandler={()=>{resetForm();setBultos([]);setCotizacion('')}} finalData={finalData} cotizacion={cotizacion} bultos={bultos} />
+    <CotizacionExitosa
+      newQuoteHandler={() => {
+        resetForm()
+        setBultos([])
+        setCotizacion('')
+      }}
+      finalData={finalData}
+      cotizacion={cotizacion}
+      bultos={bultos}
+    />
   ) : (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'>
-      <Warning boldText="¡ATENCIÓN!" text="Si necesitás cotizar pallets, equipos completos o mudanzas, escribinos a info@expresomalargue.com" />
+      <Warning
+        boldText='¡ATENCIÓN!'
+        text='Si necesitás cotizar pallets, equipos completos o mudanzas, escribinos a info@expresomalargue.com'
+      />
       <h2 className='tw-text-[28px] tw-font-semibold tw-text-[#2F3394]'>
         Completá el formulario y cotizá en el momento
       </h2>
@@ -135,7 +174,7 @@ export default function FormCotizacion() {
       <form
         onSubmit={onSubmit}
         className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'
-        >
+      >
         <TitleTextInput
           id='email'
           title='Email'
@@ -145,7 +184,7 @@ export default function FormCotizacion() {
           mandatory
           email
           error={errors.email}
-          />
+        />
 
         <OrigenSection
           tarifaOrigen={tarifa?.locOrigen}
@@ -154,7 +193,7 @@ export default function FormCotizacion() {
           locations={tarifa.locOrigen}
           errors={errors}
           onValidate={handleFieldChange}
-          />
+        />
 
         <DestinoSection
           tarifaDestino={tarifa?.locDestino}
@@ -163,7 +202,7 @@ export default function FormCotizacion() {
           locations={tarifa.locDestino}
           errors={errors}
           onValidate={handleFieldChange}
-          />
+        />
 
         <BultosSection
           form={form}
@@ -173,12 +212,21 @@ export default function FormCotizacion() {
           errors={errors}
           setErrors={setErrors}
           onValidate={handleFieldChange}
-          />
+        />
 
         <button
           onClick={onSubmit}
-          disabled={isSubmitting || Object.values(errors).some(error => error !== null) || !form.origin || !form.destiny || !form.originCP || !form.destinyCP || !form.email || !form.valorDeclarado}
-          className='tw-self-end tw-mt-6 tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md disabled:tw-opacity-50'
+          disabled={
+            isSubmitting ||
+            Object.values(errors).some((error) => error !== null) ||
+            !form.origin ||
+            !form.destiny ||
+            !form.originCP ||
+            !form.destinyCP ||
+            !form.email ||
+            !form.valorDeclarado
+          }
+          className='tw-self-end tw-mt-6 tw-w-full lg:tw-w-fit tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md disabled:tw-opacity-50'
         >
           {isSubmitting ? 'Cotizando...' : 'Cotizar'}
         </button>
