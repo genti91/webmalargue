@@ -10,6 +10,7 @@ import { ErrorNoVigente } from '../Errores/ErrorNoVigente'
 import ErrorModalValidarCot from '../Errores/ErrorModalValidarCot'
 import { ErrorAPI } from '../Errores/ErrorAPI'
 import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
+import { ErrorCotizacionCambio } from '../Errores/ErrorCotizacionCambio';
 
 export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
@@ -36,7 +37,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
         console.log('flujo', flujo)
         if (!flujo) {
             return (
-                <ErrorCotizacionEmail setError={setError} />
+                <ErrorCotizacionCambio setError={setError} />
             )
         }
         switch (error.type) {

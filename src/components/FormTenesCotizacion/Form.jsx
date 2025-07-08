@@ -10,6 +10,7 @@ import TitleTextInput from '../TextInputs/TitleTextInput'
 
 import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
+import { postCotizacion } from '../FormCotizador/services/getCotizacion';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -20,12 +21,24 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const { setLoading } = useLoading();
     const { setCotizacion } = useGenera();
 
-    let storeCotizacion = async (cotizacion) => {
-        cotizacion = {
-            "idLead": cotizacion.id || '3822',
-            "importeCotizado": 12300.3199999999997089616954326629638671875,
-            "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
+    let validarValorCotizacion = async (cotizacion) => {
+        let datosCot = JSON.parse(cotizacion.observaciones)
+        let newCotizacion = postCotizacion(datosCot)
+        if (newCotizacion && newCotizacion.valorizo) {
+            if (newCotizacion.valorizo != cotizacion.importeCotizado) {
+                //hacer  put prospecto y put lead
+            }
         }
+        return false
+    }
+
+    let storeCotizacion = async (cotizacion) => {
+        console.log('storeCotizacion', cotizacion)
+        // cotizacion = {
+        //     "idLead": cotizacion.id || '3822',
+        //     "importeCotizado": 12300.3199999999997089616954326629638671875,
+        //     "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
+        // }
         let datosCot = JSON.parse(cotizacion.observaciones)
         let valorOriginal = (cotizacion.importeCotizado / 1.2221)
         let cleanCotizacion = {
@@ -79,8 +92,8 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     const submitForm = async (e) => {
         e.preventDefault()
-        storeCotizacion({id: form.numero_cotizacion})
-        return
+        //storeCotizacion({id: form.numero_cotizacion})
+        //return
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
@@ -103,6 +116,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 setError({
                     type: 'ENLACE MANIPULADO',
                     payload: form.numero_cotizacion,
+                })
+                return
+            }
+            let nuevaCotizacion = await validarValorCotizacion(prospecto.data[0])
+            if (nuevaCotizacion) {
+                setError({
+                    type: 'IMPORTE INVALIDO',
+                    payload: nuevaCotizacion,
                 })
                 return
             }

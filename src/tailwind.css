@@ -577,6 +577,10 @@ video {
   margin-bottom: 0px;
 }
 
+.tw-mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .tw-mb-20 {
   margin-bottom: 5rem;
 }
@@ -611,6 +615,10 @@ video {
 
 .tw-mt-1 {
   margin-top: 0.25rem;
+}
+
+.tw-mt-10 {
+  margin-top: 2.5rem;
 }
 
 .tw-mt-12 {
@@ -651,14 +659,6 @@ video {
 
 .tw-mt-\[12px\] {
   margin-top: 12px;
-}
-
-.tw-mt-10 {
-  margin-top: 2.5rem;
-}
-
-.tw-mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .tw-flex {
@@ -705,10 +705,6 @@ video {
   height: 72px;
 }
 
-.tw-h-\[21px\] {
-  height: 21px;
-}
-
 .tw-max-h-60 {
   max-height: 15rem;
 }
@@ -741,10 +737,6 @@ video {
   width: 170px;
 }
 
-.tw-w-\[181px\] {
-  width: 181px;
-}
-
 .tw-w-\[200px\] {
   width: 200px;
 }
@@ -768,10 +760,6 @@ video {
 
 .tw-w-full {
   width: 100%;
-}
-
-.tw-w-\[13\.5px\] {
-  width: 13.5px;
 }
 
 .tw-border-collapse {
@@ -815,10 +803,6 @@ video {
 
 .tw-items-start {
   align-items: flex-start;
-}
-
-.tw-items-end {
-  align-items: flex-end;
 }
 
 .tw-items-center {
@@ -1248,8 +1232,8 @@ video {
   line-height: 1rem;
 }
 
-.tw-text-\[18px\] {
-  font-size: 18px;
+.tw-font-\[400\] {
+  font-weight: 400;
 }
 
 .tw-font-\[600\] {
@@ -1272,14 +1256,6 @@ video {
   font-weight: 600;
 }
 
-.tw-font-\[200\] {
-  font-weight: 200;
-}
-
-.tw-font-\[400\] {
-  font-weight: 400;
-}
-
 .tw-text-\[\#02542D\] {
   --tw-text-opacity: 1;
   color: rgb(2 84 45 / var(--tw-text-opacity, 1));
@@ -1298,6 +1274,11 @@ video {
 .tw-text-\[\#2F3394\] {
   --tw-text-opacity: 1;
   color: rgb(47 51 148 / var(--tw-text-opacity, 1));
+}
+
+.tw-text-\[\#6C757D\] {
+  --tw-text-opacity: 1;
+  color: rgb(108 117 125 / var(--tw-text-opacity, 1));
 }
 
 .tw-text-\[\#756C7D\] {
@@ -1345,11 +1326,6 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.tw-text-\[\#6C757D\] {
-  --tw-text-opacity: 1;
-  color: rgb(108 117 125 / var(--tw-text-opacity, 1));
-}
-
 .tw-no-underline {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
@@ -1391,12 +1367,12 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:tw-block {
-    display: block;
-  }
-
   .sm\:tw-w-\[158px\] {
     width: 158px;
+  }
+
+  .sm\:tw-w-\[181px\] {
+    width: 181px;
   }
 
   .sm\:tw-w-\[211px\] {
@@ -1407,16 +1383,8 @@ video {
     width: 347px;
   }
 
-  .sm\:tw-w-\[181px\] {
-    width: 181px;
-  }
-
   .sm\:tw-flex-row {
     flex-direction: row;
-  }
-
-  .sm\:tw-flex-col {
-    flex-direction: column;
   }
 
   .sm\:tw-gap-9 {

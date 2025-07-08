@@ -1,7 +1,7 @@
 const { REACT_APP_API_HOST, REACT_APP_API_TOKEN } = process.env
 
-export const getCotizacion = async (props) => {
-    var cotizacion = await window
+export const postCotizacion = async (props) => {
+    return await window
         .fetch(
             `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=cotizacion`,
             {
@@ -20,15 +20,18 @@ export const getCotizacion = async (props) => {
         )
         .then((response) => response.json())
         .catch((error) => {
+            console.error('Error al obtener la cotización:', error)
             throw new Error(error)
         })
-    cotizacion = { ...cotizacion, valorizo: cotizacion.valorizo }
-    const prospecto = await window
+}
+
+export const putProspecto = async (props) => {
+    return await window
         // /CRM/PUT generar prospecto
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=putProspecto`,
+            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=prospecto`,
             {
-                method: 'POST',
+                method: 'PUT',
                 credentials: 'same-origin',
                 body: JSON.stringify({
                     razonSocial: "Cotización con vendedor Cotizador WEB",
@@ -41,15 +44,18 @@ export const getCotizacion = async (props) => {
         )
         .then((response) => response.json())
         .catch((error) => {
+            console.error('Error al obtener el prospecto:', error)
             throw error
         })
-    //TODO: enviar el tamaño de los bultos
-    const lead = await window
+}
+
+export const putLead = async (props, prospecto, cotizacion) => {
+    return await window
         // /CRM/PUT generar oprotunidad
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=putLead`,
+            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=lead`,
             {
-                method: 'POST',
+                method: 'PUT',
                 credentials: 'same-origin',
                 body: JSON.stringify({
                     idProspecto: prospecto?.idProspecto,
@@ -64,6 +70,7 @@ export const getCotizacion = async (props) => {
                         provDestino: props.provDestiny,
                         locOrigen: props.origin,
                         locDestino: props.destiny,
+                        tarifa: props.tarifa,
                         cpOrigen: props.originCP,
                         cpDestino: props.destinyCP,
                         kilosReales: props.kilosReales,
@@ -76,7 +83,17 @@ export const getCotizacion = async (props) => {
         )
         .then((response) => response.json())
         .catch((error) => {
+            console.error('Error al obtener el lead:', error)
             throw error
         })
+}
+
+export const getCotizacion = async (props) => {
+    var cotizacion = await postCotizacion(props)
+    console.log('getCotizacion', cotizacion)
+    const prospecto = await putProspecto(props)
+    console.log('prospecto', prospecto)
+    //TODO: enviar el tamaño de los bultos
+    const lead = await putLead(props, prospecto, cotizacion)
     return { ...cotizacion, ...lead }
 }
