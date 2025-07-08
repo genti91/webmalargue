@@ -38,7 +38,7 @@ export default function CotizacionExitosa({
       {/* Mensaje de exito + nro de Cotizacion */}
       <div className='tw-flex tw-flex-col tw-items-center tw-justify-center tw-w-full'>
         <SuccessCheckIcon />
-        <h2 className='tw-text-[#02542D] tw-text-center tw-mt-4 tw-text-[32px]'>
+        <h2 className='tw-text-[#02542D] font-bold tw-text-center tw-mt-4 tw-text-[32px]'>
           Tu cotización se generó con éxito
         </h2>
         <span className='tw-text-[#02542D] tw-text-[28px] tw-text-center tw-mb-[46px] '>
@@ -54,7 +54,7 @@ export default function CotizacionExitosa({
       <LineFormDivisor />
 
       {/* Info del envio */}
-      <div className='tw-flex tw-flex-col gap-4 tw-mb-9'>
+      <div className='tw-flex tw-flex-col tw-gap-4 tw-mb-9'>
         <span className='tw-text-[#2F3394] tw-text-2xl tw-font-semibold'>
           Información del envío
         </span>
@@ -85,7 +85,7 @@ export default function CotizacionExitosa({
       <FinalPriceBox price={finalValue} />
 
       {/* Botones Generar y Nueva Cotizacion */}
-      <div className='tw-flex tw-w-full tw-flex-col lg:tw-flex-row lg:tw-justify-end lg:tw-items-center tw-gap-11 tw-mt-14'>
+      <div className='tw-flex tw-w-full tw-flex-col lg:tw-flex-row lg:tw-justify-end lg:tw-items-center tw-gap-4 lg:tw-gap-11 tw-mt-12'>
         <button
           onClick={newQuoteHandler}
           className='tw-self-end tw-bg-[#2F3394] tw-w-full lg:tw-w-fit tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md'
