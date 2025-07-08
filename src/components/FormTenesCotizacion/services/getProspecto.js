@@ -5,7 +5,7 @@ export const getProspecto = async (id, email) => {
         .fetch(
             `${REACT_APP_API_HOST}/?token=${REACT_APP_API_KEY_CRM}&o=prospecto`,
             {
-                method: 'GET',
+                method: 'POST',
                 credentials: 'same-origin',
                 body: JSON.stringify({
                     id,
