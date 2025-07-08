@@ -11,13 +11,15 @@ export default function ObsSection({ errors, form, setInForm }) {
                     <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                         Observaciones
                     </h2>
-                    <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                    <div className='tw-flex tw-items-center tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
                         <TitleTextInput
                             title='Observaciones'
                             placeholder='Ingresá las observaciones que consideres necesarias.'
                             input={form.observaciones}
                             setInput={(value) => setInForm('observaciones', value)}
                             error={errors.observaciones}
+                            textarea={true}
+                            rows={3}
                         />
                     </div>
                 </div>
@@ -28,7 +30,7 @@ export default function ObsSection({ errors, form, setInForm }) {
                     <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                         Facturación
                     </h2>
-                    <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-gap-9 tw-w-full'>
+                    <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
                         <TitleSelectInput
                             title="Factura a nombre de"
                             input={form.factura_a_nombre_de}
@@ -53,7 +55,7 @@ export default function ObsSection({ errors, form, setInForm }) {
                     <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
                         Notificación
                     </h2>
-                    <div className='tw-flex tw-items-center tw-justify-between tw-gap-9 tw-w-full'>
+                    <div className='tw-flex tw-items-center tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
                         <TitleSelectInput
                             title="Persona que recibirá la confirmación del retiro"
                             input={form.notificacion}

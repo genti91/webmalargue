@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
+import TitleTextInput from '../TextInputs/TitleTextInput'
 
 import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
@@ -18,22 +19,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const [errors, setErrors] = useState({});
     const { setLoading } = useLoading();
     const { setCotizacion } = useGenera();
-
-    const validate = (form) => {
-        const { numero_cotizacion, email } = form
-        let errors = {}
-        if (numero_cotizacion.length < 4) {
-            errors.numero_cotizacion = 'Tenes que ingresar al menos 4 números (ej. 3822)'
-        } else if (!EMAIL_REGEX.test(email)) {
-            errors.email = 'Ingresá un email válido (ej.: tuemail@dominio.com)'
-        }
-
-        setErrors(errors)
-        if (Object.keys(errors).length > 0) {
-            return false
-        }
-        return true
-    }
 
     let storeCotizacion = async (cotizacion) => {
         cotizacion = {
@@ -94,7 +79,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     const submitForm = async (e) => {
         e.preventDefault()
-        if (!validate(form)) return
         storeCotizacion({id: form.numero_cotizacion})
         return
         try {
@@ -135,37 +119,51 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         }
     }
 
+    const setInformWithValidation = (key, value) => {
+        setInForm(key, value)
+        if (key === 'email' && !EMAIL_REGEX.test(value)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Ingresá un email válido (ej.: tuemail@dominio.com)'
+            }))
+        } else if (key === 'numero_cotizacion' && value.length < 4) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                numero_cotizacion: 'Tenes que ingresar al menos 4 números (ej. 3822)'
+            }))
+        } else {
+            setErrors((prevErrors) => {
+                const { [key]: _, ...rest } = prevErrors;
+                return rest;
+            });
+        }
+    }
+
     return (
-        <div className='tw-mt-8' id='contactanos'>
-            <form id='contact-form' onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col'>
-                <Row className='justify-content-md-center lg:tw-w-5/12 md:tw-w-8/12'>
+        <div className='tw-mt-[12px]'>
+            <form onSubmit={submitForm} method='POST' className='tw-flex tw-flex-col tw-gap-[36px]'>
+                <Row className='justify-content-md-center tw-gap-[36px] lg:tw-w-5/12 md:tw-w-8/12'>
                     <Col md={12}>
-                        <label>
-                            Ingresá el email que utilizas para cotizar<span>*</span>
-                        </label>
-                        <TextInput
-                            disabled={disableInputs}
-                            value={form.email}
-                            error={errors.email}
-                            name="email"
-                            setInForm={setInForm}
-                            form={form}
+                        <TitleTextInput
+                            title='Ingresá el email que utilizas para cotizar'
                             placeholder='Ej: email@dominio.com'
+                            input={form.email}
+                            setInput={(value) => setInformWithValidation('email', value)}
+                            mandatory
+                            error={errors.email}
+                            disabled={disableInputs}
                         />
                     </Col>
                     <Col md={12}>
-                        <label>
-                            Ingresá el número de cotización<span>*</span>
-                        </label>
-                        <TextInput
-                            disabled={disableInputs}
-                            value={form.numero_cotizacion}
-                            error={errors.numero_cotizacion}
-                            name='numero_cotizacion'
-                            type='number'
-                            setInForm={setInForm}
-                            form={form}
+                        <TitleTextInput
+                            title='Ingresá el número de cotización'
                             placeholder='Ej: 3822'
+                            input={form.numero_cotizacion}
+                            setInput={(value) => setInformWithValidation('numero_cotizacion', value)}
+                            mandatory
+                            error={errors.numero_cotizacion}
+                            numeric
+                            disabled={disableInputs}
                         />
                     </Col>
                 </Row>
@@ -175,9 +173,9 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                     ref={recaptchaRef}
                 />
                 <Button
-                    className='tw-ml-auto tw-mt-7 tw-w-[158px] tw-h-12 p-0 tw-self-end'
+                    className='tw-ml-auto md:tw-w-[158px] tw-w-full tw-h-12 p-0 tw-self-end tw-mt-[12px]'
                     type='submit'
-                    disabled={!recaptchaToken || form.numero_cotizacion.length === 0 || form.email.length === 0}
+                    disabled={!recaptchaToken || form.numero_cotizacion.length === 0 || form.email.length === 0 || errors.email || errors.numero_cotizacion}
                 >
                     Continuar
                 </Button>

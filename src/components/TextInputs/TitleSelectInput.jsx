@@ -49,7 +49,7 @@ export default function TitleSelectInput({
       <select
         id={id}
         value={input?.value || ''}
-        onFocus={() => {
+        onBlur={() => {
           if (input?.value === '') setInput(input)
         }}
         onChange={(e) => {

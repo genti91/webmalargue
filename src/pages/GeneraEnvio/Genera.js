@@ -128,7 +128,7 @@ const Genera = () => {
                 lineaSecundaria='' // Si no hay linea enviar ''
                 image={cotizaIMG}
             />
-            <div id='main' className='container tw-py-12'>
+            <div id='main' className='container tw-py-[40px]'>
                 <div className='row gap-4 tw-pt-4'>
                     {(cotizacion && cotizacion.id) ?
                         <>

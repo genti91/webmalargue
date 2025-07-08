@@ -5,7 +5,7 @@ export const getOportunidad = async (id) => {
         .fetch(
             `${REACT_APP_API_HOST}/?token=${REACT_APP_API_KEY_CRM}&o=lead`,
             {
-                method: 'GET',
+                method: 'POST',
                 credentials: 'same-origin',
                 body: JSON.stringify({
                     id,

@@ -11,31 +11,42 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
         const onSubmit = (e) => {
             e.preventDefault();
             window.scrollTo({ top: 590, behavior: 'smooth' });
-            if (validate()) {
+            if (Object.keys(errors).length > 0) {
                 setCurrentStep(2);
             }
         }
         const isFormValid = () => {
-            return formGeneraRemitente.every(
-                (input) => !input.required || !!form[input.name]
-            );
-        };
+                return formGeneraRemitente.every(
+                    (input) => !input.required || !!form[input.name]
+                ) && Object.keys(errors).every(
+                    (key) => !errors[key]
+                );
+            };
+        
     
-        const validate = () => {
-            let newErrors = {};
-            formGeneraRemitente.forEach((input) => {
-                const value = form[input.name];
-                if (input?.required && !value) {
-                    newErrors[input.name] = input.required;
-                } else if (input.validate) {
-                    const error = input.validate(value, form);
-                    if (error) {
-                        newErrors[input.name] = error;
-                    }
+        const setInFormWithValidation = (fieldName, value) => {
+            setInForm(fieldName, value);
+            let error = null;
+            let tipo_documento;
+            if (fieldName === 'tipo_documento') {
+                tipo_documento = value.value;
+                fieldName = 'numero_documento'
+                value = form[fieldName];
+            };
+            console.log('Validando campo:', fieldName, 'con valor:', value);
+            const inputConfig = formGeneraRemitente.find(input => input.name === fieldName);
+            if (inputConfig) {
+                if (inputConfig.required && !value) {
+                    error = inputConfig.required;
+                } else if (inputConfig.validate) {
+                    console.log('tipo_documento:', tipo_documento);
+                    error = inputConfig.validate(value, tipo_documento);
                 }
-            });
-            setErrors(newErrors);
-            return Object.keys(newErrors).length === 0;
+            }
+            setErrors(prev => ({
+                ...prev,
+                [fieldName]: error
+            }));
         };
     return (
         <div>
@@ -43,9 +54,9 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
             <Warning boldText="Tené en cuenta que la información para efectivizar la entrega, quedará sujeta a los datos oficiales del remito." text=" Cualquier observación, por favor realizala sobre el mismo de forma clara y legible." />
             <div className='tw-mt-8'>
                 <form onSubmit={onSubmit} method='POST' className='tw-flex tw-flex-col tw-gap-9'>
-                    <RemitenteSection form={form} setInForm={setInForm} destinatario errors={errors} />
-                    <RetiroSection form={form} setInForm={setInForm} datosPrevios={datosPrevios} envio errors={errors} />
-                    <BottomSection form={form} setInForm={setInForm} errors={errors} />
+                    <RemitenteSection form={form} setInForm={setInFormWithValidation} destinatario errors={errors} />
+                    <RetiroSection form={form} setInForm={setInFormWithValidation} datosPrevios={datosPrevios} envio errors={errors} />
+                    <BottomSection form={form} setInForm={setInFormWithValidation} errors={errors} />
                     <div className='md:tw-ml-auto tw-flex tw-flex-col md:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mt-5'>
                         <Button
                             className='md:tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
