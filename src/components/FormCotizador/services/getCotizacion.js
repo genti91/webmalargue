@@ -1,3 +1,5 @@
+import { calculatePriceDetail } from "../../CotizacionYRetiro/calculatePriceDetail"
+
 const { REACT_APP_API_HOST, REACT_APP_API_TOKEN, REACT_APP_MP_API_HOST } = process.env
 
 export const postCotizacion = async (props) => {
@@ -52,6 +54,7 @@ export const putProspecto = async (props) => {
 }
 
 export const putLead = async (props, prospecto, cotizacion) => {
+    let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
     return await window
         // /CRM/PUT generar oprotunidad
         .fetch(
@@ -70,17 +73,28 @@ export const putLead = async (props, prospecto, cotizacion) => {
                     markUp: 0,
                     origen: 1,
                     observaciones: JSON.stringify({
-                        provOrigen: props.provOrigin,
-                        provDestino: props.provDestiny,
-                        locOrigen: props.origin,
-                        locDestino: props.destiny,
-                        tarifa: props.tarifa,
+                        emailNotificacion: props.email,
+                        fechaEmision: new Date().toISOString(),
+                        localidadOrigen: props.origin,
                         cpOrigen: props.originCP,
+                        idCpOrigen: props.idOrigin,
+                        provinciaOrigen: props.provOrigin,
+                        localidadDestino: props.destiny,
                         cpDestino: props.destinyCP,
+                        idCpDestino: props.idDestiny,
+                        provinciaDestino: props.provDestiny,
+                        sucursalCanalizadora: 2,
+                        arrayBultos: props.arrayBultos, // TODO: enviar los bultos
+                        tarifa: props.tarifa,
                         kilosReales: props.kilosReales,
                         metrosCubicos: props.metrosCubicos,
-                        bultos: props.bultos,
+                        bultosTotal: props.bultos,
                         valorDeclarado: props.valorDeclarado,
+                        descripcionBultos: props.message,
+                        precioSinIVA: precio.noTaxPrice,
+                        precioSeguro: precio.seguroValue,
+                        IVA: precio.ivaValue,
+                        precioFinal: precio.finalValue,
                     })
                 }),
             }

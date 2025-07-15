@@ -68,9 +68,9 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                     <div className='tw-flex tw-flex-col tw-gap-2'>
                         <h3 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px]'>Detalle de la tarifa</h3>
                         <div className='tw-flex tw-flex-col tw-gap-2'>
-                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> ARS {formatPrice(cotizacion.valorOriginal)}</div>
-                            <div><span className="tw-font-bold">Seguro:</span> ARS {formatPrice(cotizacion.seguro)}</div>
-                            <div><span className="tw-font-bold">IVA (21%):</span> ARS {formatPrice(cotizacion.iva)}</div>
+                            <div><span className="tw-font-bold">Precio sin impuestos nacionales:</span> ARS {formatPrice(cotizacion.precioSinIVA)}</div>
+                            <div><span className="tw-font-bold">Seguro:</span> ARS {formatPrice(cotizacion.precioSeguro)}</div>
+                            <div><span className="tw-font-bold">IVA (21%):</span> ARS {formatPrice(cotizacion.IVA)}</div>
                         </div>
                     </div>
                     <div className='tw-self-center tw-w-full sm:tw-w-[347px] tw-border tw-border-[#707070] tw-rounded-lg'>
@@ -133,11 +133,11 @@ const BultosData = ({ data }) => {
         <div className='tw-mt-[-15px]'>
             <TableComponent 
                 columns={{
-                    cantBultos: 'Cantidad de bultos',
+                    cantidadBultos: 'Cantidad de bultos',
                     peso: 'Peso unitario (kg)',
                     ancho: 'Ancho unitario (cm)',
                     alto: 'Alto unitario (cm)',
-                    profundidad: 'Largo unitario (cm)',
+                    largo: 'Largo unitario (cm)',
                 }} 
                 dataSource={data.bultos} 
             />

@@ -35,9 +35,12 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     if (error.type) {
         console.log('error', error)
         console.log('flujo', flujo)
+        if (error.type === 'IMPORTE INVALIDO') {
+            return <ErrorCotizacionCambio setError={setError} />
+        }
         if (!flujo) {
             return (
-                <ErrorCotizacionCambio setError={setError} />
+                <ErrorCotizacionEmail setError={setError} />
             )
         }
         switch (error.type) {

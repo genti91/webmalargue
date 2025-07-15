@@ -34,26 +34,11 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     let storeCotizacion = async (cotizacion) => {
         console.log('storeCotizacion', cotizacion)
-        // cotizacion = {
-        //     "idLead": cotizacion.id || '3822',
-        //     "importeCotizado": 12300.3199999999997089616954326629638671875,
-        //     "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
-        // }
         let datosCot = JSON.parse(cotizacion.observaciones)
-        let valorOriginal = (cotizacion.importeCotizado / 1.2221)
         let cleanCotizacion = {
+            ...datosCot,
             id: cotizacion.idLead,
             precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
-            //TODO: poner porcentaje de IVA como variable de entorno y validar el seguro
-            iva: (valorOriginal * 0.21).toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
-            seguro: (valorOriginal * 0.01).toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
-            valorOriginal: valorOriginal.toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
             remitente: {
@@ -67,12 +52,9 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 cp: datosCot.cpDestino,
             },
             bultos: {
-                //TODO: agregar lista de bultos y descripcion
                 valorDeclarado: datosCot.valorDeclarado,
-                descripcion: 'descripcion del bulto',
-                bultos: [{cantBultos:'1', peso: '21', ancho: '11', alto: '34', profundidad: '22'},
-                    {cantBultos:'2', peso: '12', ancho: '31', alto: '22', profundidad: '12'},
-                ],
+                descripcion: datosCot.descripcionBultos,
+                bultos: datosCot.arrayBultos
             }
         }
 
@@ -97,6 +79,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
+            console.log('oportunidad', oportunidad)
             if (!oportunidad.data || oportunidad.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -112,6 +95,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 return
             }
             let prospecto = await getProspecto(form.numero_cotizacion, form.email)
+            console.log('prospecto', prospecto)
             if (!prospecto.data || prospecto.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -119,14 +103,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 })
                 return
             }
-            let nuevaCotizacion = await validarValorCotizacion(prospecto.data[0])
-            if (nuevaCotizacion) {
-                setError({
-                    type: 'IMPORTE INVALIDO',
-                    payload: nuevaCotizacion,
-                })
-                return
-            }
+            // let nuevaCotizacion = await validarValorCotizacion(prospecto.data[0])
+            // if (nuevaCotizacion) {
+            //     setError({
+            //         type: 'IMPORTE INVALIDO',
+            //         payload: nuevaCotizacion,
+            //     })
+            //     return
+            // }
             storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
