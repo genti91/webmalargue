@@ -1,4 +1,4 @@
-const { REACT_APP_API_HOST, REACT_APP_API_TOKEN } = process.env
+const { REACT_APP_API_HOST, REACT_APP_API_TOKEN, REACT_APP_MP_API_HOST } = process.env
 
 export const postCotizacion = async (props) => {
     return await window
@@ -29,10 +29,12 @@ export const putProspecto = async (props) => {
     return await window
         // /CRM/PUT generar prospecto
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=prospecto`,
+            `${REACT_APP_MP_API_HOST}/api/codilsa/prospecto`,
             {
                 method: 'PUT',
-                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     razonSocial: "Cotización con vendedor Cotizador WEB",
                     localidad: props.origin,
@@ -53,10 +55,12 @@ export const putLead = async (props, prospecto, cotizacion) => {
     return await window
         // /CRM/PUT generar oprotunidad
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=lead`,
+            `${REACT_APP_MP_API_HOST}/api/codilsa/lead`,
             {
                 method: 'PUT',
-                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     idProspecto: prospecto?.idProspecto,
                     descripcion: "Cotización con vendedor Cotizador WEB",
@@ -90,9 +94,7 @@ export const putLead = async (props, prospecto, cotizacion) => {
 
 export const getCotizacion = async (props) => {
     var cotizacion = await postCotizacion(props)
-    console.log('getCotizacion', cotizacion)
     const prospecto = await putProspecto(props)
-    console.log('prospecto', prospecto)
     //TODO: enviar el tamaño de los bultos
     const lead = await putLead(props, prospecto, cotizacion)
     return { ...cotizacion, ...lead }
