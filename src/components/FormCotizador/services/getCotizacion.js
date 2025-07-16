@@ -84,7 +84,7 @@ export const putLead = async (props, prospecto, cotizacion) => {
                         idCpDestino: props.idDestiny,
                         provinciaDestino: props.provDestiny,
                         sucursalCanalizadora: 2,
-                        arrayBultos: props.arrayBultos, // TODO: enviar los bultos
+                        arrayBultos: props.arrayBultos,
                         tarifa: props.tarifa,
                         kilosReales: props.kilosReales,
                         metrosCubicos: props.metrosCubicos,
@@ -109,7 +109,6 @@ export const putLead = async (props, prospecto, cotizacion) => {
 export const getCotizacion = async (props) => {
     var cotizacion = await postCotizacion(props)
     const prospecto = await putProspecto(props)
-    //TODO: enviar el tamaño de los bultos
     const lead = await putLead(props, prospecto, cotizacion)
     return { ...cotizacion, ...lead }
 }

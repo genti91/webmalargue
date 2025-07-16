@@ -625,10 +625,6 @@ video {
   margin-top: 3rem;
 }
 
-.tw-mt-14 {
-  margin-top: 3.5rem;
-}
-
 .tw-mt-2 {
   margin-top: 0.5rem;
 }
@@ -741,10 +737,6 @@ video {
   width: 200px;
 }
 
-.tw-w-\[350px\] {
-  width: 350px;
-}
-
 .tw-w-\[48px\] {
   width: 48px;
 }
@@ -845,10 +837,6 @@ video {
   gap: 0.25rem;
 }
 
-.tw-gap-11 {
-  gap: 2.75rem;
-}
-
 .tw-gap-14 {
   gap: 3.5rem;
 }
@@ -879,10 +867,6 @@ video {
 
 .tw-gap-\[36px\] {
   gap: 36px;
-}
-
-.tw-gap-4 {
-  gap: 1rem;
 }
 
 .tw-self-end {
@@ -1142,6 +1126,11 @@ video {
   padding-right: 1.25rem;
 }
 
+.tw-py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .tw-py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -1150,11 +1139,6 @@ video {
 .tw-py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-
-.tw-py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
 .tw-py-3 {
@@ -1170,11 +1154,6 @@ video {
 .tw-py-\[40px\] {
   padding-top: 40px;
   padding-bottom: 40px;
-}
-
-.tw-py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .tw-pl-1 {
@@ -1514,6 +1493,10 @@ video {
     justify-content: flex-end;
   }
 
+  .lg\:tw-gap-11 {
+    gap: 2.75rem;
+  }
+
   .lg\:tw-gap-4 {
     gap: 1rem;
   }
@@ -1524,10 +1507,6 @@ video {
 
   .lg\:tw-gap-9 {
     gap: 2.25rem;
-  }
-
-  .lg\:tw-gap-11 {
-    gap: 2.75rem;
   }
 
   .lg\:tw-self-end {

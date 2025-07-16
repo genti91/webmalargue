@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
-import TextInput from '../TextInput'
 import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
@@ -33,6 +32,48 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     }
 
     let storeCotizacion = async (cotizacion) => {
+        cotizacion = {
+            "idLead": 7,
+            "idProspecto": null,
+            "prospecto": null,
+            "descripcion": "CRISTAL CARGAS",
+            "idVendedor": 1,
+            "vendedor": "klkmn",
+            "idOrigen": 3,
+            "origen": "Origen General",
+            "importeOriginal": 425454.55,
+            "importeCotizado": 468000,
+            "importePendiente": 468,
+            "observaciones": 
+                JSON.stringify({
+                    emailNotificacion: form.email,
+                    fechaEmision: new Date().toISOString(),
+                    localidadOrigen: "Buenos Aires",
+                    cpOrigen: "1000",
+                    idCpOrigen: 1,
+                    provinciaOrigen: "Buenos Aires",
+                    localidadDestino: "Córdoba",
+                    cpDestino: "5000",
+                    idCpDestino: 2,
+                    provinciaDestino: "Córdoba",
+                    sucursalCanalizadora: 2,
+                    arrayBultos: [{cantidadBultos: 1, peso: 10, alto: 20, ancho: 30, largo: 40}],
+                    tarifa: "Fijo",
+                    kilosReales: 10,
+                    metrosCubicos: 0.5,
+                    bultosTotal: 1,
+                    valorDeclarado: 50000,
+                    descripcionBultos: "Mercadería general",
+                    precioSinIVA: 10064.90,
+                    precioSeguro: 500.00,
+                    IVA: 2223.62,
+                    precioFinal: 12788.52,
+                }),
+            "creacion": "2021-04-23 13:47:18",
+            "responsableCreacion": "DEX softAr",
+            "responsableActualizacion": "DEXCristal",
+            "fechaActualizacion": "2025-04-14 18:07:50"
+        }
         console.log('storeCotizacion', cotizacion)
         let datosCot = JSON.parse(cotizacion.observaciones)
         let cleanCotizacion = {
@@ -42,13 +83,13 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 maximumFractionDigits: 2
             }),
             remitente: {
-                provincia: datosCot.provOrigen,
-                localidad: datosCot.locOrigen,
+                provincia: datosCot.provinciaOrigen,
+                localidad: datosCot.localidadOrigen,
                 cp: datosCot.cpOrigen,
             },
             destinatario: {
-                provincia: datosCot.provDestino,
-                localidad: datosCot.locDestino,
+                provincia: datosCot.provinciaDestino,
+                localidad: datosCot.localidadDestino,
                 cp: datosCot.cpDestino,
             },
             bultos: {
@@ -74,8 +115,8 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     const submitForm = async (e) => {
         e.preventDefault()
-        //storeCotizacion({id: form.numero_cotizacion})
-        //return
+        storeCotizacion({id: form.numero_cotizacion})
+        return
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
