@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
-import TextInput from '../TextInput'
 import { Col, Row } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
@@ -10,6 +9,7 @@ import TitleTextInput from '../TextInputs/TitleTextInput'
 
 import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
+import { postCotizacion } from '../FormCotizador/services/getCotizacion';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -20,46 +20,82 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const { setLoading } = useLoading();
     const { setCotizacion } = useGenera();
 
+    let validarValorCotizacion = async (cotizacion) => {
+        let datosCot = JSON.parse(cotizacion.observaciones)
+        let newCotizacion = postCotizacion(datosCot)
+        if (newCotizacion && newCotizacion.valorizo) {
+            if (newCotizacion.valorizo != cotizacion.importeCotizado) {
+                //hacer  put prospecto y put lead
+            }
+        }
+        return false
+    }
+
     let storeCotizacion = async (cotizacion) => {
         cotizacion = {
-            "idLead": cotizacion.id || '3822',
-            "importeCotizado": 12300.3199999999997089616954326629638671875,
-            "observaciones": "{\"provOrigen\":\"Buenos Aires\",\"provDestino\":\"Buenos Aires\",\"locOrigen\":\"(1619) GARIN\",\"locDestino\":\"(1640) MARTINEZ\",\"cpOrigen\":1619,\"cpDestino\":1640,\"kilosReales\":1,\"metrosCubicos\":0.0017,\"bultos\":1,\"valorDeclarado\":\"5000\"}",
+            "idLead": 7,
+            "idProspecto": null,
+            "prospecto": null,
+            "descripcion": "CRISTAL CARGAS",
+            "idVendedor": 1,
+            "vendedor": "klkmn",
+            "idOrigen": 3,
+            "origen": "Origen General",
+            "importeOriginal": 425454.55,
+            "importeCotizado": 468000,
+            "importePendiente": 468,
+            "observaciones": 
+                JSON.stringify({
+                    emailNotificacion: form.email,
+                    fechaEmision: new Date().toISOString(),
+                    localidadOrigen: "Buenos Aires",
+                    cpOrigen: "1000",
+                    idCpOrigen: 1,
+                    provinciaOrigen: "Buenos Aires",
+                    localidadDestino: "Córdoba",
+                    cpDestino: "5000",
+                    idCpDestino: 2,
+                    provinciaDestino: "Córdoba",
+                    sucursalCanalizadora: 2,
+                    arrayBultos: [{cantidadBultos: 1, peso: 10, alto: 20, ancho: 30, largo: 40}],
+                    tarifa: "Fijo",
+                    kilosReales: 10,
+                    metrosCubicos: 0.5,
+                    bultosTotal: 1,
+                    valorDeclarado: 50000,
+                    descripcionBultos: "Mercadería general",
+                    precioSinIVA: 10064.90,
+                    precioSeguro: 500.00,
+                    IVA: 2223.62,
+                    precioFinal: 12788.52,
+                }),
+            "creacion": "2021-04-23 13:47:18",
+            "responsableCreacion": "DEX softAr",
+            "responsableActualizacion": "DEXCristal",
+            "fechaActualizacion": "2025-04-14 18:07:50"
         }
+        console.log('storeCotizacion', cotizacion)
         let datosCot = JSON.parse(cotizacion.observaciones)
-        let valorOriginal = (cotizacion.importeCotizado / 1.2221)
         let cleanCotizacion = {
+            ...datosCot,
             id: cotizacion.idLead,
             precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
                 maximumFractionDigits: 2
             }),
-            //TODO: poner porcentaje de IVA como variable de entorno y validar el seguro
-            iva: (valorOriginal * 0.21).toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
-            seguro: (valorOriginal * 0.01).toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
-            valorOriginal: valorOriginal.toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
             remitente: {
-                provincia: datosCot.provOrigen,
-                localidad: datosCot.locOrigen,
+                provincia: datosCot.provinciaOrigen,
+                localidad: datosCot.localidadOrigen,
                 cp: datosCot.cpOrigen,
             },
             destinatario: {
-                provincia: datosCot.provDestino,
-                localidad: datosCot.locDestino,
+                provincia: datosCot.provinciaDestino,
+                localidad: datosCot.localidadDestino,
                 cp: datosCot.cpDestino,
             },
             bultos: {
-                //TODO: agregar lista de bultos y descripcion
                 valorDeclarado: datosCot.valorDeclarado,
-                descripcion: 'descripcion del bulto',
-                bultos: [{cantBultos:'1', peso: '21', ancho: '11', alto: '34', profundidad: '22'},
-                    {cantBultos:'2', peso: '12', ancho: '31', alto: '22', profundidad: '12'},
-                ],
+                descripcion: datosCot.descripcionBultos,
+                bultos: datosCot.arrayBultos
             }
         }
 
@@ -84,6 +120,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
+            console.log('oportunidad', oportunidad)
             if (!oportunidad.data || oportunidad.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -99,6 +136,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 return
             }
             let prospecto = await getProspecto(form.numero_cotizacion, form.email)
+            console.log('prospecto', prospecto)
             if (!prospecto.data || prospecto.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -106,6 +144,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 })
                 return
             }
+            // let nuevaCotizacion = await validarValorCotizacion(prospecto.data[0])
+            // if (nuevaCotizacion) {
+            //     setError({
+            //         type: 'IMPORTE INVALIDO',
+            //         payload: nuevaCotizacion,
+            //     })
+            //     return
+            // }
             storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)

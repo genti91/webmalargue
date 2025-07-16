@@ -1,11 +1,11 @@
-const { REACT_APP_API_KEY_CRM, REACT_APP_API_HOST } = process.env
+const { REACT_APP_API_TOKEN, REACT_APP_API_HOST } = process.env
 
 export const getOportunidad = async (id) => {
     return await window
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_KEY_CRM}&o=lead`,
+            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=lead`,
             {
-                method: 'GET',
+                method: 'POST',
                 credentials: 'same-origin',
                 body: JSON.stringify({
                     id,

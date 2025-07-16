@@ -29,6 +29,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
     });
     onValidate('destinyCP', option.codigoPostal);
     onValidate('destiny', option.nombre);
+    onValidate('idDestiny', option.id);
   };
 
   return (

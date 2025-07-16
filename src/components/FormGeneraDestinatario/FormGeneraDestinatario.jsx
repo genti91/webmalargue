@@ -11,17 +11,16 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
         const onSubmit = (e) => {
             e.preventDefault();
             window.scrollTo({ top: 590, behavior: 'smooth' });
-            if (Object.keys(errors).length > 0) {
-                setCurrentStep(2);
-            }
+            setCurrentStep(2);
         }
         const isFormValid = () => {
-                return formGeneraRemitente.every(
-                    (input) => !input.required || !!form[input.name]
-                ) && Object.keys(errors).every(
-                    (key) => !errors[key]
-                );
-            };
+            let bool =  formGeneraRemitente.every(
+                (input) => !input.required || !!form[input.name]
+            ) && Object.keys(errors).every(
+                (key) => !errors[key]
+            );
+            return bool;
+        };
         
     
         const setInFormWithValidation = (fieldName, value) => {

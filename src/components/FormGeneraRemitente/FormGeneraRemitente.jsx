@@ -12,9 +12,7 @@ export const FormGeneraRemitente = ({ form, setInForm, datosPrevios, setCurrentS
     const onSubmit = (e) => {
         e.preventDefault();
         window.scrollTo({ top: 590, behavior: 'smooth' });
-        if (Object.keys(errors).length > 0) {
-            setCurrentStep(1);
-        }
+        setCurrentStep(1);
     }
     const isFormValid = () => {
         return formGeneraRemitente.every(

@@ -41,6 +41,8 @@ export const formatCotizacionData = (form, bultos) => {
     tarifa: Number(form.tarifa),
     originCP: Number(form.originCP),
     destinyCP: Number(form.destinyCP),
+    idDestiny: form?.idDestiny,
+    idOrigin: form?.idOrigin,
     kilosReales: Number(totalMetrics.kilosReales),
     metrosCubicos: Number(totalMetrics.metrosCubicos),
     bultos: Number(totalMetrics.bultos),
@@ -52,6 +54,13 @@ export const formatCotizacionData = (form, bultos) => {
     email: form.email,
     provOrigin: form.originOption?.value,
     provDestiny: form.destinyOption?.value,
-    message: form.message
+    message: form.message,
+    arrayBultos: bultos.map(bulto => ({
+      cantidadBultos: bulto.quantity,
+      peso: bulto.weight,
+      alto: bulto.height,
+      ancho: bulto.width,
+      largo: bulto.length
+    })),
   };
 };
