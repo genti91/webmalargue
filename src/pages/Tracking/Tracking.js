@@ -4,7 +4,7 @@ import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import './Tracking.scss'
 import { Bullet } from './Bullet'
 import { SearchBox } from './SearchBox'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ReusableAccordion from '../../components/Accordion/ReusableAccordion'
 import { faqTracking } from './faqTracking'
 import { useWindowSize } from '../../hooks/useWindowSize'
@@ -12,6 +12,8 @@ import { useWindowSize } from '../../hooks/useWindowSize'
 const Tracking = () => {
   const [trackingData, setTrackingData] = useState([])
   const { width } = useWindowSize()
+  const [searchParams] = useSearchParams()
+  const tracking_id = searchParams.get('trackingID');
 
   function reformatDatetime(value) {
     // Split the date and time parts
@@ -42,7 +44,7 @@ const Tracking = () => {
           <div className='col-md-8'>
             <h1 className='heroTitle'>Ingresá tu código de seguimiento</h1>
 
-            <SearchBox setTrackingData={setTrackingData} />
+            <SearchBox setTrackingData={setTrackingData} trackingID={tracking_id} />
 
             <div className='container' style={{ width: '100%' }}>
               {trackingData.length

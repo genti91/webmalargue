@@ -32,49 +32,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     }
 
     let storeCotizacion = async (cotizacion) => {
-        cotizacion = {
-            "idLead": 7,
-            "idProspecto": null,
-            "prospecto": null,
-            "descripcion": "CRISTAL CARGAS",
-            "idVendedor": 1,
-            "vendedor": "klkmn",
-            "idOrigen": 3,
-            "origen": "Origen General",
-            "importeOriginal": 425454.55,
-            "importeCotizado": 468000,
-            "importePendiente": 468,
-            "observaciones": 
-                JSON.stringify({
-                    emailNotificacion: form.email,
-                    fechaEmision: new Date().toISOString(),
-                    localidadOrigen: "Buenos Aires",
-                    cpOrigen: "1000",
-                    idCpOrigen: 1,
-                    provinciaOrigen: "Buenos Aires",
-                    localidadDestino: "Córdoba",
-                    cpDestino: "5000",
-                    idCpDestino: 2,
-                    provinciaDestino: "Córdoba",
-                    sucursalCanalizadora: 2,
-                    arrayBultos: [{cantidadBultos: 1, peso: 10, alto: 20, ancho: 30, largo: 40}],
-                    tarifa: "Fijo",
-                    kilosReales: 10,
-                    metrosCubicos: 0.5,
-                    bultosTotal: 1,
-                    valorDeclarado: 50000,
-                    descripcionBultos: "Mercadería general",
-                    precioSinIVA: 10064.90,
-                    precioSeguro: 500.00,
-                    IVA: 2223.62,
-                    precioFinal: 12788.52,
-                }),
-            "creacion": "2021-04-23 13:47:18",
-            "responsableCreacion": "DEX softAr",
-            "responsableActualizacion": "DEXCristal",
-            "fechaActualizacion": "2025-04-14 18:07:50"
-        }
-        console.log('storeCotizacion', cotizacion)
         let datosCot = JSON.parse(cotizacion.observaciones)
         let cleanCotizacion = {
             ...datosCot,
@@ -115,8 +72,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     const submitForm = async (e) => {
         e.preventDefault()
-        storeCotizacion({id: form.numero_cotizacion})
-        return
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
@@ -128,14 +83,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 })
                 return
             }
-            if (validarVigenciaCotizacion(oportunidad.data[0].creacion)) {
+            if (!validarVigenciaCotizacion(oportunidad.data[0].creacion)) {
                 setError({
                     type: 'NO VIGENTE',
                     payload: oportunidad.data.creacion,
                 })
                 return
             }
-            let prospecto = await getProspecto(form.numero_cotizacion, form.email)
+            let prospecto = await getProspecto(oportunidad.data[0].idProspecto, form.email)
             console.log('prospecto', prospecto)
             if (!prospecto.data || prospecto.data.length === 0) {
                 setError({
