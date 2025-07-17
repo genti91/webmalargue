@@ -22,6 +22,16 @@ router.put('/lead', (req, res) => {
         })
 });
 
+router.post('/nuevoRetiro', (req, res) => {
+    postNuevoRetiro(req.body)
+        .then((response) => {
+            res.json(response);
+        })
+        .catch((error) => {
+            res.status(500).json({ error: `Error al crear el nuevo retiro: ${error.message}` });
+        })
+});
+
 export default router;
 
 const putProspecto = async (props) => {
@@ -56,6 +66,24 @@ const putLead = async (props) => {
         .then((response) => response.json())
         .catch((error) => {
             console.error('Error al obtener el lead:', error)
+            throw error
+        })
+}
+
+const postNuevoRetiro = async (props) => {
+    return await fetch(
+            `${process.env.API_HOST}/?token=${process.env.API_TOKEN}&o=nuevoRetiro`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(props),
+            }
+        )
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error('Error al crear el nuevo retiro:', error)
             throw error
         })
 }

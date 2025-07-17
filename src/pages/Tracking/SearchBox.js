@@ -7,8 +7,8 @@ import { useSearchParams } from 'react-router-dom'
 import './searchBox.scss'
 import { useWindowSize } from '../../hooks/useWindowSize'
 
-export const SearchBox = ({ setTrackingData }) => {
-  const [searchValue, setSearchValue] = useState('')
+export const SearchBox = ({ setTrackingData, trackingID }) => {
+  const [searchValue, setSearchValue] = useState(trackingID)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [emptyTracking, setEmptyTracking] = useState(false)
@@ -41,8 +41,14 @@ export const SearchBox = ({ setTrackingData }) => {
     setSearchValue(formattedValue)
   }
 
+  useEffect(() => {
+    if (trackingID) {
+      handleSubmit()
+    }
+  }, [trackingID])
+
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e?.preventDefault()
     try {
       setLoading(true)
       setError(false)
