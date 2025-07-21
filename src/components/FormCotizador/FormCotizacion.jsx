@@ -9,6 +9,9 @@ import { getCotizacion } from './services/getCotizacion'
 import { formatCotizacionData } from './utils/cotizacionFormatter'
 import { useFieldValidation } from '../../hooks/useFieldValidation'
 import CotizacionExitosa from './CotizacionExitosa'
+import emailjs from 'emailjs-com'
+import { calculatePriceDetail } from '../CotizacionYRetiro/calculatePriceDetail'
+import { ErrorTarifaCotizacion } from '../Errores/ErrorTarifaCotizacion'
 import { Warning } from '../Errores/Warning'
 
 export default function FormCotizacion() {
@@ -17,6 +20,7 @@ export default function FormCotizacion() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [tarifa, setTarifa] = useState([])
+  const [errorTarifa, setErrorTarifa] = useState(null)
   const [cotizacion, setCotizacion] = useState()
   const [finalData, setFinalData] = useState()
 
@@ -31,9 +35,9 @@ export default function FormCotizacion() {
     originOption: {},
     destinyOption: {},
   })
+
   const [bultos, setBultos] = useState([])
   const { handleFieldChange } = useFieldValidation(setInForm, setErrors)
-
   const isMounted = useRef(true)
 
   useEffect(() => {
@@ -71,7 +75,6 @@ export default function FormCotizacion() {
     }
   }, [bultos])
 
-  // Add validation for origin and destination
   useEffect(() => {
     if (
       form.originCP &&
@@ -94,7 +97,7 @@ export default function FormCotizacion() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    // Add validation for missing bultos
+
     if (bultos.length === 0) {
       setErrors((prev) => ({
         ...prev,
@@ -102,8 +105,8 @@ export default function FormCotizacion() {
       }))
       return
     }
+
     if (!Object.values(errors).every((error) => error === null)) {
-      // Scroll to the first error
       const firstErrorField = Object.keys(errors)[0]
       const element = document.getElementById(firstErrorField)
       if (element) {
@@ -111,57 +114,117 @@ export default function FormCotizacion() {
       }
       return
     }
+
     setIsSubmitting(true)
+
     try {
       const formattedData = formatCotizacionData(form, bultos)
       setFinalData(formattedData)
+
       const result = await getCotizacion(formattedData)
-      // await emailjs.send(
-      //   process.env.REACT_APP_EMAILJS_SERVICE_ID,
-      //   process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-      //   {
-      //     email: form.email,
-      //     origin: form.origin,
-      //     destiny: form.destiny,
-      //     originCP: form.originCP,
-      //     destinyCP: form.destinyCP,
-      //     valorDeclarado: form.valorDeclarado,
-      //     medidas: bultos
-      //       .map((b) => `${b.alto}x${b.ancho}x${b.profundidad}cm`)
-      //       .join(' / '),
-      //     cantidad: bultos.reduce((sum, b) => sum + Number(b.cantBultos), 0),
-      //     peso: bultos.reduce((sum, b) => sum + Number(b.peso), 0),
-      //     cotizacion: result.valorizo,
-      //     idLead: result.idLead,
-      //   },
-      //   process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      // )
+
+      if (result?.cotizacion.msg && result.cotizacion.msg.includes('No tengo tarifa')) {
+        setErrorTarifa({
+          email: form.email,
+          cotizacionId: result.lead.idLead,
+          mensajeCristal: result.cotizacion.msg,
+        })
+        return
+      }
+      
+
+      const totalAPIPrice = Number(result.cotizacion.valorizo) || 0
+      const { noTaxPrice, seguroValue, ivaValue, finalValue } =
+        calculatePriceDetail({
+          totalAPIPrice,
+        })
+
+      const tablaBultosHTML = bultos
+        .map((bulto, index) => {
+          const fondo = index % 2 === 0 ? '' : 'background:#f5f5f5;'
+          return `
+          <tr style="${fondo}">
+            <td style="padding:8px 6px;border:1px solid #cccccc;">${
+              bulto.quantity
+            }&nbsp;unidad${bulto.cantidad > 1 ? 'es' : ''}</td>
+            <td style="padding:8px 6px;border:1px solid #cccccc;">${
+              bulto.weight
+            }&nbsp;kg</td>
+            <td style="padding:8px 6px;border:1px solid #cccccc;">${
+              bulto.width
+            }&nbsp;cm</td>
+            <td style="padding:8px 6px;border:1px solid #cccccc;">${
+              bulto.height
+            }&nbsp;cm</td>
+            <td style="padding:8px 6px;border:1px solid #cccccc;">${
+              bulto.length
+            }&nbsp;cm</td>
+          </tr>`
+        })
+        .join('')
+
+      try {
+        await emailjs.send(
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          'template_sv96d5d',
+          {
+            email: form.email,
+            cotizacion_id: result.lead.idLead,
+            origen: form.origin,
+            destino: form.destiny,
+            tabla_bultos: tablaBultosHTML,
+            precio_base: noTaxPrice,
+            seguro: seguroValue,
+            iva: ivaValue,
+            precio_final: finalValue,
+            nueva_cotizacion_url: 'https://expresomalargue.com.ar/cotiza',
+            generar_retiro_url: `https://expresomalargue.com.ar/genera?nroCotizacion=${result.lead.idLead}&email=${form.email}`,
+          },
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        )
+      } catch (emailError) {
+        console.error('Error enviando email:', emailError)
+      }
+
       if (isMounted.current) {
-        // Check if component is still mounted before setting state
         setCotizacion(result)
       }
     } catch (error) {
       console.error('Error submitting form:', error)
+      alert('Error al cotizar. Por favor, intentá nuevamente.')
     } finally {
       if (isMounted.current) {
-        // Check if component is still mounted before setting state
         setIsSubmitting(false)
       }
     }
   }
 
-  return cotizacion ? (
-    <CotizacionExitosa
-      newQuoteHandler={() => {
-        resetForm()
-        setBultos([])
-        setCotizacion('')
-      }}
-      finalData={finalData}
-      cotizacion={cotizacion}
-      bultos={bultos}
-    />
-  ) : (
+  if (errorTarifa) {
+    return (
+      <ErrorTarifaCotizacion
+        email={errorTarifa.email}
+        cotizacionId={errorTarifa.cotizacionId}
+        mensajeCristal={errorTarifa.mensajeCristal}
+      />
+    )
+  }
+
+  if (cotizacion) {
+    return (
+      <CotizacionExitosa
+        newQuoteHandler={() => {
+          resetForm()
+          setBultos([])
+          setCotizacion('')
+        }}
+        finalData={finalData}
+        cotizacion={cotizacion}
+        bultos={bultos}
+      />
+    )
+  }
+
+  return (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'>
       <Warning
         boldText='¡ATENCIÓN!'
