@@ -43,6 +43,7 @@ export const formatCotizacionData = (form, bultos) => {
     destinyCP: Number(form.destinyCP),
     idDestiny: form?.idDestiny,
     idOrigin: form?.idOrigin,
+    sucursal: form?.sucursal,
     kilosReales: Number(totalMetrics.kilosReales),
     metrosCubicos: Number(totalMetrics.metrosCubicos),
     bultos: Number(totalMetrics.bultos),
