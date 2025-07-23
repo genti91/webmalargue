@@ -75,7 +75,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         try {
             setLoading(true)
             let oportunidad = await getOportunidad(form.numero_cotizacion)
-            console.log('oportunidad', oportunidad)
             if (!oportunidad.data || oportunidad.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -91,7 +90,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 return
             }
             let prospecto = await getProspecto(oportunidad.data[0].idProspecto, form.email)
-            console.log('prospecto', prospecto)
             if (!prospecto.data || prospecto.data.length === 0) {
                 setError({
                     type: 'ENLACE MANIPULADO',
@@ -107,7 +105,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             //     })
             //     return
             // }
-            storeCotizacion(oportunidad.data[0])
+            await storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
             setError({
