@@ -28,7 +28,7 @@ export default function CotizacionExitosa({
     }
   }, [])
 
-  const { noTaxPrice, seguroValue, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.valorizo })
+  const { noTaxPrice, seguroValue, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.cotizacion.valorizo })
 
   return (
     <div
@@ -42,7 +42,7 @@ export default function CotizacionExitosa({
           Tu cotización se generó con éxito
         </h2>
         <span className='tw-text-[#02542D] tw-text-[28px] tw-text-center tw-mb-[46px] '>
-          Número de cotización: <span className='tw-bg-[#02542D] tw-rounded-lg tw-text-white tw-px-2'>{cotizacion?.idLead}</span>
+          Número de cotización: <span className='tw-bg-[#02542D] tw-rounded-lg tw-text-white tw-px-2'>{cotizacion?.lead.idLead}</span>
         </span>
       </div>
 
@@ -93,7 +93,7 @@ export default function CotizacionExitosa({
           Nueva cotización
         </button>
         <NavLink
-          to={`/genera?email=${finalData.email}&numero_cotizacion=${cotizacion.idLead}`}
+          to={`/genera?email=${finalData.email}&numero_cotizacion=${cotizacion.lead.idLead}`}
           className='lg:tw-self-end tw-bg-[#198754] tw-w-full lg:tw-w-fit self-center tw-text-center tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md tw-no-underline'
         >
           Generar retiro
