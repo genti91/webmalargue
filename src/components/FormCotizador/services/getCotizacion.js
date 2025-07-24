@@ -49,53 +49,56 @@ export const putProspecto = async (props) => {
 }
 
 export const putLead = async (props, prospecto, cotizacion) => {
-  let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
-  return await window
-    // /CRM/PUT generar oprotunidad
-    .fetch(`${REACT_APP_MP_API_HOST}/api/codilsa/lead`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        idProspecto: prospecto?.idProspecto,
-        descripcion: 'Cotización con vendedor Cotizador WEB',
-        idVendedor: 123,
-        importeCotizado: cotizacion?.valorizo,
-        importeOriginal: cotizacion?.valorizo,
-        markUp: 0,
-        origen: 1,
-        observaciones: JSON.stringify({
-          emailNotificacion: props.email,
-          fechaEmision: new Date().toISOString(),
-          localidadOrigen: props.origin,
-          cpOrigen: props.originCP,
-          idCpOrigen: props.idOrigin,
-          provinciaOrigen: props.provOrigin,
-          localidadDestino: props.destiny,
-          cpDestino: props.destinyCP,
-          idCpDestino: props.idDestiny,
-          provinciaDestino: props.provDestiny,
-          sucursalCanalizadora: 2,
-          arrayBultos: props.arrayBultos,
-          tarifa: props.tarifa,
-          kilosReales: props.kilosReales,
-          metrosCubicos: props.metrosCubicos,
-          bultosTotal: props.bultos,
-          valorDeclarado: props.valorDeclarado,
-          descripcionBultos: props.message,
-          precioSinIVA: precio.noTaxPrice,
-          precioSeguro: precio.seguroValue,
-          IVA: precio.ivaValue,
-          precioFinal: precio.finalValue,
-        }),
-      }),
-    })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error('Error al obtener el lead:', error)
-      throw error
-    })
+    let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
+    return await window
+        // /CRM/PUT generar oprotunidad
+        .fetch(
+            `${REACT_APP_MP_API_HOST}/api/codilsa/lead`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idProspecto: prospecto?.idProspecto,
+                    descripcion: "Cotización con vendedor Cotizador WEB",
+                    idVendedor: 123,
+                    importeCotizado: cotizacion?.valorizo,
+                    importeOriginal: cotizacion?.valorizo,
+                    markUp: 0,
+                    origen: 1,
+                    observaciones: JSON.stringify({
+                        emailNotificacion: props.email,
+                        fechaEmision: new Date().toISOString(),
+                        localidadOrigen: props.origin,
+                        cpOrigen: props.originCP,
+                        idCpOrigen: props.idOrigin,
+                        provinciaOrigen: props.provOrigin,
+                        localidadDestino: props.destiny,
+                        cpDestino: props.destinyCP,
+                        idCpDestino: props.idDestiny,
+                        provinciaDestino: props.provDestiny,
+                        sucursalCanalizadora: props.sucursal,
+                        arrayBultos: props.arrayBultos,
+                        tarifa: props.tarifa,
+                        kilosReales: props.kilosReales,
+                        metrosCubicos: props.metrosCubicos,
+                        bultosTotal: props.bultos,
+                        valorDeclarado: props.valorDeclarado,
+                        descripcionBultos: props.message,
+                        precioSinIVA: precio.noTaxPrice,
+                        precioSeguro: precio.seguroValue,
+                        IVA: precio.ivaValue,
+                        precioFinal: precio.finalValue,
+                    })
+                }),
+            }
+        )
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error('Error al obtener el lead:', error)
+            throw error
+        })
 }
 
 export const getCotizacion = async (props) => {
