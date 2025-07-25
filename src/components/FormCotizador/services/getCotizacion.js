@@ -1,11 +1,11 @@
 import { calculatePriceDetail } from '../../CotizacionYRetiro/calculatePriceDetail'
 
-const { REACT_APP_API_HOST, REACT_APP_API_TOKEN, REACT_APP_MP_API_HOST } =
+const { REACT_APP_API_HOST_COTI, REACT_APP_API_TOKEN_COTI, REACT_APP_MP_API_HOST } =
   process.env
 
 export const postCotizacion = async (props) => {
   return await window
-    .fetch(`${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=cotizacion`, {
+    .fetch(`${REACT_APP_API_HOST_COTI}/?token=${REACT_APP_API_TOKEN_COTI}&o=cotizacion`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify({
