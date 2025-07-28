@@ -60,11 +60,11 @@ export default function CotizacionExitosa({
         </span>
         <span>
           <strong>Origen: </strong>
-          {finalData?.origin}
+          {finalData?.localidadOrigen}
         </span>
         <span>
           <strong>Destino: </strong>
-          {finalData?.destiny}
+          {finalData?.localidadDestino}
         </span>
       </div>
       <LineFormDivisor />
@@ -93,7 +93,7 @@ export default function CotizacionExitosa({
           Nueva cotización
         </button>
         <NavLink
-          to={`/genera?email=${finalData.email}&numero_cotizacion=${cotizacion.lead.idLead}`}
+          to={`/genera?email=${finalData.emailNotificacion}&numero_cotizacion=${cotizacion.lead.idLead}`}
           className='lg:tw-self-end tw-bg-[#198754] tw-w-full lg:tw-w-fit self-center tw-text-center tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md tw-no-underline'
         >
           Generar retiro
