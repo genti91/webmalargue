@@ -80,8 +80,17 @@ export const ErrorCotizacionCambio = ({setError, error}) => {
                     <Button
                         className='sm:tw-w-[181px] tw-w-full tw-h-12 p-0'
                         onClick={() => {
-                            setError({});
-                            storeCotizacion(error.cotizacion, error.observaciones, error.lead);
+                            let locOrigen = error.cotizacion.observaciones.localidadOrigen;
+                            if (locOrigen.toLowerCase().includes('sucursal') || locOrigen.toLowerCase().includes('deposito')) {
+                                setError({
+                                    type: 'DEPOSITO',
+                                    payload: {obs: error.observaciones, leadId: error.lead.idLead},
+                                })
+                                return
+                            } else {
+                                setError({});
+                                storeCotizacion(error.cotizacion, error.observaciones, error.lead);
+                            }
                         }}
                     >
                         Confirmar precio

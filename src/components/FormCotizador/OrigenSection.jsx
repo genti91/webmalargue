@@ -27,7 +27,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       value: option.provincia,
       label: option.provincia
     });
-    onValidate('originCP', option.codigoPostal);
+    onValidate('originCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('origin', option.nombre);
     onValidate('idOrigin', option.id);
     onValidate('sucursal', option.sucursal[0]?.idSucursal);

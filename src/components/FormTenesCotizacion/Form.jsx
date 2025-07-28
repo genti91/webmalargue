@@ -35,6 +35,11 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         return false
     }
 
+    let validarDeposito = async (observaciones) => {
+        observaciones = await JSON.parse(observaciones)
+        return observaciones.localidadOrigen.toLowerCase().includes('sucursal') || observaciones.localidadOrigen.toLowerCase().includes('deposito')
+    }
+
     let storeCotizacion = async (cotizacion) => {
         let datosCot = JSON.parse(cotizacion.observaciones)
         let cleanCotizacion = {
@@ -106,6 +111,15 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 setError({
                     type: 'IMPORTE INVALIDO',
                     payload: nuevaCotizacion,
+                })
+                return
+            }
+            let esDeposito = await validarDeposito(oportunidad.data[0].observaciones)
+            if (esDeposito) {
+                let obs = await JSON.parse(oportunidad.data[0].observaciones)
+                setError({
+                    type: 'DEPOSITO',
+                    payload: {obs, leadId: form.numero_cotizacion},
                 })
                 return
             }
