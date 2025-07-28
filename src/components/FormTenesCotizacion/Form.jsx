@@ -22,17 +22,12 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const { setCotizacion } = useGenera();
 
     let validarValorCotizacion = async (cotizacion) => {
-        console.log('cotizacion', cotizacion)
         let datosCot = JSON.parse(cotizacion.observaciones)
         let newCotizacion = await postCotizacion(datosCot)
-        console.log('newCotizacion', newCotizacion)
-        console.log('old datosCot', datosCot)
         if (newCotizacion && newCotizacion.valorizo) {
             if (newCotizacion.valorizo != cotizacion.importeCotizado) {
                 let newProspecto = await putProspecto(datosCot)
                 let newLead = await putLead(datosCot, newProspecto, newCotizacion)
-                console.log('newProspecto', newProspecto)
-                console.log('newLead', newLead)
                 sendCotizacionEmail(newLead.observaciones, newLead.res)
                 return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
             }
