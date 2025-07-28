@@ -1,8 +1,52 @@
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { Warning } from './Warning'
+import { useGenera } from '../../context/GeneraContext';
 
-export const ErrorCotizacionCambio = ({setError}) => {
+export const ErrorCotizacionCambio = ({setError, error}) => {
+    const { setCotizacion } = useGenera();
+    const formatPrice = (price) => {
+        return price.toLocaleString('es-AR', {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+        });
+    }
+    let storeCotizacion = async (cotizacion, observaciones, lead) => {
+        let cleanCotizacion = {
+            ...observaciones,
+            id: lead.idLead,
+            precioFinal: cotizacion.valorizo.toLocaleString('de-DE', {
+                maximumFractionDigits: 2
+            }),
+            remitente: {
+                provincia: observaciones.provinciaOrigen,
+                localidad: observaciones.localidadOrigen,
+                cp: observaciones.cpOrigen,
+            },
+            destinatario: {
+                provincia: observaciones.provinciaDestino,
+                localidad: observaciones.localidadDestino,
+                cp: observaciones.cpDestino,
+            },
+            bultos: {
+                valorDeclarado: observaciones.valorDeclarado,
+                descripcion: observaciones.descripcionBultos,
+                bultos: observaciones.arrayBultos
+            }
+        }
+
+        let oldCotizacionID = localStorage.getItem('cotizacion_id')
+        if (oldCotizacionID) {
+            oldCotizacionID = await JSON.parse(oldCotizacionID)
+            if (oldCotizacionID !== cleanCotizacion.id) {
+                localStorage.removeItem('cotizacion_forms');
+            }
+        }
+
+
+        localStorage.setItem('cotizacion', JSON.stringify(cleanCotizacion))
+        localStorage.setItem('cotizacion_id', cleanCotizacion.id)
+        setCotizacion(cleanCotizacion)
+    }
     return (
         <>
             <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior." />
@@ -13,13 +57,13 @@ export const ErrorCotizacionCambio = ({setError}) => {
                 <div className='tw-w-full tw-h-[1px] tw-bg-[#CAC4D0] tw-mt-5 tw-mb-5' />
                 <div className='tw-flex-col md:tw-flex-row tw-flex tw-items-center tw-justify-center tw-gap-6 tw-text-center'>
                     <div className='tw-text-[21px] tw-text-[#6C757D] tw-font-[700]'>
-                        <span className='tw-hidden md:tw-block'>Cotización N° 5446<br /></span>
-                        Precio anterior: <span className='tw-font-[400]'>ARS 2.000</span>
+                        <span className='tw-hidden md:tw-block'>Cotización N° {error.oldCotizacion.idLead}<br /></span>
+                        Precio anterior: <span className='tw-font-[400]'>ARS {formatPrice(error.oldCotizacion.importeCotizado)}</span>
                     </div>
                     <img src={`assets/arrow-right.png`} alt="icon" className="tw-rotate-90 md:tw-rotate-0 tw-transition-transform" />
                     <div className='tw-text-[21px] tw-text-[#2F3394] tw-font-[700]'>
-                        <span className='tw-hidden md:tw-block'>Nueva cotización N° 5501  <br /></span>
-                        Precio actualizado: <span className='tw-font-[400]'>ARS 3.000</span>
+                        <span className='tw-hidden md:tw-block'>Nueva cotización N° {error.lead.idLead}  <br /></span>
+                        Precio actualizado: <span className='tw-font-[400]'>ARS {formatPrice(error.cotizacion.valorizo)}</span>
                     </div>
                 </div>
                 <div className='lg:tw-ml-auto tw-w-full tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-10 tw-mt-10 md:tw-justify-end tw-justify-center'>
@@ -33,13 +77,15 @@ export const ErrorCotizacionCambio = ({setError}) => {
                     >
                         Volver
                     </Button>
-                    <Link to='/cotiza'>
-                        <Button
-                            className='sm:tw-w-[181px] tw-w-full tw-h-12 p-0'
-                        >
-                            Confirmar precio
-                        </Button>
-                    </Link>
+                    <Button
+                        className='sm:tw-w-[181px] tw-w-full tw-h-12 p-0'
+                        onClick={() => {
+                            setError({});
+                            storeCotizacion(error.cotizacion, error.observaciones, error.lead);
+                        }}
+                    >
+                        Confirmar precio
+                    </Button>
                 </div>
             </div>
         </>

@@ -1,20 +1,20 @@
 import { calculatePriceDetail } from '../../CotizacionYRetiro/calculatePriceDetail'
 
-const { REACT_APP_API_HOST, REACT_APP_API_TOKEN, REACT_APP_MP_API_HOST } =
+const { REACT_APP_API_HOST_COTI, REACT_APP_API_TOKEN_COTI, REACT_APP_MP_API_HOST } =
   process.env
 
 export const postCotizacion = async (props) => {
   return await window
-    .fetch(`${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=cotizacion`, {
+    .fetch(`${REACT_APP_API_HOST_COTI}/?token=${REACT_APP_API_TOKEN_COTI}&o=cotizacion`, {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify({
         tarifa: props.tarifa,
-        cpOrigen: props.originCP,
-        cpDestino: props.destinyCP,
+        cpOrigen: props.cpOrigen,
+        cpDestino: props.cpDestino,
         kilosReales: props.kilosReales,
         metrosCubicos: props.metrosCubicos,
-        bultos: props.bultos,
+        bultos: props.arrayBultos,
         valorDeclarado: props.valorDeclarado,
       }),
     })
@@ -35,10 +35,10 @@ export const putProspecto = async (props) => {
       },
       body: JSON.stringify({
         razonSocial: 'Cotización con vendedor Cotizador WEB',
-        localidad: props.origin,
-        codigoPostal: props.originCP,
-        email: props.email,
-        provincia: props.provOrigin,
+        localidad: props.localidadOrigen,
+        codigoPostal: props.cpOrigen,
+        email: props.emailNotificacion,
+        provincia: props.provinciaOrigen,
       }),
     })
     .then((response) => response.json())
@@ -50,6 +50,30 @@ export const putProspecto = async (props) => {
 
 export const putLead = async (props, prospecto, cotizacion) => {
     let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
+    let observaciones = {
+        emailNotificacion: props.emailNotificacion,
+        fechaEmision: new Date().toISOString(),
+        localidadOrigen: props.localidadOrigen,
+        cpOrigen: props.cpOrigen,
+        idCpOrigen: props.idCpOrigen,
+        provinciaOrigen: props.provinciaOrigen,
+        localidadDestino: props.localidadDestino,
+        cpDestino: props.cpDestino,
+        idCpDestino: props.idCpDestino,
+        provinciaDestino: props.provinciaDestino,
+        sucursalCanalizadora: props.sucursalCanalizadora,
+        arrayBultos: props.arrayBultos,
+        tarifa: props.tarifa,
+        kilosReales: props.kilosReales,
+        metrosCubicos: props.metrosCubicos,
+        bultosTotal: props.bultosTotal,
+        valorDeclarado: props.valorDeclarado,
+        descripcionBultos: props.descripcionBultos,
+        precioSinIVA: precio.noTaxPrice,
+        precioSeguro: precio.seguroValue,
+        IVA: precio.ivaValue,
+        precioFinal: precio.finalValue,
+    }
     return await window
         // /CRM/PUT generar oprotunidad
         .fetch(
@@ -67,34 +91,13 @@ export const putLead = async (props, prospecto, cotizacion) => {
                     importeOriginal: cotizacion?.valorizo,
                     markUp: 0,
                     origen: 1,
-                    observaciones: JSON.stringify({
-                        emailNotificacion: props.email,
-                        fechaEmision: new Date().toISOString(),
-                        localidadOrigen: props.origin,
-                        cpOrigen: props.originCP,
-                        idCpOrigen: props.idOrigin,
-                        provinciaOrigen: props.provOrigin,
-                        localidadDestino: props.destiny,
-                        cpDestino: props.destinyCP,
-                        idCpDestino: props.idDestiny,
-                        provinciaDestino: props.provDestiny,
-                        sucursalCanalizadora: props.sucursal,
-                        arrayBultos: props.arrayBultos,
-                        tarifa: props.tarifa,
-                        kilosReales: props.kilosReales,
-                        metrosCubicos: props.metrosCubicos,
-                        bultosTotal: props.bultos,
-                        valorDeclarado: props.valorDeclarado,
-                        descripcionBultos: props.message,
-                        precioSinIVA: precio.noTaxPrice,
-                        precioSeguro: precio.seguroValue,
-                        IVA: precio.ivaValue,
-                        precioFinal: precio.finalValue,
-                    })
+                    observaciones: JSON.stringify(observaciones),
                 }),
             }
         )
-        .then((response) => response.json())
+        .then(async (response) => {
+          return { res: await response.json(), observaciones }
+        })
         .catch((error) => {
             console.error('Error al obtener el lead:', error)
             throw error
@@ -105,5 +108,5 @@ export const getCotizacion = async (props) => {
   var cotizacion = await postCotizacion(props)
   const prospecto = await putProspecto(props)
   const lead = await putLead(props, prospecto, cotizacion)
-  return { cotizacion, lead }
+  return { cotizacion, lead: lead.res }
 }

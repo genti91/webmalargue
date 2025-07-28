@@ -177,8 +177,8 @@ export default function FormCotizacion() {
             seguro: seguroValue,
             iva: ivaValue,
             precio_final: finalValue,
-            nueva_cotizacion_url: 'https://expresomalargue.com.ar/cotiza',
-            generar_retiro_url: `https://expresomalargue.com.ar/genera?nroCotizacion=${result.lead.idLead}&email=${form.email}`,
+            nueva_cotizacion_url: 'https://webmalargue.vercel.app/cotiza',
+            generar_retiro_url: `https://webmalargue.vercel.app/genera?nroCotizacion=${result.lead.idLead}&email=${form.email}`,
           },
           process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         )

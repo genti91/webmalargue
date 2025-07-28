@@ -14,6 +14,7 @@ export default function TitleSelectInput({
   setShowLocations,
   name,
   disabled = false,
+  disabledOptions = [],
 }) {
   useEffect(() => {
     if (showLocations?.[name]) {
@@ -74,11 +75,13 @@ export default function TitleSelectInput({
         <option value='' hidden>
           {placeholder}
         </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
+        {options.map((option) => {
+          let isDisabled = disabledOptions.includes(option.value)
+          return (
+          <option key={option.value} value={option.value} disabled={isDisabled} className={`${isDisabled ? 'tw-bg-[#C8C8C8] tw-text-white' : ''}`}>
             {option.label}
           </option>
-        ))}
+        )})}
       </select>
 
       {error && <span className='tw-text-[#EB1C23] tw-text-xs'>{error}</span>}

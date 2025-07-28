@@ -621,6 +621,10 @@ video {
   margin-top: 2.5rem;
 }
 
+.tw-mt-11 {
+  margin-top: 2.75rem;
+}
+
 .tw-mt-12 {
   margin-top: 3rem;
 }
@@ -655,10 +659,6 @@ video {
 
 .tw-mt-\[12px\] {
   margin-top: 12px;
-}
-
-.tw-mt-11 {
-  margin-top: 2.75rem;
 }
 
 .tw-flex {
@@ -1039,6 +1039,11 @@ video {
 .tw-bg-\[\#6C757D\] {
   --tw-bg-opacity: 1;
   background-color: rgb(108 117 125 / var(--tw-bg-opacity, 1));
+}
+
+.tw-bg-\[\#C8C8C8\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(200 200 200 / var(--tw-bg-opacity, 1));
 }
 
 .tw-bg-\[\#CAC4D0\] {

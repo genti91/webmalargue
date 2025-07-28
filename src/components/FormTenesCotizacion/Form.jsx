@@ -9,7 +9,8 @@ import TitleTextInput from '../TextInputs/TitleTextInput'
 
 import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
-import { postCotizacion } from '../FormCotizador/services/getCotizacion';
+import { postCotizacion, putLead, putProspecto } from '../FormCotizador/services/getCotizacion';
+import { sendCotizacionEmail } from './services/sendCotizacionEmail';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -22,10 +23,13 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
 
     let validarValorCotizacion = async (cotizacion) => {
         let datosCot = JSON.parse(cotizacion.observaciones)
-        let newCotizacion = postCotizacion(datosCot)
+        let newCotizacion = await postCotizacion(datosCot)
         if (newCotizacion && newCotizacion.valorizo) {
             if (newCotizacion.valorizo != cotizacion.importeCotizado) {
-                //hacer  put prospecto y put lead
+                let newProspecto = await putProspecto(datosCot)
+                let newLead = await putLead(datosCot, newProspecto, newCotizacion)
+                sendCotizacionEmail(newLead.observaciones, newLead.res)
+                return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
             }
         }
         return false
@@ -97,14 +101,14 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 })
                 return
             }
-            // let nuevaCotizacion = await validarValorCotizacion(prospecto.data[0])
-            // if (nuevaCotizacion) {
-            //     setError({
-            //         type: 'IMPORTE INVALIDO',
-            //         payload: nuevaCotizacion,
-            //     })
-            //     return
-            // }
+            let nuevaCotizacion = await validarValorCotizacion(oportunidad.data[0])
+            if (nuevaCotizacion) {
+                setError({
+                    type: 'IMPORTE INVALIDO',
+                    payload: nuevaCotizacion,
+                })
+                return
+            }
             await storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
