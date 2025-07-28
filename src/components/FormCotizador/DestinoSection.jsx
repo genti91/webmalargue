@@ -27,7 +27,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       value: option.provincia,
       label: option.provincia
     });
-    onValidate('destinyCP', option.codigoPostal);
+    onValidate('destinyCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('destiny', option.nombre);
     onValidate('idDestiny', option.id);
   };

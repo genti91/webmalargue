@@ -7,6 +7,7 @@ import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import { SuccessCheckIcon } from './utils/icons'
 import { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+import { sendEmailCotiSucursal } from './services/sendEmailCotiSucursal'
 
 export default function CotizacionExitosa({
   finalData,
@@ -29,6 +30,12 @@ export default function CotizacionExitosa({
   }, [])
 
   const { noTaxPrice, seguroValue, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.cotizacion.valorizo })
+
+  const sendEmail = () => {
+    sendEmailCotiSucursal({...finalData, IVA:ivaValue, precioSeguro:seguroValue, precioSinIVA:noTaxPrice, precioFinal:finalValue}, cotizacion.lead.idLead)
+  }
+
+  const origenEnSucursal = finalData.localidadOrigen.toLowerCase().includes('sucursal') || finalData.localidadOrigen.toLowerCase().includes('deposito')
 
   return (
     <div
@@ -88,17 +95,35 @@ export default function CotizacionExitosa({
       <div className='tw-flex tw-w-full tw-flex-col lg:tw-flex-row lg:tw-justify-end lg:tw-items-center tw-gap-4 lg:tw-gap-11 tw-mt-12'>
         <button
           onClick={newQuoteHandler}
-          className='tw-self-end tw-bg-[#2F3394] tw-w-full lg:tw-w-fit tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md'
+          className={`tw-self-end tw-bg-${origenEnSucursal ? '[#6C757D]' : '[#2F3394]'} tw-w-full lg:tw-w-fit tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md`}
         >
           Nueva cotización
         </button>
+        { !origenEnSucursal &&
         <NavLink
           to={`/genera?email=${finalData.emailNotificacion}&numero_cotizacion=${cotizacion.lead.idLead}`}
           className='lg:tw-self-end tw-bg-[#198754] tw-w-full lg:tw-w-fit self-center tw-text-center tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md tw-no-underline'
         >
           Generar retiro
-        </NavLink>
+        </NavLink>}
       </div>
+      { origenEnSucursal &&
+      <div className='tw-flex tw-flex-col tw-mt-[57px] tw-p-4 tw-border tw-rounded tw-border-[#0000002D]'>
+        <div className='tw-flex tw-gap-4 tw-items-center'>
+          <img src={`/assets/warning-azul.png`} alt="icon" className="tw-mb-[6px] tw-h-5 tw-w-5" />
+          <h4 className='tw-text-[20px] tw-text-[#2F3394] tw-font-[600]'>No es posible generar el retiro</h4>
+        </div>
+        <p>La cotización generada tiene origen en una sucursal o depósito. En estos casos, no se coordina el retiro, debés llevar el bulto personalmente. Si tenés dudas, escribinos y te ayudamos.</p>
+        <a className='lg:tw-self-end' href='https://wa.me/5491163622778' target='_blank' rel='noreferrer'>
+          <button
+            className='tw-bg-[#2F3394] tw-w-full lg:tw-w-fit tw-font-semibold tw-text-white tw-py-4 tw-px-5 tw-rounded-md'
+            onClick={sendEmail}
+          >
+            Contactanos
+          </button>
+        </a>
+      </div>
+      }
     </div>
   )
 }

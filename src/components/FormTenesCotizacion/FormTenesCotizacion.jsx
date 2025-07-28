@@ -11,11 +11,13 @@ import ErrorModalValidarCot from '../Errores/ErrorModalValidarCot'
 import { ErrorAPI } from '../Errores/ErrorAPI'
 import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
 import { ErrorCotizacionCambio } from '../Errores/ErrorCotizacionCambio';
+import ErrorModalCotizacionEnSucursal from '../Errores/ErrorModalCotizacionEnSucursal.jsx';
 
 export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
     const [error, setError] = useState({});
     const [show, setShow] = useState(false);
+    const [showModalDeposito, setShowModalDeposito] = useState(false);
     const handleChange = (value) => {
         setSavedCotizacion(value);
     };
@@ -30,13 +32,16 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
         if (error.type === 'API CRISTAL' && flujo !== 'email' && flujo) {
             setShow(true);
         }
+        if (error.type === 'DEPOSITO') {
+            setShowModalDeposito(true);
+        }
     }, [error]);
 
     if (error.type) {
         if (error.type === 'IMPORTE INVALIDO') {
             return <ErrorCotizacionCambio setError={setError} error={error.payload} />
         }
-        if (!flujo) {
+        if (!flujo && error.type != 'DEPOSITO') {
             return (
                 <ErrorCotizacionEmail setError={setError} />
             )
@@ -58,6 +63,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
     return (
         <>
             <ErrorModalValidarCot show={show} setShow={setShow} emailForm={{ email: form.email, id: form.numero_cotizacion, error: error.payload }} />
+            <ErrorModalCotizacionEnSucursal show={showModalDeposito} setShow={setShowModalDeposito} payload={error.payload} />
             <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior." />
             <div id='tenes-cotizacion' className='tw-flex tw-gap-6 tw-flex-col'>
                 <h2 className='tw-text-[#2F3394] tw-font-[600] tw-text-[24px] tw-m-0' >¿Ya tenes una cotización?</h2>
