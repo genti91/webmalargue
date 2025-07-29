@@ -3,7 +3,6 @@ import './FormTenesCotizacion.scss';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Form } from './Form'
-import { useForm } from '../../hooks'
 import { Warning } from '../Errores/Warning'
 import { ErrorCotizacionEmail } from '../Errores/ErrorCotizacionEmail'
 import { ErrorNoVigente } from '../Errores/ErrorNoVigente'
@@ -13,20 +12,13 @@ import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
 import { ErrorCotizacionCambio } from '../Errores/ErrorCotizacionCambio';
 import ErrorModalCotizacionEnSucursal from '../Errores/ErrorModalCotizacionEnSucursal.jsx';
 
-export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo }) => {
-    const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
+export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setInForm, savedCotizacion, setSavedCotizacion }) => {
     const [error, setError] = useState({});
     const [show, setShow] = useState(false);
     const [showModalDeposito, setShowModalDeposito] = useState(false);
     const handleChange = (value) => {
         setSavedCotizacion(value);
     };
-    
-
-    const { form, setInForm } = useForm({
-        numero_cotizacion: numeroCotizacion || '',
-        email: email || '',
-    })
 
     useEffect(() => {
         if (error.type === 'API CRISTAL' && flujo !== 'email' && flujo) {

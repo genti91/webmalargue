@@ -1,14 +1,11 @@
-import React from 'react';
-
-
-
+import { FormProvider } from './context/FormContext';
 import { AppRouter } from './routers/AppRouter';
 
 const App = () => {
   return (
-
-        <AppRouter />
-
+    <FormProvider>
+      <AppRouter />
+    </FormProvider>
   );
 };
 

@@ -11,6 +11,7 @@ import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
 import { postCotizacion, putLead, putProspecto } from '../FormCotizador/services/getCotizacion';
 import { sendCotizacionEmail } from './services/sendCotizacionEmail';
+import { useFormProtection } from '../../context/FormContext';
 
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
@@ -20,6 +21,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const [errors, setErrors] = useState({});
     const { setLoading } = useLoading();
     const { setCotizacion } = useGenera();
+    const { setFormActive } = useFormProtection();
 
     let validarValorCotizacion = async (cotizacion) => {
         let datosCot = JSON.parse(cotizacion.observaciones)
@@ -64,18 +66,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 bultos: datosCot.arrayBultos
             }
         }
-
-        let oldCotizacionID = localStorage.getItem('cotizacion_id')
-        if (oldCotizacionID) {
-            oldCotizacionID = await JSON.parse(oldCotizacionID)
-            if (oldCotizacionID !== cleanCotizacion.id) {
-                localStorage.removeItem('cotizacion_forms');
-            }
-        }
-
-
-        localStorage.setItem('cotizacion', JSON.stringify(cleanCotizacion))
-        localStorage.setItem('cotizacion_id', cleanCotizacion.id)
         setCotizacion(cleanCotizacion)
     }
 
@@ -123,6 +113,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 })
                 return
             }
+            setFormActive('solicitud de retiro');
             await storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)

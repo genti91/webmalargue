@@ -14,8 +14,7 @@ const GeneraConfirmacionExito = () => {
     const { setLoading } = useLoading();
     const [searchParams] = useSearchParams()
     const paymentId = searchParams.get('payment_id');
-    const cotizacion = JSON.parse(localStorage.getItem('cotizacion')) || {};
-    const { remitente, destinatario } = JSON.parse(localStorage.getItem('cotizacion_forms')) || {};
+    const { cotizacion, remitente, destinatario } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
     const [numRetiro, setNumRetiro] = useState();
     const [codigoSeguimiento, setCodigoSeguimiento] = useState();
     const [errorRetiro, setErrorRetiro] = useState(paymentId ? false : true);
@@ -24,6 +23,10 @@ const GeneraConfirmacionExito = () => {
     const cargarRetiro = async () => {
         try {
             setLoading(true);
+            console.log('Cargando retiro con paymentId:', paymentId);
+            console.log('Datos de cotización:', cotizacion);
+            console.log('Datos de remitente:', remitente);
+            console.log('Datos de destinatario:', destinatario);
             const res = await postNuevoRetiro(cotizacion, paymentId, remitente, destinatario);
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
