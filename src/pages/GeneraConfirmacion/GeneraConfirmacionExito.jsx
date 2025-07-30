@@ -181,10 +181,14 @@ const formatearDireccion = (datos, localidad, provincia, cp) => {
 }
 
 const formatearNumeroRetiro = (numeroRetiro) => {
-    if (!numeroRetiro || numeroRetiro.length < 4) return numeroRetiro;
+    if (!numeroRetiro) return numeroRetiro;
     
-    const primeraParte = numeroRetiro.substring(0, 4);
-    const segundaParte = numeroRetiro.substring(4);
+    const numeroStr = String(numeroRetiro);
+    
+    if (numeroStr.length < 4) return numeroStr;
+    
+    const primeraParte = numeroStr.substring(0, 4);
+    const segundaParte = numeroStr.substring(4);
     
     return `${primeraParte}-${segundaParte}`;
 };
