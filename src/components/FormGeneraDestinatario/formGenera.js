@@ -3,7 +3,7 @@ export const formGeneraRemitente = [
     name: 'nombre',
     required: 'Ingresá un nombre o razón social',
     validate: (value) =>
-      /^[a-zA-Z0-9\s]{2,100}$/.test(value)
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s.,;:¿?¡!\-_()/@"'#+]{2,100}$/.test(value)
         ? null
         : 'Nombre o razón social invalidos.'
   },
@@ -58,7 +58,7 @@ export const formGeneraRemitente = [
     name: 'calle',
     required: 'Ingresá una calle',
     validate: (value) =>
-      /^[a-zA-Z0-9\s.\-/]{1,100}$/.test(value)
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s.,;:¿?¡!\-_()/@"'#+]{1,100}$/.test(value)
         ? null
         : 'Hasta 100 caracteres. Permite letras, números, espacios y símbolos como punto o guión.',
   },
@@ -86,7 +86,7 @@ export const formGeneraRemitente = [
     name: 'observaciones',
     required: false,
     validate: (value) =>
-      !value || /^[a-zA-Z0-9\s]{0,200}$/.test(value)
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s.,;:¿?¡!\-_()/@"'#+]{0,200}$/.test(value)
         ? null
         : 'Máximo 200 caracteres alfanuméricos y espacios',
   },

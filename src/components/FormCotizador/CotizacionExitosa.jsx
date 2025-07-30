@@ -45,7 +45,7 @@ export default function CotizacionExitosa({
       {/* Mensaje de exito + nro de Cotizacion */}
       <div className='tw-flex tw-flex-col tw-items-center tw-justify-center tw-w-full'>
         <SuccessCheckIcon />
-        <h2 className='tw-text-[#02542D] font-bold tw-text-center tw-mt-4 tw-text-[32px]'>
+        <h2 className='tw-text-[#02542D] tw-font-bold tw-text-center tw-mt-4 tw-text-[32px]'>
           Tu cotización se generó con éxito
         </h2>
         <span className='tw-text-[#02542D] tw-text-[28px] tw-text-center tw-mb-[46px] '>

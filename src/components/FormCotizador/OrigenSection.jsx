@@ -40,7 +40,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
         <h2 className='tw-text-2xl tw-font-semibold tw-text-[#2F3394]'>
           Origen
         </h2>
-        <div className='tw-flex tw-flex-col lg:tw-flex-row tw-items-start tw-justify-between tw-gap-9 tw-w-full'>
+        <div className='tw-flex tw-flex-col lg:tw-flex-row tw-items-start tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
           <TitleTextInput
             title='Localidad de origen'
             placeholder='Ej.: Chacarita'

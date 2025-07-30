@@ -11,7 +11,7 @@ const Cotiza = () => {
         lineaSecundaria='' // Si no hay linea enviar ''
         image={cotizaIMG}
       />
-      <div id='main' className='container'>
+      <div id='main' className='container' style={{ paddingRight: '16px', paddingLeft: '16px' }}>
         <div className=' tw-flex tw-flex-wrap tw-py-10 lg:tw-py-20'>          
           <FormCotizacion />
         </div>

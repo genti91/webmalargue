@@ -72,7 +72,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
                         />
                         <label
                             htmlFor='cotizacion-si'
-                            className="tw-text-[#2F3394] tw-text-xl tw-text-[16px]"
+                            className="tw-text-[#2F3394] tw-text-[16px]"
                         >
                             Sí
                         </label>
@@ -88,7 +88,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
                         />
                         <label
                             htmlFor='cotizacion-no'
-                            className="tw-text-[#2F3394] tw-text-xl tw-text-[16px]"
+                            className="tw-text-[#2F3394] tw-text-[16px]"
                         >
                             No
                         </label>
