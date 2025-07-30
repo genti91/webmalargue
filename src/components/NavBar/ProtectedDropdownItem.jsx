@@ -35,7 +35,7 @@ export const ProtectedDropdownItem = ({ to, children, ...props }) => {
   return (
     <>
       <NavDropdown.Item 
-        as="div"
+        as="a"
         onClick={handleClick}
         style={{ cursor: 'pointer' }}
         {...props}

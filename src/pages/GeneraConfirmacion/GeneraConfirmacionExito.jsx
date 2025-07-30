@@ -22,23 +22,25 @@ const GeneraConfirmacionExito = () => {
 
     const cargarRetiro = async () => {
         try {
+            let { idTrazabilidad, numeroRetiro, paymentIdOld } = JSON.parse(localStorage.getItem('envioExitoso'))
+            if (idTrazabilidad && numeroRetiro && paymentIdOld === paymentId) {
+                setNumRetiro(numeroRetiro);
+                setCodigoSeguimiento(idTrazabilidad);
+                return;
+            }
             setLoading(true);
-            console.log('Cargando retiro con paymentId:', paymentId);
-            console.log('Datos de cotización:', cotizacion);
-            console.log('Datos de remitente:', remitente);
-            console.log('Datos de destinatario:', destinatario);
             const res = await postNuevoRetiro(cotizacion, paymentId, remitente, destinatario);
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
             }
-            localStorage.removeItem('cotizacion');
-            localStorage.removeItem('cotizacion_forms');
             emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId), 'fRtOuVBrm3PpHzBca')
-            localStorage.setItem('payment_id', paymentId);
             setNumRetiro(res.numeroRetiro);
-            localStorage.setItem('num_retiro', res.numeroRetiro);
             setCodigoSeguimiento(res.idTrazabilidad);
-            localStorage.setItem('codigo_seguimiento', res.idTrazabilidad);
+            localStorage.setItem('envioExitoso', JSON.stringify({
+                numeroRetiro: res.numeroRetiro,
+                idTrazabilidad: res.idTrazabilidad,
+                paymentIdOld: paymentId
+            }));
         } catch (err) {
             console.error('Error al cargar el retiro:', err);
             setErrorEmailBody({
@@ -56,7 +58,6 @@ const GeneraConfirmacionExito = () => {
     };
 
     useEffect(() => {
-        localStorage.setItem('payment_id', paymentId);
         cargarRetiro();
     }, []);
 
