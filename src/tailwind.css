@@ -1160,6 +1160,10 @@ video {
   padding: 1rem;
 }
 
+.tw-p-\[21px\] {
+  padding: 21px;
+}
+
 .tw-px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
