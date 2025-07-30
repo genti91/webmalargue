@@ -22,7 +22,7 @@ const GeneraConfirmacionExito = () => {
 
     const cargarRetiro = async () => {
         try {
-            let { idTrazabilidad, numeroRetiro, paymentIdOld } = JSON.parse(localStorage.getItem('envioExitoso'))
+            let { idTrazabilidad, numeroRetiro, paymentIdOld } = JSON.parse(localStorage.getItem('envioExitoso')) || {};
             if (idTrazabilidad && numeroRetiro && paymentIdOld === paymentId) {
                 setNumRetiro(numeroRetiro);
                 setCodigoSeguimiento(idTrazabilidad);
