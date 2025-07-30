@@ -605,6 +605,10 @@ video {
   margin-bottom: 46px;
 }
 
+.tw-mb-\[6px\] {
+  margin-bottom: 6px;
+}
+
 .tw-ml-1 {
   margin-left: 0.25rem;
 }
@@ -665,14 +669,6 @@ video {
   margin-top: 57px;
 }
 
-.tw-mr-auto {
-  margin-right: auto;
-}
-
-.tw-mb-\[6px\] {
-  margin-bottom: 6px;
-}
-
 .tw-flex {
   display: flex;
 }
@@ -717,10 +713,6 @@ video {
   height: 72px;
 }
 
-.tw-h-auto {
-  height: auto;
-}
-
 .tw-max-h-60 {
   max-height: 15rem;
 }
@@ -761,6 +753,14 @@ video {
   width: 48px;
 }
 
+.tw-w-\[62px\] {
+  width: 62px;
+}
+
+.tw-w-\[78px\] {
+  width: 78px;
+}
+
 .tw-w-\[98\%\] {
   width: 98%;
 }
@@ -776,10 +776,6 @@ video {
 
 .tw-max-w-\[350px\] {
   max-width: 350px;
-}
-
-.tw-max-w-\[600px\] {
-  max-width: 600px;
 }
 
 .tw-border-collapse {
@@ -823,10 +819,6 @@ video {
 
 .tw-place-content-center {
   place-content: center;
-}
-
-.tw-content-end {
-  align-content: flex-end;
 }
 
 .tw-items-start {
@@ -895,10 +887,6 @@ video {
 
 .tw-gap-\[36px\] {
   gap: 36px;
-}
-
-.tw-gap-\[6px\] {
-  gap: 6px;
 }
 
 .tw-self-end {
@@ -994,6 +982,10 @@ video {
   border-top-width: 1px;
 }
 
+.tw-border-\[\#0000002D\] {
+  border-color: #0000002D;
+}
+
 .tw-border-\[\#222\] {
   --tw-border-opacity: 1;
   border-color: rgb(34 34 34 / var(--tw-border-opacity, 1));
@@ -1047,10 +1039,6 @@ video {
 .tw-border-red-200 {
   --tw-border-opacity: 1;
   border-color: rgb(254 202 202 / var(--tw-border-opacity, 1));
-}
-
-.tw-border-\[\#0000002D\] {
-  border-color: #0000002D;
 }
 
 .tw-bg-\[\#02542D\] {
@@ -1412,14 +1400,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:tw-mb-4 {
-    margin-bottom: 1rem;
-  }
-
-  .sm\:tw-mb-\[6px\] {
-    margin-bottom: 6px;
-  }
-
   .sm\:tw-w-\[158px\] {
     width: 158px;
   }
@@ -1438,22 +1418,6 @@ video {
 
   .sm\:tw-flex-row {
     flex-direction: row;
-  }
-
-  .sm\:tw-items-start {
-    align-items: flex-start;
-  }
-
-  .sm\:tw-items-center {
-    align-items: center;
-  }
-
-  .sm\:tw-items-baseline {
-    align-items: baseline;
-  }
-
-  .sm\:tw-items-stretch {
-    align-items: stretch;
   }
 
   .sm\:tw-gap-9 {
@@ -1521,15 +1485,6 @@ video {
 
   .md\:tw-gap-9 {
     gap: 2.25rem;
-  }
-
-  .md\:tw-self-end {
-    align-self: flex-end;
-  }
-
-  .md\:tw-bg-\[\#2F3394\] {
-    --tw-bg-opacity: 1;
-    background-color: rgb(47 51 148 / var(--tw-bg-opacity, 1));
   }
 }
 

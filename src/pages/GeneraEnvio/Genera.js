@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import GeneraHeader from '../../components/GeneraHeader'
@@ -9,18 +9,16 @@ import { useGenera } from '../../context/GeneraContext'
 import { FormGeneraRemitente } from '../../components/FormGeneraRemitente/FormGeneraRemitente'
 import { FormGeneraDestinatario } from '../../components/FormGeneraDestinatario/FormGeneraDestinatario'
 import { GeneraResumen } from '../../components/GeneraResumen/GeneraResumen'
+import { useForm } from '../../hooks'
 
 const Genera = () => {
   const [searchParams] = useSearchParams()
   const { cotizacion, setCotizacion } = useGenera()
   const email = searchParams.get('email')
   const numeroCotizacion = searchParams.get('numero_cotizacion')
+  const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
   const flujo = searchParams.get('flujo')
-  const [currentStep, setCurrentStep] = React.useState(
-    localStorage.getItem('current_step')
-      ? Number(localStorage.getItem('current_step'))
-      : 0
-  )
+  const [currentStep, setCurrentStep] = React.useState(0)
   const remitenteDefault = {
     nombre: '',
     email: '',
@@ -59,43 +57,10 @@ const Genera = () => {
   const [formDestinatario, setFormDestinatario] =
     React.useState(destinatarioDefault)
 
-  const getCotizacion = () => {
-    const cotizacion = localStorage.getItem('cotizacion')
-    if (cotizacion) {
-      setCotizacion(JSON.parse(cotizacion))
-    }
-  }
-  const getCotizacionForms = async () => {
-    let forms = localStorage.getItem('cotizacion_forms')
-    if (forms) {
-      forms = await JSON.parse(forms)
-      setFormRemitente(forms.remitente)
-      setFormDestinatario(forms.destinatario)
-    }
-  }
-  const updateCotizacionForms = async () => {
-    let forms = {
-      remitente: formRemitente,
-      destinatario: formDestinatario,
-    }
-    localStorage.setItem('cotizacion_forms', JSON.stringify(forms))
-    console.log('seting currentStep', currentStep)
-    localStorage.setItem('current_step', currentStep)
-  }
-  useEffect(() => {
-    getCotizacion()
-    getCotizacionForms()
-  }, [])
-  useEffect(() => {
-    if (cotizacion === null) {
-      setFormDestinatario(destinatarioDefault)
-      setFormRemitente(remitenteDefault)
-    }
-  }, [cotizacion])
-
-  useEffect(() => {
-    updateCotizacionForms()
-  }, [currentStep])
+  const { form, setInForm } = useForm({
+          numero_cotizacion: numeroCotizacion || '',
+          email: email || '',
+      })
 
   const setInRemitenteForm = (field, value) => {
     setFormRemitente((prevState) => ({
@@ -182,6 +147,10 @@ const Genera = () => {
             </>
           ) : (
             <FormTenesCotizacion
+              savedCotizacion={savedCotizacion}
+              setSavedCotizacion={setSavedCotizacion}
+              form={form}
+              setInForm={setInForm}
               flujo={flujo}
               email={email}
               numeroCotizacion={numeroCotizacion}

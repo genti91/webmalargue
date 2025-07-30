@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Container, Navbar, NavbarBrand, NavDropdown, Nav, NavItem } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
 import { Logo } from "../../assets/Logo";
 import { links } from "./links";
 import "./NavBar.scss";
-
+import { ProtectedNavLink } from "./NavLink";
+import { ProtectedBrand } from "./ProtectedBrand";
+import { ProtectedDropdownItem } from "./ProtectedDropdownItem";
 
 
 export const NavBar = () => {
@@ -39,7 +40,7 @@ export const NavBar = () => {
       }
     >
       <Container>
-        <Navbar.Brand href="/"> {<Logo />} </Navbar.Brand>
+        <ProtectedBrand> {<Logo />} </ProtectedBrand>
         <Navbar.Toggle
           onClick={() => setExpanded(expanded ? false : "expanded")}
           aria-controls="basic-navbar-nav" />
@@ -52,84 +53,77 @@ export const NavBar = () => {
             className="align-items-center menuBar01"
           >
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.home.to}
 
               // onClick={() => setExpand(true)}
               >
                 {links.home.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             <NavDropdown
               id="nav-dropdown-dark-example"
               title={links.servicios.name}
               menuVariant="dark"
             >
-              <NavDropdown.Item
-                href={links.servicios.individuos.to}
-              >
+              <ProtectedDropdownItem to={links.servicios.individuos.to}>
                 {links.servicios.individuos.name}
-
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                href={links.servicios.empresas.to}
-              >
+              </ProtectedDropdownItem>
+              <ProtectedDropdownItem to={links.servicios.empresas.to}>
                 {links.servicios.empresas.name}
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                href={links.servicios.eCommerce.to}
-              >
+              </ProtectedDropdownItem>
+              <ProtectedDropdownItem to={links.servicios.eCommerce.to}>
                 {links.servicios.eCommerce.name}
-              </NavDropdown.Item>
+              </ProtectedDropdownItem>
             </NavDropdown>
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.nosotros.to}
               >
                 {links.nosotros.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.tracking.to}
               >
                 {links.tracking.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.faq.to}
               >
                 {links.faq.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.cotiza.to}
               >
                 {links.cotiza.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             {/* <NavItem>
-                <NavLink
+                <ProtectedNavLink
                     to={links.blog.to}
                 >
                     {links.blog.name}
-                </NavLink>
+                </ProtectedNavLink>
               </NavItem>
               <NavItem>
-                <NavLink
+                <ProtectedNavLink
                     to={links.envio.to}
                 >
                     {links.envio.name}
-                </NavLink>
+                </ProtectedNavLink>
               </NavItem> */}
             <NavItem>
-              <NavLink
+              <ProtectedNavLink
                 to={links.contacto.to}
               >
                 {links.contacto.name}
-              </NavLink>
+              </ProtectedNavLink>
             </NavItem>
             <NavItem>
               <a

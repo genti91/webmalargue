@@ -63,7 +63,7 @@ export const FormGeneraRemitente = ({ form, setInForm, datosPrevios, setCurrentS
                                 border: '1px solid #6C757D',
                             }}
                             onClick={() => {
-                                localStorage.removeItem('cotizacion');
+                                // localStorage.removeItem('cotizacion');
                                 setCurrentStep(0);
                                 setCotizacion(null);
                             }}

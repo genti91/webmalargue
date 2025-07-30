@@ -34,6 +34,9 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
         idFiscal = remitente.numero_documento;
     }
     let billetera = await getBilletera();
+    if (billetera.data.length === 0) {
+        throw new Error(`No se encontró la minuta en la billetera: ${billetera?.msg}`);
+    }
     let precioFinal = parseFloat(cotizacion.precioFinal.replace(/\./g, '').replace(',', '.'));
     const options = {
         method: 'POST',

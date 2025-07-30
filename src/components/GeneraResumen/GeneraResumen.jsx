@@ -58,7 +58,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
     ];
     return (
         <div>
-            <ModalConfirmarPago show={show} setShow={setShow} cotizacion={cotizacion.precioFinal} id={cotizacion.id} /> 
+            <ModalConfirmarPago show={show} setShow={setShow} cotizacion={cotizacion} id={cotizacion.id} datosRemitente={datosRemitente} datosDestinatario={datosDestinatario} /> 
             <h2 className='tw-text-[#2F3394] tw-text-[28px] tw-mb-5'>Corroborá que la información sea correcta</h2>
             <Warning boldText="Recordá que el valor es estimativo" text="ya que puede verse modificado al medir/pesar la mercadería en nuestro depósito." />
             <div className='tw-mt-8'>
