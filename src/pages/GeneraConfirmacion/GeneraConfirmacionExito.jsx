@@ -33,7 +33,7 @@ const GeneraConfirmacionExito = () => {
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
             }
-            emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId), 'fRtOuVBrm3PpHzBca')
+            emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro), 'fRtOuVBrm3PpHzBca')
             setNumRetiro(res.numeroRetiro);
             setCodigoSeguimiento(res.idTrazabilidad);
             localStorage.setItem('envioExitoso', JSON.stringify({
@@ -121,13 +121,14 @@ const GeneraConfirmacionExito = () => {
 export default GeneraConfirmacionExito;
 
 
-const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId) => {
+const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro) => {
     let emailNoti = remitente.email
     if (destinatario.notificacion.value != "Remitente") {
         emailNoti = remitente.email + `, ${destinatario.email}`;
     }
     return {
         email: emailNoti,
+        numero_retiro: numeroRetiro,
         cotizacion_id : cotizacion.id,
         codigo_seguimiento: idTrazabilidad,
         nombre_remi: remitente.nombre,
