@@ -26,6 +26,9 @@ export const FormGeneraRemitente = ({ form, setInForm, datosPrevios, setCurrentS
         setInForm(fieldName, value);
         let error = null;
         let tipo_documento;
+        if (fieldName === 'numero_documento') {
+            tipo_documento = form.tipo_documento.value;
+        }
         if (fieldName === 'tipo_documento') {
             tipo_documento = value.value;
             fieldName = 'numero_documento'
