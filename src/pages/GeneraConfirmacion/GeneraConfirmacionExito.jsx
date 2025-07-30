@@ -84,7 +84,7 @@ const GeneraConfirmacionExito = () => {
                         </div>
                         <div className='tw-text-[20px] tw-w-full tw-border-t tw-border-[#CAC4D0] tw-pt-9'>
                             <div>
-                                Número de Retiro: <span className='tw-text-[#2F3394] tw-font-bold'>{numRetiro}</span>
+                                Número de Retiro: <span className='tw-text-[#2F3394] tw-font-bold'>{formatearNumeroRetiro(numRetiro)}</span>
                             </div>
                             <div>
                                 Código de Seguimiento: <span className='tw-text-[#2F3394] tw-font-bold'>{codigoSeguimiento}</span>
@@ -128,7 +128,7 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
     }
     return {
         email: emailNoti,
-        numero_retiro: numeroRetiro,
+        numero_retiro: formatearNumeroRetiro(numeroRetiro),
         cotizacion_id : cotizacion.id,
         codigo_seguimiento: idTrazabilidad,
         nombre_remi: remitente.nombre,
@@ -147,7 +147,7 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
         direccion_dest: formatearDireccion(destinatario, cotizacion.localidadDestino, cotizacion.provinciaDestino, cotizacion.cpDestino),
         valor_declarado: cotizacion.valorDeclarado,
         descripcion_bultos: cotizacion.descripcionBultos,
-        observaciones: destinatario.observaciones,
+        observaciones: destinatario.observaciones ? destinatario.observaciones : '-',
         id_operacion_mp: paymentId,
         factura_a_nombre: destinatario.factura_a_nombre_de.value,
         precio_base: cotizacion.precioSinIVA,
@@ -179,3 +179,12 @@ const formatearDireccion = (datos, localidad, provincia, cp) => {
         cp ? `CP ${cp}` : null
     ].filter(Boolean).join(', ');
 }
+
+const formatearNumeroRetiro = (numeroRetiro) => {
+    if (!numeroRetiro || numeroRetiro.length < 4) return numeroRetiro;
+    
+    const primeraParte = numeroRetiro.substring(0, 4);
+    const segundaParte = numeroRetiro.substring(4);
+    
+    return `${primeraParte}-${segundaParte}`;
+};
