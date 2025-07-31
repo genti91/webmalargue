@@ -67,8 +67,8 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
             valor: cotizacion.valorDeclarado,
             cotizado: precioFinal,
             conTracking: true,
-            remitos: cotizacion.arrayBultos.map(bulto => ({
-                numero: "0000-0000000",
+            remitos: cotizacion.arrayBultos.map((bulto, index) => ({
+                numero: String(index + 1).padStart(11, '0'),
                 letra: "",
                 fecha: new Date().toLocaleDateString('en-CA'),
                 carga: cotizacion.descripcionBultos,

@@ -72,7 +72,7 @@ const putLead = async (props) => {
 
 const postNuevoRetiro = async (props) => {
     return await fetch(
-            `${process.env.API_HOST}/?token=${process.env.API_TOKEN}&o=nuevoRetiro`,
+            `${process.env.API_HOST_RETIRO}/?token=${process.env.API_TOKEN_RETIRO}&o=nuevoRetiro`,
             {
                 method: 'POST',
                 headers: {
