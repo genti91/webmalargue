@@ -186,7 +186,7 @@ export default function FormCotizacion() {
             iva: ivaValue,
             precio_final: finalValue,
             nueva_cotizacion_url: 'https://webmalargue.vercel.app/cotiza',
-            generar_retiro_url: `https://webmalargue.vercel.app/genera?nroCotizacion=${result.lead.idLead}&email=${form.email}`,
+            generar_retiro_url: `https://webmalargue.vercel.app/genera?numero_cotizacion=${result.lead.idLead}&email=${form.email}`,
           },
           process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         )

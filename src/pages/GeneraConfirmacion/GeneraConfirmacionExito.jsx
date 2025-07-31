@@ -60,6 +60,7 @@ const GeneraConfirmacionExito = () => {
     };
 
     useEffect(() => {
+        window.scrollTo({ top: 350, behavior: 'smooth' });
         cargarRetiro();
     }, []);
 
@@ -185,13 +186,10 @@ const formatearDireccion = (datos, localidad, provincia, cp) => {
 
 const formatearNumeroRetiro = (numeroRetiro) => {
     if (!numeroRetiro) return numeroRetiro;
-    
     const numeroStr = String(numeroRetiro);
-    
     if (numeroStr.length < 4) return numeroStr;
-    
-    const primeraParte = numeroStr.substring(0, 4);
-    const segundaParte = numeroStr.substring(4);
-    
+    const numeroCompleto = numeroStr.padStart(12, '0');
+    const primeraParte = numeroCompleto.substring(0, 4);
+    const segundaParte = numeroCompleto.substring(4);
     return `${primeraParte}-${segundaParte}`;
 };
