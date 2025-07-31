@@ -5,6 +5,7 @@ import '../GeneraEnvio/Genera.scss'
 import { Button } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom'
 import emailjs from 'emailjs-com'
+import { useEffect } from 'react';
 
 const GeneraConfirmacionFallo = () => {
     const [searchParams] = useSearchParams()
@@ -21,6 +22,9 @@ const GeneraConfirmacionFallo = () => {
         emailjs
             .send('service_lv636bu', 'template_ton699n', emailBody, 'fRtOuVBrm3PpHzBca')
     }
+    useEffect(() => {
+        window.scrollTo({ top: 350, behavior: 'smooth' });
+    }, []);
     return (
         <section id='genera'>
             <BannerHeader
