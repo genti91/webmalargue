@@ -21,6 +21,13 @@ export const createPreference = async (req, res) => {
                 pending: `${process.env.REACT_APP_URL}/pendiente`,
             },
             auto_return: 'all',
+            payment_methods: {
+				excluded_payment_types: [
+					{
+						id: "ticket"
+					}
+				]
+			}
         },
     };
 
