@@ -8,12 +8,6 @@ export const calculatePriceDetail = ({ totalAPIPrice }) => {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
       })
-      const seguroValue = (
-        Number(totalAPIPrice / 1.2221) * 0.01
-      ).toLocaleString('es-AR', {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2,
-      })
       const ivaValue = (
         (Number(totalAPIPrice / 1.2221) +
           Number(totalAPIPrice / 1.2221) * 0.01) *
@@ -29,7 +23,6 @@ export const calculatePriceDetail = ({ totalAPIPrice }) => {
       
     return {
         noTaxPrice,
-        seguroValue,
         ivaValue,
         finalValue
     }

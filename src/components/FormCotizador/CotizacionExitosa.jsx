@@ -29,8 +29,11 @@ export default function CotizacionExitosa({
     }
   }, [])
 
-  const { noTaxPrice, seguroValue, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.cotizacion.valorizo })
-
+  const { noTaxPrice, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.cotizacion.valorizo })
+  const seguroValue = cotizacion.cotizacion.seguro.toLocaleString('es-AR', {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  })
   const sendEmail = () => {
     sendEmailCotiSucursal({...finalData, IVA:ivaValue, precioSeguro:seguroValue, precioSinIVA:noTaxPrice, precioFinal:finalValue}, cotizacion.lead.idLead)
   }

@@ -34,7 +34,7 @@ const GeneraConfirmacionExito = () => {
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
             }
-            const qrIdTrazabilidad = await QRCode.toDataURL(res.idTrazabilidad)
+            const qrIdTrazabilidad = await QRCode.toDataURL(res.idTrazabilidad.replace(/-/g, ''))
             emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro, qrIdTrazabilidad), 'fRtOuVBrm3PpHzBca')
             setNumRetiro(res.numeroRetiro);
             setCodigoSeguimiento(res.idTrazabilidad);
