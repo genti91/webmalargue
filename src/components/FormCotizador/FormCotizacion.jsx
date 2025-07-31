@@ -76,6 +76,14 @@ export default function FormCotizacion() {
   }, [bultos])
 
   useEffect(() => {
+    if (cotizacion || errorTarifa) {
+      setTimeout(() => {
+        window.scrollTo({ top: 200, behavior: 'smooth' })
+      }, 0)
+    }
+  }, [cotizacion, errorTarifa])
+
+  useEffect(() => {
     if (
       form.originCP &&
       form.destinyCP &&
@@ -223,6 +231,7 @@ export default function FormCotizacion() {
       />
     )
   }
+  
 
   return (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-9 tw-w-full'>
