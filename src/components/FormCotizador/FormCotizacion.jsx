@@ -142,11 +142,14 @@ export default function FormCotizacion() {
       
 
       const totalAPIPrice = Number(result.cotizacion.valorizo) || 0
-      const { noTaxPrice, seguroValue, ivaValue, finalValue } =
+      const { noTaxPrice, ivaValue, finalValue } =
         calculatePriceDetail({
           totalAPIPrice,
         })
-
+      const seguroValue = result.cotizacion.seguro.toLocaleString('es-AR', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      })
       const tablaBultosHTML = bultos
         .map((bulto, index) => {
           const fondo = index % 2 === 0 ? '' : 'background:#f5f5f5;'

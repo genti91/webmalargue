@@ -50,6 +50,10 @@ export const putProspecto = async (props) => {
 
 export const putLead = async (props, prospecto, cotizacion) => {
     let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
+    let seguroValue = cotizacion?.seguro.toLocaleString('es-AR', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+    })
     let observaciones = {
         emailNotificacion: props.emailNotificacion,
         fechaEmision: new Date().toISOString(),
@@ -70,7 +74,7 @@ export const putLead = async (props, prospecto, cotizacion) => {
         valorDeclarado: props.valorDeclarado,
         descripcionBultos: props.descripcionBultos,
         precioSinIVA: precio.noTaxPrice,
-        precioSeguro: precio.seguroValue,
+        precioSeguro: seguroValue,
         IVA: precio.ivaValue,
         precioFinal: precio.finalValue,
     }
