@@ -9,6 +9,7 @@ import { ErrorProcesarRetiro } from '../../components/Errores/ErrorProcesarRetir
 import { Button } from 'react-bootstrap'
 import { postNuevoRetiro } from './services/postNuevoRetiro'
 import emailjs from 'emailjs-com'
+import QRCode from 'qrcode'
 
 const GeneraConfirmacionExito = () => {
     const { setLoading } = useLoading();
@@ -33,7 +34,8 @@ const GeneraConfirmacionExito = () => {
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
             }
-            emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro), 'fRtOuVBrm3PpHzBca')
+            const qrIdTrazabilidad = await QRCode.toDataURL(res.idTrazabilidad)
+            emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro, qrIdTrazabilidad), 'fRtOuVBrm3PpHzBca')
             setNumRetiro(res.numeroRetiro);
             setCodigoSeguimiento(res.idTrazabilidad);
             localStorage.setItem('envioExitoso', JSON.stringify({
@@ -121,13 +123,14 @@ const GeneraConfirmacionExito = () => {
 export default GeneraConfirmacionExito;
 
 
-const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro) => {
+const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro, qrIdTrazabilidad) => {
     let emailNoti = remitente.email
     if (destinatario.notificacion.value != "Remitente") {
         emailNoti = remitente.email + `, ${destinatario.email}`;
     }
     return {
         email: emailNoti,
+        qrIdTrazabilidad,
         numero_retiro: formatearNumeroRetiro(numeroRetiro),
         cotizacion_id : cotizacion.id,
         codigo_seguimiento: idTrazabilidad,
