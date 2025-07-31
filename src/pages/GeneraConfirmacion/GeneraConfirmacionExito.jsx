@@ -132,6 +132,7 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
     return {
         email: emailNoti,
         qrIdTrazabilidad,
+        nombreQr: idTrazabilidad.replace(/-/g, ''),
         numero_retiro: formatearNumeroRetiro(numeroRetiro),
         cotizacion_id : cotizacion.id,
         codigo_seguimiento: idTrazabilidad,
