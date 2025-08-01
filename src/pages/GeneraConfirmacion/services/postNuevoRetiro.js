@@ -74,9 +74,9 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
                 carga: cotizacion.descripcionBultos,
                 bultos: Number(bulto.cantidadBultos),
                 kilos: Number(bulto.peso),
-                largo: Number(bulto.largo),
-                ancho: Number(bulto.ancho),
-                alto: Number(bulto.alto),
+                largo: Number(bulto.largo) / 100,
+                ancho: Number(bulto.ancho) / 100,
+                alto: Number(bulto.alto) / 100,
             })),
             cobranza: {
                 tipo: "RE",

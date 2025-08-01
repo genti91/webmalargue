@@ -6,7 +6,7 @@ return (
             PRECIO FINAL
           </span>
           <span className='tw-w-full tw-text-white tw-text-2xl tw-font-bold tw-bg-[#2F3394] tw-rounded-b-lg tw-py-2'>
-            ARS ${price}
+            ARS {price}
           </span>
         </div>
       </div>
