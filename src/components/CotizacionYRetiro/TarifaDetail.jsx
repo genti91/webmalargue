@@ -5,13 +5,13 @@ export const TarifaDetail = ({ noTaxPrice, seguroValue, ivaValue }) => {
           Detalle de la tarifa
         </span>
         <span>
-          <strong>Precio sin impuestos nacionales: </strong>ARS ${noTaxPrice}
+          <strong>Precio sin impuestos nacionales: </strong>ARS {noTaxPrice}
         </span>
         <span>
-          <strong>Seguro: </strong>ARS ${seguroValue}
+          <strong>Seguro: </strong>ARS {seguroValue}
         </span>
         <span>
-          <strong>IVA (21%): </strong>ARS ${ivaValue}
+          <strong>IVA (21%): </strong>ARS {ivaValue}
         </span>
       </div>
     )
