@@ -29,7 +29,7 @@ export default function CotizacionExitosa({
     }
   }, [])
 
-  const { noTaxPrice, ivaValue, finalValue } = calculatePriceDetail({ totalAPIPrice: cotizacion.cotizacion.valorizo })
+  const { noTaxPrice, ivaValue, finalValue } = calculatePriceDetail(cotizacion.cotizacion.valorizo, cotizacion.cotizacion.seguro)
   const seguroValue = cotizacion.cotizacion.seguro.toLocaleString('es-AR', {
     maximumFractionDigits: 2,
     minimumFractionDigits: 2,
