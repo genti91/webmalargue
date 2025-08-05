@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import GeneraHeader from '../../components/GeneraHeader'
@@ -21,7 +21,7 @@ const GeneraConfirmacionExito = () => {
     const [errorRetiro, setErrorRetiro] = useState(paymentId ? false : true);
     const [errorEmailBody, setErrorEmailBody] = useState({});
 
-    const cargarRetiro = useCallback(async () => {
+    const cargarRetiro = async () => {
         try {
             let { idTrazabilidad, numeroRetiro, paymentIdOld } = JSON.parse(localStorage.getItem('envioExitoso')) || {};
             if (idTrazabilidad && numeroRetiro && paymentIdOld === paymentId) {
@@ -45,11 +45,18 @@ const GeneraConfirmacionExito = () => {
             }));
         } catch (err) {
             console.error('Error al cargar el retiro:', err);
+            let remi = addPrefixToKeys({...remitente, tipo_documento: remitente.tipo_documento.value}, 'remi_')
+            let desti = addPrefixToKeys({...destinatario, 
+                tipo_documento: destinatario.tipo_documento.value,
+                factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
+                notificacion: destinatario.notificacion.value
+            }, 'dest_')
             setErrorEmailBody({
-                email: remitente.email,
-                id_cotizacion: cotizacion.id,
+                email: remitente?.email,
+                id_cotizacion: cotizacion?.id,
                 id_operacion_mp: paymentId,
-                remitente: JSON.stringify(remitente),
+                ...desti,
+                ...remi,
                 destinatario:  JSON.stringify(destinatario),
                 error: JSON.stringify(err.response ? err.response.data : err.message)
             });
@@ -57,12 +64,13 @@ const GeneraConfirmacionExito = () => {
         } finally {
             setLoading(false);
         }
-    }, [paymentId, cotizacion, remitente, destinatario, setLoading]);
+    };
 
     useEffect(() => {
         window.scrollTo({ top: 350, behavior: 'smooth' });
         cargarRetiro();
-    }, [cargarRetiro]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <section id='genera'>
@@ -193,4 +201,11 @@ const formatearNumeroRetiro = (numeroRetiro) => {
     const primeraParte = numeroCompleto.substring(0, 4);
     const segundaParte = numeroCompleto.substring(4);
     return `${primeraParte}-${segundaParte}`;
+};
+
+const addPrefixToKeys = (obj, prefix) => {
+    return Object.keys(obj).reduce((newObj, key) => {
+        newObj[`${prefix}${key}`] = obj[key];
+        return newObj;
+    }, {});
 };
