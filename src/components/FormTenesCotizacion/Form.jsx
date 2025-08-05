@@ -48,9 +48,6 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         let cleanCotizacion = {
             ...datosCot,
             id: cotizacion.idLead,
-            precioFinal: cotizacion.importeCotizado.toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
             remitente: {
                 provincia: datosCot.provinciaOrigen,
                 localidad: datosCot.localidadOrigen,
