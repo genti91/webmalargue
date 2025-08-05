@@ -93,7 +93,7 @@ const Genera = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      window.scrollTo({ top: cotizacion?.id ? 200 : 0, behavior: 'smooth' })
+      window.scrollTo({ top: cotizacion?.id ? 200 : 350, behavior: 'smooth' })
     }, 0)
   }, [currentStep, cotizacion?.id])
 
