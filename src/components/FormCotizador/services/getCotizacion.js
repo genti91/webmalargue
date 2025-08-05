@@ -49,7 +49,7 @@ export const putProspecto = async (props) => {
 }
 
 export const putLead = async (props, prospecto, cotizacion) => {
-    let precio = calculatePriceDetail({ totalAPIPrice: cotizacion?.valorizo })
+    let precio = calculatePriceDetail(cotizacion?.valorizo, cotizacion?.seguro)
     let seguroValue = cotizacion?.seguro.toLocaleString('es-AR', {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,

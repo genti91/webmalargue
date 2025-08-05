@@ -143,9 +143,10 @@ export default function FormCotizacion() {
 
       const totalAPIPrice = Number(result.cotizacion.valorizo) || 0
       const { noTaxPrice, ivaValue, finalValue } =
-        calculatePriceDetail({
+        calculatePriceDetail(
           totalAPIPrice,
-        })
+          result.cotizacion.seguro
+        )
       const seguroValue = result.cotizacion.seguro.toLocaleString('es-AR', {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
