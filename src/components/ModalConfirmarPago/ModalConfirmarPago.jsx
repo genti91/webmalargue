@@ -23,7 +23,7 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion, id, datosRemitente, dat
                 try {
                     setLoading(true);
                     const res = await postPreference(cotizacion.precioFinal, id);
-                    setPreferenceURL(res.sandbox_init_point);
+                    setPreferenceURL(res.init_point);
                 } catch (err) {
                     console.error('Error al obtener preferenceId', err);
                 } finally {
@@ -33,7 +33,7 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion, id, datosRemitente, dat
         };
 
         obtenerPreference();
-    }, [show]);
+    }, [show, cotizacion.precioFinal, id]);
 
     const storeDatos = () => {
         setFormInactive();
@@ -57,7 +57,7 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion, id, datosRemitente, dat
                     </a>
                 ) : (
                     <Button className='tw-h-[38px] tw-w-[133px] p-0' style={{ backgroundColor: '#198754', border: '1px solid #198754' }}>
-                        <div class="spinner-border tw-text-green-800 mt-1" style={{ height: '20px', width: "20px" }} role="status" />
+                        <div className="spinner-border tw-text-green-800 mt-1" style={{ height: '20px', width: "20px" }} role="status" />
                     </Button>
                 )}
             </Modal.Footer>

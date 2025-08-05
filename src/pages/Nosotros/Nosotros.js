@@ -23,6 +23,7 @@ const Pag2 = () => {
                     <div className='col-md-6'>
                         <img className='img-fluid'
                             src={quienesSomos}
+                            alt=''
                         />
                     </div>
                     <div className='col-md-6 content'>

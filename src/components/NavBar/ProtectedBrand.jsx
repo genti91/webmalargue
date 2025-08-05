@@ -37,7 +37,7 @@ export const ProtectedBrand = ({ to = '/', children, ...props }) => {
       <Navbar.Brand 
         as="div" 
         onClick={handleClick}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', marginLeft: '1em' }}
         {...props}
       >
         {children}

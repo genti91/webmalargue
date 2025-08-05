@@ -1,12 +1,9 @@
 import React from 'react'
 import {
   eComerceIMG,
-  encomiendasImg,
   logosticaEcom,
   logoTiendaNubeCenter,
   logoTiendaNubeGrande,
-  mudanzasImg,
-  serviciosIMG,
 } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import { links } from '../../components/NavBar/links'
@@ -54,7 +51,11 @@ const EComerce = () => {
               </div>
             </div>
             <div className='col-md-6  text-end'>
-              <img className='img-fluid' src={logosticaEcom} />
+              <img 
+                className='img-fluid' 
+                src={logosticaEcom} 
+                alt="Ilustración de logística para E-Commerce"
+              />
             </div>
           </div>
         </div>
@@ -63,7 +64,11 @@ const EComerce = () => {
         <div id='Cargas' className='container contenidoEncomienda'>
           <div className='row'>
             <div className='col-md-6 d-none d-md-block'>
-              <img className='img-fluid' src={logoTiendaNubeGrande} />
+              <img 
+                className='img-fluid' 
+                src={logoTiendaNubeGrande} 
+                alt="Logo de Tienda Nube"
+              />
             </div>
             <div className='col-md-5'>
               <div className='row h-100 align-items-center'>
@@ -113,8 +118,9 @@ const EComerce = () => {
             <div className='col-md-6 d-flex d-sm-block d-md-none justify-content-center pt-3'>
               <img
                 width={'80%'}
-                className='img-fluid '
+                className='img-fluid'
                 src={logoTiendaNubeCenter}
+                alt="Logo de Tienda Nube"
               />
             </div>
           </div>

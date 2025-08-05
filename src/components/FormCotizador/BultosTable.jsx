@@ -51,6 +51,9 @@ export default function BultosTable({ bultos, removeBultoHandler, updateBultoHan
       case 'length':
         error = validators.validateBultoLength(numericValue)
         break
+      default:
+        error = null
+        break
     }
     
     setErrors(prev => ({ ...prev, [field]: error }))

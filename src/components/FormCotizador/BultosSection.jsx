@@ -50,6 +50,9 @@ export default function BultosSection({
       case 'weight':
         error = validators.validateBultoWeight(value);
         break;
+      default:
+        error = null;
+        break;
     }
 
     // Update errors state

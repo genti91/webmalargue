@@ -25,6 +25,7 @@ export const Novedades = () => {
                             <img
                                 className='card-img-top'
                                 src={novImg01}
+                                alt='Novedad 01'
                             />
                             <h5 className="card-title">Cómo embalar tu paquete</h5>
                             {/* <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>
@@ -50,6 +51,7 @@ export const Novedades = () => {
                             <img
                                 className='card-img-top'
                                 src={seguiTuPedido}
+                                alt='Novedad 02'
                             />
                             <h5 className="card-title">Cómo seguir tu envío</h5>
                             {/* <p className="card-text"><span className="text-muted">SubTitulo Nota</span></p>

@@ -13,7 +13,7 @@ import { useForm } from '../../hooks'
 
 const Genera = () => {
   const [searchParams] = useSearchParams()
-  const { cotizacion, setCotizacion } = useGenera()
+  const { cotizacion } = useGenera()
   const email = searchParams.get('email')
   const numeroCotizacion = searchParams.get('numero_cotizacion')
   const [savedCotizacion, setSavedCotizacion] = useState(email && numeroCotizacion ? true : null);
@@ -120,7 +120,7 @@ const Genera = () => {
                 </div>
               </div>
 
-              {currentStep == 0 && (
+              {currentStep === 0 && (
                 <FormGeneraRemitente
                   form={formRemitente}
                   setInForm={setInRemitenteForm}
@@ -128,7 +128,7 @@ const Genera = () => {
                   setCurrentStep={setCurrentStep}
                 />
               )}
-              {currentStep == 1 && (
+              {currentStep === 1 && (
                 <FormGeneraDestinatario
                   form={formDestinatario}
                   setInForm={setInDestinatarioForm}
@@ -136,7 +136,7 @@ const Genera = () => {
                   setCurrentStep={setCurrentStep}
                 />
               )}
-              {currentStep == 2 && (
+              {currentStep === 2 && (
                 <GeneraResumen
                   cotizacion={cotizacion}
                   datosRemitente={formRemitente}

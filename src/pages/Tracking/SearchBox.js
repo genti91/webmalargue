@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { getTickets } from './services/getTickets'
 import Spinner from 'react-bootstrap/Spinner'
 import { Container } from 'react-bootstrap'
@@ -8,7 +8,7 @@ import './searchBox.scss'
 import { useWindowSize } from '../../hooks/useWindowSize'
 
 export const SearchBox = ({ setTrackingData, trackingID }) => {
-  const [searchValue, setSearchValue] = useState(trackingID)
+  const [searchValue, setSearchValue] = useState(trackingID || '')
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [emptyTracking, setEmptyTracking] = useState(false)
@@ -41,14 +41,14 @@ export const SearchBox = ({ setTrackingData, trackingID }) => {
     setSearchValue(formattedValue)
   }
 
-  useEffect(() => {
-    if (trackingID) {
-      handleSubmit()
-    }
-  }, [trackingID])
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e?.preventDefault()
+    
+    if (!searchValue || searchValue.trim() === '') {
+      setError(true)
+      return
+    }
+
     try {
       setLoading(true)
       setError(false)
@@ -74,18 +74,36 @@ export const SearchBox = ({ setTrackingData, trackingID }) => {
         origen = formatedSearchValue[2]
       }
       const data = await getTickets({ documento, origen })
-      if (!data.length) setEmptyTracking(true)
-      setTrackingData(data)
+      
+      if (!data || !Array.isArray(data)) {
+        setEmptyTracking(true)
+        setTrackingData([])
+      } else if (data.length === 0) {
+        setEmptyTracking(true)
+        setTrackingData([])
+      } else {
+        setTrackingData(data)
+      }
+      
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log('file: SearchBox.js ~ line 46 ~ handleSubmit ~ error', error)
+      setError(true)
+      setTrackingData([])
+      console.error('Error al buscar tracking:', error)
     }
-  }
+  }, [searchValue, setTrackingData])
 
   useEffect(() => {
-    if (searchParams.get('tracking') !== null) {
-      setSearchValue(searchParams.get('tracking'))
+    if (trackingID && trackingID.trim() !== '') {
+      handleSubmit()
+    }
+  }, [trackingID, handleSubmit])
+
+  useEffect(() => {
+    const trackingParam = searchParams.get('tracking')
+    if (trackingParam !== null) {
+      setSearchValue(trackingParam)
       const fetchTracking = async () => {
         try {
           setLoading(true)
@@ -93,19 +111,19 @@ export const SearchBox = ({ setTrackingData, trackingID }) => {
           setEmptyTracking(false)
           setTrackingData([])
           let documento, origen
-          if (!searchValue.includes('-')) {
-            if (searchValue.length !== 17) {
+          if (!trackingParam.includes('-')) {
+            if (trackingParam.length !== 17) {
               setError(true)
               setLoading(false)
               return
             }
-            documento = Number(searchValue.slice(4, 16))
-            origen = searchValue.slice(
-              searchValue.length - 1,
-              searchValue.length
+            documento = Number(trackingParam.slice(4, 16))
+            origen = trackingParam.slice(
+              trackingParam.length - 1,
+              trackingParam.length
             )
           } else {
-            const formatedSearchValue = searchValue.split('-')
+            const formatedSearchValue = trackingParam.split('-')
             if (formatedSearchValue.length !== 3) {
               setError(true)
               setLoading(false)
@@ -115,20 +133,28 @@ export const SearchBox = ({ setTrackingData, trackingID }) => {
             origen = formatedSearchValue[2]
           }
           const data = await getTickets({ documento, origen })
-          if (!data.length) setEmptyTracking(true)
-          setTrackingData(data)
+          
+          if (!data || !Array.isArray(data)) {
+            setEmptyTracking(true)
+            setTrackingData([])
+          } else if (data.length === 0) {
+            setEmptyTracking(true)
+            setTrackingData([])
+          } else {
+            setTrackingData(data)
+          }
+          
           setLoading(false)
         } catch (error) {
           setLoading(false)
-          console.log(
-            'file: SearchBox.js ~ line 46 ~ handleSubmit ~ error',
-            error
-          )
+          setError(true)
+          setTrackingData([])
+          console.error('Error al buscar tracking desde URL:', error)
         }
       }
       fetchTracking()
     }
-  }, [searchParams, searchValue, setTrackingData])
+  }, [searchParams, setTrackingData])
 
   return (
     <>

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 
 import { blogIMG, blog01, blog02, blog03, blog04, blog05, blog06, blog07, blog08, blog09, blog10, blog11, blog12, blog13, blog14, blog15, blog16 } from '../../assets';
