@@ -1,6 +1,6 @@
 export const calculatePriceDetail = (totalAPIPrice, seguro) => {
     const ivaCalculado = (totalAPIPrice + seguro) * 0.21;
-    const finalValue = (totalAPIPrice + ivaCalculado).toLocaleString('es-AR', {
+    const finalValue = (totalAPIPrice + ivaCalculado + seguro).toLocaleString('es-AR', {
         maximumFractionDigits: 2,
         minimumFractionDigits: 2,
     });
