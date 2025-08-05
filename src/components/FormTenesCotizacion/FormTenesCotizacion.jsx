@@ -27,13 +27,13 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
         if (error.type === 'DEPOSITO') {
             setShowModalDeposito(true);
         }
-    }, [error]);
+    }, [error, flujo]);
 
     if (error.type) {
         if (error.type === 'IMPORTE INVALIDO') {
             return <ErrorCotizacionCambio setError={setError} error={error.payload} />
         }
-        if (!flujo && error.type != 'DEPOSITO') {
+        if (!flujo && error.type !== 'DEPOSITO') {
             return (
                 <ErrorCotizacionEmail setError={setError} />
             )
@@ -44,9 +44,10 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
             case 'ENLACE MANIPULADO':
                 return <ErrorEnlaceManipulado email={form.email} id={form.numero_cotizacion} />
             case 'API CRISTAL':
-                if (flujo == 'email') {
+                if (flujo === 'email') {
                     return <ErrorAPI email={form.email} id={form.numero_cotizacion} error={error.payload} />
                 }
+                break;
             default:
                 break;
         }

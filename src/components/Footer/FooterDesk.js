@@ -1,5 +1,4 @@
-import React from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { isMobile } from 'react-device-detect'
 import { Link } from 'react-router-dom'
 
@@ -40,7 +39,7 @@ export const FooterDesk = () => {
                 className='row d-flex justify-content-end align-items-center h-100'
               >
                 <div className='col-2'>
-                  <a href={social.facebook} target={'_blank'}>
+                  <a href={social.facebook} target={'_blank'} rel="noreferrer">
                     <button className='btn btn-outline-primary' type='button'>
                       {
                         <FaIcon
@@ -52,7 +51,7 @@ export const FooterDesk = () => {
                   </a>
                 </div>
                 <div className='col-2'>
-                  <a href={social.instagram} target={'_blank'}>
+                  <a href={social.instagram} target={'_blank'} rel="noreferrer">
                     <button className='btn btn-outline-primary' type='button'>
                       {
                         <IgIcon
@@ -64,7 +63,7 @@ export const FooterDesk = () => {
                   </a>
                 </div>
                 <div className='col-2'>
-                  <a href={'mailto:' + email} target={'_blank'}>
+                  <a href={'mailto:' + email} target={'_blank'} rel="noreferrer">
                     <button className='btn btn-outline-primary' type='button'>
                       {
                         <EmailIcon
@@ -79,7 +78,7 @@ export const FooterDesk = () => {
                   className={isMobile ? 'col-1' : 'col-5 pr-3'}
                   id='contactMail'
                 >
-                  <a href={'mailto:' + email} target={'_blank'}>
+                  <a href={'mailto:' + email} target={'_blank'} rel="noreferrer">
                     {email}
                   </a>
                 </div>
@@ -103,10 +102,15 @@ export const FooterDesk = () => {
                   <img
                     className='img-fluid mediosDePago'
                     src={logoMercadoPago}
+                    alt="Logo de Mercado Pago"
                   />
                 </div>
                 <div className='col-6'>
-                  <img className='img-fluid mediosDePago' src={tarjetas} />
+                  <img 
+                    className='img-fluid mediosDePago' 
+                    src={tarjetas} 
+                    alt="Tarjetas de crédito aceptadas"
+                  />
                 </div>
               </div>
             </div>
@@ -117,7 +121,11 @@ export const FooterDesk = () => {
               </p>
             </div>
             <div className='col-md-3'>
-              <img src={logoTiendaNube} className='img-fluid' />
+              <img 
+                src={logoTiendaNube} 
+                className='img-fluid' 
+                alt="Logo de Tienda Nube"
+              />
             </div>
           </div>
         </div>
@@ -129,7 +137,11 @@ export const FooterDesk = () => {
             }}
           >
             <div id='address' className={isMobile ? 'col-6' : 'col-md-3'}>
-              <img className='img-fluid mediosDePago' src={loogMalargueColor} />
+              <img 
+                className='img-fluid mediosDePago' 
+                src={loogMalargueColor} 
+                alt="Logo de Expreso Malargüe"
+              />
             </div>
             <div className={isMobile ? 'col-6' : 'col-md-3'}>
               <p className='footerStrong'>{adress}</p>

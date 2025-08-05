@@ -6,14 +6,15 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { getOportunidad } from './services/getOportunidad'
 import { getProspecto } from './services/getProspecto'
 import TitleTextInput from '../TextInputs/TitleTextInput'
-
+import { validateRecaptchaToken } from './services/validateRecaptcha';
 import { useLoading } from '../../context/LoadingContext';
 import { useGenera } from '../../context/GeneraContext';
 import { postCotizacion, putLead, putProspecto } from '../FormCotizador/services/getCotizacion';
 import { sendCotizacionEmail } from './services/sendCotizacionEmail';
 import { useFormProtection } from '../../context/FormContext';
+const { REACT_APP_RECAPTCHA_SITE_KEY } = process.env
 
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const recaptchaRef = useRef(null);
@@ -27,7 +28,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         let datosCot = JSON.parse(cotizacion.observaciones)
         let newCotizacion = await postCotizacion(datosCot)
         if (newCotizacion && newCotizacion.valorizo) {
-            if (newCotizacion.valorizo != cotizacion.importeCotizado) {
+            if (newCotizacion.valorizo !== cotizacion.importeCotizado) {
                 let newProspecto = await putProspecto(datosCot)
                 let newLead = await putLead(datosCot, newProspecto, newCotizacion)
                 sendCotizacionEmail(newLead.observaciones, newLead.res)
@@ -73,6 +74,19 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         e.preventDefault()
         try {
             setLoading(true)
+            
+            const recaptchaResult = await validateRecaptchaToken(recaptchaToken);
+            
+            if (!recaptchaResult.valid) {
+                setError({
+                    type: 'API CRISTAL',
+                    payload: recaptchaResult.error || 'Error de validación de reCAPTCHA'
+                });
+                recaptchaRef.current?.reset();
+                setRecaptchaToken(null);
+                return;
+            }
+
             let oportunidad = await getOportunidad(form.numero_cotizacion)
             if (!oportunidad.data || oportunidad.data.length === 0) {
                 setError({
@@ -176,7 +190,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                     </Col>
                 </Row>
                 <ReCAPTCHA
-                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    sitekey={REACT_APP_RECAPTCHA_SITE_KEY}
                     onChange={token => setRecaptchaToken(token)}
                     ref={recaptchaRef}
                 />

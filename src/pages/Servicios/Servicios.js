@@ -2,7 +2,6 @@ import React from 'react'
 import {
   encomiendasImg,
   mudanza,
-  mudanzasImg,
   serviciosIMG,
 } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
@@ -53,7 +52,11 @@ const Servicios = () => {
               </div>
             </div>
             <div className='col-md-6  text-end'>
-              <img className='img-fluid' src={encomiendasImg} />
+              <img 
+                className='img-fluid' 
+                src={encomiendasImg} 
+                alt="Ilustración de encomiendas y paquetes"
+              />
             </div>
           </div>
         </div>
@@ -62,7 +65,11 @@ const Servicios = () => {
         <div id='' className='container contenidoEncomienda'>
           <div className='row'>
             <div className='col-md-6 d-none d-md-block'>
-              <img className='img-fluid' src={mudanza} />
+              <img 
+                className='img-fluid' 
+                src={mudanza} 
+                alt="Ilustración de servicio de mudanzas"
+              />
             </div>
             <div className='col-md-5 '>
               <div className='row h-100 align-items-center'>
@@ -85,7 +92,11 @@ const Servicios = () => {
               </div>
             </div>
             <div className='col-md-6 d-block d-sm-block d-md-none'>
-              <img className='img-fluid' src={mudanza} />
+              <img 
+                className='img-fluid' 
+                src={mudanza} 
+                alt="Ilustración de servicio de mudanzas"
+              />
             </div>
           </div>
         </div>

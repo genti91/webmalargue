@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import GeneraHeader from '../../components/GeneraHeader'
@@ -21,7 +21,7 @@ const GeneraConfirmacionExito = () => {
     const [errorRetiro, setErrorRetiro] = useState(paymentId ? false : true);
     const [errorEmailBody, setErrorEmailBody] = useState({});
 
-    const cargarRetiro = async () => {
+    const cargarRetiro = useCallback(async () => {
         try {
             let { idTrazabilidad, numeroRetiro, paymentIdOld } = JSON.parse(localStorage.getItem('envioExitoso')) || {};
             if (idTrazabilidad && numeroRetiro && paymentIdOld === paymentId) {
@@ -57,12 +57,12 @@ const GeneraConfirmacionExito = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [paymentId, cotizacion, remitente, destinatario, setLoading]);
 
     useEffect(() => {
         window.scrollTo({ top: 350, behavior: 'smooth' });
         cargarRetiro();
-    }, []);
+    }, [cargarRetiro]);
 
     return (
         <section id='genera'>
@@ -79,7 +79,7 @@ const GeneraConfirmacionExito = () => {
                     :
                     <>
                         <div className='tw-text-center tw-flex tw-flex-col tw-gap-2 tw-text-[#198754] tw-items-center tw-justify-center'>
-                            <img src={`/assets/icono-exito.png`} alt="icon" className="tw-h-[48px] tw-w-[48px]" />
+                            <img src={`/assets/icono-exito.png`} alt="Ícono de éxito" className="tw-h-[48px] tw-w-[48px]" />
                             <h2 className='tw-text-[#198754] tw-text-[28px] tw-font-bold'>¡Gracias por elegirnos!</h2>
                             <h3 className='tw-text-[#198754] tw-text-[21px] tw-w-8/12'>Tu retiro se generó con éxito.</h3>
                             <h3 className='tw-text-[#198754] tw-text-[21px] tw-w-8/12'>Te enviamos un email con los detalles a la dirección que nos indicaste.</h3>
@@ -126,7 +126,7 @@ export default GeneraConfirmacionExito;
 
 const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro, qrIdTrazabilidad) => {
     let emailNoti = remitente.email
-    if (destinatario.notificacion.value != "Remitente") {
+    if (destinatario.notificacion.value !== "Remitente") {
         emailNoti = remitente.email + `, ${destinatario.email}`;
     }
     return {

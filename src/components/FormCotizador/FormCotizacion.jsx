@@ -58,7 +58,7 @@ export default function FormCotizacion() {
     return () => {
       isMounted.current = false
     }
-  }, [])
+  }, [setInForm])
 
   useEffect(() => {
     if (bultos.length >= 1) {
@@ -101,7 +101,7 @@ export default function FormCotizacion() {
         return newErrors
       })
     }
-  }, [form.originCP, form.destinyCP])
+  }, [form.originCP, form.destinyCP, form.destiny, form.origin])
 
   const onSubmit = async (e) => {
     e.preventDefault()

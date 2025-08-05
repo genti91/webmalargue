@@ -1,19 +1,17 @@
 import React from 'react';
-import { acuerdos, cargasCompletas, empresasIMG, encomiendasImg, mudanzasImg, palet, paqueteria, serviciosIMG } from '../../assets';
+import { acuerdos, cargasCompletas, empresasIMG, palet, paqueteria } from '../../assets';
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader';
 
 import './Empresas.scss'
 
-
 const Empresas = () => {
-
 
     return (
         <section id='encomiendas'>
-            <BannerHeader   lineaPrincipal =  'Empresas'
-                            lineaSecundaria = 'Servicios para' // Si no hay linea enviar ''
-                            image = {empresasIMG}
-                            
+            <BannerHeader   
+                lineaPrincipal='Empresas'
+                lineaSecundaria='Servicios para' // Si no hay linea enviar ''
+                image={empresasIMG}
             />
             <div className='container-fluid'>
                 <div id='Paletizadas' className='container contenidoEncomienda'>
@@ -31,15 +29,14 @@ const Empresas = () => {
                                         <br/>
                                         Cotizá y pagá con transferencia, e cheqs, o mercado pago, programá el retiro y Malargüe se encarga que llegue a destino.
                                     </p>
-
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-6  text-end'
-                        >
+                        <div className='col-md-6  text-end'>
                             <img
                                 className='img-fluid'
                                 src={palet}
+                                alt="Ilustración de servicio de ventas paletizadas"
                             />
                         </div>
                     </div>    
@@ -48,19 +45,15 @@ const Empresas = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='Cargas' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6 d-none d-md-block'
-                        >
+                        <div className='col-md-6 d-none d-md-block'>
                             <img
                                 className='img-fluid'
                                 src={cargasCompletas}
+                                alt="Ilustración de servicio de cargas completas"
                             />
                         </div>
-                        <div className='col-md-5'
-                        >
-                            <div className='row h-100 align-items-center'
-
-                            
-                            >
+                        <div className='col-md-5'>
+                            <div className='row h-100 align-items-center'>
                                 <div className='col '>
                                     <h2>
                                         Cargas <br/>
@@ -73,19 +66,16 @@ const Empresas = () => {
                                         <br/>
                                         Envianos un whatsapp y realiza el viaje punto a punto.
                                     </p>
-
                                 </div>
-
                             </div>
                         </div>
-                        <div className='col-md-6 d-block d-sm-block d-md-none'
-                        >
+                        <div className='col-md-6 d-block d-sm-block d-md-none'>
                             <img
                                 className='img-fluid'
                                 src={cargasCompletas}
+                                alt="Ilustración de servicio de cargas completas"
                             />
                         </div>
-                        
                     </div>    
                 </div>
             </div>
@@ -106,15 +96,14 @@ const Empresas = () => {
                                         <br />
                                         Ya sea que vendes por internet o que envias materiales, muestras, repuestos o productos específicos a distintos puntos del país, escribinos por whatsapp que Malargüe te lo lleva.    
                                     </p>
-
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-6  text-end'
-                        >
+                        <div className='col-md-6  text-end'>
                             <img
                                 className='img-fluid'
                                 src={paqueteria}
+                                alt="Ilustración de servicio de paquetería y encomiendas"
                             />
                         </div>
                     </div>    
@@ -123,17 +112,15 @@ const Empresas = () => {
             <div className='container-fluid bg-malargueBg'>
                 <div id='Comerciales' className='container contenidoEncomienda'>
                     <div className='row'>
-                        <div className='col-md-6 d-none d-md-block'
-                        >
+                        <div className='col-md-6 d-none d-md-block'>
                             <img
                                 className='img-fluid'
                                 src={acuerdos}
+                                alt="Ilustración de acuerdos comerciales"
                             />
                         </div>
-                        <div className='col-md-5'
-                        >
-                            <div className='row h-100 align-items-center'       
-                            >
+                        <div className='col-md-5'>
+                            <div className='row h-100 align-items-center'>
                                 <div className='col '>
                                     <h2>
                                         Acuerdos <br />
@@ -145,18 +132,18 @@ const Empresas = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='col-md-6 d-block d-sm-block d-md-none'
-                        >
+                        <div className='col-md-6 d-block d-sm-block d-md-none'>
                             <img
                                 className='img-fluid'
                                 src={acuerdos}
+                                alt="Ilustración de acuerdos comerciales"
                             />
                         </div>
                     </div>    
                 </div>
             </div>
         </section>
-    
-        )};
+    )
+};
 
 export default Empresas;

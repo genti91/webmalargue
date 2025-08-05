@@ -9,7 +9,7 @@ const GeneraHeader = ({ selectedIndex }) => {
                 const isCompleted = index < selectedIndex;
 
                 const visibilityClass = isSelected ? 'tw-flex' : 'tw-hidden md:tw-flex';
-                const smallWithClass = item == 'Pago' ? 'tw-w-[170px]' : 'tw-w-[200px]';
+                const smallWithClass = item === 'Pago' ? 'tw-w-[170px]' : 'tw-w-[200px]';
 
                 return (
                     <div

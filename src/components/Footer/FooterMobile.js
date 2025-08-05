@@ -4,9 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import {
   tarjetas,
   logoMercadoPago,
-  logoTiendaNube,
   loogMalargueColor,
-  logoTiendaNubeGrande,
   logoTiendaNubeCenter,
 } from '../../assets'
 import siteData from '../../assets/data'
@@ -18,7 +16,7 @@ import { IgIcon } from '../../assets/IgIcon'
 import './FooterMobile.scss'
 
 export const FooterMobile = () => {
-  const { phone, adress, social, email } = siteData
+  const { phone, social, email } = siteData
 
   return (
     <Row id='FooterMobile'>
@@ -38,21 +36,21 @@ export const FooterMobile = () => {
           <Col id='socialIcons' xs={6}>
             <Row>
               <Col xs={4}>
-                <a href={social.facebook} target={'_blank'}>
+                <a href={social.facebook} target={'_blank'} rel="noreferrer">
                   <button className='btn btn-outline-primary' type='button'>
                     {<FaIcon iconFill='white' iconHeight='40' />}
                   </button>
                 </a>
               </Col>
               <Col xs={4}>
-                <a href={social.facebook} target={'_blank'}>
+                <a href={social.instagram} target={'_blank'} rel="noreferrer">
                   <button className='btn btn-outline-primary' type='button'>
                     {<IgIcon iconFill='white' iconHeight='40' />}
                   </button>
                 </a>
               </Col>
               <Col xs={4}>
-                <a href={social.facebook} target={'_blank'}>
+                <a href={'mailto:' + email} target={'_blank'} rel="noreferrer">
                   <button className='btn btn-outline-primary' type='button'>
                     {<EmailIcon iconFill='white' iconHeight='40' />}
                   </button>
@@ -63,7 +61,7 @@ export const FooterMobile = () => {
           <Col id='contactMail' xs={6}>
             <Row className='align-items-center h-100'>
               <Col>
-                <a href={'mailto:' + email} target={'_blank'}>
+                <a href={'mailto:' + email} target={'_blank'} rel="noreferrer">
                   {email}
                 </a>
               </Col>
@@ -76,10 +74,18 @@ export const FooterMobile = () => {
           </Row>
           <Row className='align-items-center'>
             <Col xs={5}>
-              <img className='img-fluid' src={logoMercadoPago} />
+              <img
+                className='img-fluid'
+                src={logoMercadoPago}
+                alt="Logo de Mercado Pago"
+              />
             </Col>
             <Col xs={7}>
-              <img className='img-fluid' src={tarjetas} />
+              <img
+                className='img-fluid'
+                src={tarjetas}
+                alt="Tarjetas de crédito aceptadas"
+              />
             </Col>
           </Row>
         </Row>
@@ -93,13 +99,21 @@ export const FooterMobile = () => {
             </Col>
           </Col>
           <Col xs={4}>
-            <img className='img-fluid' src={logoTiendaNubeCenter} />
+            <img
+              className='img-fluid'
+              src={logoTiendaNubeCenter}
+              alt="Logo de Tienda Nube"
+            />
           </Col>
         </Row>
         <Row id='address' className=' align-items-center'>
           <Col xs={6}>
             <Col>
-              <img className='img-fluid' src={loogMalargueColor} />
+              <img
+                className='img-fluid'
+                src={loogMalargueColor}
+                alt="Logo de Expreso Malargüe"
+              />
             </Col>
           </Col>
           <Col xs={6}>

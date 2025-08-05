@@ -1,9 +1,9 @@
-const { REACT_APP_API_HOST, REACT_APP_API_KEY_COTIZA } = process.env
+const { REACT_APP_API_HOST_COTI, REACT_APP_API_TOKEN_COTI } = process.env
 
 export const getTickets = async (trackingId) => {
   const response = await window
     .fetch(
-      `${REACT_APP_API_HOST}/?o=getTracking&token=${REACT_APP_API_KEY_COTIZA}`,
+      `${REACT_APP_API_HOST_COTI}/?o=getTracking&token=${REACT_APP_API_TOKEN_COTI}`,
       {
         method: 'POST',
         credentials: 'same-origin',

@@ -11,7 +11,7 @@ const GeneraConfirmacionFallo = () => {
     const [searchParams] = useSearchParams()
     console.log('Todos los search params:');
     const paramsObj = Object.fromEntries(searchParams.entries());
-    const { cotizacion, remitente, _destinatario } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
+    const { cotizacion, remitente } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
     const emailBody = {
         email: remitente.email,
         id_cotizacion: cotizacion.id,

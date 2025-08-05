@@ -45,7 +45,7 @@ const TextInput = (props) => {
                             value={props.form[props.name]}
                             onChange={(e) => handleChange(e)}
                         >
-                            <option value="" selected disabled hidden >{props.placeholder}</option>
+                            <option value="" disabled hidden >{props.placeholder}</option>
                             {props.options.map((option, index) => (
                                 <option key={index} value={option.value}>
                                     {option.name}

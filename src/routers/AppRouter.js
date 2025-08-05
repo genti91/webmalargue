@@ -1,9 +1,6 @@
-import React from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { Footer } from '../components/Footer/Footer'
+import { Layout } from '../components/Layout/Layout'
 import { links } from '../components/NavBar/links'
-import { NavBar } from '../components/NavBar/NavBar'
-import { WhatsAppChat } from '../components/WhatsAppChat/WhatsAppChat'
 import {
   Home,
   IndividuosSrv,
@@ -15,9 +12,7 @@ import {
   Tracking,
   Individuos,
   GeneraEnvio,
-  // Landing_2,
   Empresas,
-  // LandingEmpresa2,
   ThankYouPage,
   BlogTips,
 } from '../pages'
@@ -38,73 +33,73 @@ TagManager.initialize(tagManagerArgs)
 
 export const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true
+      }}
+    >
       <ScrollToTop />
       <Routes>
         <Route
           path='/'
-          element={[<NavBar />, <Home />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Home /></Layout>}
         />
         <Route
           path={links.servicios.individuos.to}
-          element={[
-            <NavBar />,
-            <IndividuosSrv />,
-            <Footer />,
-            <WhatsAppChat />,
-          ]}
+          element={<Layout><IndividuosSrv /></Layout>}
         />
         <Route
           path={links.servicios.empresas.to}
-          element={[<NavBar />, <EmpresasSrv />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><EmpresasSrv /></Layout>}
         />
         <Route
           path={links.servicios.eCommerce.to}
-          element={[<NavBar />, <EComerceSrv />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><EComerceSrv /></Layout>}
         />
         <Route
           path={links.nosotros.to}
-          element={[<NavBar />, <Nosotros />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Nosotros /></Layout>}
         />
         <Route
           path={links.cotiza.to}
-          element={[<NavBar />, <Cotiza />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Cotiza /></Layout>}
         />
         <Route
           path={links.faq.to}
-          element={[<NavBar />, <FAQPage />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><FAQPage /></Layout>}
         />
         <Route
           path={links.genera.to}
-          element={[<NavBar />, <GeneraProvider><GeneraEnvio /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
+          element={<Layout><GeneraProvider><GeneraEnvio /></GeneraProvider></Layout>}
         />
         <Route
           path={links.generaExito.to}
-          element={[<NavBar />, <GeneraProvider><GeneraConfirmacionExito /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
+          element={<Layout><GeneraProvider><GeneraConfirmacionExito /></GeneraProvider></Layout>}
         />
         <Route
           path={links.generaFallo.to}
-          element={[<NavBar />, <GeneraProvider><GeneraConfirmacionFallo /></GeneraProvider>, <Footer />, <WhatsAppChat />]}
+          element={<Layout><GeneraProvider><GeneraConfirmacionFallo /></GeneraProvider></Layout>}
         />
         <Route
           path={links.tracking.to}
-          element={[<NavBar />, <Tracking />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Tracking /></Layout>}
         />
         <Route
           path={links.blog.to}
-          element={[<NavBar />, <BlogTips />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><BlogTips /></Layout>}
         />
         <Route
           path={links.envio.to}
-          element={[<NavBar />, <Envio />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Envio /></Layout>}
         />
         <Route
           path={links.privacyPolicy.to}
-          element={[<NavBar />, <PrivacyPolicy />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><PrivacyPolicy /></Layout>}
         />
         <Route
           path={links.contacto.to}
-          element={[<NavBar />, <Contacto />, <Footer />, <WhatsAppChat />]}
+          element={<Layout><Contacto /></Layout>}
         />
         {/* Anuncios */}
         <Route path='/individuos' element={<Individuos />} />

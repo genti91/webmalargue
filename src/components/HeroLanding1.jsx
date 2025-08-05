@@ -1,5 +1,3 @@
-import Form from "./Form";
-import FormEmpresas from "./FormEmpresas";
 import { WhatsAppChatMainButton } from "./WhatsAppChat/WhatsAppCahtMainButon";
 const HeroLanding1 = ({ image, title, page }) => {
   return (

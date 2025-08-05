@@ -7,7 +7,7 @@ export const formCotiza = [
       type: 'email',
       required: true,
       errorMessage: 'Por favor completa este campo',
-      validation: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      validation: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     },
   },
   {

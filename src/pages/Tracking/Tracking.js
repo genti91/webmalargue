@@ -49,9 +49,9 @@ const Tracking = () => {
             <div className='container' style={{ width: '100%' }}>
               {trackingData.length
                 ? trackingData.map(
-                    ({ des, fecha, cod, index, destino, dondeEsta, idSts }) => (
+                    ({ des, fecha, cod, index, destino, dondeEsta, idSts }, arrayIndex) => (
                       <div
-                        key={cod}
+                        key={`${cod}-${arrayIndex}-${fecha}`}
                         style={{ gap: '.75rem' }}
                         className='row align-items-center items-center step'
                       >

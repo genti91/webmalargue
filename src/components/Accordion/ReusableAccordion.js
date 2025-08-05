@@ -21,6 +21,7 @@ const ReusableAccordion = ({ data }) => {
           const active = activeKey === index
           return (
             <Accordion
+              key={index}
               defaultActiveKey='0'
               activeKey={activeKey}
               onSelect={setActiveKey}

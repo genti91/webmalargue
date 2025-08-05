@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import emailjs from 'emailjs-com'
 import Swal from 'sweetalert2'
@@ -6,7 +5,7 @@ import { useForm } from '../hooks'
 import TextInput from './TextInput'
 import { form_shipment } from '../constant/forms'
 import TextInputArea from './TextInputArea'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 const Form = (props) => {
   const { form, setInForm } = useForm({
@@ -28,7 +27,7 @@ const Form = (props) => {
     })
   }
   const validate = (form) => {
-    const { origin, destiny, name, email, tel, message } = form
+    const { name, email, tel, message } = form
     if (name.length === 0) {
       Swal.fire({
         position: 'center',
