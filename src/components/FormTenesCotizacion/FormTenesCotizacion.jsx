@@ -21,7 +21,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
     };
 
     useEffect(() => {
-        if (error.type === 'API CRISTAL' && flujo !== 'email' && flujo) {
+        if ((error.type === 'API CRISTAL' && flujo !== 'email' && flujo) || error.type === 'OBSERVERCION PARSE ERROR') {
             setShow(true);
         }
         if (error.type === 'DEPOSITO') {
@@ -33,7 +33,7 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
         if (error.type === 'IMPORTE INVALIDO') {
             return <ErrorCotizacionCambio setError={setError} error={error.payload} />
         }
-        if (!flujo && error.type !== 'DEPOSITO') {
+        if (!flujo && error.type !== 'DEPOSITO' && error.type !== 'OBSERVERCION PARSE ERROR') {
             return (
                 <ErrorCotizacionEmail setError={setError} />
             )
