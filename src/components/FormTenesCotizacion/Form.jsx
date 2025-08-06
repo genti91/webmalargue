@@ -25,17 +25,21 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const { setFormActive } = useFormProtection();
 
     let validarValorCotizacion = async (cotizacion) => {
-        let datosCot = JSON.parse(cotizacion.observaciones)
-        let newCotizacion = await postCotizacion(datosCot)
-        if (newCotizacion && newCotizacion.valorizo) {
-            if (newCotizacion.valorizo !== cotizacion.importeCotizado) {
-                let newProspecto = await putProspecto(datosCot)
-                let newLead = await putLead(datosCot, newProspecto, newCotizacion)
-                sendCotizacionEmail(newLead.observaciones, newLead.res)
-                return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
+        try {
+            let datosCot = JSON.parse(cotizacion.observaciones)
+            let newCotizacion = await postCotizacion(datosCot)
+            if (newCotizacion && newCotizacion.valorizo) {
+                if (newCotizacion.valorizo !== cotizacion.importeCotizado) {
+                    let newProspecto = await putProspecto(datosCot)
+                    let newLead = await putLead(datosCot, newProspecto, newCotizacion)
+                    sendCotizacionEmail(newLead.observaciones, newLead.res)
+                    return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
+                }
             }
+            return false
+        } catch (error) {
+            throw new Error('OBSERVERCION PARSE ERROR ' + error);
         }
-        return false
     }
 
     let validarDeposito = async (observaciones) => {
@@ -128,6 +132,13 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             await storeCotizacion(oportunidad.data[0])
         } catch (error) {
             console.error('Error al obtener el prospecto:', error)
+            if (error.message.includes('OBSERVERCION PARSE ERROR')) {
+                setError({
+                    type: 'OBSERVERCION PARSE ERROR',
+                    payload: error.message,
+                })
+                return
+            }
             setError({
                 type: 'API CRISTAL',
                 payload: JSON.stringify(error),
