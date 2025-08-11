@@ -62,7 +62,7 @@ export default router;
 
 const putProspecto = async (props) => {
     return await fetch(
-            `${process.env.API_HOST}/?token=${process.env.API_TOKEN}&o=prospecto`,
+            `${process.env.API_HOST_TARIF_LEAD_PROSP}/?token=${process.env.API_TOKEN_TARIF_LEAD_PROSP}&o=prospecto`,
             {
                 method: 'PUT',
                 headers: {
@@ -80,7 +80,7 @@ const putProspecto = async (props) => {
 
 const putLead = async (props) => {
     return await fetch(
-            `${process.env.API_HOST}/?token=${process.env.API_TOKEN}&o=lead`,
+            `${process.env.API_HOST_TARIF_LEAD_PROSP}/?token=${process.env.API_TOKEN_TARIF_LEAD_PROSP}&o=lead`,
             {
                 method: 'PUT',
                 headers: {
