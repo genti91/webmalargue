@@ -97,7 +97,10 @@ export default function CotizacionExitosa({
       {/* Botones Generar y Nueva Cotizacion */}
       <div className='tw-flex tw-w-full tw-flex-col lg:tw-flex-row lg:tw-justify-end lg:tw-items-center tw-gap-4 lg:tw-gap-11 tw-mt-12'>
         <button
-          onClick={newQuoteHandler}
+          onClick={() => {
+            newQuoteHandler();
+            window.scrollTo({ top: 200, behavior: 'smooth' })
+          }}
           className={`tw-self-end tw-bg-${origenEnSucursal ? '[#6C757D]' : '[#2F3394]'} tw-w-full lg:tw-w-fit tw-font-semibold tw-text-white tw-p-[21px] tw-rounded-md`}
         >
           Nueva cotización
