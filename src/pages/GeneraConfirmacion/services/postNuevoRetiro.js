@@ -1,4 +1,4 @@
-const { REACT_APP_API_TOKEN, REACT_APP_API_HOST, REACT_APP_MP_API_HOST } = process.env;
+const { REACT_APP_API_HOST_TARIF_LEAD_PROSP_BILLE, REACT_APP_API_TOKEN_TARIF_LEAD_PROSP_BILLE, REACT_APP_MP_API_HOST } = process.env;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -102,7 +102,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
 const getBilletera = async () => {
     return await window
         .fetch(
-            `${REACT_APP_API_HOST}/?token=${REACT_APP_API_TOKEN}&o=billetera`,
+            `${REACT_APP_API_HOST_TARIF_LEAD_PROSP_BILLE}/?token=${REACT_APP_API_TOKEN_TARIF_LEAD_PROSP_BILLE}&o=billetera`,
             {
                 method: 'POST',
                 credentials: 'same-origin',

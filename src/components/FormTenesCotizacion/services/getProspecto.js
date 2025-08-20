@@ -1,9 +1,9 @@
-const { REACT_APP_API_TOKEN_TARIF_LEAD_PROSP, REACT_APP_API_HOST_TARIF_LEAD_PROSP } = process.env
+const { REACT_APP_API_TOKEN_TARIF_LEAD_PROSP_BILLE, REACT_APP_API_HOST_TARIF_LEAD_PROSP_BILLE } = process.env
 
 export const getProspecto = async (id, email) => {
     return await window
         .fetch(
-            `${REACT_APP_API_HOST_TARIF_LEAD_PROSP}/?token=${REACT_APP_API_TOKEN_TARIF_LEAD_PROSP}&o=prospecto`,
+            `${REACT_APP_API_HOST_TARIF_LEAD_PROSP_BILLE}/?token=${REACT_APP_API_TOKEN_TARIF_LEAD_PROSP_BILLE}&o=prospecto`,
             {
                 method: 'POST',
                 credentials: 'same-origin',
