@@ -109,7 +109,7 @@ const getBilletera = async () => {
                 body: JSON.stringify({
                     idbilletera: 3,
                     filtros : {
-                        uuid: "4268577ae6004fb7916b8040ca9fda0a29b5e1e51fd844f283b90449fd04a382"
+                        uuid: "1234"
                     }
                 }),
             }
