@@ -29,6 +29,12 @@ const fetchWithRetry = async (url, options) => {
 
 export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinatario) => {
     const url = `${REACT_APP_MP_API_HOST}/api/codilsa/nuevoRetiro`;
+    if (destinatario.tipo_documento.value === "CUIL") {
+        destinatario.numero_documento = formatearDocumento(destinatario.numero_documento);
+    }
+    if (remitente.tipo_documento.value === "CUIL") {
+        remitente.numero_documento = formatearDocumento(remitente.numero_documento);
+    }
     let idFiscal = destinatario.numero_documento;
     if (destinatario.factura_a_nombre_de.value === "Remitente") {
         idFiscal = remitente.numero_documento;
@@ -118,4 +124,12 @@ const getBilletera = async () => {
         .catch((error) => {
             throw error
         })
+}
+
+function formatearDocumento(numero_documento) {
+  let str = String(numero_documento);
+  let parte1 = str.slice(0, 2);
+  let parte2 = str.slice(2, 10);
+  let parte3 = str.slice(10);
+  return `${parte1}-${parte2}-${parte3}`;
 }
