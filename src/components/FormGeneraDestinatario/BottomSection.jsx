@@ -37,9 +37,8 @@ export default function ObsSection({ errors, form, setInForm }) {
                             setInput={(value) => setInForm('factura_a_nombre_de', value)}
                             mandatory={true}
                             placeholder="Seleccioná una opción"
-                            options={[{value:'Remitente', label:'Remitente'}, {value:'Destinatario', label:'Destinatario **Proximamente**'}]}
+                            options={[{value:'Remitente', label:'Remitente'}, {value:'Destinatario', label:'Destinatario'}]}
                             error={errors.factura_a_nombre_de}
-                            disabledOptions={['Destinatario']}
                         />
                         <TitleTextInput
                             title='Tipo de contribuyente'

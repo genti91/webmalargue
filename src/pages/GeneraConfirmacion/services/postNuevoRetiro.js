@@ -35,8 +35,10 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     if (remitente.tipo_documento.value === "CUIL") {
         remitente.numero_documento = formatearDocumento(remitente.numero_documento);
     }
+    let formaPago = 2;
     let idFiscal = destinatario.numero_documento;
     if (destinatario.factura_a_nombre_de.value === "Remitente") {
+        formaPago = 1;
         idFiscal = remitente.numero_documento;
     }
     let billetera = await getBilletera();
@@ -54,7 +56,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
             clienteCuenta: 66666,
             clienteSubCuenta: 1,
             origenSucursal: cotizacion.sucursalCanalizadora,
-            formaPago: 1,
+            formaPago,
             tipoFiscal: 5,
             idFiscal,
             nombreRte: remitente.nombre,
