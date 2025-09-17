@@ -32,7 +32,7 @@ export const validateDeclaredValue = (value) => {
 
 export const validateDescription = (value) => {
   if (!value) return 'Ingresá la descripción de los bultos'
-  if (value.length < 10) return 'La descripción debe tener al menos 10 caracteres'
+  if (value.length < 2) return 'La descripción debe tener al menos 2 caracteres'
   return null
 }
 
