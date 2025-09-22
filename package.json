@@ -16,6 +16,7 @@
     "dotenv": "^16.3.1",
     "emailjs-com": "^3.2.0",
     "html-react-parser": "^1.4.12",
+    "html2canvas": "^1.4.1",
     "lodash": "4.17.21",
     "node": "^21.6.2",
     "openssl": "^2.0.0",
