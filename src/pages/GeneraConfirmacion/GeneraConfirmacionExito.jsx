@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
+import html2canvas from 'html2canvas'
 import { cotizaIMG } from '../../assets'
 import { BannerHeader } from '../../components/BannerHeader/BannerHeader'
 import GeneraHeader from '../../components/GeneraHeader'
@@ -10,6 +12,7 @@ import { Button } from 'react-bootstrap'
 import { postNuevoRetiro } from './services/postNuevoRetiro'
 import emailjs from 'emailjs-com'
 import QRCode from 'qrcode'
+import ShippingLabel from '../../components/ShippingLabel'
 
 const GeneraConfirmacionExito = () => {
     const { setLoading } = useLoading();
@@ -20,6 +23,41 @@ const GeneraConfirmacionExito = () => {
     const [codigoSeguimiento, setCodigoSeguimiento] = useState();
     const [errorRetiro, setErrorRetiro] = useState(paymentId ? false : true);
     const [errorEmailBody, setErrorEmailBody] = useState({});
+
+    const renderElementToPng = async (element) => {
+        const container = document.createElement('div')
+        container.style.position = 'absolute'
+        container.style.left = '-9999px'
+        document.body.appendChild(container)
+        let root
+        if (ReactDOM.createRoot) {
+            root = ReactDOM.createRoot(container)
+            root.render(element)
+        } else {
+            ReactDOM.render(element, container)
+        }
+        await new Promise(r => setTimeout(r, 300))
+        const styleFix = document.createElement("style");
+        styleFix.innerHTML = `
+            img { display:inline-block !important; vertical-align:middle !important; }
+            body { line-height: initial !important; }
+        `;
+        document.head.appendChild(styleFix);
+        const canvas = await html2canvas(container, {
+            backgroundColor: '#ffffff',
+            scale: 2,
+            useCORS: true,
+        })
+
+        const dataUrl = canvas.toDataURL('image/png')
+        styleFix.remove()
+
+        if (root?.unmount) root.unmount()
+        else ReactDOM.unmountComponentAtNode(container)
+
+        container.remove()
+        return dataUrl
+        }
 
     const cargarRetiro = async () => {
         try {
@@ -32,10 +70,43 @@ const GeneraConfirmacionExito = () => {
             setLoading(true);
             const res = await postNuevoRetiro(cotizacion, paymentId, remitente, destinatario);
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
-                throw new Error(`Respuesta inválida del servidor: ${res.msg}`);
+                throw new Error(`Respuesta inválida del servidor: ${res?.msg}`);
             }
-            const qrIdTrazabilidad = await QRCode.toDataURL(res.idTrazabilidad.replace(/-/g, ''))
-            emailjs.send('service_lv636bu', 'template_vim8d28', emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro, qrIdTrazabilidad), 'fRtOuVBrm3PpHzBca')
+
+            const qrIdForName = res.idTrazabilidad.replace(/-/g, '')
+            const qrBase = await QRCode.toDataURL(qrIdForName, {
+                width: 150,
+                margin: 1,
+            });
+
+            const emailParams = emailBody(cotizacion, remitente, destinatario, res.idTrazabilidad, paymentId, res.numeroRetiro)
+
+            for (let i = 0; i < (cotizacion.arrayBultos || []).length; i++) {
+                const bulto = cotizacion.arrayBultos[i]
+                const labelData = {
+                    fecha: new Date().toLocaleDateString('es-AR'),
+                    codigoSeguimiento: res.idTrazabilidad,
+                    sucursalDestino: cotizacion.localidadDestino,
+                    bultos: bulto.cantidadBultos,
+                    kg: bulto.peso,
+                    m3: ((bulto.alto / 100) * (bulto.ancho / 100) * (bulto.largo / 100) * bulto.cantidadBultos).toFixed(2),
+                    remitente: remitente.nombre,
+                    destinatario: destinatario.nombre,
+                    localidadDestino: cotizacion.localidadDestino,
+                    recibidorQUN: `RTO ${formatearNumeroRetiro(res.numeroRetiro)}`,
+                    pagina: i + 1,
+                    totalPaginas: cotizacion.arrayBultos.length
+                }
+
+                const element = <ShippingLabel data={labelData} qrCodeUrl={qrBase} />
+                const pngDataUrl = await renderElementToPng(element)
+
+                const keyName = `qrIdTrazabilidad_${i + 1}`
+                emailParams[keyName] = pngDataUrl
+            }
+
+            await emailjs.send('service_lv636bu', 'template_vim8d28', emailParams, 'fRtOuVBrm3PpHzBca')
+
             setNumRetiro(res.numeroRetiro);
             setCodigoSeguimiento(res.idTrazabilidad);
             localStorage.setItem('envioExitoso', JSON.stringify({
@@ -132,14 +203,13 @@ const GeneraConfirmacionExito = () => {
 export default GeneraConfirmacionExito;
 
 
-const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro, qrIdTrazabilidad) => {
+const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentId, numeroRetiro) => {
     let emailNoti = remitente.email
     if (destinatario.notificacion.value !== "Remitente") {
         emailNoti = remitente.email + `, ${destinatario.email}`;
     }
     return {
         email: emailNoti,
-        qrIdTrazabilidad,
         nombreQr: idTrazabilidad.replace(/-/g, ''),
         numero_retiro: formatearNumeroRetiro(numeroRetiro),
         cotizacion_id : cotizacion.id,
