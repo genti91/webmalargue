@@ -6,10 +6,6 @@ export const ErrorTarifaCotizacion = ({
   cotizacionId,
   mensajeCristal,
 }) => {
-    console.log(
-        email,
-        cotizacionId,
-        mensajeCristal)
   const sendEmail = () => {
     emailjs.send(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -52,7 +48,6 @@ export const ErrorTarifaCotizacion = ({
             className='tw-w-[158px] tw-h-12 p-0'
             onClick={() => {
               sendEmail()
-              console.log('SE EFECUTO SEND MAIL')
             }}
           >
             Contactanos

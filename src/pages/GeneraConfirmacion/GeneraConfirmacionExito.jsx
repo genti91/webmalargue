@@ -86,14 +86,14 @@ const GeneraConfirmacionExito = () => {
                 const labelData = {
                     fecha: new Date().toLocaleDateString('es-AR'),
                     codigoSeguimiento: res.idTrazabilidad,
-                    sucursalDestino: cotizacion.localidadDestino,
+                    sucursalDestino: cotizacion.sucursalDestinoNombre,
                     bultos: bulto.cantidadBultos,
                     kg: bulto.peso,
                     m3: ((bulto.alto / 100) * (bulto.ancho / 100) * (bulto.largo / 100) * bulto.cantidadBultos).toFixed(2),
                     remitente: remitente.nombre,
                     destinatario: destinatario.nombre,
-                    localidadDestino: cotizacion.localidadDestino,
-                    recibidorQUN: `RTO ${formatearNumeroRetiro(res.numeroRetiro)}`,
+                    localidadDestino: cotizacion.sucursalCanalizadoraNombre,
+                    recibidorQUN: `${formatearNumeroRetiro(res.numeroRetiro)}`,
                     pagina: i + 1,
                     totalPaginas: cotizacion.arrayBultos.length
                 }

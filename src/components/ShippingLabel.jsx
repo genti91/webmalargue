@@ -54,16 +54,16 @@ const ShippingLabel = ({ data, qrCodeUrl }) => {
 
       {/* Sucursal Destino - Right side, below QR */}
       <div className="tw-absolute tw-top-32 tw-right-2 tw-text-center">
-        <div className="tw-text-xs tw-text-black tw-mb-0.5">Sucursal destino</div>
+        <div className="tw-text-sm tw-text-black tw-mb-0.5">Sucursal destino</div>
         <div className="tw-text-sm tw-font-bold tw-text-black">
-          {data.sucursalDestino.replace(/^\(\d+\)\s*/, "")}
+          {data.sucursalDestino}
         </div>
       </div>
 
       {/* Recibidor QUN - Right Side, below Sucursal */}
       <div className="tw-absolute tw-top-44 tw-right-2">
-        <div className="tw-text-center tw-border tw-border-gray-800 tw-p-1 tw-bg-white">
-          <div className="tw-text-xs tw-text-black tw-mb-0.5">Recibidor QUN</div>
+        <div className="tw-text-center tw-border tw-border-gray-800 tw-p-1 tw-bg-white tw-px-5">
+          <div className="tw-text-xs tw-text-black tw-mb-0.5">Nro Remito</div>
           <div className="tw-text-xs tw-font-bold tw-text-black">
             {data.recibidorQUN}
           </div>
@@ -82,7 +82,7 @@ const ShippingLabel = ({ data, qrCodeUrl }) => {
         </div>
         <div className="tw-flex">
           <span className="tw-w-14">Suc Origen</span>
-          <span className="tw-font-semibold">{data.localidadDestino}</span>
+          <span className="tw-font-semibold">{data.localidadDestino.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</span>
         </div>
       </div>
 
