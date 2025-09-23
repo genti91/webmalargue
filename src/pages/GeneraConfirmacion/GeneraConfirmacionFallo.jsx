@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 
 const GeneraConfirmacionFallo = () => {
     const [searchParams] = useSearchParams()
-    console.log('Todos los search params:');
     const paramsObj = Object.fromEntries(searchParams.entries());
     const { cotizacion, remitente } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
     const emailBody = {
@@ -17,7 +16,6 @@ const GeneraConfirmacionFallo = () => {
         id_cotizacion: cotizacion.id,
         descripcion: JSON.stringify(paramsObj)
     }
-    console.log('Email body:', emailBody);
     const sendEmail = () => {
         emailjs
             .send('service_lv636bu', 'template_ton699n', emailBody, 'fRtOuVBrm3PpHzBca')

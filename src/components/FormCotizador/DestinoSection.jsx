@@ -30,6 +30,9 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
     onValidate('destinyCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('destiny', option.nombre);
     onValidate('idDestiny', option.id);
+    onValidate('sucursalDestino', option.sucursal[0]?.idSucursal);
+    onValidate('sucursalDestinoNombre', option.sucursal[0]?.nombre);
+    onValidate('sucursalDestinoDomicilio', option.sucursal[0]?.domicilio);
   };
 
   return (

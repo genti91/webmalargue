@@ -35,13 +35,11 @@ export const FormGeneraDestinatario = ({ form, setInForm, datosPrevios, setCurre
                 fieldName = 'numero_documento'
                 value = form[fieldName];
             };
-            console.log('Validando campo:', fieldName, 'con valor:', value);
             const inputConfig = formGeneraRemitente.find(input => input.name === fieldName);
             if (inputConfig) {
                 if (inputConfig.required && !value) {
                     error = inputConfig.required;
                 } else if (inputConfig.validate) {
-                    console.log('tipo_documento:', tipo_documento);
                     error = inputConfig.validate(value, tipo_documento);
                 }
             }
