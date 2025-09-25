@@ -82,7 +82,7 @@ const ShippingLabel = ({ data, qrCodeUrl }) => {
         </div>
         <div className="tw-flex">
           <span className="tw-w-14">Suc Origen</span>
-          <span className="tw-font-semibold">{data.localidadDestino.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</span>
+          <span className="tw-font-semibold">{data.localidadDestino}</span>
         </div>
       </div>
 
