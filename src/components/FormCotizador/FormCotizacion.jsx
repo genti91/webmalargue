@@ -272,10 +272,10 @@ export default function FormCotizacion() {
         />
 
         <DestinoSection
-          tarifaDestino={tarifa?.locDestino}
+          tarifaDestino={tarifa?.locOrigen}
           form={form}
           setInForm={setInForm}
-          locations={tarifa.locDestino}
+          locations={tarifa.locOrigen}
           errors={errors}
           onValidate={handleFieldChange}
         />
