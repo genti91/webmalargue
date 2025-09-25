@@ -63,7 +63,7 @@ const ShippingLabel = ({ data, qrCodeUrl }) => {
       {/* Recibidor QUN - Right Side, below Sucursal */}
       <div className="tw-absolute tw-top-44 tw-right-2">
         <div className="tw-text-center tw-border tw-border-gray-800 tw-p-1 tw-bg-white tw-px-5">
-          <div className="tw-text-xs tw-text-black tw-mb-0.5">Nro Remito</div>
+          <div className="tw-text-xs tw-text-black tw-mb-0.5">Nro Retiro</div>
           <div className="tw-text-xs tw-font-bold tw-text-black">
             {data.recibidorQUN}
           </div>

@@ -89,7 +89,7 @@ const GeneraConfirmacionExito = () => {
                     sucursalDestino: cotizacion.sucursalDestinoNombre,
                     bultos: bulto.cantidadBultos,
                     kg: bulto.peso,
-                    m3: ((bulto.alto / 100) * (bulto.ancho / 100) * (bulto.largo / 100) * bulto.cantidadBultos).toFixed(2),
+                    m3: ((bulto.alto / 100) * (bulto.ancho / 100) * (bulto.largo / 100) * bulto.cantidadBultos).toFixed(3),
                     remitente: remitente.nombre,
                     destinatario: destinatario.nombre,
                     localidadDestino: cotizacion.sucursalCanalizadoraNombre,
