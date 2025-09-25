@@ -30,9 +30,9 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
     onValidate('originCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('origin', option.nombre);
     onValidate('idOrigin', option.id);
-    onValidate('sucursal', option.sucursal[0]?.idSucursal);
-    onValidate('sucursalOrigenNombre', option.sucursal[0]?.nombre);
-    onValidate('sucursalOrigenDomicilio', option.sucursal[0]?.domicilio);
+    onValidate('sucursal', option.sucursal[0]?.idSucursal || 'Desconocido');
+    onValidate('sucursalOrigenNombre', option.sucursal[0]?.nombreSucursal || 'Desconocido');
+    onValidate('sucursalOrigenDomicilio', option.sucursal[0]?.domicilio || 'Desconocido');
   };
 
   return (
