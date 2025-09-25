@@ -19,7 +19,7 @@ export const createPreference = async (req, res) => {
             back_urls: {
                 success: `${process.env.REACT_APP_URL}/exito`,
                 failure: `${process.env.REACT_APP_URL}/fallo`,
-                pending: `${process.env.REACT_APP_URL}/pendiente`,
+                pending: `${process.env.REACT_APP_URL}/fallo`,
             },
             auto_return: 'all',
             payment_methods: {
