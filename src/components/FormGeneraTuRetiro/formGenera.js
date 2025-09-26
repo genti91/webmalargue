@@ -12,9 +12,9 @@ export const formGeneraRemitente = [
   },
   {
     colSize: { md: 6 },
-    label: 'DNI / CUIT',
+    label: 'DNI / CUIL',
     inputProps: {
-      name: 'Rdni/cuit',
+      name: 'Rdni/CUIL',
       type: 'text',
       required: true,
       errorMessage: 'Por favor completa este campo',
@@ -135,9 +135,9 @@ export const formGeneraDestinatario = [
   },
   {
     colSize: { md: 6 },
-    label: 'DNI / CUIT',
+    label: 'DNI / CUIL',
     inputProps: {
-      name: 'Ddni/cuit',
+      name: 'Ddni/CUIL',
       type: 'text',
       required: true,
       errorMessage: 'Por favor completa este campo',

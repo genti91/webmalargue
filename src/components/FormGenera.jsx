@@ -242,7 +242,7 @@ const FormGenera = (props) => {
                     />
                   </Col>
                   <Col md={6}>
-                    <label>Cuit</label>
+                    <label>CUIL</label>
                     <TextInput
                       {...form_shipment[20]}
                       setInForm={setInForm}

@@ -109,7 +109,7 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
         <div className='tw-flex tw-flex-col tw-gap-2'>
             <div><span className="tw-font-bold">Nombre y apellido / Razón social:</span> {datos.nombre}</div>
             <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
-            <div><span className="tw-font-bold">CUIT / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
+            <div><span className="tw-font-bold">CUIL / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
             <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
             <div>
             <span className="tw-font-bold">Dirección:</span>{" "}

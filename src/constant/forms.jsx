@@ -285,8 +285,8 @@ const form_shipment = [
     // icon: <FaEnvelope />,
   },
   {
-    name: 'cuit',
-    type: 'cuit',
+    name: 'CUIL',
+    type: 'CUIL',
     // placeholder: "*Teléfono / celular",
     required: true,
     errorMessage: 'Por favor completa este campo',
