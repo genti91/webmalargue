@@ -34,10 +34,10 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                         setInput={(value) => setInForm('tipo_documento', value)}
                         mandatory={true}
                         placeholder="Seleccioná"
-                        options={[{value:'DNI', label:'DNI'}, {value:'CUIT', label:'CUIT'}, {value:'Cédula ', label:'Cédula '}]}
+                        options={[{value:'DNI', label:'DNI'}, {value:'CUIL', label:'CUIL'}]}
                     />
                     <TitleTextInput
-                        title='Número de documento / CUIT'
+                        title='Número de documento / CUIL'
                         placeholder='Ej.: 11222333 (sin puntos ni guiones)'
                         input={form.numero_documento}
                         setInput={(value) => setInForm('numero_documento', value)}

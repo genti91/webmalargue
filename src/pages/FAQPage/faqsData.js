@@ -7,7 +7,7 @@ export const faqsData = [
   {
     question: '¿Qué datos necesito para realizar una cotización?',
     response:
-      'Necesitas saber las dimensiones de tus paquetes: alto, ancho y profundidad medidos en centímetros, el peso en kg y el valor económico total de la mercadería. También debes incluir los datos del remitente y destinatario: CUIT o DNI, direcciones de origen y destino con sus localidades y código postal. No te olvides de incluir el teléfono de contacto tuyo y del que recibe la mercadería, como así también los mails.',
+      'Necesitas saber las dimensiones de tus paquetes: alto, ancho y profundidad medidos en centímetros, el peso en kg y el valor económico total de la mercadería. También debes incluir los datos del remitente y destinatario: CUIL o DNI, direcciones de origen y destino con sus localidades y código postal. No te olvides de incluir el teléfono de contacto tuyo y del que recibe la mercadería, como así también los mails.',
   },
   {
     question:
@@ -98,7 +98,7 @@ export const faqsData = [
     <li>Dimensiones de tus paquetes: alto, ancho y profundidad medidos en centímetros.</li>
     <li>El peso en kilos.</li>
     <li>El valor económico total de la mercadería.</li>
-    <li>Los datos del remitente y destinatario: CUIT o DNI, direcciones de origen y destino con sus localidades y código postal.</li>
+    <li>Los datos del remitente y destinatario: CUIL o DNI, direcciones de origen y destino con sus localidades y código postal.</li>
     <li>Teléfono de contacto tuyo y del que recibe la mercadería.</li>
     </ul>
     `,

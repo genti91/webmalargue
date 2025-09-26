@@ -46,7 +46,10 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion, id, datosRemitente, dat
                 <Modal.Title>¿Queres continuar con el pago?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>Al confirmar, irás a la pasarela de pago. Tené en cuenta que la orden de retiro sólo se generará si el pago se completa correctamente.</p>
+                <p>
+                    Al confirmar, irás a la pasarela de pago.{' '}
+                    <strong>No cierres esta pestaña hasta que vuelvas automáticamente a la web de Expreso Malarüe.</strong>
+                </p>
             </Modal.Body>
             <Modal.Footer>
                 {!loading ? (
