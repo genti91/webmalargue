@@ -31,9 +31,13 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     const url = `${REACT_APP_MP_API_HOST}/api/codilsa/nuevoRetiro`;
     if (destinatario.tipo_documento.value === "CUIL") {
         destinatario.numero_documento = formatearDocumento(destinatario.numero_documento);
+    } else {
+        destinatario.numero_documento = `DNI ${destinatario.numero_documento}`;
     }
     if (remitente.tipo_documento.value === "CUIL") {
         remitente.numero_documento = formatearDocumento(remitente.numero_documento);
+    } else {
+        remitente.numero_documento = `DNI ${remitente.numero_documento}`;
     }
     let formaPago = 2;
     let idFiscal = destinatario.numero_documento;

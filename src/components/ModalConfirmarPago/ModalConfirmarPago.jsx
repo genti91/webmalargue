@@ -48,7 +48,7 @@ const ModalConfirmarPago = ({ show, setShow, cotizacion, id, datosRemitente, dat
             <Modal.Body>
                 <p>
                     Al confirmar, irás a la pasarela de pago.{' '}
-                    <strong>No cierres esta pestaña hasta que vuelvas automáticamente a la web de Expreso Malarüe.</strong>
+                    <strong>No cierres esta pestaña hasta que vuelvas automáticamente a la web del Expreso Malargüe.</strong>
                 </p>
             </Modal.Body>
             <Modal.Footer>
