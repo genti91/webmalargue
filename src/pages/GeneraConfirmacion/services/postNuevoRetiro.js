@@ -31,20 +31,26 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     const url = `${REACT_APP_MP_API_HOST}/api/codilsa/nuevoRetiro`;
     if (destinatario.tipo_documento.value === "CUIL") {
         destinatario.numero_documento = formatearDocumento(destinatario.numero_documento);
-    } else {
-        destinatario.numero_documento = `DNI ${destinatario.numero_documento}`;
     }
     if (remitente.tipo_documento.value === "CUIL") {
         remitente.numero_documento = formatearDocumento(remitente.numero_documento);
-    } else {
-        remitente.numero_documento = `DNI ${remitente.numero_documento}`;
     }
+
     let formaPago = 2;
-    let idFiscal = destinatario.numero_documento;
+    let idFiscal;
     if (destinatario.factura_a_nombre_de.value === "Remitente") {
         formaPago = 1;
         idFiscal = remitente.numero_documento;
+        if (remitente.tipo_documento.value === "DNI") {
+            idFiscal = `DNI ${idFiscal}`;
+        }
+    } else {
+        idFiscal = destinatario.numero_documento;
+        if (destinatario.tipo_documento.value === "DNI") {
+            idFiscal = `DNI ${idFiscal}`;
+        }
     }
+
     let billetera = await getBilletera();
     if (billetera.data.length === 0) {
         throw new Error(`No se encontró la minuta en la billetera: ${billetera?.msg}`);
