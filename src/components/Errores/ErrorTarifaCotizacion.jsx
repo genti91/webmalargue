@@ -5,6 +5,7 @@ export const ErrorTarifaCotizacion = ({
   email,
   cotizacionId,
   mensajeCristal,
+  datosObservacion
 }) => {
   const sendEmail = () => {
     emailjs.send(
@@ -15,6 +16,7 @@ export const ErrorTarifaCotizacion = ({
         id: cotizacionId,
         descripcion: mensajeCristal,
         titulo: 'ERROR: Tarifa cotización',
+        datosObservacion: formatDatosObservacion(datosObservacion)
       },
       process.env.REACT_APP_EMAILJS_PUBLIC_KEY
     )
@@ -57,3 +59,82 @@ export const ErrorTarifaCotizacion = ({
     </div>
   )
 }
+
+const formatDatosObservacion = (obs) => {
+
+  const listaBultos = obs.arrayBultos.map((bulto, index) => {
+    const isLastBulto = index === obs.arrayBultos.length - 1;
+    return `<li dir="ltr" aria-level="3">
+    <p dir="ltr" role="presentation">cantidad​ de Bultos:​ ${bulto.cantidadBultos}</p>
+    </li>
+    <li dir="ltr" aria-level="3">
+    <p dir="ltr" role="presentation">peso:​ ${bulto.peso}​ kg</p>
+    </li>
+    <li dir="ltr" aria-level="3">
+    <p dir="ltr" role="presentation">alto:​ ${bulto.alto}​ cm</p>
+    </li>
+    <li dir="ltr" aria-level="3">
+    <p dir="ltr" role="presentation">ancho:​ ${bulto.ancho}​ cm</p>
+    </li>
+    <li dir="ltr" aria-level="3">
+    <p dir="ltr" role="presentation">larg​o:​ ${bulto.largo}​&nbsp; cm${isLastBulto ? '' : '<br><br>================'}</p>
+    </li>`
+  }).join('')
+
+  return `<li dir="ltr" aria-level="1">
+  <p dir="ltr" role="presentation">​Par&aacute;metros de la cotizaci&oacute;n:</p>
+  <ul>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">​email:​ ${obs.emailNotificacion}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">localidad​ de Orige​n:​ ${obs.localidadOrigen}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">cp​ de Origen: ${obs.cpOrigen}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">provincia​ de Origen​:​ ${obs.provinciaOrigen}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">localidad​ de Destino​: ${obs.localidadDestino}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">cp​ de Destino​:​ ${obs.cpDestino}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">provincia​ de Destino​:​ ${obs.provinciaDestino}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">​Sucursal​ de Origen (Canalizadora​):​ ${obs.sucursalCanalizadoraNombre}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">​Sucursal​ de Destino​:​ ${obs.sucursalDestinoNombre}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Bultos:</p>
+  <ul>
+  ${listaBultos}
+  </ul>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Tarifa​:​ ${obs.tarifa}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Kilos​ Reales:​ ${obs.kilosReales}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Metros​ Cubicos:​ ${obs.metrosCubicos}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Bultos​ Total:​ ${obs.bultosTotal}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Valor​ Declarado:​ ${obs.valorDeclarado}</p>
+  </li>
+  <li dir="ltr" aria-level="2">
+  <p dir="ltr" role="presentation">Descripci&oacute;n​ Bultos​: ${obs.descripcionBultos}</p>
+  </li>
+  </ul>
+  <strong id="docs-internal-guid-03abf199-7fff-c6eb-bd36-b3a3407a190b"></strong></li>`
+};
