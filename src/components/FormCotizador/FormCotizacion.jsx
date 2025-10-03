@@ -217,6 +217,7 @@ export default function FormCotizacion() {
         email={errorTarifa.email}
         cotizacionId={errorTarifa.cotizacionId}
         mensajeCristal={errorTarifa.mensajeCristal}
+        datosObservacion={formatCotizacionData(form, bultos)}
       />
     )
   }
