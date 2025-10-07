@@ -31,15 +31,6 @@ const FormGeneraTuRetiro = () => {
   const navigate = useNavigate()
 
   const addBultoHandler = (newBulto) => {
-    if (bultos.length === 10)
-      return Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: 'Límite alcanzado',
-        text: 'Solo se pueden ingresar 10 bultos por cotización, por favor, de ser necesario realice otra.',
-        showConfirmButton: false,
-        timer: 1500,
-      })
     setBultos([...bultos, newBulto])
   }
 
