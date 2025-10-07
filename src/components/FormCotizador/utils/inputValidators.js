@@ -39,7 +39,6 @@ export const validateDescription = (value) => {
 export const validateBultoQuantity = (value, totalBultos) => {
   if (!value) return 'Ingresá la cantidad de bultos';
   if (isNaN(value) || value <= 0) return 'La cantidad debe ser mayor a 0';
-  if (totalBultos + parseInt(value) > 10) return 'No se pueden agregar más de 10 bultos en total';
   return null;
 };
 
@@ -48,7 +47,7 @@ export const validateBultoWeight = (value) => {
   // Convert to number if it's a string with comma
   const numericValue = typeof value === 'string' ? parseFloat(value.replace(',', '.')) : value
   if (isNaN(numericValue) || numericValue <= 0) return 'El peso debe ser mayor a 0'
-  if (numericValue > 200) return 'El peso no puede ser mayor a 200kg'
+  if (numericValue > 28000) return 'El peso no puede ser mayor a 28000kg'
   return null
 }
 
