@@ -129,6 +129,15 @@ export default function FormCotizacion() {
       const formattedData = formatCotizacionData(form, bultos)
       setFinalData(formattedData)
 
+      if (!formattedData?.sucursalCanalizadora || !formattedData?.sucursalDestino) {
+        setErrorTarifa({
+          email: form.email,
+          cotizacionId: null,
+          mensajeCristal: 'Faltan datos de sucursales para cotizar',
+        })
+        return
+      }
+
       const result = await getCotizacion(formattedData)
 
       if (result?.cotizacion.msg && result.cotizacion.msg.includes('No tengo tarifa')) {
