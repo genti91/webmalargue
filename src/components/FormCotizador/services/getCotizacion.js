@@ -114,6 +114,9 @@ export const putLead = async (props, prospecto, cotizacion) => {
 }
 
 export const getCotizacion = async (props) => {
+  if (!props?.sucursalCanalizadora || !props?.sucursalDestino) {
+    throw new Error('Faltan datos de sucursales para cotizar')
+  }
   var cotizacion = await postCotizacion(props)
   const prospecto = await putProspecto(props)
   const lead = await putLead(props, prospecto, cotizacion)
