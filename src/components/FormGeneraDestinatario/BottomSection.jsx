@@ -1,8 +1,23 @@
+import { useState } from 'react';
 import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import TitleSelectInput from '../TextInputs/TitleSelectInput'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 
 export default function ObsSection({ errors, form, setInForm }) {
+    const [disableTipoDoc, setDisableTipoDoc] = useState(false);
+    const [disabledOptions, setDisabledOptions] = useState([]);
+    const onTipoDeContribuyenteChange = (value) => {
+        setInForm('tipo_de_contribuyente', value)
+        console.log(value)
+        if (value.value !== 'Consumidor Final') {
+            setInForm('tipo_documento', {value:'CUIT', label:'CUIT'})
+            setDisableTipoDoc(true);
+        } else {
+            setInForm('tipo_documento', '')
+            setDisabledOptions(['CUIT']);
+            setDisableTipoDoc(false);
+        }
+    }
     return (
         <>
             <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full'>
@@ -40,11 +55,35 @@ export default function ObsSection({ errors, form, setInForm }) {
                             options={[{value:'Remitente', label:'Remitente'}, {value:'Destinatario', label:'Destinatario'}]}
                             error={errors.factura_a_nombre_de}
                         />
-                        <TitleTextInput
-                            title='Tipo de contribuyente'
+                        <TitleSelectInput
+                            title="Tipo de contribuyente"
                             input={form.tipo_de_contribuyente}
+                            setInput={onTipoDeContribuyenteChange}
+                            mandatory={true}
+                            placeholder="Seleccioná una opción"
+                            options={[{value:'Consumidor Final', label:'Consumidor Final'}, {value:'Responsable Inscripto', label:'Responsable Inscripto'}, {value:'Monotributista', label:'Monotributista'}]}
+                            error={errors.tipo_de_contribuyente}
+                        />
+                    </div>
+                    <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
+                        <TitleSelectInput
+                            title="Tipo documento"
+                            input={form.tipo_documento}
+                            setInput={(value) => setInForm('tipo_documento', value)}
+                            mandatory={true}
+                            placeholder="Seleccioná"
+                            options={[{value:'DNI', label:'DNI'}, {value:'CUIL', label:'CUIL'}, {value:'CUIT', label:'CUIT'}]}
+                            disabled={disableTipoDoc}
+                            disabledOptions={disabledOptions}
+                        />
+                        <TitleTextInput
+                            title='Número de documento / CUIL'
+                            placeholder='Ej.: 11222333 (sin puntos ni guiones)'
+                            input={form.numero_documento}
+                            setInput={(value) => setInForm('numero_documento', value)}
                             mandatory
-                            disabled
+                            error={errors.numero_documento}
+                            numeric
                         />
                     </div>
                 </div>

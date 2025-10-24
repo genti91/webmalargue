@@ -216,8 +216,6 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
         codigo_seguimiento: idTrazabilidad,
         nombre_remi: remitente.nombre,
         email_remi: remitente.email,
-        tipo_doc_remi: remitente.tipo_documento.value,
-        doc_remi: remitente.numero_documento,
         cod_area_remi: remitente.codigo_de_area,
         tel_remi: remitente.telefono,
         direccion_remi: formatearDireccion(remitente, cotizacion.localidadOrigen, cotizacion.provinciaOrigen, cotizacion.cpOrigen),

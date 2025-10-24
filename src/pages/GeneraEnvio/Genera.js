@@ -22,8 +22,6 @@ const Genera = () => {
   const remitenteDefault = {
     nombre: '',
     email: '',
-    tipo_documento: '',
-    numero_documento: '',
     codigo_de_area: '',
     telefono: '',
     provincia: '',
@@ -51,7 +49,7 @@ const Genera = () => {
     dpto: '',
     observaciones: '',
     factura_a_nombre_de: '',
-    tipo_de_contribuyente: 'Consumidor final',
+    tipo_de_contribuyente: '',
     notificacion: '',
   }
   const [formDestinatario, setFormDestinatario] =
