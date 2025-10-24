@@ -1,5 +1,7 @@
 import express from 'express';
 import { validatePayment } from '../controllers/mercadoPagoController.js';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
@@ -49,6 +51,30 @@ router.post('/nuevoRetiro', async (req, res) => {
         }
 
         const response = await postNuevoRetiro(req.body);
+        
+        if (response?.numeroRetiro && response?.idTrazabilidad && !response?.idCobranza) {
+            const warningLog = {
+                timestamp: new Date().toISOString(),
+                warning: 'Response missing idCobranza',
+                response: response,
+                requestBody: req.body
+            };
+            
+            const logDir = path.join(process.cwd(), 'logs');
+            if (!fs.existsSync(logDir)) {
+                fs.mkdirSync(logDir, { recursive: true });
+            }
+            
+            const logFile = path.join(logDir, 'missing-idCobranza.log');
+            fs.appendFileSync(
+                logFile, 
+                JSON.stringify(warningLog, null, 2) + '\n\n',
+                'utf8'
+            );
+            
+            console.warn('[WARNING] Response missing idCobranza - logged to file');
+        }
+        
         res.json(response); 
     } catch (error) {
         console.error(`[ERROR] Error en nuevoRetiro:`, error);

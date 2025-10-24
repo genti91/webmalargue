@@ -72,7 +72,30 @@ const GeneraConfirmacionExito = () => {
             if (!res || !res.numeroRetiro || !res.idTrazabilidad) {
                 throw new Error(`Respuesta inválida del servidor: ${res?.msg}`);
             }
-
+            if (!res.idCobranza) {
+                console.warn(`No se recibió idCobranza en la respuesta del nuevo retiro.`);
+                let remi = addPrefixToKeys(remitente, 'remi_')
+                let desti = addPrefixToKeys({...destinatario, 
+                    tipo_documento: destinatario.tipo_documento.value,
+                    factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
+                    notificacion: destinatario.notificacion.value
+                }, 'dest_')
+                let body = {
+                    nroRetiroForm: formatearNumeroRetiro(res.numeroRetiro),
+                    numeroRetiro: res.numeroRetiro,
+                    idTrazabilidad: res.idTrazabilidad,
+                    precioFinalARS: cotizacion?.precioFinal,
+                    id_operacion_mp: paymentId,
+                    email: remitente?.email,
+                    id_cotizacion: cotizacion?.id,
+                    ...desti,
+                    ...remi,
+                    destinatario:  JSON.stringify(destinatario),
+                    minuta: res?.minuta || '',
+                }
+                await emailjs.send('service_lv636bu', 'template_uun00pi', body, 'fRtOuVBrm3PpHzBca')
+                
+            }
             const qrIdForName = res.idTrazabilidad.replace(/-/g, '')
             const qrBase = await QRCode.toDataURL(qrIdForName, {
                 width: 150,
@@ -116,7 +139,7 @@ const GeneraConfirmacionExito = () => {
             }));
         } catch (err) {
             console.error('Error al cargar el retiro:', err);
-            let remi = addPrefixToKeys({...remitente, tipo_documento: remitente.tipo_documento.value}, 'remi_')
+            let remi = addPrefixToKeys(remitente, 'remi_')
             let desti = addPrefixToKeys({...destinatario, 
                 tipo_documento: destinatario.tipo_documento.value,
                 factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
