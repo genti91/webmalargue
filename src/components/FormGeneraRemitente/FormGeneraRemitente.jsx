@@ -25,21 +25,12 @@ export const FormGeneraRemitente = ({ form, setInForm, datosPrevios, setCurrentS
     const setInFormWithValidation = (fieldName, value) => {
         setInForm(fieldName, value);
         let error = null;
-        let tipo_documento;
-        if (fieldName === 'numero_documento') {
-            tipo_documento = form.tipo_documento.value;
-        }
-        if (fieldName === 'tipo_documento') {
-            tipo_documento = value.value;
-            fieldName = 'numero_documento'
-            value = form[fieldName];
-        };
         const inputConfig = formGeneraRemitente.find(input => input.name === fieldName);
         if (inputConfig) {
             if (inputConfig.required && !value) {
                 error = inputConfig.required;
             } else if (inputConfig.validate) {
-                error = inputConfig.validate(value, tipo_documento);
+                error = inputConfig.validate(value);
             }
         }
         setErrors(prev => ({

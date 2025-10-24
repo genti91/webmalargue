@@ -40,7 +40,8 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
             body:
                 <div className='tw-flex tw-flex-col tw-gap-2'>
                     <div><span className="tw-font-bold">Factura a nombre de:</span> {datosDestinatario.factura_a_nombre_de.label}</div>
-                    <div><span className="tw-font-bold">Tipo de contribuyente:</span> {datosDestinatario.tipo_de_contribuyente}</div>
+                    <div><span className="tw-font-bold">Tipo de contribuyente:</span> {datosDestinatario.tipo_de_contribuyente.label}</div>
+                    <div><span className="tw-font-bold">CUIL / DNI:</span> {formatearDocumento(datosDestinatario.numero_documento, datosDestinatario.tipo_documento.value)}</div>
                 </div>
         },
         {
@@ -109,7 +110,6 @@ const RemitenteDestinatarioData = ({ datos, datosCoti }) => {
         <div className='tw-flex tw-flex-col tw-gap-2'>
             <div><span className="tw-font-bold">Nombre y apellido / Razón social:</span> {datos.nombre}</div>
             <div><span className="tw-font-bold">Email:</span> {datos.email}</div>
-            <div><span className="tw-font-bold">CUIL / DNI:</span> {datos.tipo_documento.value} {datos.numero_documento}</div>
             <div><span className="tw-font-bold">Teléfono:</span> {datos.codigo_de_area} {datos.telefono}</div>
             <div>
             <span className="tw-font-bold">Dirección:</span>{" "}
@@ -184,3 +184,15 @@ const formatPrice = (price) => {
   }
   return `${priceStr},00`;
 };
+
+function formatearDocumento(numero_documento, tipo_documento) {
+    console.log(numero_documento, tipo_documento);
+    if (tipo_documento === 'CUIL') {
+        let str = String(numero_documento);
+        let parte1 = str.slice(0, 2);
+        let parte2 = str.slice(2, 10);
+        let parte3 = str.slice(10);
+        return `CUIL ${parte1}-${parte2}-${parte3}`;
+    }
+    return `DNI ${numero_documento}`;
+}

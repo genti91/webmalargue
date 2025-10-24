@@ -27,24 +27,6 @@ export default function RemitenteSection({ errors, form, setInForm, destinatario
                     />
                 </div>
                 <div className='tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-gap-6 md:tw-gap-9 tw-w-full'>
-                    <TitleSelectInput
-                        small
-                        title="Tipo documento"
-                        input={form.tipo_documento}
-                        setInput={(value) => setInForm('tipo_documento', value)}
-                        mandatory={true}
-                        placeholder="Seleccioná"
-                        options={[{value:'DNI', label:'DNI'}, {value:'CUIL', label:'CUIL'}]}
-                    />
-                    <TitleTextInput
-                        title='Número de documento / CUIL'
-                        placeholder='Ej.: 11222333 (sin puntos ni guiones)'
-                        input={form.numero_documento}
-                        setInput={(value) => setInForm('numero_documento', value)}
-                        mandatory
-                        error={errors.numero_documento}
-                        numeric
-                    />
                     <TitleTextInput
                         title='Código de área'
                         placeholder='Ej.: 11'

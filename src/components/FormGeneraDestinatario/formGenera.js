@@ -20,6 +20,10 @@ export const formGeneraRemitente = [
     required: 'Seleccioná un tipo de documento',
   },
   {
+    name: 'tipo_de_contribuyente',
+    required: 'Seleccioná un tipo de contribuyente',
+  },
+  {
     name: 'numero_documento',
     required: 'Ingresá un número de documento o CUIL',
     validate: (value, tipo_documento) => {
@@ -28,7 +32,7 @@ export const formGeneraRemitente = [
           ? null
           : 'El DNI debe tener 8 dígitos numéricos';
       }
-      if (tipo_documento === 'CUIL') {
+      if (tipo_documento === 'CUIL' || tipo_documento === 'CUIT') {
         return /^\d{11}$/.test(value)
           ? null
           : 'El CUIL debe tener 11 dígitos numéricos';

@@ -16,29 +16,6 @@ export const formGeneraRemitente = [
         : 'El email ingresado no es correcto',
   },
   {
-    name: 'tipo_documento',
-    required: 'Seleccioná un tipo de documento',
-  },
-  {
-    name: 'numero_documento',
-    required: 'Ingresá un número de documento o CUIL',
-    validate: (value, tipo_documento) => {
-      if (tipo_documento === 'DNI') {
-        return /^\d{8}$/.test(value)
-          ? null
-          : 'El DNI debe tener 8 dígitos numéricos';
-      }
-      if (tipo_documento === 'CUIL') {
-        return /^\d{11}$/.test(value)
-          ? null
-          : 'El CUIL debe tener 11 dígitos numéricos';
-      }
-      return /^\d+$/.test(value)
-        ? null
-        : 'Debe contener solo números';
-    },
-  },
-  {
     name: 'codigo_de_area',
     required: 'Ingresá el código',
     validate: (value) =>

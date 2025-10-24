@@ -29,26 +29,19 @@ const fetchWithRetry = async (url, options) => {
 
 export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinatario) => {
     const url = `${REACT_APP_MP_API_HOST}/api/codilsa/nuevoRetiro`;
-    if (destinatario.tipo_documento.value === "CUIL") {
-        destinatario.numero_documento = formatearDocumento(destinatario.numero_documento);
-    }
-    if (remitente.tipo_documento.value === "CUIL") {
-        remitente.numero_documento = formatearDocumento(remitente.numero_documento);
-    }
 
     let formaPago = 2;
-    let idFiscal;
-    if (destinatario.factura_a_nombre_de.value === "Remitente") {
-        formaPago = 1;
-        idFiscal = remitente.numero_documento;
-        if (remitente.tipo_documento.value === "DNI") {
-            idFiscal = `DNI ${idFiscal}`;
-        }
+    let idFiscal = destinatario.numero_documento;
+    if (destinatario.tipo_documento.value === "DNI") {
+        idFiscal = `DNI ${idFiscal}`;
     } else {
-        idFiscal = destinatario.numero_documento;
-        if (destinatario.tipo_documento.value === "DNI") {
-            idFiscal = `DNI ${idFiscal}`;
-        }
+        idFiscal = formatearDocumento(destinatario.numero_documento);
+    }
+    let tipoFiscal = 5;
+    if (destinatario.tipo_de_contribuyente.value === "Responsable Inscripto") {
+        tipoFiscal = 1;
+    } else if (destinatario.tipo_de_contribuyente.value === "Monotributista") {
+        tipoFiscal = 6;
     }
 
     let billetera = await getBilletera();
@@ -67,7 +60,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
             clienteSubCuenta: 1,
             origenSucursal: cotizacion.sucursalCanalizadora,
             formaPago,
-            tipoFiscal: 5,
+            tipoFiscal,
             idFiscal,
             nombreRte: remitente.nombre,
             emailRte: remitente.email,
