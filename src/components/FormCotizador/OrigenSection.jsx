@@ -1,16 +1,37 @@
+import { useState } from 'react';
 import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import TitleSelectInput from '../TextInputs/TitleSelectInput'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 import { provincesForFormSelect } from './utils/provincesForFormSelect'
 
 export default function OrigenSection({ form, errors = {}, onValidate, tarifaOrigen }) {
+    const [cpDisabled, setCpDisabled] = useState(false);
+    const [provDisabled, setProvDisabled] = useState(false);
+    const [locDisabled, setLocDisabled] = useState(false);
+    const [cpRepeated, setCpRepeated] = useState();
+  
   const normalizeText = (text) => {
     return text.toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
   };
 
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (option, cp) => {
+
+    if (cp) {
+      onValidate('originCP', String(option.codigoPostal).padStart(4, '0'));
+      // Contar cuántas veces aparece este código postal
+      const count = tarifaOrigen.filter(opt => opt.codigoPostal === option.codigoPostal).length;
+      const isRepeated = count > 1;
+      console.log('isRepeated:', isRepeated, 'count:', count);
+      if (isRepeated) {
+        setCpRepeated(option.codigoPostal);
+        return;
+      } else {
+        setCpRepeated(null);
+      }
+    }
+
     // Find the matching province from provincesForFormSelect
     const matchingProvince = provincesForFormSelect.find(
       p => {
@@ -35,6 +56,70 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
     onValidate('sucursalOrigenDomicilio', option.sucursal[0]?.domicilio || 'Desconocido');
   };
 
+  
+  const onLocalidadChange = (value) => {
+    if (!value || value.trim() === '') {
+      setCpDisabled(false);
+      setProvDisabled(false);
+      onValidate('origin', '')
+      return
+    }
+    if (value === form.origin.slice(0, -1)) {
+      if (form.originCP) {
+        onValidate('originCP', '')
+        onValidate('origin', '')
+        onValidate('originOption', '')
+        setCpDisabled(false);
+        setProvDisabled(false);
+      } else {
+        onValidate('origin', value)
+      }
+      return
+    }
+    setLocDisabled(false);
+    setCpDisabled(true);
+    setProvDisabled(true);
+    const query = normalizeText(value)
+    const exists = (tarifaOrigen || []).some(opt => {
+      const normalized = normalizeText(opt.nombre || '')
+      return normalized.includes(query)
+    })
+
+    if (exists) {
+      onValidate('origin', value)
+    }
+  }
+
+  const onCPChange = (value) => {
+    if (!value || value.trim() === '') {
+      setLocDisabled(false);
+      setProvDisabled(false);
+      onValidate('originCP', '')
+      return
+    }
+    if (value === form.originCP.slice(0, -1)) {
+      if (form.origin) {
+        onValidate('originCP', '')
+        onValidate('origin', '')
+        onValidate('originOption', '')
+        setLocDisabled(false);
+        setProvDisabled(false);
+      } else {
+        onValidate('originCP', value)
+      }
+      return
+    } 
+    setLocDisabled(true);
+    setProvDisabled(true);
+    const exists = (tarifaOrigen || []).some(opt => {
+      return String(opt.codigoPostal).startsWith(value)
+    })
+
+    if (exists) {
+      onValidate('originCP', value)
+    }
+  }
+
   return (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full'>
       <LineFormDivisor />
@@ -47,12 +132,15 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
             title='Localidad de origen'
             placeholder='Ej.: Chacarita'
             input={form.origin}
-            setInput={(value) => onValidate('origin', value)}
+            setInput={onLocalidadChange}
             mandatory
             error={errors.origin}
             searchDropdown={true}
             searchOptions={tarifaOrigen || []}
             onOptionSelect={handleOptionSelect}
+            disabled={locDisabled}
+            cpRepeated={cpRepeated}
+            clearOnBlur={form.origin && !form.originCP}
           />
           <TitleTextInput
             title='Codigo postal'
@@ -64,6 +152,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
             error={errors.originCP}
             searchDropdown={true}
             searchOptions={tarifaOrigen || []}
+            disabled={cpDisabled}
             onOptionSelect={handleOptionSelect}
           />
           <TitleSelectInput
@@ -74,6 +163,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
             placeholder='Seleccioná la provincia'
             options={provincesForFormSelect}
             error={errors.originOption}
+            disabled={provDisabled}
           />
         </div>
       </div>

@@ -212,7 +212,11 @@ export default function FormCotizacion() {
       }
     } catch (error) {
       console.error('Error submitting form:', error)
-      alert('Error al cotizar. Por favor, intentá nuevamente.')
+      setErrorTarifa({
+          email: form.email,
+          cotizacionId: null,
+          mensajeCristal: error,
+        })
     } finally {
       if (isMounted.current) {
         setIsSubmitting(false)

@@ -1,16 +1,36 @@
+import { useState } from 'react';
 import LineFormDivisor from '../LineFormDivisor/LineFormDivisor'
 import TitleSelectInput from '../TextInputs/TitleSelectInput'
 import TitleTextInput from '../TextInputs/TitleTextInput'
 import { provincesForFormSelect } from './utils/provincesForFormSelect'
 
 export default function DestinoSection({ form, errors = {}, onValidate, tarifaDestino }) {
+  const [cpDisabled, setCpDisabled] = useState(false);
+  const [provDisabled, setProvDisabled] = useState(false);
+  const [locDisabled, setLocDisabled] = useState(false);
+  const [cpRepeated, setCpRepeated] = useState();
   const normalizeText = (text) => {
     return text.toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
   };
 
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (option, cp) => {
+
+    if (cp) {
+      onValidate('destinyCP', String(option.codigoPostal).padStart(4, '0'));
+      // Contar cuántas veces aparece este código postal
+      const count = tarifaDestino.filter(opt => opt.codigoPostal === option.codigoPostal).length;
+      const isRepeated = count > 1;
+      console.log('isRepeated:', isRepeated, 'count:', count);
+      if (isRepeated) {
+        setCpRepeated(option.codigoPostal);
+        return;
+      } else {
+        setCpRepeated(null);
+      }
+    }
+
     // Find the matching province from provincesForFormSelect
     const matchingProvince = provincesForFormSelect.find(
       p => {
@@ -35,6 +55,69 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
     onValidate('sucursalDestinoDomicilio', option.sucursal[0]?.domicilio || 'Desconocido');
   };
 
+  const onLocalidadChange = (value) => {
+    if (!value || value.trim() === '') {
+      setCpDisabled(false);
+      setProvDisabled(false);
+      onValidate('destiny', '')
+      return
+    }
+    if (value === form.destiny.slice(0, -1)) {
+      if (form.destinyCP) {
+        onValidate('destinyCP', '')
+        onValidate('destiny', '')
+        onValidate('destinyOption', '')
+        setCpDisabled(false);
+        setProvDisabled(false);
+      } else {
+        onValidate('destiny', value)
+      }
+      return
+    }
+    setLocDisabled(false);
+    setCpDisabled(true);
+    setProvDisabled(true);
+    const query = normalizeText(value)
+    const exists = (tarifaDestino || []).some(opt => {
+      const normalized = normalizeText(opt.nombre || '')
+      return normalized.includes(query)
+    })
+
+    if (exists) {
+      onValidate('destiny', value)
+    }
+  }
+
+  const onCPChange = (value) => {
+    if (!value || value.trim() === '') {
+      setLocDisabled(false);
+      setProvDisabled(false);
+      onValidate('destinyCP', '')
+      return
+    }
+    if (value === form.destinyCP.slice(0, -1)) {
+      if (form.destiny) {
+        onValidate('destinyCP', '')
+        onValidate('destiny', '')
+        onValidate('destinyOption', '')
+        setLocDisabled(false);
+        setProvDisabled(false);
+      } else {
+        onValidate('destinyCP', value)
+      }
+      return
+    } 
+    setLocDisabled(true);
+    setProvDisabled(true);
+    const exists = (tarifaDestino || []).some(opt => {
+      return String(opt.codigoPostal).startsWith(value)
+    })
+
+    if (exists) {
+      onValidate('destinyCP', value)
+    }
+  }
+
   return (
     <div className='tw-flex tw-flex-col tw-items-start tw-justify-center tw-w-full'>
       <LineFormDivisor />
@@ -47,23 +130,27 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
             title='Localidad de destino'
             placeholder='Ej.: Tortuguitas'
             input={form.destiny}
-            setInput={(value) => onValidate('destiny', value)}
+            setInput={onLocalidadChange}
             mandatory
             error={errors.destiny}
             searchDropdown={true}
             searchOptions={tarifaDestino || []}
             onOptionSelect={handleOptionSelect}
+            disabled={locDisabled}
+            cpRepeated={cpRepeated}
+            clearOnBlur={form.destiny && !form.destinyCP}
           />
           <TitleTextInput
             title='Codigo postal'
             placeholder='Ej.: 1667'
             input={form.destinyCP}
-            setInput={(value) => onValidate('destinyCP', value)}
+            setInput={onCPChange}
             zipCode
             mandatory
             error={errors.destinyCP}
             searchDropdown={true}
             searchOptions={tarifaDestino || []}
+            disabled={cpDisabled}
             onOptionSelect={handleOptionSelect}
           />
           <TitleSelectInput
@@ -74,6 +161,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
             placeholder='Seleccioná la provincia'
             options={provincesForFormSelect}
             error={errors.destinyOption}
+            disabled={provDisabled}
           />
         </div>
       </div>
