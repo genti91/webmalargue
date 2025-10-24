@@ -18,6 +18,8 @@ export default function TitleTextInput({
   zipCode = false,
   textarea = false,
   rows = 3,
+  cpRepeated,
+  clearOnBlur = false,
 }) {
   const [isFocused, setIsFocused] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -25,9 +27,9 @@ export default function TitleTextInput({
   const dropdownRef = useRef(null)
   const inputRef = useRef(null)
 
-  useEffect(() => {
+useEffect(() => {
     if (searchDropdown) {
-      const filtered = searchOptions
+      let filtered = searchOptions
         .filter((option) => {
           if (zipCode) {
             // For postal codes, filter by codigoPostal and exclude codes less than 1000
@@ -52,10 +54,34 @@ export default function TitleTextInput({
             return a.nombre.localeCompare(b.nombre)
           }
         })
-        .slice(0, 10)
-      setFilteredOptions(filtered)
+
+      // Remove duplicate postal codes if zipCode mode
+      if (zipCode) {
+        const seen = new Set()
+        filtered = filtered.filter((option) => {
+          if (seen.has(option.codigoPostal)) {
+            return false
+          }
+          seen.add(option.codigoPostal)
+          return true
+        })
+      }
+
+      setFilteredOptions(filtered.slice(0, 10))
     }
   }, [input, searchOptions, searchDropdown, zipCode])
+
+  useEffect(() => {
+    if (cpRepeated) {
+      setHighlightedIndex(-1)
+      setIsFocused(true)
+      const filtered = searchOptions
+        .filter((option) => option.codigoPostal === cpRepeated)
+        .sort((a, b) => a.nombre.localeCompare(b.nombre))
+
+      setFilteredOptions(filtered)
+    }
+  }, [cpRepeated])
 
   const handleKeyDown = (e) => {
     if (!isFocused || !searchDropdown) return
@@ -101,7 +127,7 @@ export default function TitleTextInput({
 
     // Then call the onOptionSelect callback if provided
     if (onOptionSelect) {
-      onOptionSelect(option)
+      onOptionSelect(option, zipCode)
     }
 
     // Finally close the dropdown and reset highlight
@@ -129,6 +155,12 @@ export default function TitleTextInput({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
+
+  useEffect(() => {
+    if (clearOnBlur && !isFocused) {
+      setInput('');
+    }
+  }, [clearOnBlur, isFocused, setInput]);
 
   const isMobile = window.innerWidth < 768; // O usa un hook personalizado para detectar mobile
   const shouldUseTextarea = textarea && isMobile;
@@ -166,6 +198,7 @@ export default function TitleTextInput({
           onChange={(e) => {
             const value = e.target.value
               setInput(value)
+              setIsFocused(true)
           }}
           onFocus={() => {
             setIsFocused(true)
