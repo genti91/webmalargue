@@ -77,7 +77,7 @@ export default function ObsSection({ errors, form, setInForm }) {
                             disabledOptions={disabledOptions}
                         />
                         <TitleTextInput
-                            title='Número de documento / CUIL'
+                            title='DNI / CUIT / CUIL para facturar'
                             placeholder='Ej.: 11222333 (sin puntos ni guiones)'
                             input={form.numero_documento}
                             setInput={(value) => setInForm('numero_documento', value)}

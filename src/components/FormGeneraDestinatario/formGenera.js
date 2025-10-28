@@ -25,7 +25,7 @@ export const formGeneraRemitente = [
   },
   {
     name: 'numero_documento',
-    required: 'Ingresá un número de documento o CUIL',
+    required: 'Ingresá un DNI / CUIL / CUIT',
     validate: (value, tipo_documento) => {
       if (tipo_documento === 'DNI') {
         return /^\d{8}$/.test(value)
