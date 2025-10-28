@@ -130,7 +130,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
         <div className='tw-flex tw-flex-col lg:tw-flex-row tw-items-start tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
           <TitleTextInput
             title='Localidad de origen'
-            placeholder='Ej.: Chacarita'
+            placeholder='Escribí y seleccioná una opción'
             input={form.origin}
             setInput={onLocalidadChange}
             mandatory
@@ -144,9 +144,9 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
           />
           <TitleTextInput
             title='Codigo postal'
-            placeholder='Ej.: 1417'
+            placeholder='Escribí y seleccioná una opción'
             input={form.originCP}
-            setInput={(value) => onValidate('originCP', value)}
+            setInput={onCPChange}
             zipCode
             mandatory
             error={errors.originCP}

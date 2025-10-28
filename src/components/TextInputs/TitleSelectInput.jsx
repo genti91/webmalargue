@@ -66,7 +66,7 @@ export default function TitleSelectInput({
             tw-appearance-none tw-pr-10 tw-pl-4
             ${
               disabled
-                ? 'tw-bg-[#E9ECEF] tw-border-[#B2B2B2] tw-text-[#756C7D] tw-cursor-not-allowed'
+                ? 'tw-bg-[#e9ecef] tw-border-[#B2B2B2] tw-text-[#756C7D] tw-cursor-not-allowed'
                 : 'tw-border-[#2F3394] tw-bg-[#FFFFFF] tw-cursor-pointer'
             }
           `}

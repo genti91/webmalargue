@@ -128,7 +128,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
         <div className='tw-flex tw-flex-col lg:tw-flex-row tw-items-start tw-justify-between sm:tw-gap-9 tw-gap-6 tw-w-full'>
           <TitleTextInput
             title='Localidad de destino'
-            placeholder='Ej.: Tortuguitas'
+            placeholder='Escribí y seleccioná una opción'
             input={form.destiny}
             setInput={onLocalidadChange}
             mandatory
@@ -142,7 +142,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
           />
           <TitleTextInput
             title='Codigo postal'
-            placeholder='Ej.: 1667'
+            placeholder='Escribí y seleccioná una opción'
             input={form.destinyCP}
             setInput={onCPChange}
             zipCode
