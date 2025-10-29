@@ -45,17 +45,18 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     }
 
     let billetera = await getBilletera();
-    if (billetera.data.length === 0 || !billetera.data[0].minuta) {
-        throw new Error(`No se encontró la minuta en la billetera: ${billetera?.msg}`);
-    }
-    const minuta = String(billetera.data[0].minuta);
-    if (minuta.length < 10) {
-        throw new Error(`La minuta debe tener al menos 10 dígitos. Minuta recibida: ${minuta}`);
-    }
-    const minutaEstado = billetera.data[0].minutaEstado;
-    if (!minutaEstado || minutaEstado.toLowerCase() !== "abierta") {
-        throw new Error(`La minuta debe estar abierta. Estado actual: ${minutaEstado || 'no definido'}`);
-    }
+    let minuta = billetera?.data[0]?.minuta || 0;
+    // if (billetera.data.length === 0 || !billetera.data[0].minuta) {
+    //     throw new Error(`No se encontró la minuta en la billetera: ${billetera?.msg}`);
+    // }
+    // const minuta = String(billetera.data[0].minuta);
+    // if (minuta.length < 10) {
+    //     throw new Error(`La minuta debe tener al menos 10 dígitos. Minuta recibida: ${minuta}`);
+    // }
+    // const minutaEstado = billetera.data[0].minutaEstado;
+    // if (!minutaEstado || minutaEstado.toLowerCase() !== "abierta") {
+    //     throw new Error(`La minuta debe estar abierta. Estado actual: ${minutaEstado || 'no definido'}`);
+    // }
     let precioFinal = parseFloat(cotizacion.precioFinal.replace(/\./g, '').replace(',', '.'));
     const options = {
         method: 'POST',
@@ -99,7 +100,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
             })),
             cobranza: {
                 tipo: "RE",
-                minuta: billetera.data[0].minuta,
+                minuta: minuta,
                 importeTotal: precioFinal,
                 transferencias: [{
                     cuenta: 9,
