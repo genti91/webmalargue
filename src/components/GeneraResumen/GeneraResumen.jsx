@@ -41,7 +41,7 @@ export const GeneraResumen = ({ setCurrentStep, cotizacion, datosRemitente, dato
                 <div className='tw-flex tw-flex-col tw-gap-2'>
                     <div><span className="tw-font-bold">Factura a nombre de:</span> {datosDestinatario.factura_a_nombre_de.label}</div>
                     <div><span className="tw-font-bold">Tipo de contribuyente:</span> {datosDestinatario.tipo_de_contribuyente.label}</div>
-                    <div><span className="tw-font-bold">CUIL / DNI:</span> {formatearDocumento(datosDestinatario.numero_documento, datosDestinatario.tipo_documento.value)}</div>
+                    <div><span className="tw-font-bold">CUIT / CUIL / DNI:</span> {formatearDocumento(datosDestinatario.numero_documento, datosDestinatario.tipo_documento.value)}</div>
                 </div>
         },
         {

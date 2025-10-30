@@ -143,7 +143,8 @@ const GeneraConfirmacionExito = () => {
             let desti = addPrefixToKeys({...destinatario, 
                 tipo_documento: destinatario.tipo_documento.value,
                 factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
-                notificacion: destinatario.notificacion.value
+                notificacion: destinatario.notificacion.value,
+                tipo_de_contribuyente: destinatario.tipo_de_contribuyente.value
             }, 'dest_')
             setErrorEmailBody({
                 email: remitente?.email,
@@ -296,7 +297,13 @@ const formatearNumeroRetiro = (numeroRetiro) => {
 
 const addPrefixToKeys = (obj, prefix) => {
     return Object.keys(obj).reduce((newObj, key) => {
-        newObj[`${prefix}${key}`] = obj[key];
+        const value = obj[key];
+        if (value === null || value === undefined || value === '' || 
+            (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0)) {
+            newObj[`${prefix}${key}`] = '-';
+        } else {
+            newObj[`${prefix}${key}`] = value;
+        }
         return newObj;
     }, {});
 };
