@@ -314,7 +314,8 @@ export default function FormCotizacion() {
             !form.originCP ||
             !form.destinyCP ||
             !form.email ||
-            !form.valorDeclarado
+            !form.valorDeclarado ||
+            !form.message
           }
           className='tw-self-end tw-mt-6 tw-w-full lg:tw-w-fit tw-bg-[#2F3394] tw-font-semibold tw-text-white tw-py-4 tw-px-12 tw-rounded-md disabled:tw-opacity-50'
         >

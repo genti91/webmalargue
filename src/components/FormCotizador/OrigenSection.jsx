@@ -9,6 +9,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
     const [provDisabled, setProvDisabled] = useState(false);
     const [locDisabled, setLocDisabled] = useState(false);
     const [cpRepeated, setCpRepeated] = useState();
+    const [cpRepeatedTrigger, setCpRepeatedTrigger] = useState(0);
   
   const normalizeText = (text) => {
     return text.toLowerCase()
@@ -26,6 +27,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       console.log('isRepeated:', isRepeated, 'count:', count);
       if (isRepeated) {
         setCpRepeated(option.codigoPostal);
+        setCpRepeatedTrigger(prev => prev + 1);
         return;
       } else {
         setCpRepeated(null);
@@ -58,6 +60,19 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
 
   
   const onLocalidadChange = (value) => {
+    const equals = (tarifaOrigen || []).some(opt => {
+      return opt.nombre === value;
+    })
+    if (!equals) {
+      if (form.originCP) {
+        onValidate('originCP', '')
+        onValidate('originOption', '')
+      }
+    } else {
+      setCpDisabled(true);
+      setProvDisabled(true);
+    }
+
     if (!value || value.trim() === '') {
       setCpDisabled(false);
       setProvDisabled(false);
@@ -77,8 +92,6 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       return
     }
     setLocDisabled(false);
-    setCpDisabled(true);
-    setProvDisabled(true);
     const query = normalizeText(value)
     const exists = (tarifaOrigen || []).some(opt => {
       const normalized = normalizeText(opt.nombre || '')
@@ -91,6 +104,19 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
   }
 
   const onCPChange = (value) => {
+    const equals = (tarifaOrigen || []).some(opt => {
+      return opt.nombre === value;
+    })
+    if (!equals) {
+      if (form.origin) {
+        onValidate('origin', '')
+        onValidate('originOption', '')
+      }
+    } else {
+      setLocDisabled(true);
+      setProvDisabled(true);
+    }
+
     if (!value || value.trim() === '') {
       setLocDisabled(false);
       setProvDisabled(false);
@@ -109,8 +135,6 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       }
       return
     } 
-    setLocDisabled(true);
-    setProvDisabled(true);
     const exists = (tarifaOrigen || []).some(opt => {
       return String(opt.codigoPostal).startsWith(value)
     })
@@ -140,6 +164,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
             onOptionSelect={handleOptionSelect}
             disabled={locDisabled}
             cpRepeated={cpRepeated}
+            cpRepeatedTrigger={cpRepeatedTrigger}
             clearOnBlur={form.origin && !form.originCP}
           />
           <TitleTextInput

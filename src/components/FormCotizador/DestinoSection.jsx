@@ -9,6 +9,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
   const [provDisabled, setProvDisabled] = useState(false);
   const [locDisabled, setLocDisabled] = useState(false);
   const [cpRepeated, setCpRepeated] = useState();
+  const [cpRepeatedTrigger, setCpRepeatedTrigger] = useState(0);
   const normalizeText = (text) => {
     return text.toLowerCase()
       .normalize('NFD')
@@ -25,6 +26,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       console.log('isRepeated:', isRepeated, 'count:', count);
       if (isRepeated) {
         setCpRepeated(option.codigoPostal);
+        setCpRepeatedTrigger(prev => prev + 1);
         return;
       } else {
         setCpRepeated(null);
@@ -56,6 +58,19 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
   };
 
   const onLocalidadChange = (value) => {
+    const equals = (tarifaDestino || []).some(opt => {
+      return opt.nombre === value;
+    })
+    if (!equals) {
+      if (form.originCP) {
+        onValidate('originCP', '')
+        onValidate('originOption', '')
+      }
+    } else {
+      setCpDisabled(true);
+      setProvDisabled(true);
+    }
+
     if (!value || value.trim() === '') {
       setCpDisabled(false);
       setProvDisabled(false);
@@ -75,8 +90,6 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       return
     }
     setLocDisabled(false);
-    setCpDisabled(true);
-    setProvDisabled(true);
     const query = normalizeText(value)
     const exists = (tarifaDestino || []).some(opt => {
       const normalized = normalizeText(opt.nombre || '')
@@ -89,6 +102,19 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
   }
 
   const onCPChange = (value) => {
+    const equals = (tarifaDestino || []).some(opt => {
+      return opt.nombre === value;
+    })
+    if (!equals) {
+      if (form.origin) {
+        onValidate('origin', '')
+        onValidate('originOption', '')
+      }
+    } else {
+      setLocDisabled(true);
+      setProvDisabled(true);
+    }
+
     if (!value || value.trim() === '') {
       setLocDisabled(false);
       setProvDisabled(false);
@@ -107,8 +133,6 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       }
       return
     } 
-    setLocDisabled(true);
-    setProvDisabled(true);
     const exists = (tarifaDestino || []).some(opt => {
       return String(opt.codigoPostal).startsWith(value)
     })
@@ -138,6 +162,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
             onOptionSelect={handleOptionSelect}
             disabled={locDisabled}
             cpRepeated={cpRepeated}
+            cpRepeatedTrigger={cpRepeatedTrigger}
             clearOnBlur={form.destiny && !form.destinyCP}
           />
           <TitleTextInput

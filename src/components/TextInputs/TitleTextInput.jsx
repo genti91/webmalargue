@@ -19,6 +19,7 @@ export default function TitleTextInput({
   textarea = false,
   rows = 3,
   cpRepeated,
+  cpRepeatedTrigger,
   clearOnBlur = false,
 }) {
   const [isFocused, setIsFocused] = useState(false)
@@ -73,6 +74,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (cpRepeated) {
+      console.log('cpRepeated changed:', cpRepeated)
       setHighlightedIndex(-1)
       setIsFocused(true)
       const filtered = searchOptions
@@ -81,7 +83,7 @@ useEffect(() => {
 
       setFilteredOptions(filtered)
     }
-  }, [cpRepeated])
+  }, [cpRepeated, cpRepeatedTrigger])
 
   const handleKeyDown = (e) => {
     if (!isFocused || !searchDropdown) return
