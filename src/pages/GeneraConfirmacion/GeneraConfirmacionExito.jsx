@@ -81,7 +81,8 @@ const GeneraConfirmacionExito = () => {
                     notificacion: destinatario.notificacion.value
                 }, 'dest_')
                 let datosRemiOrDest = destinatario.factura_a_nombre_de.value === "Remitente" ? remitente : destinatario;
-                datosRemiOrDest = addPrefixToKeys(datosRemiOrDest, '');
+                let nombrePrefijo = destinatario.factura_a_nombre_de.value === "Remitente" ? 'Remitente' : 'Destinatario';
+                let a_nombre_de = `${nombrePrefijo}: ${datosRemiOrDest.nombre} ${datosRemiOrDest.email}`;
                 let body = {
                     nroRetiroForm: formatearNumeroRetiro(res.numeroRetiro),
                     numeroRetiro: res.numeroRetiro,
@@ -91,8 +92,7 @@ const GeneraConfirmacionExito = () => {
                     email: remitente?.email,
                     id_cotizacion: cotizacion?.id,
                     ...desti,
-                    ...remi,
-                    ...datosRemiOrDest,
+                    a_nombre_de,
                     destinatario:  JSON.stringify(destinatario),
                     minuta: res?.minuta || '',
                 }
