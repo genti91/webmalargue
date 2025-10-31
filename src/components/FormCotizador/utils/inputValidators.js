@@ -7,13 +7,13 @@ export const validateEmail = (value) => {
 }
 
 export const validatePostalCode = (value) => {
-  if (!value) return 'Ingresá el CP'
+  if (!value) return 'Seleccioná un código postal válido de la lista.'
   if (!/^\d{4}$/.test(value)) return 'El CP debe tener 4 dígitos'
   return null
 }
 
 export const validateLocation = (value) => {
-  if (!value) return 'Ingresá la localidad'
+  if (!value) return 'Seleccioná una localidad válida de la lista.'
   if (value.length < 3) return 'La localidad debe tener al menos 3 caracteres'
   if (value.length > 45) return 'La localidad debe tener menos de 45 caracteres'
   return null
