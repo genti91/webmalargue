@@ -187,12 +187,13 @@ const formatPrice = (price) => {
 
 function formatearDocumento(numero_documento, tipo_documento) {
     console.log(numero_documento, tipo_documento);
-    if (tipo_documento === 'CUIL') {
+    if (tipo_documento === 'CUIL' || tipo_documento === 'CUIT') {
         let str = String(numero_documento);
         let parte1 = str.slice(0, 2);
         let parte2 = str.slice(2, 10);
         let parte3 = str.slice(10);
-        return `CUIL ${parte1}-${parte2}-${parte3}`;
+        let tipo = tipo_documento === 'CUIL' ? 'CUIL' : 'CUIT';
+        return `${tipo} ${parte1}-${parte2}-${parte3}`;
     }
     return `DNI ${numero_documento}`;
 }
