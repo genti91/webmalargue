@@ -243,23 +243,29 @@ useEffect(() => {
               : 'tw-border-[#2F3394] tw-bg-[#FFFFFF]'
           }`}
         />
-        {isFocused && searchDropdown && filteredOptions.length > 0 && (
+        {isFocused && searchDropdown && (
           <ul
             ref={dropdownRef}
             className='tw-absolute tw-pl-1 tw-z-10 tw-w-full tw-mt-1 tw-bg-white tw-border tw-border-[#2F3394] tw-rounded-lg tw-max-h-60 tw-overflow-auto'
             onMouseDown={(e) => e.preventDefault()} // Prevent input blur when clicking dropdown options
           >
-            {filteredOptions.map((option, index) => (
-              <li
-                key={option.id}
-                className={`tw-px tw-py-2 tw-cursor-pointer hover:tw-bg-gray-100 ${
-                  index === highlightedIndex ? 'tw-bg-gray-100' : ''
-                }`}
-                onClick={() => handleOptionSelect(option)}
-              >
-                {zipCode ? option.codigoPostal : option.nombre}
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((option, index) => (
+                <li
+                  key={option.id}
+                  className={`tw-px tw-py-2 tw-cursor-pointer hover:tw-bg-gray-100 ${
+                    index === highlightedIndex ? 'tw-bg-gray-100' : ''
+                  }`}
+                  onClick={() => handleOptionSelect(option)}
+                >
+                  {zipCode ? option.codigoPostal : option.nombre}
+                </li>
+              ))
+            ) : (
+              <li className='tw-px tw-py-2 tw-text-gray-500 tw-text-center'>
+                Buscando...
               </li>
-            ))}
+            )}
           </ul>
         )}
       </div>
