@@ -62,9 +62,9 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       return opt.nombre === value;
     })
     if (!equals) {
-      if (form.originCP) {
-        onValidate('originCP', '')
-        onValidate('originOption', '')
+      if (form.destinyCP) {
+        onValidate('destinyCP', '')
+        onValidate('destinyOption', '')
       }
     } else {
       setCpDisabled(true);
@@ -106,9 +106,9 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       return opt.nombre === value;
     })
     if (!equals) {
-      if (form.origin) {
-        onValidate('origin', '')
-        onValidate('originOption', '')
+      if (form.destiny) {
+        onValidate('destiny', '')
+        onValidate('destinyOption', '')
       }
     } else {
       setLocDisabled(true);

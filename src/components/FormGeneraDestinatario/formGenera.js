@@ -35,7 +35,7 @@ export const formGeneraRemitente = [
       if (tipo_documento === 'CUIL' || tipo_documento === 'CUIT') {
         return /^\d{11}$/.test(value)
           ? null
-          : 'El CUIL debe tener 11 dígitos numéricos';
+          : 'El CUIL/CUIT debe tener 11 dígitos numéricos';
       }
       return /^\d+$/.test(value)
         ? null
