@@ -9,7 +9,7 @@ import { useLoading } from '../../context/LoadingContext'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ErrorProcesarRetiro } from '../../components/Errores/ErrorProcesarRetiro'
 import { Button } from 'react-bootstrap'
-import { postNuevoRetiro } from './services/postNuevoRetiro'
+import { formatearDocumento, postNuevoRetiro } from './services/postNuevoRetiro'
 import emailjs from 'emailjs-com'
 import QRCode from 'qrcode'
 import ShippingLabel from '../../components/ShippingLabel'
@@ -74,15 +74,14 @@ const GeneraConfirmacionExito = () => {
             }
             if (!res.idCobranza) {
                 console.warn(`No se recibió idCobranza en la respuesta del nuevo retiro.`);
-                let remi = addPrefixToKeys(remitente, 'remi_')
                 let desti = addPrefixToKeys({...destinatario, 
                     tipo_documento: destinatario.tipo_documento.value,
                     factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
-                    notificacion: destinatario.notificacion.value
+                    notificacion: destinatario.notificacion.value,
+                    tipo_de_contribuyente: destinatario.tipo_de_contribuyente.value
                 }, 'dest_')
                 let datosRemiOrDest = destinatario.factura_a_nombre_de.value === "Remitente" ? remitente : destinatario;
-                let nombrePrefijo = destinatario.factura_a_nombre_de.value === "Remitente" ? 'Remitente' : 'Destinatario';
-                let a_nombre_de = `${nombrePrefijo}: ${datosRemiOrDest.nombre} ${datosRemiOrDest.email}`;
+                let a_nombre_de = destinatario.factura_a_nombre_de.value === "Remitente" ? 'Remitente' : 'Destinatario';
                 let body = {
                     nroRetiroForm: formatearNumeroRetiro(res.numeroRetiro),
                     numeroRetiro: res.numeroRetiro,
@@ -93,8 +92,10 @@ const GeneraConfirmacionExito = () => {
                     id_cotizacion: cotizacion?.id,
                     ...desti,
                     a_nombre_de,
+                    pos_email: datosRemiOrDest.email,
+                    pos_nombre: datosRemiOrDest.nombre,
                     destinatario:  JSON.stringify(destinatario),
-                    minuta: res?.minuta || '',
+                    minuta: res?.minuta || 'No fue informada por Cristal',
                 }
                 await emailjs.send('service_lv636bu', 'template_uun00pi', body, 'fRtOuVBrm3PpHzBca')
                 
@@ -235,6 +236,10 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
     if (destinatario.notificacion.value !== "Remitente") {
         emailNoti = remitente.email + `, ${destinatario.email}`;
     }
+    let doc_desti = destinatario.numero_documento;
+    if (destinatario.tipo_documento.value !== "DNI") {
+        doc_desti = formatearDocumento(destinatario.numero_documento);
+    }
     return {
         email: emailNoti,
         nombreQr: idTrazabilidad.replace(/-/g, ''),
@@ -243,13 +248,14 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
         codigo_seguimiento: idTrazabilidad,
         nombre_remi: remitente.nombre,
         email_remi: remitente.email,
+        tipo_de_contribuyente: remitente.tipo_de_contribuyente.value,
         cod_area_remi: remitente.codigo_de_area,
         tel_remi: remitente.telefono,
         direccion_remi: formatearDireccion(remitente, cotizacion.localidadOrigen, cotizacion.provinciaOrigen, cotizacion.cpOrigen),
         nombre_dest: destinatario.nombre,
         email_dest: destinatario.email,
         tipo_doc_dest: destinatario.tipo_documento.value,
-        doc_dest: destinatario.numero_documento,
+        doc_dest: doc_desti,
         cod_area_dest: destinatario.codigo_de_area,
         tel_dest: destinatario.telefono,
         direccion_dest: formatearDireccion(destinatario, cotizacion.localidadDestino, cotizacion.provinciaDestino, cotizacion.cpDestino),

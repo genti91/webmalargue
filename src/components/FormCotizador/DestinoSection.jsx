@@ -52,9 +52,9 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
     onValidate('destinyCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('destiny', option.nombre);
     onValidate('idDestiny', option.id);
-    onValidate('sucursalDestino', option.sucursal[0]?.idSucursal || 'Desconocido');
-    onValidate('sucursalDestinoNombre', option.sucursal[0]?.nombreSucursal || 'Desconocido');
-    onValidate('sucursalDestinoDomicilio', option.sucursal[0]?.domicilio || 'Desconocido');
+    onValidate('sucursalDestino', option.sucursal[0]?.idSucursal);
+    onValidate('sucursalDestinoNombre', option.sucursal[0]?.nombreSucursal);
+    onValidate('sucursalDestinoDomicilio', option.sucursal[0]?.domicilio);
   };
 
   const onLocalidadChange = (value) => {
@@ -67,8 +67,10 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
         onValidate('destinyOption', '')
       }
     } else {
-      setCpDisabled(true);
-      setProvDisabled(true);
+      if (!cpRepeated) {
+        setCpDisabled(true);
+        setProvDisabled(true);
+      }
     }
 
     if (!value || value.trim() === '') {
@@ -89,7 +91,9 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       }
       return
     }
-    setLocDisabled(false);
+    if (!cpRepeated) {
+      setLocDisabled(false);
+    }
     const query = normalizeText(value)
     const exists = (tarifaDestino || []).some(opt => {
       const normalized = normalizeText(opt.nombre || '')
@@ -114,6 +118,7 @@ export default function DestinoSection({ form, errors = {}, onValidate, tarifaDe
       setLocDisabled(true);
       setProvDisabled(true);
     }
+    setCpRepeated(null);
 
     if (!value || value.trim() === '') {
       setLocDisabled(false);
