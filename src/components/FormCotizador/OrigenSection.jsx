@@ -53,9 +53,9 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
     onValidate('originCP', String(option.codigoPostal).padStart(4, '0'));
     onValidate('origin', option.nombre);
     onValidate('idOrigin', option.id);
-    onValidate('sucursal', option.sucursal[0]?.idSucursal || 'Desconocido');
-    onValidate('sucursalOrigenNombre', option.sucursal[0]?.nombreSucursal || 'Desconocido');
-    onValidate('sucursalOrigenDomicilio', option.sucursal[0]?.domicilio || 'Desconocido');
+    onValidate('sucursal', option.sucursal[0]?.idSucursal);
+    onValidate('sucursalOrigenNombre', option.sucursal[0]?.nombreSucursal);
+    onValidate('sucursalOrigenDomicilio', option.sucursal[0]?.domicilio);
   };
 
   
@@ -69,8 +69,10 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
         onValidate('originOption', '')
       }
     } else {
-      setCpDisabled(true);
-      setProvDisabled(true);
+      if(!cpRepeated){
+        setCpDisabled(true);
+        setProvDisabled(true);
+      }
     }
 
     if (!value || value.trim() === '') {
@@ -91,7 +93,9 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       }
       return
     }
-    setLocDisabled(false);
+    if (!cpRepeated) {
+      setLocDisabled(false);
+    }
     const query = normalizeText(value)
     const exists = (tarifaOrigen || []).some(opt => {
       const normalized = normalizeText(opt.nombre || '')
@@ -116,6 +120,7 @@ export default function OrigenSection({ form, errors = {}, onValidate, tarifaOri
       setLocDisabled(true);
       setProvDisabled(true);
     }
+    setCpRepeated(null);
 
     if (!value || value.trim() === '') {
       setLocDisabled(false);

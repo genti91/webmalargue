@@ -31,6 +31,9 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     const url = `${REACT_APP_MP_API_HOST}/api/codilsa/nuevoRetiro`;
 
     let formaPago = 2;
+    if (destinatario.factura_a_nombre_de.value === "Remitente") {
+        formaPago = 1;
+    }
     let idFiscal = destinatario.numero_documento;
     if (destinatario.tipo_documento.value === "DNI") {
         idFiscal = `DNI ${idFiscal}`;
@@ -140,7 +143,7 @@ const getBilletera = async () => {
         })
 }
 
-function formatearDocumento(numero_documento) {
+export function formatearDocumento(numero_documento) {
   let str = String(numero_documento);
   let parte1 = str.slice(0, 2);
   let parte2 = str.slice(2, 10);
