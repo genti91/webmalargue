@@ -1,3 +1,5 @@
+import { send } from "emailjs-com";
+
 const { REACT_APP_API_HOST_TARIF_LEAD_PROSP_BILLE, REACT_APP_API_TOKEN_TARIF_LEAD_PROSP_BILLE, REACT_APP_MP_API_HOST } = process.env;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -48,75 +50,81 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     }
 
     let billetera = await getBilletera();
+    let sendCobranza = true;
     let minuta = billetera?.data[0]?.minuta || 0;
-    // if (billetera.data.length === 0 || !billetera.data[0].minuta) {
-    //     throw new Error(`No se encontró la minuta en la billetera: ${billetera?.msg}`);
-    // }
-    // const minuta = String(billetera.data[0].minuta);
-    // if (minuta.length < 10) {
-    //     throw new Error(`La minuta debe tener al menos 10 dígitos. Minuta recibida: ${minuta}`);
-    // }
-    // const minutaEstado = billetera.data[0].minutaEstado;
-    // if (!minutaEstado || minutaEstado.toLowerCase() !== "abierta") {
-    //     throw new Error(`La minuta debe estar abierta. Estado actual: ${minutaEstado || 'no definido'}`);
-    // }
+    if (billetera?.data?.length === 0 || !billetera?.data[0]?.minuta) {
+        sendCobranza = false;
+    }
+    if (String(billetera?.data[0]?.minuta)?.length < 10) {
+        sendCobranza = false;
+    }
+    const minutaEstado = billetera?.data[0]?.minutaEstado;
+    if (!minutaEstado || minutaEstado.toLowerCase() !== "abierta") {
+        sendCobranza = false;
+    }
     let precioFinal = parseFloat(cotizacion.precioFinal.replace(/\./g, '').replace(',', '.'));
+
+    const payload = {
+        clienteCuenta: 66666,
+        clienteSubCuenta: 1,
+        origenSucursal: cotizacion.sucursalCanalizadora,
+        formaPago,
+        tipoFiscal,
+        idFiscal,
+        nombreRte: remitente.nombre,
+        emailRte: remitente.email,
+        telefonoRte: `${remitente.codigo_de_area} ${remitente.telefono}`,
+        domicilioRte: `${remitente.calle} ${remitente.numero}`,
+        domicilioExtraRte: `${remitente.piso || ''}${remitente.piso && remitente.dpto ? ' ' : ''}${remitente.dpto || ''}`,
+        cpOrigen: cotizacion.idCpOrigen,
+        destinatario: destinatario.nombre,
+        emailDes: destinatario.email,
+        telefonoDes: `${destinatario.codigo_de_area} ${destinatario.telefono}`,
+        domicilioDes: `${destinatario.calle} ${destinatario.numero}`,
+        domicilioExtraDes: `${destinatario.piso || ''}${destinatario.piso && destinatario.dpto ? ' ' : ''}${destinatario.dpto || ''}`,
+        cpDestino: cotizacion.idCpDestino,
+        observaciones: destinatario.observaciones,
+        valor: cotizacion.valorDeclarado,
+        cotizado: precioFinal,
+        conTracking: true,
+        remitos: cotizacion.arrayBultos.map((bulto, index) => ({
+            numero: String(index + 1).padStart(11, '0'),
+            letra: "",
+            fecha: new Date().toLocaleDateString('en-CA'),
+            carga: cotizacion.descripcionBultos,
+            bultos: Number(bulto.cantidadBultos),
+            kilos: Number(bulto.peso),
+            largo: Number(bulto.largo) / 100,
+            ancho: Number(bulto.ancho) / 100,
+            alto: Number(bulto.alto) / 100,
+        })),
+    };
+
+    if (sendCobranza) {
+        payload.cobranza = {
+            tipo: "RE",
+            minuta,
+            importeTotal: precioFinal,
+            transferencias: [{
+                cuenta: 9,
+                modo: 4,
+                importe: precioFinal,
+                fecha: new Date().toLocaleDateString('en-CA'),
+                numero: paymentId,
+            }],
+            imputaciones: [{
+                importe: precioFinal,
+            }]
+        };
+    }
+
     const options = {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            clienteCuenta: 66666,
-            clienteSubCuenta: 1,
-            origenSucursal: cotizacion.sucursalCanalizadora,
-            formaPago,
-            tipoFiscal,
-            idFiscal,
-            nombreRte: remitente.nombre,
-            emailRte: remitente.email,
-            telefonoRte: `${remitente.codigo_de_area} ${remitente.telefono}`,
-            domicilioRte: `${remitente.calle} ${remitente.numero}`,
-            domicilioExtraRte: `${remitente.piso || ''}${remitente.piso && remitente.dpto ? ' ' : ''}${remitente.dpto || ''}`,
-            cpOrigen: cotizacion.idCpOrigen,
-            destinatario: destinatario.nombre,
-            emailDes: destinatario.email,
-            telefonoDes: `${destinatario.codigo_de_area} ${destinatario.telefono}`,
-            domicilioDes: `${destinatario.calle} ${destinatario.numero}`,
-            domicilioExtraDes: `${destinatario.piso || ''}${destinatario.piso && destinatario.dpto ? ' ' : ''}${destinatario.dpto || ''}`,
-            cpDestino: cotizacion.idCpDestino,
-            observaciones: destinatario.observaciones,
-            valor: cotizacion.valorDeclarado,
-            cotizado: precioFinal,
-            conTracking: true,
-            remitos: cotizacion.arrayBultos.map((bulto, index) => ({
-                numero: String(index + 1).padStart(11, '0'),
-                letra: "",
-                fecha: new Date().toLocaleDateString('en-CA'),
-                carga: cotizacion.descripcionBultos,
-                bultos: Number(bulto.cantidadBultos),
-                kilos: Number(bulto.peso),
-                largo: Number(bulto.largo) / 100,
-                ancho: Number(bulto.ancho) / 100,
-                alto: Number(bulto.alto) / 100,
-            })),
-            cobranza: {
-                tipo: "RE",
-                minuta: minuta,
-                importeTotal: precioFinal,
-                transferencias: [{
-                    cuenta: 9,
-                    modo: 4,
-                    importe: precioFinal,
-                    fecha: new Date().toLocaleDateString('en-CA'),
-                    numero: paymentId,
-                }],
-                imputaciones: [{
-                    importe: precioFinal,
-                }]
-            },
-        }),
+        body: JSON.stringify(payload),
     };
     return {...await fetchWithRetry(url, options), minuta};
 };
