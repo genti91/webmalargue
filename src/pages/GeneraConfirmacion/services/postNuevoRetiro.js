@@ -84,7 +84,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
         domicilioDes: `${destinatario.calle} ${destinatario.numero}`,
         domicilioExtraDes: `${destinatario.piso || ''}${destinatario.piso && destinatario.dpto ? ' ' : ''}${destinatario.dpto || ''}`,
         cpDestino: cotizacion.idCpDestino,
-        observaciones: destinatario.observaciones,
+        observacion: destinatario.observaciones,
         valor: cotizacion.valorDeclarado,
         cotizado: precioFinal,
         conTracking: true,
