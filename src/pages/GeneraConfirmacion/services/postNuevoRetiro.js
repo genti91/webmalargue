@@ -65,6 +65,7 @@ export const postNuevoRetiro = async (cotizacion, paymentId, remitente, destinat
     let precioFinal = parseFloat(cotizacion.precioFinal.replace(/\./g, '').replace(',', '.'));
 
     const payload = {
+        paymentId,
         clienteCuenta: 66666,
         clienteSubCuenta: 1,
         origenSucursal: cotizacion.sucursalCanalizadora,
