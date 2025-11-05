@@ -27,30 +27,32 @@ router.put('/lead', (req, res) => {
 
 router.post('/nuevoRetiro', async (req, res) => {
     try {
-        const paymentId = req.body?.cobranza?.transferencias?.[0]?.numero;
-        
+        const { paymentId, ...retreatPayload } = req.body || {};
+
         if (!paymentId) {
-            return res.status(400).json({ 
+            return res.status(400).json({
                 error: 'Falta el ID de pago en la solicitud'
             });
         }
+
         const paymentValidation = await validatePayment(paymentId);
         if (!paymentValidation.valid) {
-            return res.status(400).json({ 
-                error: `Pago inválido: ${paymentValidation.reason}` 
+            return res.status(400).json({
+                error: `Pago inválido: ${paymentValidation.reason}`
             });
         }
-        const expectedAmount = req.body?.cobranza?.importeTotal;
+
+        const expectedAmount = retreatPayload?.cobranza?.importeTotal;
         if (expectedAmount && paymentValidation.payment) {
             const paymentAmount = paymentValidation.payment.amount;
             if (Math.abs(paymentAmount - expectedAmount) > 0.01) {
-                return res.status(400).json({ 
+                return res.status(400).json({
                     error: 'El monto del pago no coincide con el monto esperado'
                 });
             }
         }
 
-        const response = await postNuevoRetiro(req.body);
+        const response = await postNuevoRetiro(retreatPayload);
         
         // if (response?.numeroRetiro && response?.idTrazabilidad && !response?.idCobranza) {
         //     const warningLog = {
