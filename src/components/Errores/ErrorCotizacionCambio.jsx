@@ -4,19 +4,10 @@ import { useGenera } from '../../context/GeneraContext';
 
 export const ErrorCotizacionCambio = ({setError, error}) => {
     const { setCotizacion } = useGenera();
-    const formatPrice = (price) => {
-        return price.toLocaleString('es-AR', {
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 2,
-        });
-    }
     let storeCotizacion = async (cotizacion, observaciones, lead) => {
         let cleanCotizacion = {
             ...observaciones,
             id: lead.idLead,
-            precioFinal: cotizacion.valorizo.toLocaleString('de-DE', {
-                maximumFractionDigits: 2
-            }),
             remitente: {
                 provincia: observaciones.provinciaOrigen,
                 localidad: observaciones.localidadOrigen,
@@ -47,6 +38,7 @@ export const ErrorCotizacionCambio = ({setError, error}) => {
         localStorage.setItem('cotizacion_id', cleanCotizacion.id)
         setCotizacion(cleanCotizacion)
     }
+    let oldObservaciones = JSON.parse(error.oldCotizacion.observaciones)
     return (
         <>
             <Warning boldText="¡ATENCIÓN! Los retiros se agendan hasta las 15:00hs." text="Luego, quedarán pendientes para programarse el día hábil posterior." />
@@ -58,12 +50,12 @@ export const ErrorCotizacionCambio = ({setError, error}) => {
                 <div className='tw-flex-col md:tw-flex-row tw-flex tw-items-center tw-justify-center tw-gap-6 tw-text-center'>
                     <div className='tw-text-[21px] tw-text-[#6C757D] tw-font-[700]'>
                         <span className='tw-hidden md:tw-block'>Cotización N° {error.oldCotizacion.idLead}<br /></span>
-                        Precio anterior: <span className='tw-font-[400]'>ARS {formatPrice(error.oldCotizacion.importeCotizado)}</span>
+                        Precio anterior: <span className='tw-font-[400]'>ARS {oldObservaciones.precioFinal}</span>
                     </div>
                     <img src={`assets/arrow-right.png`} alt="icon" className="tw-rotate-90 md:tw-rotate-0 tw-transition-transform" />
                     <div className='tw-text-[21px] tw-text-[#2F3394] tw-font-[700]'>
                         <span className='tw-hidden md:tw-block'>Nueva cotización N° {error.lead.idLead}  <br /></span>
-                        Precio actualizado: <span className='tw-font-[400]'>ARS {formatPrice(error.cotizacion.valorizo)}</span>
+                        Precio actualizado: <span className='tw-font-[400]'>ARS {error.observaciones.precioFinal}</span>
                     </div>
                 </div>
                 <div className='lg:tw-ml-auto tw-w-full tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-10 tw-mt-10 md:tw-justify-end tw-justify-center'>
@@ -80,7 +72,7 @@ export const ErrorCotizacionCambio = ({setError, error}) => {
                     <Button
                         className='sm:tw-w-[181px] tw-w-full tw-h-12 p-0'
                         onClick={() => {
-                            let locOrigen = error.cotizacion.observaciones.localidadOrigen;
+                            let locOrigen = error.observaciones.localidadOrigen;
                             if (locOrigen.toLowerCase().includes('sucursal') || locOrigen.toLowerCase().includes('deposito')) {
                                 setError({
                                     type: 'DEPOSITO',
