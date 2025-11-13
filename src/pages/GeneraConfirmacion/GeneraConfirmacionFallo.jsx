@@ -10,11 +10,22 @@ import { useEffect } from 'react';
 const GeneraConfirmacionFallo = () => {
     const [searchParams] = useSearchParams()
     const paramsObj = Object.fromEntries(searchParams.entries());
-    const { cotizacion, remitente } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
+    const { cotizacion, remitente, destinatario } = JSON.parse(localStorage.getItem('datosEnvio')) || {};
+    let remi = addPrefixToKeys(remitente, 'remi_')
+    let desti = addPrefixToKeys({...destinatario, 
+        tipo_documento: destinatario.tipo_documento.value,
+        factura_a_nombre_de: destinatario.factura_a_nombre_de.value,
+        notificacion: destinatario.notificacion.value,
+        tipo_de_contribuyente: destinatario.tipo_de_contribuyente.value
+    }, 'dest_')
     const emailBody = {
+        ...remi,
+        ...desti,
         email: remitente.email,
         id_cotizacion: cotizacion.id,
-        descripcion: JSON.stringify(paramsObj)
+        descripcion: JSON.stringify(paramsObj),
+        timestamp: new Date().toLocaleString('es-AR'),
+        precioFinalARS: cotizacion?.precioFinal,
     }
     const sendEmail = () => {
         emailjs
@@ -58,3 +69,16 @@ const GeneraConfirmacionFallo = () => {
 }
 
 export default GeneraConfirmacionFallo;
+
+const addPrefixToKeys = (obj, prefix) => {
+    return Object.keys(obj).reduce((newObj, key) => {
+        const value = obj[key];
+        if (value === null || value === undefined || value === '' || 
+            (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0)) {
+            newObj[`${prefix}${key}`] = '-';
+        } else {
+            newObj[`${prefix}${key}`] = value;
+        }
+        return newObj;
+    }, {});
+};
