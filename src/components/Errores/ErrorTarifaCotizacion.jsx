@@ -13,8 +13,8 @@ export const ErrorTarifaCotizacion = ({
       'template_borvbgd',
       {
         email,
-        id: cotizacionId,
-        descripcion: mensajeCristal,
+        id: !cotizacionId ? '-' : cotizacionId,
+        descripcion: JSON.stringify(mensajeCristal),
         titulo: 'ERROR: Tarifa cotización',
         datosObservacion: formatDatosObservacion(datosObservacion)
       },

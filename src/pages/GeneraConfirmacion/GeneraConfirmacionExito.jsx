@@ -96,6 +96,7 @@ const GeneraConfirmacionExito = () => {
                     pos_nombre: datosRemiOrDest.nombre,
                     destinatario:  JSON.stringify(destinatario),
                     minuta: res?.minuta || 'No fue informada por Cristal',
+                    timestamp: new Date().toLocaleString('es-AR'),
                 }
                 await emailjs.send('service_lv636bu', 'template_uun00pi', body, 'fRtOuVBrm3PpHzBca')
                 
@@ -154,6 +155,8 @@ const GeneraConfirmacionExito = () => {
                 email: remitente?.email,
                 id_cotizacion: cotizacion?.id,
                 id_operacion_mp: paymentId,
+                timestamp: new Date().toLocaleString('es-AR'),
+                precioFinalARS: cotizacion?.precioFinal,
                 ...desti,
                 ...remi,
                 destinatario:  JSON.stringify(destinatario),
