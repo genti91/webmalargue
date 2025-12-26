@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom'
 import emailjs from 'emailjs-com'
 import { useEffect } from 'react';
+import { formatEmailLead } from '../../helpers/formatEmailLead';
 
 const GeneraConfirmacionFallo = () => {
     const [searchParams] = useSearchParams()
@@ -26,6 +27,7 @@ const GeneraConfirmacionFallo = () => {
         descripcion: JSON.stringify(paramsObj),
         timestamp: new Date().toLocaleString('es-AR'),
         precioFinalARS: cotizacion?.precioFinal,
+        lead: formatEmailLead(cotizacion),
     }
     const sendEmail = () => {
         emailjs
