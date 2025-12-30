@@ -13,6 +13,7 @@ import { formatearDocumento, postNuevoRetiro } from './services/postNuevoRetiro'
 import emailjs from 'emailjs-com'
 import QRCode from 'qrcode'
 import ShippingLabel from '../../components/ShippingLabel'
+import { formatEmailLead } from '../../helpers/formatEmailLead'
 
 const GeneraConfirmacionExito = () => {
     const { setLoading } = useLoading();
@@ -160,7 +161,8 @@ const GeneraConfirmacionExito = () => {
                 ...desti,
                 ...remi,
                 destinatario:  JSON.stringify(destinatario),
-                error: JSON.stringify(err.response ? err.response.data : err.message)
+                error: JSON.stringify(err.response ? err.response.data : err.message),
+                lead: formatEmailLead(cotizacion),
             });
             setErrorRetiro(true);
         } finally {
@@ -264,7 +266,7 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
         direccion_dest: formatearDireccion(destinatario, cotizacion.localidadDestino, cotizacion.provinciaDestino, cotizacion.cpDestino),
         valor_declarado: cotizacion.valorDeclarado,
         descripcion_bultos: cotizacion.descripcionBultos,
-        observaciones: destinatario.observaciones ? destinatario.observaciones : '-',
+        observaciones: destinatario.observaciones ? `${destinatario.observaciones} - N° Cotización: ${cotizacion.id}` : `- N° Cotización: ${cotizacion.id}`,
         id_operacion_mp: paymentId,
         factura_a_nombre: destinatario.factura_a_nombre_de.value,
         precio_base: cotizacion.precioSinIVA,
