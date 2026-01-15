@@ -9,13 +9,20 @@ export default function TitleTextUnitInput({
   disabled = false,
   error = false,
   onKeyDown,
-  name
+  name,
+  strictInteger = false
 }) {
   const handleChange = (e) => {
     const value = e.target.value;
-    // Allow empty value, numbers, and one decimal point
-    if (value === '' || /^\d*\.?\d*$/.test(value)) {
-      setInput(value);
+
+    if (strictInteger) {
+      if (value === '' || /^[0-9]+$/.test(value)) {
+        setInput(value);
+      }
+    } else {
+      if (value === '' || /^\d*\.?\d*$/.test(value)) {
+        setInput(value);
+      }
     }
   };
 
@@ -33,7 +40,7 @@ export default function TitleTextUnitInput({
         <input
           name={name}
           type='text'
-          inputMode='decimal'
+          inputMode={strictInteger ? "numeric" : "decimal"}
           value={input}
           onChange={handleChange}
           onKeyDown={onKeyDown}
