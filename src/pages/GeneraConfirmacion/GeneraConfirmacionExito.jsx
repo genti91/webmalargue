@@ -97,7 +97,14 @@ const GeneraConfirmacionExito = () => {
                     pos_nombre: datosRemiOrDest.nombre,
                     destinatario:  JSON.stringify(destinatario),
                     minuta: res?.minuta || 'No fue informada por Cristal',
-                    timestamp: new Date().toLocaleString('es-AR'),
+                    timestamp: new Date().toLocaleString('es-AR', { 
+                        year: 'numeric',
+                        month: 'numeric',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: false 
+                    }),
                 }
                 await emailjs.send('service_lv636bu', 'template_uun00pi', body, 'fRtOuVBrm3PpHzBca')
                 
@@ -156,7 +163,14 @@ const GeneraConfirmacionExito = () => {
                 email: remitente?.email,
                 id_cotizacion: cotizacion?.id,
                 id_operacion_mp: paymentId,
-                timestamp: new Date().toLocaleString('es-AR'),
+                timestamp: new Date().toLocaleString('es-AR', { 
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: false 
+                }),
                 precioFinalARS: cotizacion?.precioFinal,
                 ...desti,
                 ...remi,
@@ -266,7 +280,7 @@ const emailBody = (cotizacion, remitente, destinatario, idTrazabilidad, paymentI
         direccion_dest: formatearDireccion(destinatario, cotizacion.localidadDestino, cotizacion.provinciaDestino, cotizacion.cpDestino),
         valor_declarado: cotizacion.valorDeclarado,
         descripcion_bultos: cotizacion.descripcionBultos,
-        observaciones: destinatario.observaciones ? `${destinatario.observaciones} - N° Cotización: ${cotizacion.id}` : `- N° Cotización: ${cotizacion.id}`,
+        observaciones: destinatario.observaciones ? destinatario.observaciones : '-',
         id_operacion_mp: paymentId,
         factura_a_nombre: destinatario.factura_a_nombre_de.value,
         precio_base: cotizacion.precioSinIVA,
