@@ -25,7 +25,14 @@ const GeneraConfirmacionFallo = () => {
         email: remitente.email,
         id_cotizacion: cotizacion.id,
         descripcion: JSON.stringify(paramsObj),
-        timestamp: new Date().toLocaleString('es-AR'),
+        timestamp: new Date().toLocaleString('es-AR', { 
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: false 
+                }),
         precioFinalARS: cotizacion?.precioFinal,
         lead: formatEmailLead(cotizacion),
     }

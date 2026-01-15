@@ -74,7 +74,7 @@ export const putLead = async (props, prospecto, cotizacion) => {
         arrayBultos: props.arrayBultos,
         tarifa: props.tarifa,
         kilosReales: props.kilosReales,
-        metrosCubicos: props.metrosCubicos,
+        metrosCubicos: cotizacion?.aforo?.mt3,
         bultosTotal: props.bultosTotal,
         valorDeclarado: props.valorDeclarado,
         descripcionBultos: props.descripcionBultos,
@@ -82,6 +82,7 @@ export const putLead = async (props, prospecto, cotizacion) => {
         precioSeguro: seguroValue,
         IVA: precio.ivaValue,
         precioFinal: precio.finalValue,
+        kilosAforados: cotizacion?.aforo?.kilosAforados,
     }
     return await window
         // /CRM/PUT generar oprotunidad
