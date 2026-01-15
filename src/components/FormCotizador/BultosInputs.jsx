@@ -35,6 +35,7 @@ export default function BultosInputs({
             numeric
             error={errors.quantity}
             onKeyDown={onKeyDown}
+            strictInteger={true}
           />
           <TitleTextUnitInput
             name="weight"
@@ -62,6 +63,7 @@ export default function BultosInputs({
             error={errors.width}
             info={"*250cm max"}
             onKeyDown={onKeyDown}
+            strictInteger={true}
           />
           <TitleTextUnitInput
             name="height"
@@ -75,6 +77,7 @@ export default function BultosInputs({
             error={errors.height}
             info={"*250cm max"}
             onKeyDown={onKeyDown}
+            strictInteger={true}
           />
           <TitleTextUnitInput
             name="length"
@@ -88,6 +91,7 @@ export default function BultosInputs({
             error={errors.length}
             info={"*1400cm max"}
             onKeyDown={onKeyDown}
+            strictInteger={true}
           />
         </div>
       </div>

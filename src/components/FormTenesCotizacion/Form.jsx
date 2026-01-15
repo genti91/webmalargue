@@ -29,6 +29,9 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
             let datosCot = JSON.parse(cotizacion.observaciones)
             let newCotizacion = await postCotizacion(datosCot)
             if (newCotizacion && newCotizacion.valorizo) {
+                if (newCotizacion.msg && newCotizacion.msg.includes('Ups!')) {
+                    throw new Error('ERROR COTIZACION ' + newCotizacion.msg);
+                }
                 const valorNuevo = parseFloat(newCotizacion.valorizo).toFixed(2);
                 const valorOriginal = parseFloat(cotizacion.importeCotizado).toFixed(2);
                 if (valorNuevo !== valorOriginal) {
