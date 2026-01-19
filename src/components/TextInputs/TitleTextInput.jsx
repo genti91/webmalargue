@@ -21,6 +21,7 @@ export default function TitleTextInput({
   cpRepeated,
   cpRepeatedTrigger,
   clearOnBlur = false,
+  strictInteger = false,
 }) {
   const [isFocused, setIsFocused] = useState(false)
   const [filteredOptions, setFilteredOptions] = useState([])
@@ -194,13 +195,22 @@ useEffect(() => {
           inputMode={numeric ? 'decimal' : 'text'}
           value={input}
           onKeyDown={handleKeyDown}
+          onKeyPress={(e) => {
+            if (strictInteger && !/[0-9]/.test(e.key)) {
+              e.preventDefault()
+            }
+          }}
           placeholder={placeholder}
           required={mandatory}
           aria-label={title}
           onChange={(e) => {
-            const value = e.target.value
-              setInput(value)
+            let value = e.target.value
               setIsFocused(true)
+              if (strictInteger) {
+                // Solo permitir dígitos, remover cualquier otro carácter
+                value = value.replace(/[^0-9]/g, '')
+              }
+              setInput(value);
           }}
           onFocus={() => {
             setIsFocused(true)

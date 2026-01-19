@@ -176,6 +176,7 @@ export default function BultosSection({
             mandatory
             numeric
             error={errors.valorDeclarado}
+            strictInteger={true}
           />
         </div>
         <div className='lg:tw-flex-1 tw-flex tw-w-full lg:tw-w-fit '>
