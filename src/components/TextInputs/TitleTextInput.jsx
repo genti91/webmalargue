@@ -84,7 +84,7 @@ useEffect(() => {
 
       setFilteredOptions(filtered)
     }
-  }, [cpRepeated, cpRepeatedTrigger])
+  }, [cpRepeated, cpRepeatedTrigger, searchOptions])
 
   const handleKeyDown = (e) => {
     if (!isFocused || !searchDropdown) return
