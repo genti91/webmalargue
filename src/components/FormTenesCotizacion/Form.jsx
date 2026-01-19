@@ -28,7 +28,7 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
         try {
             let datosCot = JSON.parse(cotizacion.observaciones)
             let newCotizacion = await postCotizacion(datosCot)
-            if (newCotizacion && newCotizacion.valorizo) {
+            if (newCotizacion) {
                 if ((newCotizacion.msg && newCotizacion.msg.includes('Ups!')) || newCotizacion.valorizo == 0) {
                     throw new Error('ERROR COTIZACION ' + newCotizacion.msg);
                 }
