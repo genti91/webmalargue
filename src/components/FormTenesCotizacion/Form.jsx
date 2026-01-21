@@ -25,26 +25,27 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
     const { setFormActive } = useFormProtection();
 
     let validarValorCotizacion = async (cotizacion) => {
-        try {
-            let datosCot = JSON.parse(cotizacion.observaciones)
-            let newCotizacion = await postCotizacion(datosCot)
-            if (newCotizacion) {
-                if ((newCotizacion.msg && newCotizacion.msg.includes('Ups!')) || newCotizacion.valorizo === 0) {
-                    throw new Error('ERROR COTIZACION ' + newCotizacion.msg);
-                }
-                const valorNuevo = parseFloat(newCotizacion.valorizo).toFixed(2);
-                const valorOriginal = parseFloat(cotizacion.importeCotizado).toFixed(2);
-                if (valorNuevo !== valorOriginal) {
-                    let newProspecto = await putProspecto(datosCot)
-                    let newLead = await putLead(datosCot, newProspecto, newCotizacion)
-                    sendCotizacionEmail(newLead.observaciones, newLead.res)
-                    return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
-                }
+        let datosCot = JSON.parse(cotizacion.observaciones)
+        let newCotizacion = await postCotizacion(datosCot)
+        if (newCotizacion) {
+            if ((newCotizacion.msg && newCotizacion.msg.includes('Ups!')) || newCotizacion.valorizo === 0) {
+                const error = new Error(newCotizacion.msg || 'Error en cotización');
+                error.type = 'ERROR_COTIZACION';
+                error.cotizacionId = form.numero_cotizacion;
+                error.datosObservacion = datosCot;
+                error.email = form.email;
+                throw error;
             }
-            return false
-        } catch (error) {
-            throw new Error('OBSERVERCION PARSE ERROR ' + error);
+            const valorNuevo = parseFloat(newCotizacion.valorizo).toFixed(2);
+            const valorOriginal = parseFloat(cotizacion.importeCotizado).toFixed(2);
+            if (valorNuevo !== valorOriginal) {
+                let newProspecto = await putProspecto(datosCot)
+                let newLead = await putLead(datosCot, newProspecto, newCotizacion)
+                sendCotizacionEmail(newLead.observaciones, newLead.res)
+                return { cotizacion: newCotizacion, lead: newLead.res, oldCotizacion: cotizacion, observaciones: newLead.observaciones }
+            }
         }
+        return false
     }
 
     let validarDeposito = async (observaciones) => {
@@ -141,6 +142,12 @@ export const Form = ({ form, setInForm, setError, disableInputs }) => {
                 setError({
                     type: 'OBSERVERCION PARSE ERROR',
                     payload: error.message,
+                })
+                return
+            } else if (error?.type === 'ERROR_COTIZACION') {
+                setError({
+                    type: 'ERROR COTIZACION',
+                    payload: { mensajeCristal: error.message, ...error },
                 })
                 return
             }
