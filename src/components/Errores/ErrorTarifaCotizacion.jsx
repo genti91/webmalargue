@@ -1,11 +1,13 @@
 import { Button } from 'react-bootstrap'
 import emailjs from 'emailjs-com'
+import { Link } from 'react-router-dom'
 
 export const ErrorTarifaCotizacion = ({
   email,
   cotizacionId,
   mensajeCristal,
-  datosObservacion
+  datosObservacion,
+  redirectToCotiza = false,
 }) => {
   const sendEmail = () => {
     emailjs.send(
@@ -35,16 +37,30 @@ export const ErrorTarifaCotizacion = ({
         Contactanos y te ayudaremos a solucionarlo
       </h3>
       <div className='tw-flex tw-flex-col sm:tw-flex-row md:tw-gap-12 tw-gap-3 tw-mb-20 tw-mt-11'>
-        <Button
-          onClick={() => window.location.reload()}
-          className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
-          style={{
-            backgroundColor: '#6C757D',
-            border: '1px solid #6C757D',
-          }}
-        >
-          Nueva cotización
-        </Button>
+        {redirectToCotiza ? 
+          <Link to={`/cotiza`}>
+            <Button
+              className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
+              style={{
+                backgroundColor: '#6C757D',
+                border: '1px solid #6C757D',
+              }}
+            >
+              Nueva cotización
+            </Button>
+          </Link>
+          :
+          <Button
+              onClick={() => window.location.reload()}
+              className='tw-w-[158px] tw-h-12 p-0 tw-bg-[#6C757D]'
+              style={{
+                backgroundColor: '#6C757D',
+                border: '1px solid #6C757D',
+              }}
+            >
+              Nueva cotización
+            </Button>
+        }
         <a href='https://wa.me/5491163622778' target='_blank' rel='noreferrer'>
           <Button
             className='tw-w-[158px] tw-h-12 p-0'

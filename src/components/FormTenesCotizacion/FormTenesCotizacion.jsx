@@ -11,6 +11,7 @@ import { ErrorAPI } from '../Errores/ErrorAPI'
 import { ErrorEnlaceManipulado } from '../Errores/ErrorEnlaceManipulado'
 import { ErrorCotizacionCambio } from '../Errores/ErrorCotizacionCambio';
 import ErrorModalCotizacionEnSucursal from '../Errores/ErrorModalCotizacionEnSucursal.jsx';
+import { ErrorTarifaCotizacion } from '../Errores/ErrorTarifaCotizacion.jsx';
 
 export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setInForm, savedCotizacion, setSavedCotizacion }) => {
     const [error, setError] = useState({});
@@ -32,6 +33,15 @@ export const FormTenesCotizacion = ({ email, numeroCotizacion, flujo, form, setI
     if (error.type) {
         if (error.type === 'IMPORTE INVALIDO') {
             return <ErrorCotizacionCambio setError={setError} error={error.payload} />
+        }
+        if (error.type === 'ERROR COTIZACION') {
+            return <ErrorTarifaCotizacion 
+                email={error.payload.email} 
+                cotizacionId={error.payload.cotizacionId}
+                mensajeCristal={error.payload.mensajeCristal}
+                datosObservacion={error.payload.datosObservacion}
+                redirectToCotiza
+            />
         }
         if (!flujo && error.type !== 'DEPOSITO' && error.type !== 'OBSERVERCION PARSE ERROR') {
             return (
